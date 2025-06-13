@@ -1,0 +1,33 @@
+html {
+    font-size: var(--base-font-size);
+}
+@media only screen and (max-width: 992px) {
+    html {
+        font-size: var(--base-font-size-mobile);
+   }
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+body figure {
+    margin: 0;
+}
+body figure img, body img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+:focus-visible {
+    outline: none;
+}
+
+
+/* WPML */
+.otgs-development-site-front-end {
+    display: none;
+}

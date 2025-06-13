@@ -1,0 +1,103 @@
+:root {
+    /* Fonts */
+    --font-family-primary: 'Open Sans', sans-serif;
+
+    /* Font weight */
+    --font-weight-thin: 100;
+    --font-weight-extralight: 200;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 800;
+    --font-weight-black: 900;
+
+
+    /* Colors */
+    --color-primary: #182748;
+
+    --color-white: #ffffff;
+
+    --color-light: #F9F9F9;
+
+    --color-gray-light: #EEEEEE;
+    --color-gray: #707173;
+
+    /* Light color */
+    --bg-color: #F9F9F9;
+    --text-color: #182748;
+
+
+    /* Font sizes */
+    --base-font-size: 16px; /* Set the base Desktop font size in PX */
+    --base-font-size-mobile: 16px; /* Set the base Mobile font size in PX */
+
+    --font-size-base: 1rem; /* 16px */
+    --line-height-base: 1.5rem; /* Desktop : 24px*/
+
+
+    --gap: 2rem; /* 32px : Gutter width */
+
+    /* Body Bootstrap */
+    --bs-body-font-family: var(--font-family-primary);
+    --bs-body-font-size: var(--font-size-base);
+    --bs-body-font-weight: var(--font-weight-regular);
+    --bs-body-line-height: var(--line-height-base);
+    --bs-body-color: var(--text-color);
+    --bs-body-bg: var(--bg-color);
+
+
+    --bs-nav-link-font-size: 1.563rem; /* 25px */
+    --line-height-nav: 2.188rem; /* 35px */
+
+
+    /* Desktop Headline */
+    --font-size-h1: 4rem; /* 64px */
+    --line-height-h1: 4.813rem; /* 77px */
+
+    --font-size-h2: 3rem; /* 48px */
+    --line-height-h2: 3.625rem; /* 58px */
+
+    --font-size-h3: 2rem; /* 32px */
+    --line-height-h3: 2.813rem; /* 45px */
+
+    --font-size-h4: 1.563rem; /* 25px */
+    --line-height-h4: 2.188rem; /* 35px */
+    
+    --font-size-h5: 1.188rem; /* 19px */
+    --line-height-h5: 1.875rem; /* 30px */
+
+    --font-size-h6: 1.188rem; /* 19px */
+    --line-height-h6: 1.688rem; /* 27px */
+
+    /* Mobile Headline */
+    --font-size-h1-mobile: 3rem; /* 48px */
+    --font-size-h2-mobile: 2rem; /* 32px */
+    --font-size-h3-mobile: 2rem; /* 32px */
+    --font-size-h4-mobile: 1.563rem; /* 25px */
+    --font-size-h5-mobile: 1.563rem; /* 25px */
+    --font-size-h6-mobile: 1.188rem; /* 19px */
+
+    --line-height-h1-mobile: 3.625rem; /* 58px */
+    --line-height-h2-mobile: 2.813rem; /* 45px */
+    --line-height-h3-mobile: 2.813rem; /* 45px */
+    --line-height-h4-mobile: 2.188rem; /* 35px */
+    --line-height-h5-mobile: 1.875rem; /* 30px */
+    --line-height-h6-mobile: 1.688rem; /* 27px */
+
+
+    --font-size-navFtr: 1rem; /* 16px */
+    --line-height-navFtr: 1.5rem; /* 24px */
+
+    --font-size-textFtr: 1rem; /* 16px */
+    --line-height-textFtr: 1.5rem; /* 24px */
+}
+
+
+[data-theme="dark"] {
+    --bg-color: #182748;
+    --text-color: #ffffff;
+
+    --bg-dark: #2C3A5C;
+}

@@ -1,0 +1,207 @@
+.prefooter {
+    background: var(--bs-white);
+    padding: 3.75rem 0 4.313rem;
+}
+.prefooter .title {
+    margin-bottom: 3.75rem;
+}
+.prefooter .logos-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+}
+.prefooter .logos-wrapper .logo img {
+    max-height: 4.5rem;
+}
+
+
+footer {
+    color: var(--color-gray);
+    background: var(--color-text-default);
+    font-size: var(--font-size-textFtr);
+    line-height: var(--line-height-textFtr);
+    letter-spacing: 0.005em;
+    padding: 3.75rem 0;
+}
+footer a:hover,
+footer .menu li.current-menu-item a {
+    color: var(--bs-white);
+}
+
+footer .widget p:last-child {
+    margin-bottom: 0;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer .footer-logo img {
+    max-height: 3.188rem;
+}
+
+footer .footer-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+footer .footer-wrapper .footer-left-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+footer .footer-logo {
+    margin-bottom: 0.207rem;
+}
+
+footer .widget .title {
+    color: var(--bs-white);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.4rem;
+    margin-bottom: 1rem;
+}
+footer .footer-left-side .widget .title {
+    margin-bottom: 0.25rem;
+}
+
+footer .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+footer .footer-wrapper .footer-right-side {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+}
+footer .footer-wrapper .footer-right-side > div {
+    min-width: 11.333rem;
+}
+
+footer .menu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: var(--font-size-navFtr);
+    line-height: var(--line-height-navFtr);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+footer .social-media-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0;
+    line-height: 0;
+}
+footer .social-media-icons .icon {
+    border-radius: 0.188rem;
+    animation-timing-function: ease-out;
+    animation-duration: 300ms;
+}
+footer .social-media-icons .icon:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+footer .icon-whatsapp {
+    background-size: 1.25rem;
+}
+
+footer .footer-copyright {
+    margin-top: 3.062rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-tertiary);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+footer .copyright {
+    font-size: 0.813rem;
+    line-height: 1.138rem;
+}
+footer .bottom-menu .menu {
+    flex-direction: row;
+    font-size: 0.813rem;
+    line-height: 1.138rem;
+    gap: 1.313rem;
+}
+
+/* Responsive */
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+    .prefooter {
+        padding: 3rem 0;
+    }
+    .prefooter .logos-wrapper {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    .prefooter .logos-wrapper .logo img {
+        max-height: 3.75rem;
+    }
+    footer {
+        padding: 1.5rem 0;
+    }
+    footer .footer-copyright {
+        margin-top: 1.5rem;
+    }
+    footer .footer-wrapper {
+        gap: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    footer {
+        padding: 1.5rem 0;
+    }
+    footer .menu {
+        font-size: 0.875rem;
+        line-height: 1.05rem;
+    }
+    footer .copyright {
+        font-size: 0.875rem;
+        line-height: 1.05rem;
+    }
+    footer .footer-wrapper .footer-right-side {
+        gap: 0;
+    }
+    footer .footer-wrapper .footer-right-side .widget_nav_menu, footer .footer-wrapper .footer-right-side .title {
+        display: none;
+    }
+    footer .social-media-icons {
+        margin-top: 1.5rem;
+    }
+    footer .footer-copyright {
+        border: 0;
+        gap: 1.5rem;
+        flex-direction: column-reverse;
+        padding-top: 0;
+        margin-top: 1.5rem;
+    }
+    .copyright {
+        border-top: 1px solid var(--color-tertiary);
+        padding-top: 1rem;
+    }
+    .prefooter {
+        padding: 1.5rem 0;
+    }
+    .prefooter .title {
+        margin-bottom: 1.5rem;
+    }
+    .prefooter .logos-wrapper {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        row-gap: 1rem;
+    }
+    .prefooter .logos-wrapper .logo {
+        width: calc(50% - 0.5rem);
+        text-align: center;
+    }
+    .prefooter .logos-wrapper .logo img {
+        max-height: 3rem;
+        margin: 0 auto;
+    }
+}

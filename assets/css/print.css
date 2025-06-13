@@ -1,0 +1,17 @@
+/**!
+ * Print Stylesheet - meat200
+ * @version         1.0
+ * @lastmodified    27.081.2024
+*/
+
+@media print {
+
+    /** Seitenränder einstellen */       
+    @page { margin: 1,5cm }
+
+    @import "PrintStyles/body.css";
+    @import "PrintStyles/header.css";
+    @import "PrintStyles/footer.css";
+    @import "PrintStyles/block-elements.css";
+    @import "PrintStyles/forms.css";
+}

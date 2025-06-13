@@ -1,0 +1,46 @@
+/* ------------------------------------
+NOTE: Do not delete the following comment block.
+It contains the default WordPress style.css header informations that WordPress needs to work with.
+------------------------------------ */
+
+/*!
+Theme Name: KORSCH
+Author: Goldland Media GmbH
+Author URI: https://www.goldland-media.com/
+Description: WordPress Theme by Goldland
+Version: 1.0
+Text Domain: korsch
+*/
+
+/* ------------------------------------
+ 1. Basics
+ ------------------------------------ */
+
+@import "Base/bootstrap.css";
+ @import "Base/variables.css";
+ @import "Base/fonts.css";
+
+/* ------------------------------------
+  7. Globals
+  ------------------------------------ */
+@import "Globals/headlines.css";
+ @import "Globals/forms.css";
+ @import "Globals/texts.css";
+ @import "Globals/buttons.css";
+ @import "Globals/lists.css";
+ @import "Globals/icons.css";
+ @import "Globals/backgrounds.css";
+
+/* ------------------------------------
+  8. Partials
+  ------------------------------------ */
+@import "Partials/body.css";
+@import "Partials/header.css";
+@import "Partials/main-menu.css";
+ @import "Partials/footer.css";
+ @import "Partials/wp-adminbar.css";
+
+/* ------------------------------------
+  8. Plugins
+  ------------------------------------ */
+@import "plugins/cookieconsent.css";

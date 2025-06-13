@@ -1,0 +1,39 @@
+@import "../../plugins/bootstrap/bootstrap.min.css";
+
+.container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+	 width: 100%;
+	 padding-right: 1rem;
+	 padding-left: 1rem;
+	 margin-right: auto;
+	 margin-left: auto;
+}
+@media only screen and (min-width: 576px) {
+	 .container-sm, .container {
+		 max-width: 540px;
+		 padding-right: 1.5rem;
+		 padding-left: 1.5rem;
+	
+	}
+}
+@media only screen and (min-width: 768px) {
+	 .container-md, .container-sm, .container {
+		max-width: 720px;
+	}
+}
+@media only screen and (min-width: 992px) {
+	.container-xl, .container-lg, .container-md, .container-sm, .container {
+		max-width: 960px;
+		padding-right: calc(var(--gap) * 0.5);
+	 	padding-left: calc(var(--gap) * 0.5);
+	}
+}
+@media only screen and (min-width: 1200px) {
+	 .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+		max-width: 1140px;
+	}
+}
+@media only screen and (min-width: 1400px) {
+	.container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+		max-width: calc(1200px + var(--gap));
+   }
+}

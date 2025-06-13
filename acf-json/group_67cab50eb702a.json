@@ -1,0 +1,117 @@
+{
+    "key": "group_67cab50eb702a",
+    "title": "Block Domain Category Boxs",
+    "fields": [
+        {
+            "key": "field_67cab50ec5c1a",
+            "label": "Domain Category Boxs",
+            "name": "domain_category_boxs",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 3,
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_67cab50ec96a5",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "wpml_cf_preferences": 2,
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_67cab50ed0bc5",
+                    "label": "Domain Categories",
+                    "name": "domain_categories",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "wpml_cf_preferences": 3,
+                    "choices": {
+                        "Category of Application Domain": {
+                            "12": "Integrierter Brandschutz",
+                            "22": "IT &amp; Server",
+                            "19": "Lagersysteme",
+                            "11": "Lithium-Ionen-Batterien",
+                            "20": "Mobilität",
+                            "21": "Schaltschränke"
+                        },
+                        "Domains": {
+                            "330": "Löschanlagen für Filteranlagen",
+                            "329": "Löschanlagen für CNC-Maschinen",
+                            "328": "Löschanlagen für Schaltschränke",
+                            "327": "Löschanlagen für USV-Räume",
+                            "326": "Löschanlagen für Batteriespeicher"
+                        }
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 1,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_67cab50ed4711",
+                    "label": "Button",
+                    "name": "button",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "wpml_cf_preferences": 2
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/domain-category-boxs"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1742899837
+}

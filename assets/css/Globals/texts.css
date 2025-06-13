@@ -1,0 +1,40 @@
+b, strong {
+    font-weight: bold;
+}
+
+p {
+    letter-spacing: 0.008rem;
+}
+p:last-of-type {
+    margin: 0;
+}
+
+.text-white * {
+    color: var(--bs-white);
+}
+
+
+body img.alignright {
+    float: right;
+    margin-top: 1.667rem;
+}
+body img.alignleft {
+    float: left;
+    margin-top: 1.667rem;
+}
+@media only screen and (max-width: 767px) {
+    body img.alignright,
+    body img.alignleft {
+        float: none;
+        margin: 1.5rem auto;
+        display: table;
+    }
+}
+
+
+.text-medium {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+    letter-spacing: 0.008rem;
+}
+

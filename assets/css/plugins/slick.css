@@ -1,0 +1,77 @@
+@import "../../plugins/slick/slick.css";
+@import "../../plugins/slick/slick-theme.css";
+
+.slick-dots {
+    padding: 0 !important;
+}
+.slick-dots li {
+    vertical-align: bottom;
+    margin: 0 0.25rem;
+}
+.slick-dots li::before {
+    display: none;
+}
+.slick-dots li button {
+    padding: 0;
+}
+.slick-dots li button:before {
+    opacity: 1;
+    background: #DFDDDF;
+    content: '';
+    /* border-radius: 10px; */
+}
+.slick-dots li.slick-active button:before {
+    opacity: 1;
+    background: var(--color-primary);
+}
+.slick-dots li,
+.slick-dots li,
+.slick-dots li button:before {
+    width: 5.667rem;
+    height: 0.25rem;
+    transition: all 300ms;
+}
+/* .slick-dots li.slick-active,
+.slick-dots li.slick-active button,
+.slick-dots li.slick-active button:before {
+    width: 19.33px;
+} */
+
+
+.slick-prev, .slick-next {
+    width: 2.625rem;
+    height: 2.625rem;
+    background: var(--color-text-default);
+    border: 1px solid var(--color-secondary);
+    border-radius: 5px;
+    z-index: 1;
+    transition: all 300ms ease-out;
+}
+.slick-prev {
+    left: 0;
+}
+.slick-next {
+    right: 0;
+}
+.slick-prev:before, .slick-next:before {
+    content: '';
+    font-family: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background: url('data:image/svg+xml;charset=utf-8,<svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.71647 0.783304L7.0498 6.11664C7.09425 6.17219 7.13036 6.23053 7.15814 6.29164C7.18592 6.35275 7.1998 6.42219 7.1998 6.49997C7.1998 6.57775 7.18592 6.64719 7.15814 6.7083C7.13036 6.76942 7.09425 6.82775 7.0498 6.8833L1.71647 12.2166C1.66092 12.2611 1.60258 12.2972 1.54147 12.325C1.48036 12.3527 1.41092 12.3666 1.33314 12.3666C1.18869 12.3666 1.06369 12.3139 0.958138 12.2083C0.852582 12.1027 0.799805 11.9778 0.799805 11.8333C0.799805 11.7555 0.813693 11.6861 0.841471 11.625C0.869249 11.5639 0.90536 11.5055 0.949805 11.45L5.91647 6.49997L0.949805 1.54997C0.90536 1.49442 0.86925 1.43608 0.841471 1.37497C0.813693 1.31386 0.799805 1.24442 0.799805 1.16664C0.799805 1.02219 0.852582 0.897194 0.958138 0.791637C1.06369 0.686081 1.18869 0.633305 1.33314 0.633305C1.41092 0.633305 1.48036 0.647193 1.54147 0.674971C1.60258 0.702749 1.66092 0.738859 1.71647 0.783304Z" fill="%23DFDDDF"/></svg>') no-repeat center;
+}
+.slick-prev:before {
+    transform: rotate(180deg);
+}
+.slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+    background: var(--color-secondary);
+}
+
+.slick-disabled {
+    opacity: 0.2;
+}
+.slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+    opacity: 1;
+}

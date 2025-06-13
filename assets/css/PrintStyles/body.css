@@ -1,0 +1,31 @@
+body {
+    font-family: sans-serif, Helvetica, Arial;
+    font-weight: 400;
+    font-size: 14pt;
+    line-height: 23pt;
+    background-color: #fff;
+}
+body video {
+    display: none;
+}
+body h1, body h2, body h3, body h4, body p, body span, body strong, body a {
+    color: #000;
+}
+body h1, body h2 {
+    font-size: 30pt;
+    line-height: 27pt;
+    font-weight: 500;
+}
+body h1, body h2, body h3, body h4 {
+    font-size: 20pt;
+    line-height: 20pt;
+}
+body img {
+    max-width: 100%;
+}
+body a, body a:visited {
+    text-decoration: underline;
+}
+body a[href]:after {
+    content: ' (' attr(href) ')';
+}

@@ -1,0 +1,30 @@
+.acf-image-select-list .acf-image-select img {
+    width: 92px;
+}
+.list-products .selection ul {
+    display: grid !important;
+}
+.list-products ul li {
+    width: max-content;
+}
+.acf-editor-wrap .wp-editor-area {
+    padding: 10px;
+    border: none;
+    color: inherit !important;
+}
+.wp-editor-container textarea.wp-editor-area, .acf-editor-wrap iframe {
+    height: auto !important;
+    min-height: 120px;
+}
+.acf-repeater.-row>table>tbody>tr>td, .acf-repeater.-block>table>tbody>tr>td {
+    border-top: 2px solid #b5b5b5 !important;
+}
+
+.acf-field-image-select .acf-image-select-list {
+    padding: 0;
+}
+.acf-image-select-list .acf-image-select img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}

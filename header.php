@@ -9,28 +9,37 @@
 
 <body <?php body_class(); ?>>
     
+<?php
+    $logo = get_field('logo', 'option');
+        $logo_light = $logo['logo_light'];
+        $logo_dark = $logo['logo_dark'];
+    $show_language_switcher = get_field('show_language_switcher', 'option');
+?>
+
+
 <header>
     <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="site-logo">
-                    <?php $logo = get_field('logo', 'option'); ?>
-
-                    <a href="<?php echo home_url(); ?>">
-                        <?php if (has_custom_logo()) : ?>
-                            <?php the_custom_logo(); ?>
-                        <?php elseif ($logo) : ?>
-                            <?php echo wp_get_attachment_image( $logo['ID'], 'site-logo', false, array('loading' => 'eager', 'alt' => esc_attr(get_bloginfo('name')) ) ); ?>
-                        <?php else : ?>
-                            <?php bloginfo('name'); ?>
+        <div class="header-container">
+            <div class="site-logo">
+                <a href="<?php echo home_url(); ?>">
+                    <?php if (has_custom_logo()) : ?>
+                        <?php the_custom_logo(); ?>
+                    <?php elseif ($logo_light || $logo_dark) : ?>
+                        <?php if ($logo_light) : ?>
+                            <?php echo wp_get_attachment_image( $logo_light['ID'], 'full', false, array('class' => 'logo logo-light','loading' => 'eager', 'alt' => esc_attr(get_bloginfo('name')) ) ); ?>
                         <?php endif; ?>
-                    </a>
-                </div>
+                        <?php if ($logo_dark) : ?>
+                            <?php echo wp_get_attachment_image( $logo_dark['ID'], 'full', false, array('class' => 'logo logo-dark','loading' => 'eager', 'alt' => esc_attr(get_bloginfo('name')) ) ); ?>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php bloginfo('name'); ?>
+                    <?php endif; ?>
+                </a>
             </div>
 
-            <div class="col-md-7">
+            <div class="nav-container">
                 <div class="top-header">
-                    <div class="meta-menu">
+                    <nav class="meta-menu">
                         <?php if (has_nav_menu('meta-menu')) {
                             wp_nav_menu([
                                 'theme_location' => 'meta-menu',
@@ -39,52 +48,49 @@
                                 'walker' => new WP_Bootstrap_Navwalker()
                             ]); 
                         } ?>
-                    </div>
+                    </nav>
 
-                    <button id="theme-toggle"><?php _e('Contrast', 'korsch'); ?></button>
+                    <button id="theme-toggle" class="icon-contrast"><?php _e('Contrast', 'korsch'); ?></button>
 
-                    <div class="language-switcher">
-                        <ul class="nav">
-                            <?php
-                                $languages = apply_filters('wpml_active_languages', null);
-                                if (!empty($languages)) {
-                                    foreach ($languages as $language) {
-                                        $active_class = $language['active'] ? 'active' : '';
-                                        echo '<li class="nav-item ' . $active_class . '">';
-                                            echo '<a href="' . esc_url($language['url']) . '" class="nav-link">';
-                                            echo esc_html($language['language_code']);
-                                            echo '</a>';
-                                        echo '</li>';
+                    <?php if ($show_language_switcher) : ?>
+                        <nav class="language-switcher">
+                            <ul class="nav">
+                                <?php
+                                    $languages = apply_filters('wpml_active_languages', null);
+                                    if (!empty($languages)) {
+                                        foreach ($languages as $language) {
+                                            $active_class = $language['active'] ? 'active' : '';
+                                            echo '<li class="nav-item ' . $active_class . '">';
+                                                echo '<a href="' . esc_url($language['url']) . '" class="nav-link">';
+                                                echo esc_html($language['language_code']);
+                                                echo '</a>';
+                                            echo '</li>';
+                                        }
                                     }
-                                }
-                            ?>
-                        </ul>
+                                ?>
+                            </ul>
+                        </nav>
+                    <?php endif; ?>
+                </div>
+
+                <nav class="main-navigation navbar navbar-expand-lg underline">
+                    <button class="navbar-toggler" type="button" data-bs-target="#main-menu-mobile">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <button type="button" class="btn-close collapse navigation-close" data-bs-target="#main-menu-mobile"></button>
+
+                    <div class="collapse navbar-collapse" id="main-navigation">
+                        <?php if (has_nav_menu('main-menu')) {
+                            wp_nav_menu([
+                                'theme_location' => 'main-menu',
+                                'menu_class' => 'navbar-nav menu-main-navigation',
+                                'depth' => 1,
+                                'walker' => new WP_Bootstrap_Navwalker()
+                            ]); 
+                        } ?>
                     </div>
-                </div>
+                </nav>
             </div>
-        </div>
-
-
-        
-
-        <div class="main-header">
-            <nav class="main-navigation navbar navbar-expand-lg">
-                <button class="navbar-toggler" type="button" data-bs-target="#main-menu-dropdown">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <button type="button" class="btn-close navigation-close" data-bs-target="#main-menu-mobile"></button>
-
-                <div class="collapse navbar-collapse" id="main-navigation">
-                    <?php if (has_nav_menu('main-menu')) {
-                        wp_nav_menu([
-                            'theme_location' => 'main-menu',
-                            'menu_class' => 'navbar-nav menu-main-navigation',
-                            'depth' => 1,
-                            'walker' => new WP_Bootstrap_Navwalker()
-                        ]); 
-                    } ?>
-                </div>
-            </nav>
         </div>
     </div>
 
@@ -135,4 +141,4 @@
     </div>
 </header>
 
-<div class="menu-overlay"></div>
+<!-- <div class="menu-overlay"></div> -->

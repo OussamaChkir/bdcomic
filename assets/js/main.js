@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // headerStickyAdminbar();
+    headerStickyAdminbar();
+    hoverslippery();
     // linkSeemore();
     // backtotop();
     // formInputFile();
@@ -15,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.addEventListener('resize', function() {
-    // headerStickyAdminbar();
+    headerStickyAdminbar();
+    hoverslippery();
     // if (window.innerWidth <= 991) { // Mobile Part
     //     mobileMenu();
     //     mobilesearchMenu();
@@ -37,6 +39,25 @@ function headerStickyAdminbar() {
     var adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
     
     header.style.top = adminBarHeight + 'px';
+}
+
+function hoverslippery() {
+    $('.underline').hoverSlippery({
+        border: true,
+        underline: true
+    });
+
+    $('.underline .slippery').css({
+        width: '0',
+        left: '0'
+    });
+
+    $('.underline').on('mouseleave', function () {
+        $('.underline .slippery').stop(true).css({
+            width: '0',
+            left: '0'
+        });
+    });
 }
 
 function linkSeemore() {

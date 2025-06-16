@@ -1,17 +1,26 @@
 /********** Variables bootstrap **********/
 .nav {
-    --bs-nav-link-color: var(--color-secondary);
-    --bs-nav-link-hover-color: var(--color-primary);
+    --bs-nav-link-color: var(--text-color);
+    --bs-nav-link-hover-color: var(--text-color);
     gap: 2rem;
 }
 .nav .current-menu-item .nav-link {
     color: var(--bs-nav-link-hover-color);
 }
 
+.nav-link {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-color);
+    letter-spacing: 0.008rem;
+    padding: 0;
+}
+
 .navbar {
-    --bs-navbar-color: var(--color-text-default);
-    --bs-navbar-hover-color: var(--color-primary);
-    --bs-navbar-active-color: var(--color-primary);
+    --bs-navbar-color: var(--text-color);
+    --bs-navbar-hover-color: var(--text-color);
+    --bs-navbar-active-color: var(--text-color);
     --bs-navbar-toggler-font-size: 2.5rem;
     --bs-navbar-toggler-icon-bg: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4H24" stroke="%23271A2B" stroke-width="2"/><path d="M0 12H24" stroke="%23271A2B" stroke-width="2"/><path d="M0 20H24" stroke="%23271A2B" stroke-width="2"/></svg>');
 
@@ -47,27 +56,19 @@
 
 .navbar-nav {
     --bs-nav-link-hover-color: var(--bs-navbar-color);
-    gap: 1.5rem;
+    gap: 2.75rem;
+    margin-right: 1rem;
 }
-.nav-link {
-    font-size: var(--font-size-base);
-    line-height: 1.5rem;
-    font-weight: var(--font-weight-regular);
-    color: var(--color-secondary);
-    letter-spacing: 0.005em;
-    padding: 0;
-}
-
 .navbar-expand-lg .navbar-nav .nav-link {
     font-size: var(--bs-nav-link-font-size);
     line-height: var(--line-height-nav);
     font-weight: var(--font-weight-semi-bold);
+    letter-spacing: 0.008rem;
     color: var(--bs-nav-link-color);
-    padding: 0.438rem 1rem;
-    border-radius: 31.25rem;
+    padding: 0 0 0.5rem;
     cursor: pointer;
 }
-.navbar .nav-link:focus, .navbar .nav-link:hover {
+/* .navbar .nav-link:focus, .navbar .nav-link:hover {
     color: var(--bs-nav-link-color);
     background: var(--color-light);
 }
@@ -76,6 +77,27 @@
 .navbar .selected-menu-item .nav-link {
     color: var(--bs-white);
     background: var(--bs-navbar-active-color);
+} */
+
+/* Hover effect */
+.underline .navbar-nav li.slippery {
+    border-bottom: 2px solid var(--text-color) !important;
+    opacity: 0.5;
+}
+.navbar-expand-lg .navbar-nav .nav-link:after {
+    content: '';
+    position: absolute;
+    background: var(--text-color);
+    height: 2px;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    opacity: 0;
+}
+.navbar .current-menu-item .nav-link:after,
+.navbar .current-menu-parent .nav-link:after,
+.navbar .selected-menu-item .nav-link:after {
+    opacity: 1;
 }
 
 .nav-link:focus-visible {

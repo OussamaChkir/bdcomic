@@ -21,12 +21,13 @@
 
     --color-light: #F9F9F9;
 
-    --color-gray-light: #EEEEEE;
     --color-gray: #707173;
 
     /* Light color */
     --bg-color: #F9F9F9;
     --text-color: #182748;
+
+    --bg-box: #EEEEEE;
 
 
     /* Font sizes */
@@ -99,5 +100,5 @@
     --bg-color: #182748;
     --text-color: #ffffff;
 
-    --bg-dark: #2C3A5C;
+    --bg-box: #2C3A5C;
 }

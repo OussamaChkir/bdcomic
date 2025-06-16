@@ -170,12 +170,9 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
         $atts = array();
         $atts['class'] = 'nav-link'; // Add class to a element
         if (in_array('dropdown', $classes)) {
-            //$atts['class'] .= ' dropdown-toggle';
-            //$atts['data-bs-toggle'] = 'collapse';
-            //$atts['aria-expanded'] = 'false';
-            $atts['data-bs-target'] = '#main-menu-dropdown';
-            //$atts['aria-controls'] = 'main-menu-dropdown';
-            $atts['data-dropdown-id'] = 'menu-item-' . $item->ID;
+            $atts['class'] .= ' dropdown-toggle';
+            $atts['data-bs-toggle'] = 'collapse';
+            $atts['aria-expanded'] = 'false';
         }
         $atts['href']  = !empty($item->url) ? $item->url : '';
         if (!empty($item->target)) {
@@ -200,32 +197,21 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
     }
 }
 
-// Add Cookies link to menu Footer (bottom-menu)
-// function add_cookie_link_to_footer_menu($items, $args) {
-//     if ($args->theme_location == 'bottom-menu') {
-//         $cookie_link = '<li class="menu-item"><a href="#" data-cc="show-preferencesModal">'.__('Cookie-Einstellungen', 'korsch').'</a></li>';
-//         $items = $items . $cookie_link;
-//     }
-//     return $items;
-// }
-// add_filter('wp_nav_menu_items', 'add_cookie_link_to_footer_menu', 10, 2);
-
-
-// Get all Contact Form 7 forms : ACF with filed form_select
-function populate_cf7_forms_select_field( $field ) {
-    $field['choices'] = array();
+// // Get all Contact Form 7 forms : ACF with filed form_select
+// function populate_cf7_forms_select_field( $field ) {
+//     $field['choices'] = array();
     
-    $cf7_forms = get_posts( array(
-        'post_type' => 'wpcf7_contact_form',
-        'posts_per_page' => -1
-    ) );
+//     $cf7_forms = get_posts( array(
+//         'post_type' => 'wpcf7_contact_form',
+//         'posts_per_page' => -1
+//     ) );
 
-    if ( ! empty( $cf7_forms ) ) {
-        foreach ( $cf7_forms as $form ) {
-            $field['choices'][ $form->ID ] = $form->post_title;
-        }
-    }
+//     if ( ! empty( $cf7_forms ) ) {
+//         foreach ( $cf7_forms as $form ) {
+//             $field['choices'][ $form->ID ] = $form->post_title;
+//         }
+//     }
 
-    return $field;
-}
-add_filter( 'acf/load_field/name=form_select', 'populate_cf7_forms_select_field' );
+//     return $field;
+// }
+// add_filter( 'acf/load_field/name=form_select', 'populate_cf7_forms_select_field' );

@@ -3,7 +3,6 @@ require_once('inc/goldland-acf-json.php');
 require_once('inc/acf-blocks.php');
 require_once('inc/tinymce-setup.php');
 require_once('inc/functions.php');
-require_once('inc/widget-areas.php');
 // require_once('inc/custom-post-types.php');
 
 class wbg_theme {

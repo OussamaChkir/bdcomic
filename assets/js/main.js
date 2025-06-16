@@ -43,6 +43,7 @@ function headerStickyAdminbar() {
 function hoverslippery() {
     $('.underline').hoverSlippery({
         border: true,
+        borderWidth: "2px",
         underline: true
     });
 

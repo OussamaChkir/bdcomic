@@ -81,7 +81,7 @@
 
 /* Hover effect */
 .underline .navbar-nav li.slippery {
-    border-bottom: 2px solid var(--text-color) !important;
+    border-bottom-color: var(--text-color) !important;
     opacity: 0.5;
 }
 .navbar-expand-lg .navbar-nav .nav-link:after {

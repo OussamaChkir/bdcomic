@@ -1,9 +1,47 @@
 .block-header-video {
+    position: relative;
     height: 60rem;
 }
 .block-header-video video {
     width: 100%;
     height: 100%;
+}
+.block-header-video video.video-click-toggle {
+    cursor: pointer;
+}
+
+/* Scroll down icon */
+.block-header-video .scroll-down-icon {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.block-header-video .scroll-down-icon:hover {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(10px); }
+}
+
+/* Pause icon */
+.block-header-video .pause-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  color: var(--color-white);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.block-header-video.paused .pause-icon {
+  opacity: 1;
 }
 
 /* Responsive */

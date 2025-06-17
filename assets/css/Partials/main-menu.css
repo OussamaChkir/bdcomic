@@ -65,7 +65,7 @@
     font-weight: var(--font-weight-semi-bold);
     letter-spacing: 0.008rem;
     color: var(--bs-nav-link-color);
-    padding: 0 0 0.5rem;
+    padding: 0 0 0.625rem;
     cursor: pointer;
 }
 /* .navbar .nav-link:focus, .navbar .nav-link:hover {
@@ -91,7 +91,7 @@
     height: 2px;
     left: 0;
     right: 0;
-    bottom: -2px;
+    bottom: 0;
     opacity: 0;
 }
 .navbar .current-menu-item .nav-link:after,

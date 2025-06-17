@@ -28,9 +28,18 @@
         $this = $(this);
         $defaultsBorderOptions = defaults.borderWidth + ' ' + defaults.borderStyle + ' ' + defaults.borderColor;
         $this.find('ul').append("<li class='slippery'></li>");
-        $active = $('.active');
+        $active = $this.find('.active');
         $slippery = $this.find('.slippery');
         $actionElement = $this.find('a');
+
+        let left = 0;
+        let width = 0;
+
+        if ($active.length && $active.find('a').length) {
+        left = $active.find("a").position().left;
+        width = $active.width();
+        }
+
         $this.css({
           'position': 'relative',
           'display': 'table'
@@ -39,11 +48,14 @@
           'position': 'relative',
           'z-index': '2'
         });
-        $slippery.width($active.width()).height($this.height()).attr('heir__left', $active.find("a").position().left).attr('heir__width', $active.width()).css({
-          'position': 'absolute',
-          top: 0,
-          left: $active.find('a').position().left,
-          'border-radius': defaults.radius
+        $slippery.width(width).height($this.height())
+        .attr('heir__left', left)
+        .attr('heir__width', width)
+        .css({
+            position: 'absolute',
+            top: 0,
+            left: left,
+            'border-radius': defaults.radius
         });
         if (!defaults.border) {
           $slippery.css({

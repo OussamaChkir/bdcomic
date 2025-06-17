@@ -74,10 +74,9 @@
                 </div>
 
                 <nav class="main-navigation navbar navbar-expand-lg underline">
-                    <button class="navbar-toggler" type="button" data-bs-target="#main-menu-mobile">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu-mobile" aria-expanded="false">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <button type="button" class="btn-close collapse navigation-close" data-bs-target="#main-menu-mobile"></button>
 
                     <div class="collapse navbar-collapse" id="main-navigation">
                         <?php if (has_nav_menu('main-menu')) {
@@ -101,44 +100,24 @@
                         wp_nav_menu([
                             'theme_location' => 'main-menu',
                             'menu_class' => 'navbar-nav',
-                            'depth' => 3,
-                            //'walker' => new WP_Bootstrap_Navwalker_mobile()
+                            'depth' => 1,
+                            'walker' => new WP_Bootstrap_Navwalker()
                         ]); 
                 } ?>
 
-                <div class="top-header top-header-mobile">
-                    <!-- <div class="language-switcher">
-                        <ul class="nav">
-                            <?php
-                                $languages = apply_filters('wpml_active_languages', null);
-                                if (!empty($languages)) {
-                                    foreach ($languages as $language) {
-                                        $active_class = $language['active'] ? 'active' : '';
-                                        echo '<li class="nav-item ' . $active_class . '">';
-                                            echo '<a href="' . esc_url($language['url']) . '" class="nav-link">';
-                                            echo esc_html($language['language_code']);
-                                            echo '</a>';
-                                        echo '</li>';
-                                    }
-                                }
-                            ?>
-                        </ul>
-                    </div> -->
-
-                    <div class="top-menu">
-                        <?php if (has_nav_menu('top-menu')) {
+                <div class="bottom-header-mobile">
+                    <nav class="meta-menu-mobile">
+                        <?php if (has_nav_menu('meta-menu-mobile')) {
                             wp_nav_menu([
-                                'theme_location' => 'top-menu',
+                                'theme_location' => 'meta-menu-mobile',
                                 'menu_class' => 'nav',
                                 'depth' => 1,
                                 'walker' => new WP_Bootstrap_Navwalker()
                             ]); 
                         } ?>
-                    </div>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-<!-- <div class="menu-overlay"></div> -->

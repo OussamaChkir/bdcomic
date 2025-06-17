@@ -30,6 +30,7 @@ class wbg_theme {
             'meta-menu'    => __( 'Meta Menu', 'korsch' ),
             'main-menu'   => __( 'Main Menu', 'korsch' ),
             'footer-menu' => __( 'Footer Menu', 'korsch' ),
+            'meta-menu-mobile'    => __( 'Meta Menu Mobile', 'korsch' ),
         ) );
 
         // for multi language support

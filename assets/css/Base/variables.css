@@ -95,10 +95,17 @@
     --line-height-textFtr: 1.5rem; /* 24px */
 }
 
-
 [data-theme="dark"] {
     --bg-color: #182748;
     --text-color: #ffffff;
 
     --bg-box: #2C3A5C;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    :root {
+        --font-size-navFtr: 0.813rem; /*13px*/
+        --line-height-navFtr: 1.313rem; /*21px*/
+    }
 }

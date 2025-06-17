@@ -14,48 +14,44 @@ function gl_acf_init() {
         ));
     }
 
-    // Register other blocks
+    // Register ACF Blocks
     if (function_exists('acf_register_block')) {
+        $blocks = array(
+            'space' => 'Space',
+            'header-video' => 'Header Video',
+        );
 
-        acf_register_block(array(
-            'name' => 'space',
-            'title' => __('Space'),
-            'description' => __('A custom block for displaying the Space.'),
-            'render_callback' => 'gl_acf_block_render_callback',
-            'category' => 'formatting',
-            'icon' => '',
-            'mode' => 'edit',
-            'keywords' => array('space', 'custom'),
-            'supports' => array(
-                'align' => array('wide', 'full'),
-                'anchor' => true,
-            ),
-            'align' => 'wide',
-        ));
+        foreach ($blocks as $name => $title) {
+            acf_register_block(array(
+                'name' => $name,
+                'title' => __($title),
+                'description' => __("A custom block for displaying {$title}."),
+                'render_callback' => 'gl_acf_block_render_callback',
+                'category' => 'formatting',
+                'icon' => '',
+                'mode' => 'edit',
+                'keywords' => array($name, 'custom'),
+                'supports' => array(
+                    'align' => array('wide', 'full'),
+                ),
+                'align' => 'wide',
+            ));
+        }
     }
 }
 
 function gl_acf_block_render_callback($block) {
     $name = str_replace('acf/', '', $block['name']);
+    $template = get_theme_file_path("/components/block-{$name}.php");
 
-    if (file_exists(get_theme_file_path("/components/block-{$name}.php"))) {
-        include get_theme_file_path("/components/block-{$name}.php");
+    if (file_exists($template)) {
+        include $template;
     }
 }
 
 function gl_allowed_block_types($allowed_blocks, $post) {
-    if ($post->post_type === 'post') {
-
-        $allowed_blocks = array(
-            'acf/space',
-        );
-
-    } else if ($post->post_type === 'page') {
-        
-        $allowed_blocks = array(
-            'acf/space',
-        );
-    }
-
-    return $allowed_blocks;
+    return array(
+        'acf/space',
+        'acf/header-video',
+    );
 }

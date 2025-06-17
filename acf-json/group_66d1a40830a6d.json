@@ -1,37 +1,12 @@
 {
     "key": "group_66d1a40830a6d",
-    "title": "Block Hero Homepage",
+    "title": "Block Header Video",
     "fields": [
         {
-            "key": "field_680a0e7bb5cf0",
-            "label": "Image preview",
-            "name": "image_preview",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "wpml_cf_preferences": 3,
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
             "key": "field_66d1c372fe88f",
-            "label": "Hero Homepage",
-            "name": "hero_homepage",
-            "type": "repeater",
+            "label": "Header Video",
+            "name": "header_video",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -41,18 +16,14 @@
                 "id": ""
             },
             "wpml_cf_preferences": 3,
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "",
+            "layout": "row",
             "sub_fields": [
                 {
                     "key": "field_676a6f3342b87",
                     "label": "Media",
                     "name": "media",
                     "type": "file",
-                    "instructions": "",
+                    "instructions": "Allowed file types : mp4",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -65,63 +36,7 @@
                     "library": "all",
                     "min_size": "",
                     "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_66d1c430e5e4f",
-                    "label": "Top Title",
-                    "name": "top_title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "wpml_cf_preferences": 2,
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_66d1c425e5e4e",
-                    "label": "Title",
-                    "name": "title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "wpml_cf_preferences": 2,
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_679b4e203c84e",
-                    "label": "Button",
-                    "name": "button",
-                    "type": "link",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "wpml_cf_preferences": 2,
-                    "return_format": "array"
+                    "mime_types": "mp4"
                 }
             ]
         }
@@ -131,7 +46,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/hero-homepage"
+                "value": "acf\/header-video"
             }
         ]
     ],
@@ -143,5 +58,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1745489574
+    "modified": 1750164579
 }

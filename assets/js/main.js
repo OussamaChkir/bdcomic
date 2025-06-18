@@ -2,18 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     headerStickyAdminbar();
     hoverslippery();
     cookieFooterItem();
-
-    if (window.innerWidth <= 991) { // Mobile Part
-        mobileMenu();
-    }
+    mobileMenu();
 });
 
 window.addEventListener('resize', function() {
     headerStickyAdminbar();
-
-    if (window.innerWidth <= 991) { // Mobile Part
-        mobileMenu();
-    }
+    mobileMenu();
 });
 
 window.addEventListener('scroll', function() {

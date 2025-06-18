@@ -22,7 +22,7 @@ function scrollToNextSection() {
   const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
   const headerHeight = headerEl ? headerEl.offsetHeight : 0;
 
-  const totalOffset = headerHeight + adminBarHeight;
+  const totalOffset = headerHeight - adminBarHeight;
 
   const block = document.querySelector('.block-header-video');
 

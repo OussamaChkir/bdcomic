@@ -59,12 +59,12 @@ a:hover {
 .btn-icon .icon {
     position: absolute;
     margin-top: 2px;
-    margin-right: -2rem;
+    margin-left: 0;
     transition: all .5s ease-in-out;
     opacity: 0;
 }
 .btn-icon:hover .icon {
-    margin-left: 0;
+    margin-left: -1rem;
     opacity: 1;
 }
 .btn-icon .label {
@@ -74,7 +74,7 @@ a:hover {
 }
 .btn-icon:hover .label {
     position: relative;
-    left: 2rem;
+    left: 1rem;
 }
 
 /* Responsive */

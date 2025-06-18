@@ -5,10 +5,10 @@
     --bs-btn-font-weight: var(--font-weight-regular);
     --letter-spacing-btn: 0.008em;
 
-    --bs-btn-color: var(--color-primary);
+    --bs-btn-color: var(--text-color);
     --bs-btn-bg: transparent;
     --bs-btn-border-width: 2px;
-    --bs-btn-border-color: var(--color-primary);
+    --bs-btn-border-color: var(--text-color);
 
     --bs-btn-hover-color: var(--bs-btn-color);
     --bs-btn-hover-bg: var(--bs-btn-bg);
@@ -38,7 +38,7 @@ a:hover {
 
 .btn {
     letter-spacing: var(--letter-spacing-btn);
-    padding: 1.281rem 4rem;
+    padding: 1.281rem 3.875rem;
     display: inline-block;
     text-align: center;
     box-sizing: border-box;
@@ -53,4 +53,33 @@ a:hover {
 }
 .btn a {
     text-decoration: none;
+}
+
+/* btn with icon */
+.btn-icon .icon {
+    position: absolute;
+    margin-top: 2px;
+    margin-right: -2rem;
+    transition: all .5s ease-in-out;
+    opacity: 0;
+}
+.btn-icon:hover .icon {
+    margin-left: 0;
+    opacity: 1;
+}
+.btn-icon .label {
+    position: relative;
+    left: 0;
+    transition: all .5s ease-in-out;
+}
+.btn-icon:hover .label {
+    position: relative;
+    left: 2rem;
+}
+
+/* Responsive */
+@media only screen and (max-width: 991px) {
+    .btn {
+        width: 100%;
+    }
 }

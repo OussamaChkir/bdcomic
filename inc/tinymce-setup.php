@@ -17,56 +17,18 @@ class Goldland_TinyMCE_Setup {
 
     public function tiny_mce_before_init( $arr ) {
 
-        $arr['block_formats'] = 'Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5';
+        $arr['block_formats'] = 'Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6';
 
         $default_colors = '"ffffff", "White",
-                            "000000", "Black",
-                            "E42328", "Red"';
+                            "182748", "Blue"';
 
         $arr['textcolor_map'] = '['.$default_colors.']';
 
         $style_formats = array(
-    		// array(
-    		// 	'title' => 'Title H2 Small',
-            //     'selector' => 'h2',  
-    		// 	'block' => 'h2',
-    		// 	'classes' => 'h4',
-    		// 	'wrapper' => true,
-            // ),
-            array(
-    			'title' => 'Text Default',
-                'selector' => 'p',  
-    			'classes' => 'text-default',
-    			'wrapper' => true,
-            ),
             array(
     			'title' => 'Text Medium',
                 'selector' => 'p',  
     			'classes' => 'text-medium',
-    			'wrapper' => true,
-            ),
-            array(
-    			'title' => 'List Check',
-                'selector' => 'ul',  
-    			'classes' => 'list-check',
-    			'wrapper' => true,
-            ),
-            array(
-    			'title' => 'List Check Inline',
-                'selector' => 'ul',  
-    			'classes' => 'list-check-inline',
-    			'wrapper' => true,
-            ),
-            array(
-    			'title' => 'List Ok',
-                'selector' => 'li',  
-    			'classes' => 'list-yes',
-    			'wrapper' => true,
-            ),
-            array(
-    			'title' => 'List No',
-                'selector' => 'li',  
-    			'classes' => 'list-no',
     			'wrapper' => true,
             ),
     	);

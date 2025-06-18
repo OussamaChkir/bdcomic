@@ -19,6 +19,7 @@ function gl_acf_init() {
         $blocks = array(
             'space' => 'Space',
             'header-video' => 'Header Video',
+            'teaser-list-v1' => 'Teaser List (v1)',
         );
 
         foreach ($blocks as $name => $title) {
@@ -53,5 +54,6 @@ function gl_allowed_block_types($allowed_blocks, $post) {
     return array(
         'acf/space',
         'acf/header-video',
+        'acf/teaser-list-v1',
     );
 }

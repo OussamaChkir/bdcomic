@@ -38,3 +38,26 @@ body img.alignleft {
     letter-spacing: 0.008rem;
 }
 
+
+.block-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.header-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.header-wrapper * {
+    margin: 0;
+}
+/* Responsive */
+@media only screen and (max-width: 1024px) {
+    .block-container {
+        gap: 2rem;
+    }
+    .header-wrapper {
+        gap: 1rem;
+    }
+}

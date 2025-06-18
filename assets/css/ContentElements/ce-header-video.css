@@ -46,7 +46,13 @@
 
 /* Responsive */
 @media only screen and (max-width: 1024px) {
-    .block-header-video {
-        height: 52.75rem;
-    }
+  .block-header-video {
+    height: 52.75rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .block-header-video .scroll-down-icon {
+    display: none;
+  }
 }

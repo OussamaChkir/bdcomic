@@ -21,6 +21,7 @@ function gl_acf_init() {
             'header-video' => 'Header Video',
             'teaser-list-v1' => 'Teaser List (v1)',
             'line-divider' => 'Line / divider',
+            'text' => 'Text',
         );
 
         foreach ($blocks as $name => $title) {
@@ -57,5 +58,6 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/header-video',
         'acf/teaser-list-v1',
         'acf/line-divider',
+        'acf/text',
     );
 }

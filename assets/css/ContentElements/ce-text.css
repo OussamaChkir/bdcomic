@@ -1,0 +1,16 @@
+.block-text {
+  padding: 8rem 0;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1024px) {
+  .block-text {
+    padding: 3rem 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .block-text .second_text {
+    margin-top: 1rem;
+  }
+}

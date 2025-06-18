@@ -18,7 +18,7 @@
   gap: 1rem;
 }
 .teasers-container .teaser .teaser-content * {
-  margin: 0;
+  margin-bottom: 0;
 }
 
 /* Responsive */

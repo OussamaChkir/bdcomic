@@ -50,7 +50,7 @@ body img.alignleft {
     gap: 2rem;
 }
 .header-wrapper * {
-    margin: 0;
+    margin-bottom: 0;
 }
 /* Responsive */
 @media only screen and (max-width: 1024px) {

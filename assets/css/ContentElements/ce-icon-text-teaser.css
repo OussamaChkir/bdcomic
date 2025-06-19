@@ -8,3 +8,27 @@
     gap: 1.5rem;
     margin-bottom: 2.5rem;
 }
+
+/* Responsive */
+@media only screen and (max-width: 1024px) {
+    .block-icon-text-teaser {
+        padding: 3rem 0;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .block-icon-text-teaser .icon-text-teaser {
+        gap: 2rem;
+        align-items: center;
+        text-align: center;
+    }
+    .block-icon-text-teaser .icon-text-teaser .icon {
+        margin: 0;
+    }
+    .block-icon-text-teaser .teaser-content {
+        margin-bottom: 4rem;
+    }
+    .block-icon-text-teaser .item:last-child .teaser-content {
+        margin-bottom: 2.5rem;
+    }
+}

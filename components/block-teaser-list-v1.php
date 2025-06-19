@@ -41,7 +41,6 @@ if ($teaser_list_v1) :
                 <?php if ($teasers) : ?>
                     <div class="teasers-container">
                         <div class="row">
-
                             <?php foreach ($teasers as $item):
                                 $image = $item['image'];
                                 $headerItem = $item['header'];

@@ -1,6 +1,11 @@
 .block-text-bild-teaser-mit-button {
   padding: 8rem 0;
 }
+.block-text-bild-teaser-mit-button .primary-bg {
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
 .block-text-bild-teaser-mit-button .image {
     min-height: 32.125rem;
     height: 100%;

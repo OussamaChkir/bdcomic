@@ -1,9 +1,9 @@
 {
-    "key": "group_6852bed235a6e",
+    "key": "group_6854257a46842",
     "title": "Block Text",
     "fields": [
         {
-            "key": "field_6852bed2407f7",
+            "key": "field_6854257ad293b",
             "label": "Text",
             "name": "text",
             "type": "group",
@@ -19,7 +19,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_6852bed24461c",
+                    "key": "field_6854257aded4b",
                     "label": "Header",
                     "name": "header",
                     "type": "text",
@@ -39,7 +39,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_6852bed245059",
+                    "key": "field_6854257adf230",
                     "label": "Header type",
                     "name": "header_type",
                     "type": "select",
@@ -66,7 +66,7 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_6852bed248b8a",
+                    "key": "field_6854257ae310b",
                     "label": "Subheader",
                     "name": "subheader",
                     "type": "text",
@@ -86,7 +86,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_6852bed24c60d",
+                    "key": "field_6854257ae359a",
                     "label": "Text",
                     "name": "text",
                     "type": "wysiwyg",
@@ -106,7 +106,7 @@
                     "delay": 0
                 },
                 {
-                    "key": "field_6852c0c3279c1",
+                    "key": "field_6854257ae6efb",
                     "label": "Second column text",
                     "name": "second_text",
                     "type": "wysiwyg",
@@ -145,5 +145,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1750253837
+    "modified": 1750663862
 }

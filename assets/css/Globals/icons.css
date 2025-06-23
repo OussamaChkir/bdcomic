@@ -143,3 +143,13 @@
 [data-theme="dark"] .icon-technical {
     background-image: url('data:image/svg+xml;charset=utf-8,<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.9636 40.1328C22.9636 42.1947 21.2921 43.8662 19.2302 43.8662C17.1684 43.8662 15.4969 42.1947 15.4969 40.1328C15.4969 38.071 17.1684 36.3995 19.2302 36.3995C21.2921 36.3995 22.9636 38.071 22.9636 40.1328Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M26.8542 45.8913C29.9802 41.7927 29.1917 35.936 25.0931 32.81C20.9945 29.684 15.1378 30.4725 12.0118 34.5711C8.88582 38.6697 9.67428 44.5264 13.7729 47.6524C17.8715 50.7784 23.7282 49.9899 26.8542 45.8913ZM28.3384 47.0234C32.0896 42.105 31.1435 35.077 26.2252 31.3258C21.3068 27.5746 14.2788 28.5207 10.5276 33.4391C6.77638 38.3574 7.72253 45.3854 12.6409 49.1366C17.5592 52.8878 24.5872 51.9417 28.3384 47.0234Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M45.3545 21.8238C48.1218 18.2027 47.203 12.6644 43.0393 9.4824C38.8755 6.30043 33.2903 6.86823 30.523 10.4893L29.0398 9.3559C32.5324 4.7858 39.3261 4.29537 44.1727 7.99924C49.0193 11.7031 50.3302 18.3872 46.8377 22.9573L45.3545 21.8238Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M26.0841 47.0372L45.3545 21.8238L46.8377 22.9573L27.5673 48.1706L26.0841 47.0372Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M9.76946 34.5693L29.0398 9.3559L30.523 10.4893L11.2526 35.7027L9.76946 34.5693Z" fill="white"/></svg>');
 }
+
+.icon-plus {
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg width="80" height="81" viewBox="0 0 80 81" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 40.3074H80" stroke="white" stroke-width="4" stroke-miterlimit="10"/><path d="M40 0.339844L40 80.3398" stroke="white" stroke-width="4" stroke-miterlimit="10"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 5rem;
+    width: 5rem;
+    height: 5rem;
+    display: block;
+}

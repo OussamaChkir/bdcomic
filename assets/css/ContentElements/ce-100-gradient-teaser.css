@@ -1,0 +1,214 @@
+@keyframes hero-gradient-animation {
+    0% {
+        --c-0: hsla(273.97058823529414, 76%, 37%, 1);
+        --s-start-0: 0%;
+        --s-end-0: 67%;
+        --x-0: 0%;
+        --y-0: 99%;
+        --x-1: 84%;
+        --y-1: 72%;
+        --c-1: hsla(219.7058823529412, 77%, 41%, 1);
+        --s-start-1: 0%;
+        --s-end-1: 81%;
+        --x-2: 93%;
+        --y-2: 95%;
+        --s-start-2: 0%;
+        --s-end-2: 66%;
+        --c-2: hsla(236, 73%, 56%, 1);
+        --y-3: 8%;
+        --x-3: 89%;
+        --s-start-3: 0%;
+        --s-end-3: 150%;
+        --c-3: hsla(206, 100%, 9%, 1);
+    }
+    100% {
+        --c-0: hsla(273.97058823529414, 100%, 50%, 1);
+        --s-start-0: 3;
+        --s-end-0: 61;
+        --x-0: 90%;
+        --y-0: 18%;
+        --x-1: 6%;
+        --y-1: 12%;
+        --c-1: hsla(199.8529411764706, 74%, 47%, 1);
+        --s-start-1: 3;
+        --s-end-1: 61;
+        --x-2: 16%;
+        --y-2: 30%;
+        --s-start-2: 3;
+        --s-end-2: 61;
+        --c-2: hsla(236, 100%, 23%, 1);
+        --y-3: 43%;
+        --x-3: 73%;
+        --s-start-3: 3;
+        --s-end-3: 61;
+        --c-3: hsla(231.61764705882354, 56%, 10%, 1);
+    }
+}
+@property --c-0 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(273.97058823529414, 76%, 37%, 1)
+}
+@property --s-start-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%
+}
+@property --s-end-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 67%
+}
+@property --x-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%
+}
+@property --y-0 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 99%
+}
+@property --x-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 84%
+}
+@property --y-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 72%
+}
+@property --c-1 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(219.7058823529412, 77%, 41%, 1)
+}
+@property --s-start-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%
+}
+@property --s-end-1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 81%
+}
+@property --x-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 93%
+}
+@property --y-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 95%
+}
+@property --s-start-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%
+}
+@property --s-end-2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 66%
+}
+@property --c-2 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(236, 73%, 56%, 1)
+}
+@property --y-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 8%
+}
+@property --x-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 89%
+}
+@property --s-start-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%
+}
+@property --s-end-3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 150%
+}
+@property --c-3 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: hsla(206, 100%, 9%, 1)
+}
+
+.block-100-gradient-teaser {
+    --c-0: hsla(273.97058823529414, 76%, 37%, 1);
+    --x-0: 0%;
+    --y-0: 99%;
+    --x-1: 84%;
+    --y-1: 72%;
+    --c-1: hsla(219.7058823529412, 77%, 41%, 1);
+    --x-2: 93%;
+    --y-2: 95%;
+    --c-2: hsla(236, 73%, 56%, 1);
+    --y-3: 8%;
+    --x-3: 89%;
+    --c-3: hsla(206, 100%, 9%, 1);
+    
+    background-color: hsla(214.41176470588238, 75%, 33%, 1);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 2766 2766' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"), radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3));
+    animation: hero-gradient-animation 10s linear infinite alternate;
+    background-blend-mode: overlay, normal, normal, normal, normal;
+
+    padding: 8.542rem 0 8.583rem;
+    color: var(--color-white);
+}
+.block-100-gradient-teaser .icon-image {
+    display: flex;
+    align-items: center;
+}
+.block-100-gradient-teaser .icon-image .image {
+    margin-left: -0.625rem;
+}
+.block-100-gradient-teaser .text {
+    width: 85%;
+}
+.block-100-gradient-teaser .icon-arrow-right-white {
+  transition: all 0.3s ease;
+}
+[data-theme="dark"] .block-100-gradient-teaser .icon-arrow-right-white {
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M39.667 23.9199L23.5142 39.6699H21.3374L36.7227 24.6699H8.16699V23.1699H36.7227L21.3389 8.16992H23.5142L39.667 23.9199Z" fill="white"/><path d="M23.6665 7.79492L40.2046 23.9199L23.6665 40.0449H20.416L35.8013 25.0449H7.79199V22.7949H35.8013L20.4175 7.79492H23.6665ZM37.644 23.5449H8.54199V24.2949H37.644L22.2588 39.2949H23.3618L39.1294 23.9199L23.3618 8.54492H22.2603L37.644 23.5449Z" fill="white"/><path d="M39.667 23.9199L23.5142 39.6699H21.3374L36.7227 24.6699H8.16699V23.1699H36.7227L21.3389 8.16992H23.5142L39.667 23.9199Z" stroke="white" stroke-width="0.1"/><path d="M23.6665 7.79492L40.2046 23.9199L23.6665 40.0449H20.416L35.8013 25.0449H7.79199V22.7949H35.8013L20.4175 7.79492H23.6665ZM37.644 23.5449H8.54199V24.2949H37.644L22.2588 39.2949H23.3618L39.1294 23.9199L23.3618 8.54492H22.2603L37.644 23.5449Z" stroke="white" stroke-width="0.1"/></svg>');
+}
+.block-100-gradient-teaser .icon-arrow-right-white:hover {
+  animation: bounceRight 2s infinite;
+}
+
+@keyframes bounceRight {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(10px); }
+}
+
+/* Responsive */
+@media only screen and (max-width: 1024px) {
+    .block-100-gradient-teaser {
+        padding: 3.75rem 0 3.729rem;
+    }
+    .block-100-gradient-teaser .text {
+        width: 100%;
+        font-size: var(--font-size-h2-mobile);
+        line-height: var(--line-height-h2-mobile);
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .block-100-gradient-teaser .icon-image {
+        margin-bottom: 4rem;
+    }
+    .block-100-gradient-teaser .text {
+        margin-bottom: 1.5rem !important;
+    }
+}

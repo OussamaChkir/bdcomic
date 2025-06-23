@@ -25,6 +25,7 @@ function gl_acf_init() {
             'icon-text-teaser' => 'Icon-Text Teaser',
             'post-teaser-list' => 'Post Teaser List',
             'plus-100-gradient-teaser' => 'Plus 100 Gradient Teaser',
+            'text-bild-teaser-mit-button' => 'Text-Bild Teaser mit Button',
         );
 
         foreach ($blocks as $name => $title) {
@@ -65,5 +66,6 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/icon-text-teaser',
         'acf/post-teaser-list',
         'acf/plus-100-gradient-teaser',
+        'acf/text-bild-teaser-mit-button',
     );
 }

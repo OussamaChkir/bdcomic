@@ -13,8 +13,6 @@
   object-fit: cover;
 }
 .post-teaser-container .post-teaser .post-teaser-content {
-    background: var(--text-color);
-    color: var(--bg-color);
     padding: 2rem;
 }
 .post-teaser-container .post-teaser .post-teaser-content .post-meta {
@@ -22,11 +20,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    color: var(--bg-color);
     margin-bottom: 1.5rem;
 }
 .post-teaser-container .post-teaser .post-teaser-content .title {
-    color: var(--bg-color);
     font-weight: var(--font-weight-semi-bold);
     height: 4.375rem;
     margin-bottom: 1rem;

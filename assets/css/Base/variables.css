@@ -28,6 +28,7 @@
     --text-color: #182748;
 
     --bg-box: #EEEEEE;
+    --text-box: #fff;
 
 
     /* Font sizes */
@@ -100,6 +101,7 @@
     --text-color: #ffffff;
 
     --bg-box: #2C3A5C;
+    --text-box: #182748;
 }
 
 .row {

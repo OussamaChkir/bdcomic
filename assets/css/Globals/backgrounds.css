@@ -1,4 +1,7 @@
 .primary-bg {
-    color: var(--color-white);
-    background: var(--color-primary);
+    background: var(--text-color);
+    color: var(--text-box);
+}
+.primary-bg * {
+    color: var(--text-box);
 }

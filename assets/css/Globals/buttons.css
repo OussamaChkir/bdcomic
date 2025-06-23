@@ -77,9 +77,16 @@ a:hover {
     left: 1rem;
 }
 
+
+.primary-bg .btn {
+    --bs-btn-border-color: var(--text-box);
+}
+
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     .btn {
         width: 100%;
+        padding: 1.281rem 2rem;
     }
 }

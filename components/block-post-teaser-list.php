@@ -53,7 +53,7 @@ if ($post_teaser_list) :
                                             <?php echo get_the_post_thumbnail('', 'post-teaser'); ?>
                                         <?php endif; ?>
 
-                                        <div class="post-teaser-content">
+                                        <div class="post-teaser-content primary-bg">
                                             <div class="post-meta h6">
                                                 <?php $tags = get_the_tags();
 

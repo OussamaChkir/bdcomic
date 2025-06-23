@@ -30,6 +30,12 @@
 }
 
 /* Responsive */
+@media only screen and (max-width: 1440px) {
+    .block-text-bild-teaser-mit-button {
+        padding: 6rem 0;
+    }
+}
+
 @media only screen and (max-width: 1024px) {
   .block-text-bild-teaser-mit-button {
     padding: 3rem 0;

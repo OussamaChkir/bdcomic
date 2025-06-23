@@ -59,7 +59,7 @@ header.open .navbar-toggler-icon {
     line-height: var(--line-height-nav);
     font-weight: var(--font-weight-semi-bold);
     letter-spacing: 0.008rem;
-    padding: 0 0 0.625rem;
+    padding: 0 0 0.625rem !important;
     cursor: pointer;
 }
 /* .navbar .nav-link:focus, .navbar .nav-link:hover {
@@ -107,8 +107,9 @@ header.open .navbar-toggler-icon {
     top: 100%;
     left: 0;
     width: 100%;
-    background: var(--color-primary);
-    border-top: 1.5px solid var(--color-white);
+    color: var(--text-color);
+    background: var(--bg-color);
+    border-top: 1.5px solid var(--text-color);
     padding: 1rem 0 1.5rem;
     height: auto !important;
     transition: all 150ms ease-in, all 150ms ease-out;
@@ -155,12 +156,12 @@ header.open .navbar-toggler-icon {
         gap: 0;
         margin-right: 0;
     }
-    .nav-link {
+    /* .nav-link {
         color: var(--color-white);
-    }
+    } */
     .navbar-nav .nav-link {
         font-weight: var(--font-weight-regular);
-        padding: 0.906rem 0;
+        padding: 0.906rem 0 !important;
         display: inline-block;
     }
     .navbar-nav .nav-link:after {

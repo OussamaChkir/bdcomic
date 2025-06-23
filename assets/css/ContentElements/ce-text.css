@@ -3,6 +3,12 @@
 }
 
 /* Responsive */
+@media only screen and (max-width: 1440px) {
+  .block-text {
+    padding: 6rem 0;
+  }
+}
+
 @media only screen and (max-width: 1024px) {
   .block-text {
     padding: 3rem 0;

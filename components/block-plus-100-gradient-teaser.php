@@ -13,7 +13,7 @@ if ($gradient_teaser) :
     <div class="block-100-gradient-teaser">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-xl-6">
                     <?php if ($image): ?>
                         <div class="icon-image">
                             <div class="icon icon-plus"></div>
@@ -23,7 +23,7 @@ if ($gradient_teaser) :
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="col-md-6">
+                <div class="col-xl-6">
                     <?php if ($text): ?>
                         <h2 class="text text-white m-0"><?php echo $text; ?></h2>
                     <?php endif; ?>

@@ -10,13 +10,19 @@
 }
 
 /* Responsive */
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1199px) {
     .block-icon-text-teaser {
-        padding: 3rem 0;
+        padding: 4rem 0;
+    }
+    .block-icon-text-teaser .teaser-content {
+        margin-bottom: 2rem;
     }
 }
 
 @media only screen and (max-width: 991px) {
+    .block-icon-text-teaser {
+        padding: 3rem 0;
+    }
     .block-icon-text-teaser .icon-text-teaser {
         gap: 2rem;
         align-items: center;

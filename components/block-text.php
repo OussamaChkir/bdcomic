@@ -14,42 +14,40 @@ if ($block_text) :
 
     <div class="block-text">
         <div class="container">
-            <div class="block-container">
-                <?php if ($header || $subheader || $text || $second_text): ?>
-                    <div class="header-wrapper">
-                        <?php if ($header): ?>
-                            <div class="header">
-                                <<?php echo $header_type; ?> class="h1"><?php echo esc_html($header); ?></<?php echo $header_type; ?>>
-                            </div>
-                        <?php endif; ?>
+            <?php if ($header || $subheader || $text || $second_text): ?>
+                <div class="header-wrapper">
+                    <?php if ($header): ?>
+                        <div class="header">
+                            <<?php echo $header_type; ?> class="h1"><?php echo esc_html($header); ?></<?php echo $header_type; ?>>
+                        </div>
+                    <?php endif; ?>
 
-                        <?php if ($subheader): ?>
-                            <div class="subheader h3">
-                                <?php echo esc_html($subheader); ?>
-                            </div>
-                        <?php endif; ?>
+                    <?php if ($subheader): ?>
+                        <div class="subheader h3">
+                            <?php echo esc_html($subheader); ?>
+                        </div>
+                    <?php endif; ?>
 
-                        <?php if ($text && $second_text): ?>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text text-medium">
-                                        <?php echo $text; ?>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="second_text text-medium">
-                                        <?php echo $second_text; ?>
-                                    </div>
+                    <?php if ($text && $second_text): ?>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text text-medium">
+                                    <?php echo $text; ?>
                                 </div>
                             </div>
-                        <?php elseif ($text): ?>
-                            <div class="text text-medium">
-                                <?php echo $text; ?>
+                            <div class="col-md-6">
+                                <div class="second_text text-medium">
+                                    <?php echo $second_text; ?>
+                                </div>
                             </div>
-                        <?php endif; ?>
-                    </div>
-                <?php endif; ?>
-            </div>
+                        </div>
+                    <?php elseif ($text): ?>
+                        <div class="text text-medium">
+                            <?php echo $text; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 <?php endif; ?>

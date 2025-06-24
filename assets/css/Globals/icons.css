@@ -159,3 +159,17 @@
     height: 5rem;
     display: block;
 }
+@media only screen and (max-width: 1199px) {
+    .icon-plus {
+        background-size: 4.486rem;
+        width: 4.486rem;
+        height: 4.486rem;
+    }
+}
+@media only screen and (max-width: 991px) {
+    .icon-plus {
+        background-size: 4.16rem;
+        width: 4.16rem;
+        height: 4.16rem;
+    }
+}

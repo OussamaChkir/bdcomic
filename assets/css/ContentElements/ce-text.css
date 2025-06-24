@@ -7,15 +7,18 @@
   .block-text {
     padding: 6rem 0;
   }
-}
-
-@media only screen and (max-width: 1024px) {
-  .block-text {
-    padding: 3rem 0;
+  .block-text .header-wrapper {
+    gap: 3rem;
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 991px) {
+  .block-text {
+    padding: 4rem 0;
+  }
+  .block-text .header-wrapper {
+    gap: 1rem;
+  }
   .block-text .second_text {
     margin-top: 1rem;
   }

@@ -58,10 +58,16 @@
   .block-header-video {
     height: 42.5rem;
   }
+  .block-header-video .scroll-down-icon {
+    bottom: 0.75rem;
+  }
 }
 
 @media only screen and (max-width: 767px) {
+  .block-header-video {
+    height: 46.875rem;
+  }
   .block-header-video .scroll-down-icon {
-    display: none;
+    bottom: 1rem;
   }
 }

@@ -14,7 +14,7 @@ if ($icon_text_teaser) : ?>
                     $text = $item['text'];
                 ?>
 
-                    <div class="col-lg-3 item">
+                    <div class="col-xl-3 col-lg-6 item">
                         <div class="icon-text-teaser header-wrapper">
                             <?php if ($icon) : ?>
                                 <div class="icon <?php echo $icon; ?>"></div>

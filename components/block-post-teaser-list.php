@@ -47,7 +47,7 @@ if ($post_teaser_list) :
                     <div class="post-teaser-container">
                         <div class="row">
                             <?php while( $query->have_posts() ): $query->the_post(); ?>
-                                <div class="col-lg-4">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="post-teaser">
                                         <?php if( has_post_thumbnail() ): ?>
                                             <?php echo get_the_post_thumbnail('', 'post-teaser'); ?>

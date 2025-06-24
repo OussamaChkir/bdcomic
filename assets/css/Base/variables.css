@@ -116,7 +116,7 @@
     }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 991px) {
   .row {
         --bs-gutter-x: 1.5rem; /* 24px */
     }

@@ -55,15 +55,15 @@
     }
 }
 
-@media only screen and (max-width: 1024px) {
-    .block-post-teaser-list {
-        padding: 3rem 0;
+@media only screen and (max-width: 1199px) {
+    .post-teaser-container .row {
+        --bs-gutter-y: 2rem;
     }
 }
 
 @media only screen and (max-width: 991px) {
-    .post-teaser-container .post-teaser {
-        margin-bottom: 2rem;
+    .block-post-teaser-list {
+        padding: 4rem 0;
     }
     .post-teaser-container .post-teaser img {
         height: 24.75rem;
@@ -72,6 +72,6 @@
         margin-bottom: calc(1rem + 1.25rem);
     }
     .block-post-teaser-list .btn {
-        margin-top: 2rem;
+        margin-top: 4rem;
     }
 }

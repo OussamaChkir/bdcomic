@@ -1,4 +1,3 @@
-<!------------------------ Prefooter ------------------------>
 <?php 
     $prefooter = get_field('prefooter');
     $hide_prefooter = $prefooter['hide_prefooter'];
@@ -11,51 +10,55 @@
         $header = get_field('header', 'option');
         $subheader = get_field('subheader', 'option');
         $text = get_field('text', 'option');
-        $contact_form_link = get_field('contact_form_link', 'option');
+        $contact_form_page = get_field('contact_form_page', 'option');
     ?>
 
         <div class="prefooter">
             <div class="container">
-                <?php if ($header || $subheader || $text || $second_text): ?>
-                    <div class="header-wrapper">
-                        <?php if ($header): ?>
-                            <div class="header">
-                                <<?php echo $header_type; ?> class="h1"><?php echo esc_html($header); ?></<?php echo $header_type; ?>>
-                            </div>
-                        <?php endif; ?>
+                <?php if ($header || $subheader || $text): ?>
+                    <div class="row">
+                        <div class="col-xl-9">
+                            <div class="header-wrapper">
+                                <?php if ($header): ?>
+                                    <div class="header">
+                                        <h2 class="h1"><?php echo esc_html($header); ?></h2>
+                                    </div>
+                                <?php endif; ?>
 
-                        <?php if ($subheader): ?>
-                            <div class="subheader h3">
-                                <?php echo esc_html($subheader); ?>
-                            </div>
-                        <?php endif; ?>
+                                <?php if ($subheader): ?>
+                                    <div class="subheader h3">
+                                        <?php echo esc_html($subheader); ?>
+                                    </div>
+                                <?php endif; ?>
 
-                        <?php if ($text && $second_text): ?>
-                            <div class="row">
-                                <div class="col-md-6">
+                                <?php if ($text): ?>
                                     <div class="text text-medium">
                                         <?php echo $text; ?>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="second_text text-medium">
-                                        <?php echo $second_text; ?>
-                                    </div>
-                                </div>
+                                <?php endif; ?>
                             </div>
-                        <?php elseif ($text): ?>
-                            <div class="text text-medium">
-                                <?php echo $text; ?>
-                            </div>
-                        <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($contact_form_page): ?>
+                    <div class="contact-form-container">
+                        <span class="icon-mail"></span>
+                        <a class="link-icon h3 m-0" href="<?php echo $contact_form_page["url"]; ?>" target="<?php echo $contact_form_page["target"]; ?>"><span class="label"><?php _e('Contact Form', 'korsch'); ?></span><span class="icon icon-arrow-right"></span></a>
                     </div>
                 <?php endif; ?>
             </div>
+
+            <?php if ($prefooter_image) : ?>
+                <div class="image">
+                    <?php echo wp_get_attachment_image( $prefooter_image['ID'], 'prefooter-image', false, array('loading' => 'lazy') ); ?>
+                </div>
+            <?php endif; ?>
         </div>
     <?php endif;
 ?>
 
-<!------------------------ Footer ------------------------>
+
 <?php 
     $footer_logo = get_field('footer_logo', 'option');
     $addresses = get_field('addresses', 'option');

@@ -7,5 +7,6 @@ if ( function_exists( 'add_image_size' ) ) {
 	add_image_size( 'post-teaser', 600, 600, false );
 	add_image_size( 'bild-teaser', 600, 600, false );
 	add_image_size( 'image-list', 600, 600, false );
+	add_image_size( 'prefooter-image', 2000, 1500, false );
 }
 ?>

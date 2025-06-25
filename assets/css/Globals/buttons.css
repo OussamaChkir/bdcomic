@@ -90,3 +90,21 @@ a:hover {
         padding: 1.281rem 2rem;
     }
 }
+
+
+.link-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    text-decoration: none;
+    transition: ease-in-out 300ms;
+}
+.link-icon .icon {
+    margin: 0;
+    background-size: 3.5rem;
+    width: 3.25rem;
+    height: 3.5rem;
+}
+.link-icon:hover {
+    gap: 0.75rem;
+}

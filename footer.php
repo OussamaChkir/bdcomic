@@ -49,11 +49,13 @@
                 <?php endif; ?>
             </div>
 
-            <?php if ($prefooter_image) : ?>
-                <div class="image">
+            <div class="image">
+                <?php if ($prefooter_image) : ?>
                     <?php echo wp_get_attachment_image( $prefooter_image['ID'], 'prefooter-image', false, array('loading' => 'lazy') ); ?>
-                </div>
-            <?php endif; ?>
+                <?php else : ?>
+                    <img src="<?= get_template_directory_uri(); ?>/assets/img/prefooter.png" alt="<?php bloginfo('name'); ?>" loading="lazy" decoding="async">
+                <?php endif; ?>
+            </div>
         </div>
     <?php endif;
 ?>

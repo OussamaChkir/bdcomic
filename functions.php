@@ -3,7 +3,7 @@ require_once('inc/goldland-acf-json.php');
 require_once('inc/acf-blocks.php');
 require_once('inc/tinymce-setup.php');
 require_once('inc/functions.php');
-// require_once('inc/custom-post-types.php');
+require_once('inc/custom-post-types.php');
 
 class wbg_theme {
     // set the option name you use in your settings page
@@ -197,22 +197,3 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
     }
 }
-
-// // Get all Contact Form 7 forms : ACF with filed form_select
-// function populate_cf7_forms_select_field( $field ) {
-//     $field['choices'] = array();
-    
-//     $cf7_forms = get_posts( array(
-//         'post_type' => 'wpcf7_contact_form',
-//         'posts_per_page' => -1
-//     ) );
-
-//     if ( ! empty( $cf7_forms ) ) {
-//         foreach ( $cf7_forms as $form ) {
-//             $field['choices'][ $form->ID ] = $form->post_title;
-//         }
-//     }
-
-//     return $field;
-// }
-// add_filter( 'acf/load_field/name=form_select', 'populate_cf7_forms_select_field' );

@@ -18,6 +18,7 @@ function gl_acf_init() {
     if (function_exists('acf_register_block')) {
         $blocks = array(
             'space' => 'Space',
+            'header-image' => 'Header Image',
             'header-video' => 'Header Video',
             'line-divider' => 'Line / divider',
             'text' => 'Text',
@@ -60,6 +61,7 @@ function gl_acf_block_render_callback($block) {
 function gl_allowed_block_types($allowed_blocks, $post) {
     return array(
         'acf/space',
+        'acf/header-image',
         'acf/header-video',
         'acf/line-divider',
         'acf/text',

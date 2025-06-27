@@ -15,6 +15,7 @@
                 "class": "",
                 "id": ""
             },
+            "wpml_cf_preferences": 3,
             "layout": "table",
             "sub_fields": [
                 {
@@ -30,6 +31,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "wpml_cf_preferences": 3,
                     "default_value": "",
                     "placeholder": "",
                     "prepend": "",
@@ -51,6 +53,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "wpml_cf_preferences": 3,
                     "default_value": "",
                     "placeholder": "",
                     "prepend": "",
@@ -72,6 +75,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "wpml_cf_preferences": 3,
                     "default_value": "",
                     "placeholder": "",
                     "prepend": "",
@@ -93,6 +97,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "wpml_cf_preferences": 3,
                     "choices": {
                         "rem": "rem",
                         "%": "%",
@@ -126,5 +131,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1728036883
+    "modified": 1751018430
 }

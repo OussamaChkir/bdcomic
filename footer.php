@@ -60,7 +60,7 @@
                     <?php if ($contact_query->have_posts()) : ?>
                         <div class="contact_person-container">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-xl-6 col-lg-7">
                                     <div id="contact-filter">
                                         <div class="form-group">
                                             <label for="region-select"><?php _e('Region', 'korsch'); ?></label>

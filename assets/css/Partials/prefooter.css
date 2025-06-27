@@ -128,6 +128,21 @@
     .prefooter {
         padding: 3rem 0 0;
     }
+    .prefooter .contact_person-container {
+        margin-top: 2rem;
+    }
+    #contact-filter {
+        gap: 1rem;
+    }
+    .prefooter .contact_person-container {
+        gap: 2rem;
+    }
+    .contact_person-container .contact_persons {
+        row-gap: 2rem;
+    }
+    .contact_person-container .contact_persons .contact-person {
+        width: 100%;
+    }
     .prefooter .contact-form-container {
         margin-top: 2rem;
     }

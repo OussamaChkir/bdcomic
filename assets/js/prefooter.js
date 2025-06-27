@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     countrySelect.appendChild(option);
                 });
 
-                countryWrapper.style.display = "block";
+                countryWrapper.style.display = "flex";
             }
 
             filterContacts(regionID);

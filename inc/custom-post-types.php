@@ -15,43 +15,49 @@ function register_contact_person_cpt() {
     $args = array(
         'labels'             => $labels,
         'public'             => true,
-        'publicly_queryable' => false, // disables front-end access
         'show_ui'            => true,
         'show_in_menu'       => true,
         'has_archive'        => false,
         'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
         'rewrite'            => false, // disables permalink structure
+        'publicly_queryable' => false, // disables front-end access
         'supports'           => array('title'),
-        'menu_position' => 20,
-        'menu_icon' => 'dashicons-id',
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-id',
     );
 
     register_post_type('contact_person', $args);
 }
 add_action('init', 'register_contact_person_cpt');
 
-// Register "Product Category" Taxonomy
-function register_products_taxonomy() {
+// Register Custom Taxonomy: countries
+function register_contact_person_taxonomies() {
     $labels = array(
-        'name'              => _x('Categories of Product', 'taxonomy general name', 'korsch'),
-        'singular_name'     => _x('Category of Product', 'taxonomy singular name', 'korsch'),
-        'all_items'         => __('All Categories of Product', 'korsch'),
-        'add_new_item'      => __('Add New Category', 'korsch'),
+        'name'              => _x('Countries', 'taxonomy general name', 'korsch'),
+        'singular_name'     => _x('Country', 'taxonomy singular name', 'korsch'),
+        'search_items'      => __('Search Countries', 'korsch'),
+        'all_items'         => __('All Countries', 'korsch'),
+        'parent_item'       => __('Region', 'korsch'),
+        'parent_item_colon' => __('Region:', 'korsch'),
+        'edit_item'         => __('Edit Country', 'korsch'),
+        'update_item'       => __('Update Country', 'korsch'),
+        'add_new_item'      => __('Add New Country', 'korsch'),
+        'new_item_name'     => __('New Country Name', 'korsch'),
+        'menu_name'         => __('Countries', 'korsch'),
     );
 
     $args = array(
+        'hierarchical'      => true, // Acts like categories
         'labels'            => $labels,
-        'hierarchical'      => true,
-        'public'            => true,
         'show_ui'           => true,
         'show_admin_column' => true,
-        'rewrite'           => array('slug' => 'product-category'),
+        'show_in_rest'      => true,
+        'rewrite'           => false, // No front-end URL needed
+        'publicly_queryable' => false, // disables front-end access
     );
 
-    register_taxonomy('product_category', 'product', $args);
+    register_taxonomy('countries', array('contact_person'), $args);
 }
-add_action('init', 'register_products_taxonomy');
-
-
+add_action('init', 'register_contact_person_taxonomies');
 
 ?>

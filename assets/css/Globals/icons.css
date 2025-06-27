@@ -226,3 +226,16 @@
 [data-theme="dark"] .icon-mail {
     background-image: url('data:image/svg+xml;charset=utf-8,<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.74961 10.1197H59.2996V52.1197H5.74961V10.1197ZM9.46009 12.2197L32.6267 33.8795L55.6049 12.2197H9.46009ZM57.1996 13.6024L32.6325 36.7599L7.84961 13.5889V50.0197H57.1996V13.6024Z" fill="white"/><path d="M59.8246 9.59473V52.6447H5.22461V9.59473H59.8246ZM6.27461 51.5947H58.7746V10.6447H6.27461V51.5947ZM32.6292 36.0395L57.7246 12.3858V50.5447H7.32461V12.3797L32.6292 36.0395ZM8.37461 49.4947H56.6746V14.8201L32.9922 37.1429L32.6333 37.4792L32.2744 37.1429L8.37461 14.7976V49.4947ZM56.9269 11.6947L32.6271 34.5999L32.2683 34.2636L8.13057 11.6947H56.9269ZM32.623 33.1582L54.2834 12.7447H10.7904L32.623 33.1582Z" fill="white"/></svg>');
 }
+
+.icon-backtotop {
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.9189 6.15723L8.03613 15.8428H9.91113L9.9707 15.7773L16.377 8.79102V26.3916H17.7773V8.73926L24.5283 15.7812L24.5879 15.8428H26.5L26.1758 15.5039L17.2109 6.15332L17.0635 6L16.9189 6.15723Z" fill="%23F9F9F9"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    display: block;
+}
+[data-theme="dark"] .icon-backtotop {
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.9189 6.15723L8.03613 15.8428H9.91113L9.9707 15.7773L16.377 8.79102V26.3916H17.7773V8.73926L24.5283 15.7812L24.5879 15.8428H26.5L26.1758 15.5039L17.2109 6.15332L17.0635 6L16.9189 6.15723Z" fill="%23182748"/></svg>');
+}

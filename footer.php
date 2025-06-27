@@ -1,63 +1,66 @@
 <?php 
     $prefooter = get_field('prefooter');
-    $hide_prefooter = $prefooter['hide_prefooter'];
 
-    if (!$hide_prefooter) :
-        wp_enqueue_style('prefooter', get_template_directory_uri() . '/assets/css/Partials/prefooter.css', array(), '1.0', 'all');
+    if ($prefooter) :
+        $hide_prefooter = $prefooter['hide_prefooter'];
+    
+        if (!$hide_prefooter) :
+            wp_enqueue_style('prefooter', get_template_directory_uri() . '/assets/css/Partials/prefooter.css', array(), '1.0', 'all');
 
-        $prefooter_image = $prefooter['prefooter_image'];
+            $prefooter_image = $prefooter['prefooter_image'];
 
-        $header = get_field('header', 'option');
-        $subheader = get_field('subheader', 'option');
-        $text = get_field('text', 'option');
-        $contact_form_page = get_field('contact_form_page', 'option');
-    ?>
+            $header = get_field('header', 'option');
+            $subheader = get_field('subheader', 'option');
+            $text = get_field('text', 'option');
+            $contact_form_page = get_field('contact_form_page', 'option');
+        ?>
 
-        <div class="prefooter">
-            <div class="container">
-                <?php if ($header || $subheader || $text): ?>
-                    <div class="row">
-                        <div class="col-xl-9">
-                            <div class="header-wrapper">
-                                <?php if ($header): ?>
-                                    <div class="header">
-                                        <h2 class="h1"><?php echo esc_html($header); ?></h2>
-                                    </div>
-                                <?php endif; ?>
+            <div class="prefooter">
+                <div class="container">
+                    <?php if ($header || $subheader || $text): ?>
+                        <div class="row">
+                            <div class="col-xl-9">
+                                <div class="header-wrapper">
+                                    <?php if ($header): ?>
+                                        <div class="header">
+                                            <h2 class="h1"><?php echo esc_html($header); ?></h2>
+                                        </div>
+                                    <?php endif; ?>
 
-                                <?php if ($subheader): ?>
-                                    <div class="subheader h3">
-                                        <?php echo esc_html($subheader); ?>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php if ($subheader): ?>
+                                        <div class="subheader h3">
+                                            <?php echo esc_html($subheader); ?>
+                                        </div>
+                                    <?php endif; ?>
 
-                                <?php if ($text): ?>
-                                    <div class="text text-medium">
-                                        <?php echo $text; ?>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php if ($text): ?>
+                                        <div class="text text-medium">
+                                            <?php echo $text; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
 
-                <?php if ($contact_form_page): ?>
-                    <div class="contact-form-container">
-                        <span class="icon-mail"></span>
-                        <a class="link-icon h3 m-0" href="<?php echo $contact_form_page["url"]; ?>" target="<?php echo $contact_form_page["target"]; ?>"><span class="label"><?php _e('Contact Form', 'korsch'); ?></span><span class="icon icon-arrow-right"></span></a>
-                    </div>
-                <?php endif; ?>
-            </div>
+                    <?php if ($contact_form_page): ?>
+                        <div class="contact-form-container">
+                            <span class="icon-mail"></span>
+                            <a class="link-icon h3 m-0" href="<?php echo $contact_form_page["url"]; ?>" target="<?php echo $contact_form_page["target"]; ?>"><span class="label"><?php _e('Contact Form', 'korsch'); ?></span><span class="icon icon-arrow-right"></span></a>
+                        </div>
+                    <?php endif; ?>
+                </div>
 
-            <div class="image">
-                <?php if ($prefooter_image) : ?>
-                    <?php echo wp_get_attachment_image( $prefooter_image['ID'], 'prefooter-image', false, array('loading' => 'lazy') ); ?>
-                <?php else : ?>
-                    <img src="<?= get_template_directory_uri(); ?>/assets/img/prefooter.png" alt="<?php bloginfo('name'); ?>" loading="lazy" decoding="async">
-                <?php endif; ?>
+                <div class="image">
+                    <?php if ($prefooter_image) : ?>
+                        <?php echo wp_get_attachment_image( $prefooter_image['ID'], 'prefooter-image', false, array('loading' => 'lazy') ); ?>
+                    <?php else : ?>
+                        <img src="<?= get_template_directory_uri(); ?>/assets/img/prefooter.png" alt="<?php bloginfo('name'); ?>" loading="lazy" decoding="async">
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
-    <?php endif;
+        <?php endif;
+    endif;
 ?>
 
 
@@ -124,6 +127,10 @@
         </div>
     </div>
 </footer>
+
+<div class="backtotop">
+    <span class="icon-backtotop"></span>
+</div>
 
 <?php wp_footer(); ?>
 </body>

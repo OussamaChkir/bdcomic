@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     hoverslippery();
     cookieFooterItem();
     mobileMenu();
+    backtotop();
 });
 
 window.addEventListener('resize', function() {
@@ -56,4 +57,17 @@ function mobileMenu() {
     $(".main-navigation .navbar-toggler").on("click", function () {
         $('header').toggleClass('open');
     });
+}
+
+function backtotop() {
+    const backToTop = document.querySelector(".backtotop");
+
+    if (backToTop) {
+        backToTop.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+    }
 }

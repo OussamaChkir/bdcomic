@@ -48,6 +48,22 @@ footer .menu {
     gap: 2rem;
 }
 
+.backtotop {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--text-color);
+    color: var(--text-box);
+    width: 3.25rem;
+    height: 3.25rem;
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease-out;
+    cursor: pointer;
+}
+
 /* Responsive */
 @media only screen and (max-width: 991px) {
     footer {

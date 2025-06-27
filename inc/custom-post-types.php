@@ -39,9 +39,9 @@ function register_contact_person_taxonomies() {
         'all_items'         => __('All Countries', 'korsch'),
         'parent_item'       => __('Region', 'korsch'),
         'parent_item_colon' => __('Region:', 'korsch'),
-        'edit_item'         => __('Edit Country', 'korsch'),
-        'update_item'       => __('Update Country', 'korsch'),
-        'add_new_item'      => __('Add New Country', 'korsch'),
+        'edit_item'         => __('Edit', 'korsch'),
+        'update_item'       => __('Update', 'korsch'),
+        'add_new_item'      => __('Add New', 'korsch'),
         'new_item_name'     => __('New Country Name', 'korsch'),
         'menu_name'         => __('Countries', 'korsch'),
     );

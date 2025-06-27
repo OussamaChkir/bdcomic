@@ -2,6 +2,63 @@
     background: var(--bg-box);
     padding: 8rem 0 0;
 }
+
+.prefooter .contact_person-container {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+#contact-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+#contact-filter .form-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-direction: column;
+}
+#contact-filter label {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+    letter-spacing: 0.008rem;
+    font-weight: var(--font-weight-semi-bold);
+}
+#contact-filter #country-filter {
+    display: none;
+}
+.contact_person-container #contact-results-message {
+    font-weight: var(--font-weight-semi-bold);
+    display: none;
+}
+.contact_person-container .contact_persons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    row-gap: 3rem;
+    display: none;
+}
+.contact_person-container .contact_persons .contact-person {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+    border-left: 2px solid var(--text-color);
+    padding-left: 1.375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.contact_person-container .contact_persons .contact-person .gap-8 {
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.contact_person-container .contact_persons .contact-person a {
+    text-decoration: none;
+}
+
+
 .prefooter .contact-form-container {
     display: flex;
     align-items: center;

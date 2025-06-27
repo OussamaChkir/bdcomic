@@ -6,6 +6,7 @@
     
         if (!$hide_prefooter) :
             wp_enqueue_style('prefooter', get_template_directory_uri() . '/assets/css/Partials/prefooter.css', array(), '1.0', 'all');
+            wp_enqueue_script('prefooter', get_template_directory_uri() . '/assets/js/prefooter.js', array(), '1.0', true);
 
             $prefooter_image = $prefooter['prefooter_image'];
 
@@ -42,6 +43,85 @@
                             </div>
                         </div>
                     <?php endif; ?>
+
+
+                    <?php
+                    $contact_query = new WP_Query(array(
+                        'post_type' => 'contact_person',
+                        'posts_per_page' => -1,
+                    ));
+
+                    $regions = get_terms(array(
+                        'taxonomy'   => 'countries',
+                        'hide_empty' => false,
+                        'parent'     => 0
+                    ));  ?>
+
+                    <?php if ($contact_query->have_posts()) : ?>
+                        <div class="contact_person-container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div id="contact-filter">
+                                        <div class="form-group">
+                                            <label for="region-select"><?php _e('Region', 'korsch'); ?></label>
+                                            <select id="region-select" class="form-control region-select">
+                                                <option value=""><?php _e('Choose region', 'korsch'); ?></option>
+                                                <?php foreach ($regions as $region): ?>
+                                                    <option value="<?php echo esc_attr($region->term_id); ?>">
+                                                        <?php echo esc_html($region->name); ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group" id="country-filter">
+                                            <label for="country-select"><?php _e('Country', 'korsch'); ?></label>
+                                            <select id="country-select" class="form-control country-select">
+                                                <option value=""><?php _e('Choose country', 'korsch'); ?></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="contact-results-message" class="h4 m-0"><?php _e('We have found', 'korsch'); ?> <span id="results-count">0</span> <?php _e('results. Reach out to us!', 'korsch'); ?></div>
+
+                            <div class="contact_persons">
+                                <?php while ($contact_query->have_posts()) : $contact_query->the_post();
+                                    $company = get_field('company');
+                                    $job_title = get_field('job_title');
+                                    $address = get_field('address');
+                                    $email = get_field('email');
+                                    $phone = get_field('phone');
+                                    $mobile = get_field('mobile');
+                                    $terms = get_the_terms(get_the_ID(), 'countries');
+
+                                    $category_class = '';
+                                    if (!empty($terms) && !is_wp_error($terms)) {
+                                        foreach ($terms as $term) {
+                                            $category_class .= ' cat-' . esc_attr($term->term_id);
+                                        }
+                                    }
+                                ?>
+                                    <div class="contact-person h6 m-0<?php echo esc_attr($category_class); ?>">
+                                        <div>
+                                            <div class="h5 m-0"><?php echo esc_html(get_the_title()); ?></div>
+                                            <?php if ($company): ?><div><?php echo esc_html($company); ?></div><?php endif; ?>
+                                            <?php if ($job_title): ?><div><?php echo esc_html($job_title); ?></div><?php endif; ?>
+                                        </div>
+                                        <?php if ($address): ?><div><?php echo $address; ?></div><?php endif; ?>
+                                        <div class="gap-8">
+                                            <?php if ($email): ?><div><span class="icon-email"></span><a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a></div><?php endif; ?>
+                                            <?php if ($phone): ?><div><span class="icon-phone"></span><a href="tel:<?php echo esc_attr($phone); ?>"><?php echo esc_html($phone); ?></a></div><?php endif; ?>
+                                            <?php if ($mobile): ?><div><span class="icon-phone"></span><a href="tel:<?php echo esc_attr($mobile); ?>"><?php echo esc_html($mobile); ?></a></div><?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endwhile; wp_reset_postdata(); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    
 
                     <?php if ($contact_form_page): ?>
                         <div class="contact-form-container">

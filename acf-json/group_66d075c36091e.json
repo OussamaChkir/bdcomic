@@ -354,6 +354,31 @@
             },
             "wpml_cf_preferences": 3,
             "return_format": "array"
+        },
+        {
+            "key": "field_6862a9040da2d",
+            "label": "Prefooter Image",
+            "name": "prefooter_image",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "wpml_cf_preferences": 3,
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -373,5 +398,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1750839958
+    "modified": 1751296273
 }

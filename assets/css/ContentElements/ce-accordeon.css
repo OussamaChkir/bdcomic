@@ -1,0 +1,93 @@
+.block-accordeon {
+  padding: 8rem 0;
+}
+
+
+.accordion {
+    --bs-accordion-border-color: var(--text-color);
+    --bs-accordion-border-radius: 0;
+    --bs-accordion-border-width: 0;
+    --bs-accordion-btn-padding-x: 0;
+    --bs-accordion-btn-padding-y: 0;
+    --bs-accordion-btn-icon: url('data:image/svg+xml;charset=utf-8,<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.84674 19.1993L27.4535 38.8061L47.0467 19.2129L47.0467 16.573L27.4535 36.1662L7.84674 16.5594L7.84674 19.1993Z" fill="%23182748"/><path d="M27.4522 35.3737L47.6064 15.2214L47.6064 19.4451L27.454 39.5974L7.28711 19.4305L7.28711 15.2068L27.4522 35.3737ZM8.40638 18.9675L27.4522 38.0133L46.4871 18.9802L46.4871 17.9248L27.454 36.9578L8.40638 17.9102L8.40638 18.9675Z" fill="%23182748"/></svg>');
+    --bs-accordion-btn-icon-width: 3.5rem;
+    --bs-accordion-btn-active-icon: var(--bs-accordion-btn-icon);
+    --bs-accordion-body-padding-x: 0;
+    --bs-accordion-body-padding-y: 0;
+    --bs-accordion-active-color: var(--text-color);
+    --bs-accordion-active-bg: transparent;
+}
+.accordion-item {
+    border-bottom-width: 2.5px;
+}
+.accordion-button {
+    font-weight: var(--font-weight-semi-bold);
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+    justify-content: space-between;
+    margin: 0;
+    transition: all 0.3s;
+}
+.accordion-item .accordion-button:not(.collapsed) {
+    padding-bottom: 1rem;
+}
+.accordion-button:focus {
+    box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+    box-shadow: none;
+}
+.accordion-button::after {
+    margin-left: 1.5rem;
+    background-position: center;
+}
+.accordion-body {
+    padding-bottom: 2rem;
+}
+.accordion-body.content-teaser .image img {
+    border-radius: 5px;
+    height: 23.75rem;
+    width: 100%;
+    object-fit: cover;
+}
+.accordion-body.content-teaser .teaser {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.accordion-body.content-teaser .teaser .title {
+    line-height: 2.625rem;
+}
+.accordion-body.content-teaser .teaser .btn {
+    margin-top: 1rem;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1440px) {
+  .block-accordeon {
+    padding: 6rem 0;
+  }
+  .block-accordeon .header-wrapper {
+    gap: 3rem;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+    .block-accordeon {
+        padding: 4rem 0;
+    }
+    .block-accordeon .header-wrapper {
+        gap: 1rem;
+    }
+    
+    .accordion {
+        margin-top: 1.5rem;
+    }
+    .accordion-item .accordion-button:not(.collapsed) {
+        padding-bottom: 0.5rem;
+    }
+    .accordion-body {
+        padding-bottom: 1.813rem;
+    }
+}

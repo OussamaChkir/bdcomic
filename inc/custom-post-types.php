@@ -60,4 +60,37 @@ function register_contact_person_taxonomies() {
 }
 add_action('init', 'register_contact_person_taxonomies');
 
+
+
+/**************************************************
+ Register "Product" Custom Post Type
+ **************************************************/
+function register_product_cpt() {
+    $labels = array(
+        'name'               => _x('Products', 'Post Type General Name', 'korsch'),
+        'singular_name'      => _x('Product', 'Post Type Singular Name', 'korsch'),
+        'menu_name'          => __('Products', 'korsch'),
+        'all_items'          => __('All Products', 'korsch'),
+        'add_new_item'       => __('Add New Product', 'korsch'),
+        'edit_item'          => __('Edit Product', 'korsch'),
+        'new_item'           => __('New Product', 'korsch'),
+        'view_item'          => __('View Product', 'korsch'),
+        'search_items'       => __('Search Products', 'korsch'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => true,
+        'show_in_rest'       => true, // Required for Gutenberg + ACF Blocks
+        'supports'           => array('title', 'editor', 'thumbnail'),
+        'menu_position'      => 21,
+        'menu_icon'          => 'dashicons-products',
+    );
+
+    register_post_type('product', $args);
+}
+add_action('init', 'register_product_cpt');
 ?>

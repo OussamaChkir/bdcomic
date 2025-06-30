@@ -8,12 +8,14 @@
             wp_enqueue_style('prefooter', get_template_directory_uri() . '/assets/css/Partials/prefooter.css', array(), '1.0', 'all');
             wp_enqueue_script('prefooter', get_template_directory_uri() . '/assets/js/prefooter.js', array(), '1.0', true);
 
-            $prefooter_image = $prefooter['prefooter_image'];
 
             $header = get_field('header', 'option');
             $subheader = get_field('subheader', 'option');
             $text = get_field('text', 'option');
             $contact_form_page = get_field('contact_form_page', 'option');
+
+            $theme_prefooter_image = get_field('prefooter_image', 'option');
+            $page_prefooter_image = $prefooter['prefooter_image'];
         ?>
 
             <div class="prefooter">
@@ -123,8 +125,6 @@
                         </div>
                     <?php endif; ?>
 
-                    
-
                     <?php if ($contact_form_page): ?>
                         <div class="contact-form-container">
                             <span class="icon-mail"></span>
@@ -134,10 +134,10 @@
                 </div>
 
                 <div class="image">
-                    <?php if ($prefooter_image) : ?>
-                        <?php echo wp_get_attachment_image( $prefooter_image['ID'], 'prefooter-image', false, array('loading' => 'lazy') ); ?>
-                    <?php else : ?>
-                        <img src="<?= get_template_directory_uri(); ?>/assets/img/prefooter.png" alt="<?php bloginfo('name'); ?>" loading="lazy" decoding="async">
+                    <?php if ($page_prefooter_image) : ?>
+                        <?php echo wp_get_attachment_image( $page_prefooter_image['ID'], 'prefooter-image', false, array('loading' => 'lazy') ); ?>
+                    <?php elseif ($theme_prefooter_image) : ?>
+                        <?php echo wp_get_attachment_image( $theme_prefooter_image['ID'], 'prefooter-image', false, array('loading' => 'lazy') ); ?>
                     <?php endif; ?>
                 </div>
             </div>

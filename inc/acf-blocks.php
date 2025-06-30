@@ -28,6 +28,7 @@ function gl_acf_init() {
             'text-bild-teaser-mit-button' => 'Text-Bild Teaser mit Button',
             'teaser-list-v1' => 'Teaser List (v1)',
             'teaser-list-v2' => 'Teaser List (v2)',
+            'accordeon' => 'Accordeon',
         );
 
         foreach ($blocks as $name => $title) {
@@ -71,5 +72,6 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/text-bild-teaser-mit-button',
         'acf/teaser-list-v1',
         'acf/teaser-list-v2',
+        'acf/accordeon',
     );
 }

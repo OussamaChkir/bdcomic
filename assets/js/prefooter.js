@@ -8,27 +8,32 @@ document.addEventListener("DOMContentLoaded", function () {
     contactContainer.style.display = "none";
     countryWrapper.style.display = "none";
 
+    let selectedRegionID = null;
+    let selectedCountryID = null;
+    let regionAndChildrenIDs = [];
+
     regionSelect.addEventListener("change", function () {
-        const regionID = this.value;
+        selectedRegionID = this.value ? parseInt(this.value) : null;
+        selectedCountryID = null;
+        regionAndChildrenIDs = [];
 
         countrySelect.innerHTML = `<option value=""><?php _e('Choose country', 'korsch'); ?></option>`;
         countryWrapper.style.display = "none";
         contactContainer.style.display = "none";
 
-        if (!regionID) return;
+        if (!selectedRegionID) {
+            filterContacts();
+            return;
+        }
 
-        fetch(`${window.location.origin}/wp-json/wp/v2/countries?parent=${regionID}`)
+        fetch(`${window.location.origin}/wp-json/wp/v2/countries?parent=${selectedRegionID}`)
         .then(response => response.json())
         .then(countries => {
-            countrySelect.innerHTML = "";
-
             const defaultOption = document.createElement("option");
             defaultOption.value = "";
             defaultOption.textContent = "Choose country";
             defaultOption.selected = true;
             countrySelect.appendChild(defaultOption);
-
-            let childIDs = [];
 
             if (countries.length > 0) {
                 countries.forEach(country => {
@@ -37,47 +42,42 @@ document.addEventListener("DOMContentLoaded", function () {
                     option.textContent = country.name;
                     countrySelect.appendChild(option);
 
-                    childIDs.push(country.id);
+                    regionAndChildrenIDs.push(country.id);
                 });
 
                 countryWrapper.style.display = "flex";
             }
 
-            // Add the region ID itself, in case posts are assigned to the parent too
-            childIDs.push(parseInt(regionID));
+            // Add region ID itself too
+            regionAndChildrenIDs.push(selectedRegionID);
 
-            filterContactsByMultiple(childIDs);
+            filterContacts();
         });
     });
 
     countrySelect.addEventListener("change", function () {
-        const countryID = this.value;
-
-        if (countryID) {
-            filterContactsByMultiple([parseInt(countryID)]);
-        } else {
-            const regionID = regionSelect.value;
-            if (!regionID) return;
-
-            // Re-fetch countries for region
-            fetch(`${window.location.origin}/wp-json/wp/v2/countries?parent=${regionID}`)
-            .then(response => response.json())
-            .then(countries => {
-                let termIDs = countries.map(c => c.id);
-                termIDs.push(parseInt(regionID));
-                filterContactsByMultiple(termIDs);
-            });
-        }
+        selectedCountryID = this.value ? parseInt(this.value) : null;
+        filterContacts();
     });
 
-    function filterContactsByMultiple(termIDs = []) {
+    function filterContacts() {
         let visibleCount = 0;
 
         posts.forEach(post => {
             const classes = post.className;
-            const matches = termIDs.some(id => classes.includes(`cat-${id}`)) || classes.includes("cat-all");
+            let show = false;
 
-            if (matches) {
+            if (selectedRegionID && !selectedCountryID) {
+                // Match any of the region or its children
+                show = regionAndChildrenIDs.some(id => classes.includes(`cat-${id}`));
+            } else if (selectedRegionID && selectedCountryID) {
+                // Match region OR selected country
+                show = classes.includes(`cat-${selectedRegionID}`) || classes.includes(`cat-${selectedCountryID}`);
+            } else {
+                show = true; // fallback (all posts)
+            }
+
+            if (show) {
                 post.style.display = "flex";
                 visibleCount++;
             } else {

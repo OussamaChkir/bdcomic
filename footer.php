@@ -101,8 +101,6 @@
                                         foreach ($terms as $term) {
                                             $category_class .= ' cat-' . esc_attr($term->term_id);
                                         }
-                                    } else {
-                                        $category_class .= ' cat-all';
                                     }
                                 ?>
                                     <div class="contact-person h6 m-0<?php echo esc_attr($category_class); ?>">

@@ -20,11 +20,7 @@ if ($teaser_list_v1) :
                     <div class="header-wrapper">
                         <?php if ($header): ?>
                             <div class="header">
-                                <?php if ( is_front_page() ) : ?>
-                                    <<?php echo $header_type; ?> class="h1"><?php echo esc_html($header); ?></<?php echo $header_type; ?>>
-                                <?php else : ?>
-                                    <<?php echo $header_type; ?>><?php echo esc_html($header); ?></<?php echo $header_type; ?>>
-                                <?php endif; ?>
+                                <h2 class="<?php echo $header_type; ?>"><?php echo esc_html($header); ?></h2>
                             </div>
                         <?php endif; ?>
 

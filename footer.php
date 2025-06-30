@@ -88,8 +88,8 @@
 
                             <div class="contact_persons">
                                 <?php while ($contact_query->have_posts()) : $contact_query->the_post();
-                                    $company = get_field('company');
                                     $job_title = get_field('job_title');
+                                    $company = get_field('company');
                                     $address = get_field('address');
                                     $email = get_field('email');
                                     $phone = get_field('phone');
@@ -101,15 +101,19 @@
                                         foreach ($terms as $term) {
                                             $category_class .= ' cat-' . esc_attr($term->term_id);
                                         }
+                                    } else {
+                                        $category_class .= ' cat-all';
                                     }
                                 ?>
                                     <div class="contact-person h6 m-0<?php echo esc_attr($category_class); ?>">
                                         <div>
                                             <div class="h5 m-0"><?php echo esc_html(get_the_title()); ?></div>
-                                            <?php if ($company): ?><div><?php echo esc_html($company); ?></div><?php endif; ?>
                                             <?php if ($job_title): ?><div><?php echo esc_html($job_title); ?></div><?php endif; ?>
                                         </div>
-                                        <?php if ($address): ?><div><?php echo $address; ?></div><?php endif; ?>
+                                        <div>
+                                            <?php if ($company): ?><div><?php echo esc_html($company); ?></div><?php endif; ?>
+                                            <?php if ($address): ?><div><?php echo $address; ?></div><?php endif; ?>
+                                        </div>
                                         <div class="gap-8">
                                             <?php if ($email): ?><div><span class="icon-email"></span><a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a></div><?php endif; ?>
                                             <?php if ($phone): ?><div><span class="icon-phone"></span><a href="tel:<?php echo esc_attr($phone); ?>"><?php echo esc_html($phone); ?></a></div><?php endif; ?>

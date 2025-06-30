@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         posts.forEach(post => {
             const classes = post.className;
-            const matches = termIDs.some(id => classes.includes(`cat-${id}`));
+            const matches = termIDs.some(id => classes.includes(`cat-${id}`)) || classes.includes("cat-all");
 
             if (matches) {
                 post.style.display = "flex";

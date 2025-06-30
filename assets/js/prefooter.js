@@ -28,41 +28,56 @@ document.addEventListener("DOMContentLoaded", function () {
             defaultOption.selected = true;
             countrySelect.appendChild(defaultOption);
 
+            let childIDs = [];
+
             if (countries.length > 0) {
                 countries.forEach(country => {
                     const option = document.createElement("option");
                     option.value = country.id;
                     option.textContent = country.name;
                     countrySelect.appendChild(option);
+
+                    childIDs.push(country.id);
                 });
 
                 countryWrapper.style.display = "flex";
             }
 
-            filterContacts(regionID);
+            // Add the region ID itself, in case posts are assigned to the parent too
+            childIDs.push(parseInt(regionID));
+
+            filterContactsByMultiple(childIDs);
         });
     });
 
     countrySelect.addEventListener("change", function () {
-        const regionID = regionSelect.value;
         const countryID = this.value;
 
         if (countryID) {
-            filterContacts(null, countryID);
+            filterContactsByMultiple([parseInt(countryID)]);
         } else {
-            filterContacts(regionID);
+            const regionID = regionSelect.value;
+            if (!regionID) return;
+
+            // Re-fetch countries for region
+            fetch(`${window.location.origin}/wp-json/wp/v2/countries?parent=${regionID}`)
+            .then(response => response.json())
+            .then(countries => {
+                let termIDs = countries.map(c => c.id);
+                termIDs.push(parseInt(regionID));
+                filterContactsByMultiple(termIDs);
+            });
         }
     });
 
-    function filterContacts(regionID = null, countryID = null) {
+    function filterContactsByMultiple(termIDs = []) {
         let visibleCount = 0;
 
         posts.forEach(post => {
             const classes = post.className;
-            const matchRegion = regionID ? classes.includes(`cat-${regionID}`) : true;
-            const matchCountry = countryID ? classes.includes(`cat-${countryID}`) : true;
+            const matches = termIDs.some(id => classes.includes(`cat-${id}`));
 
-            if (matchRegion && matchCountry) {
+            if (matches) {
                 post.style.display = "flex";
                 visibleCount++;
             } else {

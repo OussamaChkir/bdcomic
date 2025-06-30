@@ -2,6 +2,7 @@
 
 <main>
     <div class="main-inner">
+        <h1 class="d-none"><?php bloginfo('name'); ?></h1>
         <?php
         // do the loop
         while( have_posts() ): the_post(); ?>

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedCountryID = null;
         regionAndChildrenIDs = [];
 
-        countrySelect.innerHTML = `<option value=""><?php _e('Choose country', 'korsch'); ?></option>`;
+        countrySelect.innerHTML = "";
         countryWrapper.style.display = "none";
         contactContainer.style.display = "none";
 
@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 countryWrapper.style.display = "flex";
             }
 
-            // Add region ID itself too
             regionAndChildrenIDs.push(selectedRegionID);
 
             filterContacts();
@@ -68,13 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
             let show = false;
 
             if (selectedRegionID && !selectedCountryID) {
-                // Match any of the region or its children
                 show = regionAndChildrenIDs.some(id => classes.includes(`cat-${id}`));
             } else if (selectedRegionID && selectedCountryID) {
-                // Match region OR selected country
                 show = classes.includes(`cat-${selectedRegionID}`) || classes.includes(`cat-${selectedCountryID}`);
             } else {
-                show = true; // fallback (all posts)
+                show = true;
             }
 
             if (show) {

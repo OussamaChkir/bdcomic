@@ -117,7 +117,7 @@
                                         <div class="gap-8">
                                             <?php if ($email): ?><div><span class="icon-email"></span><a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a></div><?php endif; ?>
                                             <?php if ($phone): ?><div><span class="icon-phone"></span><a href="tel:<?php echo esc_attr($phone); ?>"><?php echo esc_html($phone); ?></a></div><?php endif; ?>
-                                            <?php if ($mobile): ?><div><span class="icon-phone"></span><a href="tel:<?php echo esc_attr($mobile); ?>"><?php echo esc_html($mobile); ?></a></div><?php endif; ?>
+                                            <?php if ($mobile): ?><div><span class="icon-mobile"></span><a href="tel:<?php echo esc_attr($mobile); ?>"><?php echo esc_html($mobile); ?></a></div><?php endif; ?>
                                         </div>
                                     </div>
                                 <?php endwhile; wp_reset_postdata(); ?>

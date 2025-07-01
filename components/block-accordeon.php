@@ -35,8 +35,10 @@ if ($accordeon) :
                     <?php endif; ?>
                 </div>
 
-                <?php if ($accordeons) : ?>
-                    <div class="accordion" id="accordionBox">
+                <?php if ($accordeons) :
+                    $accordion_id = 'accordionBox_' . uniqid();
+                ?>
+                    <div class="accordion" id="<?php echo esc_attr($accordion_id); ?>">
                         <?php foreach ($accordeons as $index => $item): 
                             $title = $item['title'];
                             $type = $item['type'];
@@ -50,8 +52,8 @@ if ($accordeon) :
 
                             $select_product_list = $item['select_product_list'];
 
-                            $collapse_id = "collapse" . $index;
-                            $heading_id = "heading" . $index;
+                            $collapse_id = $accordion_id . "_collapse_" . $index;
+                            $heading_id = $accordion_id . "_heading_" . $index;
                         ?>
                             <div class="accordion-item">
                                 <div class="accordion-header" id="<?php echo esc_attr($heading_id); ?>">
@@ -100,7 +102,75 @@ if ($accordeon) :
                                                 </div>
                                             </div>
                                         <?php elseif ($type == "product-list"): ?>
+                                            <?php if (!empty($select_product_list)) :
+                                                wp_enqueue_style('accordeon-product-list', get_template_directory_uri() . '/assets/css/ContentElements/ce-accordeon-product-list.css', array(), '1.0', 'all');
+                                                wp_enqueue_script('accordeon-product-list', get_template_directory_uri() . '/assets/js/ContentElements/ce-accordeon-product-list.js', array(), '1.0', true);    
+                                            ?>
+                                                <div class="product-list row">
+                                                    <?php foreach ($select_product_list as $product) :
+                                                        setup_postdata($product);
 
+                                                        $product_id = $product->ID;
+                                                        $title = get_the_title($product_id);
+                                                        $permalink = get_permalink($product_id);
+                                                        $thumbnail = get_the_post_thumbnail($product_id, 'image-list');
+
+                                                        $subtitle = get_field('subtitle', $product_id);
+                                                        $header_image = get_field('header_image', $product_id);
+                                                        $product_properties = get_field('product_properties', $product_id);
+                                                    ?>
+                                                        <div class="col-md-6">
+                                                            <div class="product-card">
+                                                                <div class="front primary-bg">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="product-title h3 m-0"><b><?php echo esc_html($title); ?></b></div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <?php if ($subtitle) : ?>
+                                                                                <div class="product-subtitle h6 m-0"><b><?php echo esc_html($subtitle); ?></b></div>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="product-image-wrapper">
+                                                                        <?php if ($product_properties) : ?>
+                                                                            <div class="product-properties">
+                                                                                <?php foreach ($product_properties as $key) : ?>
+                                                                                    <span class="icon-property-<?php echo esc_html($key['value']); ?>" title="<?php echo esc_html($key['label']); ?>"></span>
+                                                                                <?php endforeach; ?>
+                                                                            </div>
+                                                                        <?php endif; ?>
+                                                                        <?php if ($thumbnail) : ?>
+                                                                            <div class="product-image">
+                                                                                <?php echo $thumbnail; ?>
+                                                                            </div>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                    <a class="btn btn-icon btn-turn-back" href="#"><span class="icon icon-arrow-right"></span><span class="label"><?php _e('Quick view', 'korsch'); ?></span></a>
+                                                                </div>
+
+                                                                <div class="back secondary-bg">
+                                                                    <div class="row align-items-center">
+                                                                        <div class="col-md-6">
+                                                                            <div class="product-title h3 m-0"><b><?php echo esc_html($title); ?></b></div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <a class="btn-turn-front" href="#"><span class="icon-turn"></span></a>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="product-content">
+
+                                                                    </div>
+
+                                                                    <a href="<?php echo esc_url($permalink); ?>" class="btn btn-icon"><span class="icon icon-arrow-right"></span><span class="label"><?php _e('Full view', 'korsch'); ?></span></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                    <?php wp_reset_postdata(); ?>
+                                                </div>
+                                            <?php endif; ?>
                                         <?php endif; ?>
                                     </div>
                                 </div>

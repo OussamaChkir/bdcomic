@@ -5,3 +5,11 @@
 .primary-bg * {
     color: var(--text-box);
 }
+
+.secondary-bg {
+    background: var(--text-box);
+    color: var(--text-color);
+}
+.secondary-bg * {
+    color: var(--text-color);
+}

@@ -67,10 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
             let show = false;
 
             if (selectedRegionID && !selectedCountryID) {
-                // ✅ Only show contacts assigned directly to the region (not its children)
                 show = classes.includes(`cat-${selectedRegionID}`);
             } else if (selectedRegionID && selectedCountryID) {
-                // 👇 Keep both selected, show matches to either
                 show = classes.includes(`cat-${selectedRegionID}`) || classes.includes(`cat-${selectedCountryID}`);
             } else {
                 show = true;

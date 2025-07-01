@@ -15,23 +15,25 @@ if ($accordeon) :
     <div class="block-accordeon">
         <div class="container">
             <div class="block-container">
-                <?php if ($header): ?>
-                    <div class="header">
-                        <h2 class="<?php echo $header_type; ?>"><?php echo esc_html($header); ?></h2>
-                    </div>
-                <?php endif; ?>
+                <div class="header-wrapper">
+                    <?php if ($header): ?>
+                        <div class="header">
+                            <h2 class="<?php echo $header_type; ?>"><?php echo esc_html($header); ?></h2>
+                        </div>
+                    <?php endif; ?>
 
-                <?php if ($subheader): ?>
-                    <div class="subheader h3">
-                        <?php echo esc_html($subheader); ?>
-                    </div>
-                <?php endif; ?>
+                    <?php if ($subheader): ?>
+                        <div class="subheader h3">
+                            <?php echo esc_html($subheader); ?>
+                        </div>
+                    <?php endif; ?>
 
-                <?php if ($text): ?>
-                    <div class="text text-medium">
-                        <?php echo $text; ?>
-                    </div>
-                <?php endif; ?>
+                    <?php if ($text): ?>
+                        <div class="text text-medium">
+                            <?php echo $text; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
 
                 <?php if ($accordeons) : ?>
                     <div class="accordion" id="accordionBox">

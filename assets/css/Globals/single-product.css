@@ -1,0 +1,101 @@
+.product-header {
+    position: relative;
+    background: var(--bg-light);
+}
+.product-header * {
+    color: var(--color-primary);
+}
+.product-header .header-image {
+    position: relative;
+    height: 60rem;
+    overflow: hidden;
+}
+.product-header .header-image img {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: inherit;
+    margin-right: -60rem;
+}
+.product-header .product-header-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+}
+.product-header .product-header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 6rem 0;
+    background: var(--bg-light);
+}
+.product-header .product-header-info .product-properties {
+    display: flex;
+    gap: 0.625rem;
+    flex-direction: column-reverse;
+    transform: rotate(-90deg) rotateY(180deg);
+    transform-origin: 0 0;
+}
+.product-header .product-header-info .product-properties .icon-property-single {
+    width: 2.688rem;
+    height: 2.25rem;
+    background-size: cover;
+}
+.product-header .product-header-info .product-properties .icon-property-bi {
+    width: 3.25rem;
+    height: 2.375rem;
+    background-size: cover;
+}
+.product-header .product-header-info .product-properties .icon-property-tri {
+    width: 3.75rem;
+    height: 2.313rem;
+    background-size: cover;
+}
+.product-header .product-header-info .product-properties .icon-property-four {
+    width: 4.375rem;
+    height: 2.375rem;
+    background-size: cover;
+}
+.product-header .product-header-info .product-properties .icon-property-five {
+    width: 5rem;
+    height: 2.313rem;
+    background-size: cover;
+}
+.product-header .product-header-info .product-properties .icon-property-tab {
+    width: 2.625rem;
+    height: 2.625rem;
+    background-size: cover;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1440px) {
+  .product-header .header-image {
+    height: 50rem;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .product-header .header-image {
+    height: 35rem;
+  }
+  .product-header .product-header-info {
+        padding: 3rem 0;
+        gap: 1rem;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .product-header .product-header-info {
+        padding: 2rem 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+  .product-header .header-image {
+    height: 17.5rem;
+  }
+}

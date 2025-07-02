@@ -27,7 +27,7 @@
             "label": "Header Image",
             "name": "header_image",
             "type": "image",
-            "instructions": "",
+            "instructions": "Allowed file types : png",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -45,7 +45,7 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "png"
         },
         {
             "key": "field_68629e89d39bc",
@@ -94,5 +94,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1751374463
+    "modified": 1751461516
 }

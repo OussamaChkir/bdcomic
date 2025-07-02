@@ -46,11 +46,6 @@
 .accordion-body.content-product-list .product-card .front .product-subtitle {
     text-transform: uppercase;
     text-align: right;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 .accordion-body.content-product-list .product-card .front .product-image-wrapper {
     display: flex;
@@ -73,4 +68,18 @@
 
 .accordion-body.content-product-list .product-card .back .btn-turn-front {
     float: right;
+}
+
+/* Responsive */
+@media only screen and (max-width: 991px) {
+    .accordion-body.content-product-list .product-card .front .product-image {
+        height: 27.688rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .accordion-body.content-product-list .product-card .front .product-image img {
+        height: auto;
+        max-height: 100%;
+    }
 }

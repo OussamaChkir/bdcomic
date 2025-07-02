@@ -119,14 +119,14 @@ if ($accordeon) :
                                                         $header_image = get_field('header_image', $product_id);
                                                         $product_properties = get_field('product_properties', $product_id);
                                                     ?>
-                                                        <div class="col-md-6">
+                                                        <div class="col-lg-6">
                                                             <div class="product-card">
                                                                 <div class="front primary-bg">
                                                                     <div class="row">
-                                                                        <div class="col-md-6">
+                                                                        <div class="col-6">
                                                                             <div class="product-title h3 m-0"><b><?php echo esc_html($title); ?></b></div>
                                                                         </div>
-                                                                        <div class="col-md-6">
+                                                                        <div class="col-6">
                                                                             <?php if ($subtitle) : ?>
                                                                                 <div class="product-subtitle h6 m-0"><b><?php echo esc_html($subtitle); ?></b></div>
                                                                             <?php endif; ?>
@@ -151,10 +151,10 @@ if ($accordeon) :
 
                                                                 <div class="back secondary-bg">
                                                                     <div class="row align-items-center">
-                                                                        <div class="col-md-6">
+                                                                        <div class="col-6">
                                                                             <div class="product-title h3 m-0"><b><?php echo esc_html($title); ?></b></div>
                                                                         </div>
-                                                                        <div class="col-md-6">
+                                                                        <div class="col-6">
                                                                             <a class="btn-turn-front" href="#"><span class="icon-turn"></span></a>
                                                                         </div>
                                                                     </div>

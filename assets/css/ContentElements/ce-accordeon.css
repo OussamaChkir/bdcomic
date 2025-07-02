@@ -68,9 +68,6 @@
   .block-accordeon {
     padding: 6rem 0;
   }
-  .block-accordeon .header-wrapper {
-    gap: 3rem;
-  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -80,14 +77,10 @@
     .block-accordeon .header-wrapper {
         gap: 1rem;
     }
-    
-    .accordion {
-        margin-top: 1.5rem;
+    .accordion-body.content-teaser .row {
+        --bs-gutter-y: 2rem;
     }
-    .accordion-item .accordion-button:not(.collapsed) {
-        padding-bottom: 0.5rem;
-    }
-    .accordion-body {
-        padding-bottom: 1.813rem;
+    .accordion-body.content-teaser .image img {
+        height: auto;
     }
 }

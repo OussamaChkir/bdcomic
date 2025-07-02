@@ -1,5 +1,4 @@
 <?php
-
 wp_enqueue_style('block-text-bild-teaser-mit-button', get_template_directory_uri() . '/assets/css/ContentElements/ce-text-bild-teaser-mit-button.css', array(), '1.0', 'all');
 
 $text_bild_teaser_mit_button = get_field('text_bild_teaser_mit_button');

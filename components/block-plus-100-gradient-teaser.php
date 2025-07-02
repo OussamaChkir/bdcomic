@@ -1,5 +1,4 @@
 <?php
-
 wp_enqueue_style('block-100-gradient-teaser', get_template_directory_uri() . '/assets/css/ContentElements/ce-100-gradient-teaser.css', array(), '1.0', 'all');
 
 $gradient_teaser = get_field('100_gradient_teaser');

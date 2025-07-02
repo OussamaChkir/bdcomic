@@ -1,5 +1,4 @@
 <?php
-
 wp_enqueue_style('block-icon-text-teaser', get_template_directory_uri() . '/assets/css/ContentElements/ce-icon-text-teaser.css', array(), '1.0', 'all');
 
 $icon_text_teaser = get_field('icon_text_teaser');

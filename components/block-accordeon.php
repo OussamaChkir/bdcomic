@@ -1,5 +1,4 @@
 <?php
-
 wp_enqueue_style('block-accordeon', get_template_directory_uri() . '/assets/css/ContentElements/ce-accordeon.css', array(), '1.0', 'all');
 
 $accordeon = get_field('accordeon');

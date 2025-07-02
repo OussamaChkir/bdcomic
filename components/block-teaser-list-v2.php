@@ -1,5 +1,4 @@
 <?php
-
 wp_enqueue_style('block-teaser-list-v2', get_template_directory_uri() . '/assets/css/ContentElements/ce-teaser-list-v2.css', array(), '1.0', 'all');
 
 $teaser_list_v2 = get_field('teaser_list_v2');

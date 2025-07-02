@@ -1,5 +1,4 @@
 <?php
-
 wp_enqueue_style('block-text', get_template_directory_uri() . '/assets/css/ContentElements/ce-text.css', array(), '1.0', 'all');
 
 $block_text = get_field('text');

@@ -1,5 +1,4 @@
 <?php 
-
 $space = get_field('space');
 
 if ($space): 

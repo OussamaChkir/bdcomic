@@ -30,10 +30,12 @@
                                 <?php endif; ?>
 
                                 <?php if ($product_properties) : ?>
-                                    <div class="product-properties">
-                                        <?php foreach ($product_properties as $key) : ?>
-                                            <span class="icon icon-property-<?php echo esc_html($key['value']); ?>" title="<?php echo esc_html($key['label']); ?>"></span>
-                                        <?php endforeach; ?>
+                                    <div class="product-properties-wrapper">
+                                        <div class="product-properties">
+                                            <?php foreach ($product_properties as $key) : ?>
+                                                <span class="icon icon-property-<?php echo esc_html($key['value']); ?>" title="<?php echo esc_html($key['label']); ?>"></span>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </div>
                                 <?php endif; ?>
                             </div>

@@ -1,0 +1,19 @@
+.block-text-image {
+    position: relative;
+    padding: 6rem 0;
+}
+.block-text-image.image_left {
+    padding: 4rem 0;
+}
+.block-text-image .text-image-row {
+    align-items: center;
+}
+.block-text-image.image_left .text-image-row {
+    flex-direction: row-reverse;
+}
+.block-text-image .image {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+}

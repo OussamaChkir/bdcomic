@@ -1,6 +1,6 @@
 {
     "key": "group_67c01ee904027",
-    "title": "Page\/Post Settings",
+    "title": "Settings",
     "fields": [
         {
             "key": "field_685abef67a9b1",
@@ -83,6 +83,13 @@
                 "operator": "==",
                 "value": "post"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
         ]
     ],
     "menu_order": 0,
@@ -93,5 +100,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1750778812
+    "modified": 1751638369
 }

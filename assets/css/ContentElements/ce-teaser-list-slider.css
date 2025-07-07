@@ -4,7 +4,6 @@
 .teaser-list-slider {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 3rem;
 }
 .teaser-list-slider img {

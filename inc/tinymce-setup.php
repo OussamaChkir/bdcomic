@@ -31,6 +31,12 @@ class Goldland_TinyMCE_Setup {
     			'classes' => 'text-medium',
     			'wrapper' => true,
             ),
+            array(
+    			'title' => 'Checkbox list',
+                'selector' => 'ul',  
+    			'classes' => 'checkbox-list',
+    			'wrapper' => true,
+            ),
     	);
 
     	$arr['style_formats'] = json_encode( $style_formats );

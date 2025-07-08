@@ -9,7 +9,7 @@ window.addEventListener('resize', function () {
 });
 
 function teaser_list_slider() {
-    $('.teaser-list-slider').each(function () {
+    $('.teaser-list-slider.js-is-slider').each(function () {
         var $slider = $(this);
 
         if (!$slider.hasClass('slick-initialized')) {

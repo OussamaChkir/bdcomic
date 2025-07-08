@@ -64,7 +64,7 @@ if ($teaser_list_slider) :
                             </div>
                     <?php endif; ?>
                         
-                    <div class="teaser-list-slider">
+                    <div class="teaser-list-slider <?php echo $is_slider ? 'js-is-slider' : ''; ?>">
                         <?php foreach ($teasers as $item):
                             $headerItem = $item['header'];
                             $image = $item['image'];

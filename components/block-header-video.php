@@ -2,7 +2,6 @@
 wp_enqueue_style('block-header-video', get_template_directory_uri() . '/assets/css/ContentElements/ce-header-video.css', array(), '1.0', 'all');
 wp_enqueue_script('block-header-video', get_template_directory_uri() . '/assets/js/ContentElements/ce-header-video.js', array(), '1.0', true);
 
-
 $header_video = get_field('header_video');
 
 if ($header_video): 

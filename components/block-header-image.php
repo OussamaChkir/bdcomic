@@ -1,7 +1,6 @@
 <?php 
 wp_enqueue_style('block-header-image', get_template_directory_uri() . '/assets/css/ContentElements/ce-header-image.css', array(), '1.0', 'all');
 
-
 $header_image = get_field('header_image');
 
 if ($header_image): 

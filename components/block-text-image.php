@@ -2,11 +2,9 @@
 wp_enqueue_style('block-text-image', get_template_directory_uri() . '/assets/css/ContentElements/ce-text-image.css', array(), '1.0', 'all');
 
 $common_properties = get_field('common_properties');
-if ($common_properties) {
     $background_color = $common_properties['background_color'] ?? ''; 
     $show_in_anchor_navi = $common_properties['show_in_anchor_navi'] ?? false;
     $anchor_navi_label = $common_properties['anchor_navi_label'] ?? '';
-}
 
 $text_image = get_field('text_image');
 

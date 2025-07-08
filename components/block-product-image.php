@@ -1,7 +1,6 @@
 <?php 
 wp_enqueue_style('block-product-image', get_template_directory_uri() . '/assets/css/ContentElements/ce-product-image.css', array(), '1.0', 'all');
 
-
 $product_image = get_field('product_image');
 
 if ($product_image): 

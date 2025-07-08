@@ -1,0 +1,31 @@
+.block-product-image {
+    position: relative;
+    padding-bottom: 5.938rem;
+}
+.block-product-image .container {
+    position: relative;
+    z-index: 1;
+}
+.block-product-image .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-primary);
+    height: calc(50% - 1.5rem);
+    z-index: 0;
+}
+[data-theme="dark"] .block-product-image .overlay {
+    background: var(--bg-box);
+}
+
+
+/* Responsive */
+@media only screen and (max-width: 767px) {
+    .block-product-image {
+        padding-bottom: 1rem;
+    }
+    .block-product-image .overlay {
+        height: calc(50% - 0.844rem);
+    }
+}

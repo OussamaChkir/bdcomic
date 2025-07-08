@@ -45,7 +45,7 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "png"
         },
         {
             "key": "field_68629e89d39bc",
@@ -94,5 +94,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1751528573
+    "modified": 1751980204
 }

@@ -50,7 +50,7 @@
                     "label": "Show in anchor navi",
                     "name": "show_in_anchor_navi",
                     "type": "true_false",
-                    "instructions": "",
+                    "instructions": "This anchor navi is not functional on the homepage.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -127,6 +127,11 @@
                 "param": "block",
                 "operator": "!=",
                 "value": "acf\/plus-100-gradient-teaser"
+            },
+            {
+                "param": "block",
+                "operator": "!=",
+                "value": "acf\/product-image"
             }
         ]
     ],
@@ -138,5 +143,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1751964525
+    "modified": 1751980927
 }

@@ -1,3 +1,27 @@
 ul li::marker {
     font-size: var(--font-size-base);
 }
+
+ul.checkbox-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+}
+ul.checkbox-list li {
+    position: relative;
+    padding-left: calc(2rem + 0.5rem);
+}
+ul.checkbox-list li:before {
+    content: '';
+    background: url('data:image/svg+xml;charset=utf-8,<svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M27.7117 6.58032L13.4898 26.0699L13.394 26.2001L13.2326 26.2012L12.3721 26.2032H12.2096L4.82422 16.1803H6.94401L12.7971 24.123L25.5992 6.58032H27.7117Z" fill="%23182748"/></svg>') no-repeat center;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    left: 0;
+}
+[data-theme="dark"] ul.checkbox-list li:before {
+    background: url('data:image/svg+xml;charset=utf-8,<svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M27.7117 6.58032L13.4898 26.0699L13.394 26.2001L13.2326 26.2012L12.3721 26.2032H12.2096L4.82422 16.1803H6.94401L12.7971 24.123L25.5992 6.58032H27.7117Z" fill="white"/></svg>') no-repeat center;
+}

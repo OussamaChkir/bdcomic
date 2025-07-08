@@ -17,6 +17,17 @@ if ($teaser_list_slider) :
     $text = $teaser_list_slider['text'];
     $is_slider = $teaser_list_slider['is_slider'];
     $teasers = $teaser_list_slider['teasers'];
+
+    if ($is_slider) {
+        if ( ! wp_style_is( 'slick', 'enqueued' ) ) {
+            wp_enqueue_style('slick', get_template_directory_uri() . '/assets/css/plugins/slick.css', array(), '1.0', 'all');
+        }
+        if ( ! wp_script_is( 'slick', 'enqueued' ) ) {
+            wp_enqueue_script('slick', get_template_directory_uri() . '/assets/plugins/slick/slick.min.js', array(), '1.0', true);
+        }
+
+        wp_enqueue_script('block-teaser-list-slider', get_template_directory_uri() . '/assets/js/ContentElements/ce-teaser-list-slider.js', array(), '1.0', true);
+    }
 ?>
 
     <div class="block-teaser-list-slider <?php echo $background_color; ?>">
@@ -45,36 +56,49 @@ if ($teaser_list_slider) :
                 <?php endif; ?>
 
                 <?php if ($teasers) : ?>
+                    <?php if ($is_slider) : ?>
+                        <div class="teaser-slider-wrapper">
+                            <div class="teaser-slider-control">
+                                <div class="teaser-slider-dots"></div>
+                                <div class="teaser-slider-nav"></div>
+                            </div>
+                    <?php endif; ?>
+                        
                     <div class="teaser-list-slider">
                         <?php foreach ($teasers as $item):
                             $headerItem = $item['header'];
                             $image = $item['image'];
                             $textItem = $item['text'];
                         ?>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <?php if ($image) : ?>
-                                        <?php echo wp_get_attachment_image( $image['ID'], 'image-list', false, array('loading' => 'lazy') ); ?>
-                                    <?php endif; ?>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="teaser-content">
-                                        <?php if ($headerItem): ?>
-                                            <div class="title h3"><b><?php echo esc_html($headerItem); ?></b></div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <?php if ($image) : ?>
+                                            <?php echo wp_get_attachment_image( $image['ID'], 'image-list', false, array('loading' => 'lazy') ); ?>
                                         <?php endif; ?>
+                                    </div>
 
-                                        <?php if ($textItem): ?>
-                                            <div class="text text-medium">
-                                                <?php echo $textItem; ?>
-                                            </div>
-                                        <?php endif; ?>
+                                    <div class="col-lg-6">
+                                        <div class="teaser-content">
+                                            <?php if ($headerItem): ?>
+                                                <div class="title h3"><b><?php echo esc_html($headerItem); ?></b></div>
+                                            <?php endif; ?>
+
+                                            <?php if ($textItem): ?>
+                                                <div class="text text-medium">
+                                                    <?php echo $textItem; ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
+
+                    <?php if ($is_slider) : ?>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
         </div>

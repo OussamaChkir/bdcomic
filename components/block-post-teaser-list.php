@@ -1,6 +1,13 @@
 <?php
 wp_enqueue_style('block-post-teaser-list', get_template_directory_uri() . '/assets/css/ContentElements/ce-post-teaser-list.css', array(), '1.0', 'all');
 
+$common_properties = get_field('common_properties');
+if ($common_properties) {
+    $background_color = $common_properties['background_color'] ?? ''; 
+    $show_in_anchor_navi = $common_properties['show_in_anchor_navi'] ?? false;
+    $anchor_navi_label = $common_properties['anchor_navi_label'] ?? '';
+}
+
 $post_teaser_list = get_field('post_teaser_list');
 
 if ($post_teaser_list) :
@@ -18,7 +25,7 @@ if ($post_teaser_list) :
     $query = new WP_Query($args);
 
     if( $query->have_posts() ): ?>
-        <div class="block-post-teaser-list">
+        <div class="block-post-teaser-list <?php echo $background_color; ?>">
             <div class="container">
                 <div class="block-container">
                     <?php if ($header || $subheader || $text): ?>

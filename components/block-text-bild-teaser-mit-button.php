@@ -1,6 +1,13 @@
 <?php
 wp_enqueue_style('block-text-bild-teaser-mit-button', get_template_directory_uri() . '/assets/css/ContentElements/ce-text-bild-teaser-mit-button.css', array(), '1.0', 'all');
 
+$common_properties = get_field('common_properties');
+if ($common_properties) {
+    $background_color = $common_properties['background_color'] ?? ''; 
+    $show_in_anchor_navi = $common_properties['show_in_anchor_navi'] ?? false;
+    $anchor_navi_label = $common_properties['anchor_navi_label'] ?? '';
+}
+
 $text_bild_teaser_mit_button = get_field('text_bild_teaser_mit_button');
 
 if ($text_bild_teaser_mit_button) :
@@ -12,7 +19,7 @@ if ($text_bild_teaser_mit_button) :
     $image = $text_bild_teaser_mit_button['image'];
 ?>
 
-    <div class="block-text-bild-teaser-mit-button">
+    <div class="block-text-bild-teaser-mit-button <?php echo $background_color; ?>">
         <div class="container">
             <div class="block-container">
                 <?php if ($header): ?>

@@ -1,6 +1,13 @@
 <?php
 wp_enqueue_style('block-text', get_template_directory_uri() . '/assets/css/ContentElements/ce-text.css', array(), '1.0', 'all');
 
+$common_properties = get_field('common_properties');
+if ($common_properties) {
+    $background_color = $common_properties['background_color'] ?? ''; 
+    $show_in_anchor_navi = $common_properties['show_in_anchor_navi'] ?? false;
+    $anchor_navi_label = $common_properties['anchor_navi_label'] ?? '';
+}
+
 $block_text = get_field('text');
 
 if ($block_text) :
@@ -11,7 +18,7 @@ if ($block_text) :
     $second_text = $block_text['second_text'];
 ?>
 
-    <div class="block-text">
+    <div class="block-text <?php echo $background_color; ?>">
         <div class="container">
             <?php if ($header || $subheader || $text || $second_text): ?>
                 <div class="header-wrapper">

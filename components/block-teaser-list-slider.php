@@ -1,6 +1,13 @@
 <?php
 wp_enqueue_style('block-teaser-list-slider', get_template_directory_uri() . '/assets/css/ContentElements/ce-teaser-list-slider.css', array(), '1.0', 'all');
 
+$common_properties = get_field('common_properties');
+if ($common_properties) {
+    $background_color = $common_properties['background_color'] ?? ''; 
+    $show_in_anchor_navi = $common_properties['show_in_anchor_navi'] ?? false;
+    $anchor_navi_label = $common_properties['anchor_navi_label'] ?? '';
+}
+
 $teaser_list_slider = get_field('teaser_list_slider');
 
 if ($teaser_list_slider) :
@@ -12,7 +19,7 @@ if ($teaser_list_slider) :
     $teasers = $teaser_list_slider['teasers'];
 ?>
 
-    <div class="block-teaser-list-slider">
+    <div class="block-teaser-list-slider <?php echo $background_color; ?>">
         <div class="container">
             <div class="block-container">
                 <?php if ($header || $subheader || $text): ?>

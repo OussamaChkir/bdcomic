@@ -26,9 +26,15 @@
     content: '';
     border: 2px solid var(--text-color);
 }
+.primary-bg .slick-dots li button:before {
+    border-color: var(--text-box);
+}
 .slick-dots li.slick-active button:before {
     opacity: 1;
     background: var(--text-color);
+}
+.primary-bg .slick-dots li.slick-active button:before {
+    background: var(--text-box);
 }
 .slick-dots li, .slick-dots li button:before {
     width: 1rem;
@@ -56,7 +62,8 @@
 .slick-next {
     right: 0;
 }
-.slick-prev:before, .slick-next:before {
+.slick-prev:before, .slick-next:before,
+[data-theme="dark"] .primary-bg .slick-prev:before, [data-theme="dark"] .primary-bg .slick-next:before {
     content: '';
     font-family: inherit;
     display: block;
@@ -65,7 +72,8 @@
     opacity: 1;
     background: url('data:image/svg+xml;charset=utf-8,<svg width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50.375 30.0312L29.5109 50.375H26.6993L46.5719 31H9.6875V29.0625H46.5719L26.7012 9.6875H29.5109L50.375 30.0312Z" fill="%23182748"/><path d="M29.7077 9.20312L51.0694 30.0312L29.7077 50.8594H25.5092L45.3818 31.4844H9.20312V28.5781H45.3818L25.511 9.20312H29.7077ZM47.762 29.5469H10.1719V30.5156H47.762L27.8894 49.8906H29.3141L49.6806 30.0312L29.3141 10.1719H27.8913L47.762 29.5469Z" fill="%23182748"/><path d="M50.375 30.0312L29.5109 50.375H26.6993L46.5719 31H9.6875V29.0625H46.5719L26.7012 9.6875H29.5109L50.375 30.0312Z" stroke="%23182748" stroke-width="0.1"/><path d="M29.7077 9.20312L51.0694 30.0312L29.7077 50.8594H25.5092L45.3818 31.4844H9.20312V28.5781H45.3818L25.511 9.20312H29.7077ZM47.762 29.5469H10.1719V30.5156H47.762L27.8894 49.8906H29.3141L49.6806 30.0312L29.3141 10.1719H27.8913L47.762 29.5469Z" stroke="%23182748" stroke-width="0.1"/></svg>') no-repeat center;
 }
-[data-theme="dark"] .slick-prev:before, [data-theme="dark"] .slick-next:before {
+[data-theme="dark"] .slick-prev:before, [data-theme="dark"] .slick-next:before,
+.primary-bg .slick-prev:before, .primary-bg .slick-next:before {
     background: url('data:image/svg+xml;charset=utf-8,<svg width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50.375 30.0312L29.5109 50.375H26.6993L46.5719 31H9.6875V29.0625H46.5719L26.7012 9.6875H29.5109L50.375 30.0312Z" fill="white"/><path d="M29.7077 9.20312L51.0694 30.0312L29.7077 50.8594H25.5092L45.3818 31.4844H9.20312V28.5781H45.3818L25.511 9.20312H29.7077ZM47.762 29.5469H10.1719V30.5156H47.762L27.8894 49.8906H29.3141L49.6806 30.0312L29.3141 10.1719H27.8913L47.762 29.5469Z" fill="white"/><path d="M50.375 30.0312L29.5109 50.375H26.6993L46.5719 31H9.6875V29.0625H46.5719L26.7012 9.6875H29.5109L50.375 30.0312Z" stroke="white" stroke-width="0.1"/><path d="M29.7077 9.20312L51.0694 30.0312L29.7077 50.8594H25.5092L45.3818 31.4844H9.20312V28.5781H45.3818L25.511 9.20312H29.7077ZM47.762 29.5469H10.1719V30.5156H47.762L27.8894 49.8906H29.3141L49.6806 30.0312L29.3141 10.1719H27.8913L47.762 29.5469Z" stroke="white" stroke-width="0.1"/></svg>') no-repeat center;
 }
 .slick-prev:before {

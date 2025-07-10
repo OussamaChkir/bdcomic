@@ -20,9 +20,9 @@
             "sub_fields": [
                 {
                     "key": "field_685429da85f09",
-                    "label": "Text",
-                    "name": "text",
-                    "type": "textarea",
+                    "label": "Header",
+                    "name": "header",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -34,9 +34,49 @@
                     "wpml_cf_preferences": 2,
                     "default_value": "",
                     "placeholder": "",
-                    "maxlength": "",
-                    "rows": 4,
-                    "new_lines": ""
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_686fc54c57e39",
+                    "label": "Subheader",
+                    "name": "subheader",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "wpml_cf_preferences": 2,
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_686fc8b257e3a",
+                    "label": "Text",
+                    "name": "text",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "wpml_cf_preferences": 2,
+                    "default_value": "",
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "delay": 0
                 },
                 {
                     "key": "field_685903826baf1",
@@ -99,5 +139,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1750666625
+    "modified": 1752156356
 }

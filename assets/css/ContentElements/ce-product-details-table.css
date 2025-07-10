@@ -6,6 +6,7 @@
     --bs-table-color: var(--text-color);
     --bs-table-bg: transparent;
     --bs-table-border-color: var(--text-color);
+    margin: 0;
 }
 .block-product-details-table .table>:not(caption)>*>* {
     padding: 0.625rem;

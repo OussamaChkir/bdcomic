@@ -123,6 +123,7 @@ if ($accordeon) :
                                                         $header_image = get_field('header_image', $product_id);
                                                         $teaser_text = get_field('teaser_text', $product_id);
                                                         $product_properties = get_field('product_properties', $product_id);
+                                                        $technical_details = get_field('technical_details', $product_id);
                                                     ?>
                                                         <div class="col-lg-6">
                                                             <div class="product-card">
@@ -155,18 +156,44 @@ if ($accordeon) :
                                                                 </div>
 
                                                                 <div class="back secondary-bg">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-6">
-                                                                            <div class="product-title h3 m-0"><b><?php echo esc_html($title); ?></b></div>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <a class="btn-turn-front" href="#"><span class="icon-turn"></span></a>
-                                                                        </div>
-                                                                    </div>
-
                                                                     <div class="product-content">
+                                                                        <div class="row align-items-center">
+                                                                            <div class="col-6">
+                                                                                <div class="product-title h3 m-0"><b><?php echo esc_html($title); ?></b></div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a class="btn-turn-front" href="#"><span class="icon-turn"></span></a>
+                                                                            </div>
+                                                                        </div>
+
                                                                         <?php if ($teaser_text) : ?>
                                                                             <div class="product-text h6 m-0"><?php echo esc_html($teaser_text); ?></div>
+                                                                        <?php endif; ?>
+
+                                                                        <?php if ($technical_details) : ?>
+                                                                            <table class="table table-bordered h6">
+                                                                                <tbody>
+                                                                                    <?php $field_group = acf_get_field('field_686f82ae3648b');
+
+                                                                                    foreach ($technical_details as $sub_key => $value) :
+                                                                                        if (!empty($value)) :
+                                                                                            $label = '';
+                                                                                            if (!empty($field_group['sub_fields'])) {
+                                                                                                foreach ($field_group['sub_fields'] as $sub_field) {
+                                                                                                    if ($sub_field['name'] === $sub_key) {
+                                                                                                        $label = $sub_field['label'];
+                                                                                                        break;
+                                                                                                    }
+                                                                                                }
+                                                                                            } ?>
+                                                                                            <tr>
+                                                                                                <th scope="row"><?php echo $label; ?></th>
+                                                                                                <td><?php echo $value; ?></td>
+                                                                                            </tr>
+                                                                                        <?php endif; ?>
+                                                                                    <?php endforeach; ?>
+                                                                                </tbody>
+                                                                            </table>
                                                                         <?php endif; ?>
                                                                     </div>
 

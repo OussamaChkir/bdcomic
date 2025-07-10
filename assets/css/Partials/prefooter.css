@@ -67,7 +67,7 @@
 }
 .prefooter .image {
     position: relative;
-    height: 61.125rem;
+    max-height: 61.125rem;
     overflow: hidden;
 }
 .prefooter .image img {
@@ -111,7 +111,7 @@
         padding: 6rem 0 0;
     }
     .prefooter .image {
-        height: 56.125rem;
+        max-height: 56.125rem;
     }
 }
 
@@ -120,7 +120,7 @@
         padding: 4rem 0 0;
     }
     .prefooter .image {
-        height: 58.125rem;
+        max-height: 58.125rem;
     }
 }
 
@@ -147,7 +147,7 @@
         margin-top: 2rem;
     }
     .prefooter .image {
-        height: 19.375rem;
+        max-height: 19.375rem;
         margin-top: 3rem;
     }
 }

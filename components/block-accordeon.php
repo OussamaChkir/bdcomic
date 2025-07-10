@@ -121,6 +121,7 @@ if ($accordeon) :
 
                                                         $subtitle = get_field('subtitle', $product_id);
                                                         $header_image = get_field('header_image', $product_id);
+                                                        $teaser_text = get_field('teaser_text', $product_id);
                                                         $product_properties = get_field('product_properties', $product_id);
                                                     ?>
                                                         <div class="col-lg-6">
@@ -164,7 +165,9 @@ if ($accordeon) :
                                                                     </div>
 
                                                                     <div class="product-content">
-
+                                                                        <?php if ($teaser_text) : ?>
+                                                                            <div class="product-text h6 m-0"><?php echo esc_html($teaser_text); ?></div>
+                                                                        <?php endif; ?>
                                                                     </div>
 
                                                                     <a href="<?php echo esc_url($permalink); ?>" class="btn btn-icon"><span class="icon icon-arrow-right"></span><span class="label"><?php _e('Full view', 'korsch'); ?></span></a>

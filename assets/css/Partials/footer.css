@@ -65,6 +65,13 @@ footer .menu {
 }
 
 /* Responsive */
+@media only screen and (max-width: 1440px) {
+  .backtotop {
+    bottom: 0.75rem;
+    right: 0.75rem;
+  }
+}
+
 @media only screen and (max-width: 991px) {
     footer {
         padding: 3rem 0 1.5rem;
@@ -83,5 +90,9 @@ footer .menu {
     }
     footer .menu {
         gap: 1rem;
+    }
+    .backtotop {
+        bottom: 1rem;
+        right: 1rem;
     }
 }

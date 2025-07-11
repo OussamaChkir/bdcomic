@@ -1,0 +1,27 @@
+.block-logo-wall {
+  padding: 8rem 0;
+}
+.block-logo-wall .logos-container > .row {
+    align-items: center;
+    justify-content: center;
+    --bs-gutter-y: 2rem;
+}
+.block-logo-wall .logos-container img {
+    height: 9.563rem;
+}
+.block-logo-wall .logos-container .hidden-logo {
+    display: none;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1440px) {
+  .block-logo-wall {
+    padding: 6rem 0;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .block-logo-wall {
+    padding: 4rem 0;
+  }
+}

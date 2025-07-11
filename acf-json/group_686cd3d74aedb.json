@@ -132,6 +132,11 @@
                 "param": "block",
                 "operator": "!=",
                 "value": "acf\/product-image"
+            },
+            {
+                "param": "block",
+                "operator": "!=",
+                "value": "acf\/visual-images"
             }
         ]
     ],
@@ -143,5 +148,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1751980927
+    "modified": 1752230394
 }

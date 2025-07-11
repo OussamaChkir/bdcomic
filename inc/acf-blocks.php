@@ -30,6 +30,7 @@ function gl_acf_init() {
             'teaser-list-slider' => 'Teaser List / Slider',
             'accordeon' => 'Accordeon',
             'plus-100-gradient-teaser' => 'Plus 100 Gradient Teaser',
+            'visual-images' => 'Visual Images',
             'product-image' => 'Product Image',
             'post-teaser-list' => 'Post Teaser List',
             'product-details-table' => 'Product Details Table',
@@ -78,6 +79,7 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/teaser-list-slider',
         'acf/accordeon',
         'acf/plus-100-gradient-teaser',
+        'acf/visual-images',
         'acf/product-image',
         'acf/post-teaser-list',
     );

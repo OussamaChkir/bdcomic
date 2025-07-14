@@ -38,8 +38,10 @@ if ($logo_wall) :
                     <div class="logos-container">
                         <div class="row">
                             <?php foreach ($logos as $index => $logo): ?>
-                                <div class="col-md-3 <?php echo $index >= 4 ? 'hidden-logo' : ''; ?>">
-                                    <?php echo wp_get_attachment_image($logo['ID'], 'logo-wall', false, array('loading' => 'lazy')); ?>
+                                <div class="col-lg-3 col-6 <?php echo $index >= 4 ? 'hidden-logo' : ''; ?>">
+                                    <div class="logo-image">
+                                        <?php echo wp_get_attachment_image($logo['ID'], 'logo-wall', false, array('loading' => 'lazy')); ?>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>

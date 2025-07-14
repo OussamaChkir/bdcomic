@@ -8,9 +8,13 @@
 }
 .block-logo-wall .logos-container img {
     height: 9.563rem;
+    object-fit: contain;
 }
 .block-logo-wall .logos-container .hidden-logo {
     display: none;
+}
+[data-theme="dark"] .block-logo-wall .logos-container .logo-image {
+    background: var(--color-white);
 }
 
 /* Responsive */
@@ -23,5 +27,17 @@
 @media only screen and (max-width: 991px) {
   .block-logo-wall {
     padding: 4rem 0;
+  }
+  .block-logo-wall .header-wrapper {
+      gap: 2rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .block-logo-wall {
+    padding: 3rem 0;
+  }
+  .block-logo-wall .logos-container img {
+      height: 7.875rem;
   }
 }

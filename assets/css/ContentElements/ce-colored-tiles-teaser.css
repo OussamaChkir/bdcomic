@@ -1,0 +1,55 @@
+.block-colored-tiles-teaser {
+  padding: 8rem 0;
+}
+.block-colored-tiles-teaser .tiles-container > .row {
+    --bs-gutter-y: 2rem;
+}
+.block-colored-tiles-teaser .tiles {
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 23.75rem;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+.block-colored-tiles-teaser .tiles .title {
+    width: 58%;
+}
+.block-colored-tiles-teaser .tiles .icon {
+    background-color: transparent;
+    border: none;
+    background-size: 4rem;
+    padding: 0;
+    outline: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-position: calc(100% - 2rem) calc(100% - 2rem);
+}
+
+/* Responsive */
+@media only screen and (max-width: 1440px) {
+  .block-colored-tiles-teaser {
+    padding: 6rem 0;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .block-colored-tiles-teaser {
+    padding: 4rem 0;
+  }
+  .block-colored-tiles-teaser .header-wrapper {
+      gap: 2rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .block-colored-tiles-teaser {
+    padding: 3rem 0;
+  }
+}

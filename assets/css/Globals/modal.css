@@ -1,0 +1,28 @@
+/* Modal */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+.modal.show .animate-slide-up .modal-content {
+    animation: slideUp 300ms ease-out;
+}
+.modal:not(.show) .animate-slide-up .modal-content {
+    animation: slideDown 300ms ease-out;
+}
+
+.modal-content {
+    border-radius: 0;
+    border: none;
+}

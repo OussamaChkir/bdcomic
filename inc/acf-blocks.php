@@ -36,6 +36,7 @@ function gl_acf_init() {
             'product-image' => 'Product Image',
             'post-teaser-list' => 'Post Teaser List',
             'product-details-table' => 'Product Details Table',
+            'blog-post' => 'Blog Post',
         );
 
         foreach ($blocks as $name => $title) {
@@ -86,6 +87,7 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/logo-wall',
         'acf/product-image',
         'acf/post-teaser-list',
+        'acf/blog-post',
     );
 
     if ($post->post_type === 'product') {

@@ -34,7 +34,7 @@
                     "wpml_cf_preferences": 3,
                     "message": "",
                     "default_value": 0,
-                    "ui": 0,
+                    "ui": 1,
                     "ui_on_text": "",
                     "ui_off_text": ""
                 },
@@ -100,5 +100,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1751638369
+    "modified": 1752571930
 }

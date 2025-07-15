@@ -4,6 +4,7 @@ if ( ! wp_style_is( 'modal', 'enqueued' ) ) {
 }
 
 wp_enqueue_style('block-colored-tiles-teaser', get_template_directory_uri() . '/assets/css/ContentElements/ce-colored-tiles-teaser.css', array(), '1.0', 'all');
+wp_enqueue_script('block-colored-tiles-teaser', get_template_directory_uri() . '/assets/js/ContentElements/ce-colored-tiles-teaser.js', array(), '1.0', true);
 
 $common_properties = get_field('common_properties');
     $background_color = $common_properties['background_color'] ?? ''; 

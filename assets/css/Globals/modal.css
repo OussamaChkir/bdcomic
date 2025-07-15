@@ -25,4 +25,35 @@
 .modal-content {
     border-radius: 0;
     border: none;
+    padding: 2rem;
+    min-height: 50.625rem;
+}
+.modal-header {
+    padding: 0;
+    border-bottom: none;
+}
+.modal-body {
+    padding: 0;
+    width: 75%;
+}
+
+.btn-close {
+    --bs-btn-close-bg: url('data:image/svg+xml;charset=utf-8,<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50.6411 10.6665L32.0025 30.5703L30.6569 32.0072L31.3297 32.7257L32.0025 33.4441L50.6272 53.3332H53.3188L33.3418 32.0072L53.3327 10.6665L50.6411 10.6665Z" fill="white"/><path d="M13.3576 10.6665L32.0025 30.5703L30.6569 32.0072L31.3297 32.7257L32.0025 33.4441L13.3715 53.3332H10.6799L30.6569 32.0072L10.666 10.6665L13.3576 10.6665Z" fill="white"/></svg>');
+    --bs-btn-close-opacity: 1;
+    width: 4rem;
+    height: 4rem;
+    background-size: 4rem;
+}
+.modal-header .btn-close {
+    padding: 0;
+}
+
+/* Responsive */
+@media only screen and (max-width: 767px) {
+    .modal-content {
+        padding: 1rem;
+    }
+    .modal-body {
+        width: 100%;
+    }
 }

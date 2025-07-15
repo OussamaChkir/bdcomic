@@ -52,4 +52,7 @@
   .block-colored-tiles-teaser {
     padding: 3rem 0;
   }
+  .block-colored-tiles-teaser .tiles {
+      min-height: 24.75rem;
+  }
 }

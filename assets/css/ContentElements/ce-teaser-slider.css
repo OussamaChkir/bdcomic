@@ -16,3 +16,28 @@
     flex-direction: column;
     gap: 1.5rem;
 }
+
+/* Responsive */
+@media only screen and (max-width: 1440px) {
+    .block-teaser-slider .block-container {
+        gap: 3rem;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .block-teaser-slider .block-container {
+        gap: 2rem;
+    }
+    .block-teaser-slider .teaser-slider-wrapper .teaser-list-slider img {
+        height: 25rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .block-teaser-slider .teaser-slider-wrapper .teaser-list-slider img {
+        height: 16.938rem;
+    }
+    .block-teaser-slider .teaser-item .teaser-content {
+        padding: 2rem;
+    }
+}

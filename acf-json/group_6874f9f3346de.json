@@ -161,7 +161,7 @@
                             "wpml_cf_preferences": 3,
                             "choices": {
                                 "blue": "Blue",
-                                "gray": "Gray",
+                                "gray2": "Gray",
                                 "orange": "Orange",
                                 "green": "Green"
                             },
@@ -215,5 +215,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1752497453
+    "modified": 1752668266
 }

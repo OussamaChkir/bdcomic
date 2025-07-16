@@ -70,7 +70,7 @@ if ($teaser_slider) :
                             ?>
                                 <div class="teaser-item">
                                     <?php if ($image) : ?>
-                                        <?php echo wp_get_attachment_image( $image['ID'], 'image-list', false, array('loading' => 'lazy') ); ?>
+                                        <?php echo wp_get_attachment_image( $image['ID'], 'product-image', false, array('loading' => 'lazy') ); ?>
                                     <?php endif; ?>
 
                                     <div class="teaser-content primary-bg">

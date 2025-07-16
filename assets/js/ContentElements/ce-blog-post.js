@@ -1,25 +1,79 @@
-jQuery(document).ready(function($) {
+document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const posts = document.querySelectorAll(".block-blog-post .blog-container .post-teaser");
+    const loadMoreBtn = document.querySelector(".load-more-btn");
+    let itemsToShow = 6;
+
     function updateFirstThreePosts() {
-        $('.post-teaser').removeClass('post-teaser-first');
-        $('.post-teaser:visible').slice(0, 3).addClass('post-teaser-first');
+        const visiblePosts = Array.from(posts).filter(post => post.style.display !== 'none');
+        posts.forEach(post => post.classList.remove('post-teaser-first'));
+        visiblePosts.slice(0, 3).forEach(post => {
+            post.classList.add('post-teaser-first');
+        });
     }
 
-    updateFirstThreePosts();
+    function updateVisiblePosts() {
+        let activeTag = document.querySelector(".filter-btn.active").getAttribute("data-tag");
+        
+        let filteredPosts = Array.from(posts).filter(post => 
+            activeTag === "all" || post.className.includes("tag-" + activeTag)
+        );
+    
+        let hiddenPosts = filteredPosts.filter(post => post.style.display === "none");
+    
+        loadMoreBtn.style.display = hiddenPosts.length > 0 ? "flex" : "none";
+    }
 
-    $('.filter-btn').on('click', function(e) {
+    // FILTER FUNCTIONALITY
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            let tag = this.getAttribute("data-tag");
+
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            let visibleCount = 0;
+
+            posts.forEach(post => {
+                let postTag = post.className;
+
+                if (tag === "all" || postTag.includes("tag-" + tag)) {
+                    if (visibleCount < itemsToShow) {
+                        post.style.display = "flex";
+                        visibleCount++;
+                    } else {
+                        post.style.display = "none";
+                    }
+                } else {
+                    post.style.display = "none";
+                }
+            });
+
+            updateVisiblePosts();
+            updateFirstThreePosts();
+        });
+    });
+
+    // LOAD MORE FUNCTIONALITY
+    loadMoreBtn.addEventListener("click", function (e) {
         e.preventDefault();
 
-        const selectedTag = $(this).data('tag');
+        let activeTag = document.querySelector(".filter-btn.active").getAttribute("data-tag");
 
-        $('.filter-btn').removeClass('active');
-        $(this).addClass('active');
+        let hiddenPosts = Array.from(posts).filter(post => {
+            let postTag = post.className;
+            return post.style.display === "none" && (activeTag === "all" || postTag.includes("tag-" + activeTag));
+        });
 
-        if (selectedTag === 'all') {
-            $('.post-teaser').show();
-        } else {
-            $('.post-teaser').hide().filter('.tag-' + selectedTag).show();
+        for (let i = 0; i < Math.min(5, hiddenPosts.length); i++) {
+            hiddenPosts[i].style.display = "flex";
         }
 
+        updateVisiblePosts();
         updateFirstThreePosts();
     });
+
+    // INITIAL CHECK
+    updateVisiblePosts();
+    updateFirstThreePosts();
 });

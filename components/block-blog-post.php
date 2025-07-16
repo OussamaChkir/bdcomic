@@ -68,7 +68,10 @@ if ($blog_post) :
 
                     <div class="blog-container">
                         <?php
+                        $post_count = 0; 
+
                         while( $query->have_posts() ): $query->the_post();
+                            $post_count++; 
 
                             $tag_class = '';
                             $tag_ids = wp_get_post_tags(get_the_ID(), array('fields' => 'ids'));
@@ -88,7 +91,7 @@ if ($blog_post) :
                             $is_featured = get_field('is_featured', get_the_ID());
                             $featured_class = $is_featured ? ' is-featured' : '';
                         ?>
-                            <div class="post-teaser <?php echo esc_attr($tag_class . $featured_class); ?>">
+                            <div class="post-teaser <?php echo esc_attr($tag_class . $featured_class); ?>" style="display: <?php echo ($post_count > 6) ? 'none' : 'flex'; ?>;">
                                 <?php if( has_post_thumbnail() ): ?>
                                     <?php echo get_the_post_thumbnail('', 'post-teaser'); ?>
                                 <?php endif; ?>
@@ -122,9 +125,9 @@ if ($blog_post) :
                     </div>
                     <?php wp_reset_postdata(); ?>
 
-                    <!-- <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center">
                         <a class="btn btn-icon load-more-btn" href="#"><span class="icon icon-arrow-right"></span><span class="label"><?php _e('Load more', 'korsch'); ?></span></a>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>

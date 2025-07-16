@@ -1,16 +1,27 @@
+const posts = document.querySelectorAll(".block-blog-post .blog-container .post-teaser");
+
+function updateFirstThreePosts() {
+    const visiblePosts = Array.from(posts).filter(post => post.style.display !== 'none');
+
+    posts.forEach(post => post.classList.remove('post-teaser-first'));
+
+    const screenWidth = window.innerWidth;
+    const count = (screenWidth >= 768 && screenWidth <= 1199) ? 2 : 3;
+
+    visiblePosts.slice(0, count).forEach(post => {
+        post.classList.add('post-teaser-first');
+    });
+}
+
+// ✅ Resize handler
+window.addEventListener('resize', function () {
+    updateFirstThreePosts();
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const filterButtons = document.querySelectorAll(".filter-btn");
-    const posts = document.querySelectorAll(".block-blog-post .blog-container .post-teaser");
     const loadMoreBtn = document.querySelector(".load-more-btn");
     let itemsToShow = 6;
-
-    function updateFirstThreePosts() {
-        const visiblePosts = Array.from(posts).filter(post => post.style.display !== 'none');
-        posts.forEach(post => post.classList.remove('post-teaser-first'));
-        visiblePosts.slice(0, 3).forEach(post => {
-            post.classList.add('post-teaser-first');
-        });
-    }
 
     function updateVisiblePosts() {
         let activeTag = document.querySelector(".filter-btn.active").getAttribute("data-tag");
@@ -21,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
         let hiddenPosts = filteredPosts.filter(post => post.style.display === "none");
     
-        loadMoreBtn.style.display = hiddenPosts.length > 0 ? "flex" : "none";
+        loadMoreBtn.style.display = hiddenPosts.length > 0 ? "block" : "none";
     }
 
     // FILTER FUNCTIONALITY

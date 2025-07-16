@@ -1,0 +1,18 @@
+.block-teaser-slider .block-container {
+    gap: 4rem;
+}
+.block-teaser-slider .teaser-list-slider {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.block-teaser-slider .teaser-slider-wrapper .teaser-list-slider img {
+    height: 27.5rem;
+    border-radius: 0;
+}
+.block-teaser-slider .teaser-item .teaser-content {
+    padding: 2rem 2rem calc(2rem + 6.563rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}

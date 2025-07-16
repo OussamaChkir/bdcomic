@@ -29,7 +29,7 @@ if ($teaser_list_v2) :
                         <?php endif; ?>
 
                         <?php if ($subheader): ?>
-                            <div class="subheader h3">
+                            <div class="subheader h3 m-0">
                                 <?php echo esc_html($subheader); ?>
                             </div>
                         <?php endif; ?>
@@ -65,11 +65,11 @@ if ($teaser_list_v2) :
                                             <?php endif; ?>
 
                                             <?php if ($headerItem): ?>
-                                                <div class="title h2"><?php echo esc_html($headerItem); ?></div>
+                                                <div class="title h2 m-0"><?php echo esc_html($headerItem); ?></div>
                                             <?php endif; ?>
 
                                             <?php if ($subheaderItem): ?>
-                                                <div class="subheader h4"><?php echo esc_html($subheaderItem); ?></div>
+                                                <div class="subheader h4 m-0"><?php echo esc_html($subheaderItem); ?></div>
                                             <?php endif; ?>
 
                                             <?php if ($buttonItem): ?>

@@ -28,7 +28,7 @@ if ($logo_wall) :
                     <?php endif; ?>
 
                     <?php if ($subheader): ?>
-                        <div class="subheader h3">
+                        <div class="subheader h3 m-0">
                             <?php echo esc_html($subheader); ?>
                         </div>
                     <?php endif; ?>

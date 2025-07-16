@@ -31,7 +31,7 @@ if ($gradient_teaser) :
                         <?php endif; ?>
 
                         <?php if ($subheader): ?>
-                            <div class="subheader h3 text-white">
+                            <div class="subheader h3 text-white m-0">
                                 <?php echo esc_html($subheader); ?>
                             </div>
                         <?php endif; ?>

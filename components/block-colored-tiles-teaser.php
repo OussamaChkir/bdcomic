@@ -24,7 +24,7 @@ if ($colored_tiles_teaser) :
     <div class="block-colored-tiles-teaser <?php echo $background_color; ?>">
         <div class="container">
             <div class="block-container">
-                <?php if ($header || $subheader || $text || $second_text): ?>
+                <?php if ($header || $subheader || $text): ?>
                     <div class="header-wrapper">
                         <?php if ($header): ?>
                             <div class="header">
@@ -33,7 +33,7 @@ if ($colored_tiles_teaser) :
                         <?php endif; ?>
 
                         <?php if ($subheader): ?>
-                            <div class="subheader h3">
+                            <div class="subheader h3 m-0">
                                 <?php echo esc_html($subheader); ?>
                             </div>
                         <?php endif; ?>

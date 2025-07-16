@@ -40,7 +40,7 @@ if ($teaser_list_slider) :
                         <?php endif; ?>
 
                         <?php if ($subheader): ?>
-                            <div class="subheader h3">
+                            <div class="subheader h3 m-0">
                                 <?php echo esc_html($subheader); ?>
                             </div>
                         <?php endif; ?>
@@ -79,7 +79,7 @@ if ($teaser_list_slider) :
                                     <div class="col-lg-6">
                                         <div class="teaser-content">
                                             <?php if ($headerItem): ?>
-                                                <div class="title h3"><b><?php echo esc_html($headerItem); ?></b></div>
+                                                <div class="title h3 m-0"><b><?php echo esc_html($headerItem); ?></b></div>
                                             <?php endif; ?>
 
                                             <?php if ($textItem): ?>

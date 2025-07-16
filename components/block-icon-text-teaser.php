@@ -26,13 +26,13 @@ if ($icon_text_teaser) : ?>
 
                             <div class="teaser-content">
                                 <?php if ($header): ?>
-                                    <div class="title h4">
+                                    <div class="title h4 m-0">
                                         <?php echo esc_html($header); ?>
                                     </div>
                                 <?php endif; ?>
 
                                 <?php if ($text): ?>
-                                    <div class="text h6">
+                                    <div class="text h6 m-0">
                                         <?php echo esc_html($text); ?>
                                     </div>
                                 <?php endif; ?>

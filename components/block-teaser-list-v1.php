@@ -29,7 +29,7 @@ if ($teaser_list_v1) :
                         <?php endif; ?>
 
                         <?php if ($subheader): ?>
-                            <div class="subheader h3">
+                            <div class="subheader h3 m-0">
                                 <?php echo esc_html($subheader); ?>
                             </div>
                         <?php endif; ?>
@@ -59,7 +59,7 @@ if ($teaser_list_v1) :
 
                                         <div class="teaser-content">
                                             <?php if ($headerItem): ?>
-                                                <div class="title h5">
+                                                <div class="title h5 m-0">
                                                     <?php echo esc_html($headerItem); ?>
                                                 </div>
                                             <?php endif; ?>

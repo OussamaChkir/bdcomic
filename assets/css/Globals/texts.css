@@ -49,9 +49,6 @@ body img.alignleft {
     flex-direction: column;
     gap: 2rem;
 }
-.header-wrapper * {
-    margin-bottom: 0;
-}
 
 .header > * {
     margin: 0;

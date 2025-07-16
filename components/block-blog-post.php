@@ -40,7 +40,7 @@ if ($blog_post) :
                             <?php if ($subheader): ?>
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <div class="subheader h3">
+                                        <div class="subheader h3 m-0">
                                             <?php echo esc_html($subheader); ?>
                                         </div>
                                     </div>

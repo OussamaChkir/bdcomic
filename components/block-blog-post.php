@@ -58,7 +58,7 @@ if ($blog_post) :
 
                                 <?php $tags = get_tags();
                                 foreach ($tags as $tag): ?>
-                                    <button class="btn filter-btn h6" data-tag="<?php echo esc_attr($tag->slug); ?>">
+                                    <button class="btn filter-btn h6 m-0" data-tag="<?php echo esc_attr($tag->slug); ?>">
                                         <?php echo esc_html($tag->name); ?>
                                     </button>
                                 <?php endforeach; ?>

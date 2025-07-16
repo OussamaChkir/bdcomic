@@ -31,7 +31,7 @@
                             <h1><?php the_title(); ?></h1>
                         </div>
 
-                        <div class="subheader h3"><?php the_excerpt(); ?></div>
+                        <div class="subheader h3 m-0"><?php the_excerpt(); ?></div>
 
                         <div class="entry-meta text-medium">
                             <?php if (!empty($author)) : ?>

@@ -79,7 +79,7 @@ if ($colored_tiles_teaser) :
                                         <div class="modal-content <?php echo $color; ?>-bg text-white">
                                             <div class="header-wrapper">
                                                 <div class="modal-header">
-                                                    <div class="modal-title h2" id="<?php echo $modal_id; ?>Label">
+                                                    <div class="modal-title h2 m-0" id="<?php echo $modal_id; ?>Label">
                                                         <b><?php echo esc_html($title); ?></b>
                                                     </div>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

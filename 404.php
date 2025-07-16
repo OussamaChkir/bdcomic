@@ -12,7 +12,7 @@
                     <h1><?php _e('Error 404', 'korsch'); ?></h1>
                 </div>
 
-                <div class="subheader h3">
+                <div class="subheader h3 m-0">
                     <?php _e('Unfortunately we could not find the page you requested.', 'korsch'); ?>
                 </div>
             </div>

@@ -16,7 +16,7 @@ if ($accordeon) :
     $accordeons = $accordeon['accordeons'];
 ?>
 
-    <div class="block-accordeon <?php echo $background_color; ?>">
+    <div class="block-accordeon <?php echo $background_color; ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
         <div class="container">
             <div class="block-container">
                 <div class="header-wrapper">
@@ -56,11 +56,19 @@ if ($accordeon) :
 
                             $select_product_list = $item['select_product_list'];
 
+                            $tab_show = $item['show_in_anchor_navi'] ?? false;
+                            $tab_label = $item['anchor_navi_label'] ?? '';
+                            $tab_anchor_id = ($tab_show && $tab_label) ? sanitize_title($tab_label) : '';
+
                             $collapse_id = $accordion_id . "_collapse_" . $index;
                             $heading_id = $accordion_id . "_heading_" . $index;
                         ?>
                             <div class="accordion-item">
                                 <div class="accordion-header" id="<?php echo esc_attr($heading_id); ?>">
+                                    <?php if ($tab_anchor_id): ?>
+                                        <div id="<?php echo esc_attr($tab_anchor_id); ?>"></div>
+                                    <?php endif; ?>
+
                                     <button class="accordion-button h3 <?php echo $index > 0 ? 'collapsed' : ''; ?>" 
                                             type="button" 
                                             data-bs-toggle="collapse" 

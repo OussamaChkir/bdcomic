@@ -17,7 +17,7 @@ if ($teaser_list_v2) :
     $button = $teaser_list_v2['button'];
 ?>
 
-    <div class="block-teaser-list-v2 <?php echo $background_color; ?>">
+    <div class="block-teaser-list-v2 <?php echo $background_color; ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
         <div class="container">
             <div class="block-container">
                 <?php if ($header || $subheader || $text): ?>

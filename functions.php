@@ -4,6 +4,7 @@ require_once('inc/acf-blocks.php');
 require_once('inc/tinymce-setup.php');
 require_once('inc/functions.php');
 require_once('inc/custom-post-types.php');
+require_once('inc/anchor-links.php');
 
 class wbg_theme {
     // set the option name you use in your settings page

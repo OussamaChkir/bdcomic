@@ -26,7 +26,7 @@ if ($blog_post) :
     $query = new WP_Query($args);
 
     if( $query->have_posts() ): ?>
-        <div class="block-blog-post <?php echo $background_color; ?>">
+        <div class="block-blog-post <?php echo $background_color; ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
             <div class="container">
                 <div class="block-container">
                     <?php if ($header || $subheader || $text): ?>
@@ -54,7 +54,7 @@ if ($blog_post) :
                             <?php endif; ?>
 
                             <div class="blog-container-filter">
-                                <button class="btn filter-btn h6 active" data-tag="all"><?php _e('All', 'korsch'); ?></button>
+                                <button class="btn filter-btn h6 active m-0" data-tag="all"><?php _e('All', 'korsch'); ?></button>
 
                                 <?php $tags = get_tags();
                                 foreach ($tags as $tag): ?>

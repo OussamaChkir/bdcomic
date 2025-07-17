@@ -1,5 +1,7 @@
 <?php 
     $prefooter = get_field('prefooter');
+    $show_in_anchor_navi = $prefooter['show_in_anchor_navi'] ?? false;
+    $anchor_navi_label = $prefooter['anchor_navi_label'] ?? '';
 
     if ($prefooter) :
         $hide_prefooter = $prefooter['hide_prefooter'];
@@ -18,7 +20,7 @@
             $page_prefooter_image = $prefooter['prefooter_image'];
         ?>
 
-            <div class="prefooter">
+            <div class="prefooter"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
                 <div class="container">
                     <?php if ($header || $subheader || $text): ?>
                         <div class="row">

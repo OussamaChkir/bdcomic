@@ -17,7 +17,7 @@ if ($logo_wall) :
     $logos = $logo_wall['logos'];
 ?>
 
-    <div class="block-logo-wall <?php echo $background_color; ?>">
+    <div class="block-logo-wall <?php echo $background_color; ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
         <div class="container">
             <div class="block-container">
                 <div class="header-wrapper">

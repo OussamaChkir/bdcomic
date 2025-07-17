@@ -23,7 +23,7 @@ if ($post_teaser_list) :
     $query = new WP_Query($args);
 
     if( $query->have_posts() ): ?>
-        <div class="block-post-teaser-list <?php echo $background_color; ?>">
+        <div class="block-post-teaser-list <?php echo $background_color; ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
             <div class="container">
                 <div class="block-container">
                     <?php if ($header || $subheader || $text): ?>

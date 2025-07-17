@@ -17,7 +17,7 @@ if ($text_image) :
     $image_position = $text_image['image_position'];
 ?>
 
-    <div class="block-text-image <?php echo $background_color; ?> <?php if ($image_position) {echo $image_position;} ?>">
+    <div class="block-text-image <?php echo $background_color; ?> <?php if ($image_position) {echo $image_position;} ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
         <div class="text-image-row">
             <div class="header-wrapper">
                 <?php if ($header): ?>

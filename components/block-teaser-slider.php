@@ -25,7 +25,7 @@ if ($teaser_slider) :
     $text_bottom = $teaser_slider['text_bottom'];
 ?>
 
-    <div class="block-teaser-slider block-teaser-list-slider <?php echo $background_color; ?>">
+    <div class="block-teaser-slider block-teaser-list-slider <?php echo $background_color; ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
         <div class="container">
             <div class="block-container">
                 <?php if ($header): ?>

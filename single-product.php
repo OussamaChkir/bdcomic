@@ -45,7 +45,8 @@
             <?php if ($header_image): ?></div><?php endif; ?>
         </div>
 
-        <div class="product-content">
+        <div class="product-content content-page">
+            <?php anchor_links(); ?>
             <?php the_content(); ?>
         </div>
     </div>

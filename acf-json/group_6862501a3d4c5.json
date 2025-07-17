@@ -343,6 +343,54 @@
                             "multiple": 1,
                             "return_format": "object",
                             "ui": 1
+                        },
+                        {
+                            "key": "field_6878d079b912d",
+                            "label": "Show in anchor navi",
+                            "name": "show_in_anchor_navi",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "wpml_cf_preferences": 3,
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_6878d08bb912e",
+                            "label": "Anchor navi label",
+                            "name": "anchor_navi_label",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6878d079b912d",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "wpml_cf_preferences": 2,
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         }
                     ]
                 }
@@ -366,5 +414,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1751294896
+    "modified": 1752748209
 }

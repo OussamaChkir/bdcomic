@@ -50,7 +50,7 @@
                     "label": "Show in anchor navi",
                     "name": "show_in_anchor_navi",
                     "type": "true_false",
-                    "instructions": "This anchor navi is not functional on the homepage.",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -148,5 +148,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1752572106
+    "modified": 1752744761
 }

@@ -23,7 +23,9 @@
             </div>
         <?php endif; ?>
 
-        <div class="post-content">
+        <div class="post-content content-page">
+            <?php anchor_links(); ?>
+            
             <div class="block-text">
                 <div class="container">
                     <div class="header-wrapper">

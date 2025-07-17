@@ -1,7 +1,7 @@
 .content-page {
     position: relative;
 }
-.product-content .anchor-links {
+.content-page .anchor-links {
     position: absolute;
     top: 0;
     background: var(--bg-color);

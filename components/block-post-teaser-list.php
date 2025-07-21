@@ -58,7 +58,7 @@ if ($post_teaser_list) :
                                         <?php endif; ?>
 
                                         <div class="post-teaser-content primary-bg">
-                                            <div class="post-meta h6 m-0">
+                                            <div class="post-meta h6">
                                                 <?php $tags = get_the_tags();
 
                                                 if ( ! empty( $tags ) ) :
@@ -69,7 +69,7 @@ if ($post_teaser_list) :
                                                 <span class="date"><?php echo get_the_date('d.m.Y'); ?></span>
                                             </div>
 
-                                            <div class="title h4 m-0"><?php the_title(); ?></div>
+                                            <div class="title h4"><?php the_title(); ?></div>
 
                                             <div class="icon icon-arrow-right-white"></div>
                                         </div>

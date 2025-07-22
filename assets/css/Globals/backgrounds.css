@@ -30,3 +30,7 @@
 .green-bg {
     background: #9DC121;
 }
+
+.gradient-bg {
+    background: linear-gradient(180deg, var(--bg-gradient) 0%, var(--text-color) 100%);
+}

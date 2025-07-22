@@ -32,6 +32,8 @@
     --bg-box: #EEEEEE;
     --text-box: #fff;
 
+    --bg-gradient: #314890;
+
 
     /* Font sizes */
     --base-font-size: 16px; /* Set the base Desktop font size in PX */
@@ -104,6 +106,8 @@
 
     --bg-box: #2C3A5C;
     --text-box: #182748;
+
+    --bg-gradient: #EEEEEE;
 }
 
 .row {

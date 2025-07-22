@@ -1,23 +1,5 @@
 const posts = document.querySelectorAll(".block-blog-post .blog-container .post-teaser");
 
-function updateFirstThreePosts() {
-    const visiblePosts = Array.from(posts).filter(post => post.style.display !== 'none');
-
-    posts.forEach(post => post.classList.remove('post-teaser-first'));
-
-    const screenWidth = window.innerWidth;
-    const count = (screenWidth >= 768 && screenWidth <= 1199) ? 2 : 3;
-
-    visiblePosts.slice(0, count).forEach(post => {
-        post.classList.add('post-teaser-first');
-    });
-}
-
-// ✅ Resize handler
-window.addEventListener('resize', function () {
-    updateFirstThreePosts();
-});
-
 document.addEventListener("DOMContentLoaded", function () {
     const filterButtons = document.querySelectorAll(".filter-btn");
     const loadMoreBtn = document.querySelector(".load-more-btn");
@@ -61,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             updateVisiblePosts();
-            updateFirstThreePosts();
         });
     });
 
@@ -81,10 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         updateVisiblePosts();
-        updateFirstThreePosts();
     });
 
     // INITIAL CHECK
     updateVisiblePosts();
-    updateFirstThreePosts();
 });

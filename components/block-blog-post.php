@@ -19,6 +19,10 @@ if ($blog_post) :
         'post_type'      => 'post',
         'posts_per_page' => -1,
         'meta_key'       => 'is_featured',
+        'orderby'        => array(
+            'meta_value_num' => 'DESC',  // is_featured = true first
+            'date'            => 'DESC'  // then newest to oldest
+        )
     );
 
     $query = new WP_Query($args);

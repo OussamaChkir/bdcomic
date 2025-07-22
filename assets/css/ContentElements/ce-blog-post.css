@@ -53,7 +53,7 @@
 .block-blog-post .blog-container .post-teaser .post-teaser-content.noImg {
     width: 100%;
 }
-.block-blog-post .blog-container .post-teaser:not(.post-teaser-first) .post-teaser-content {
+.block-blog-post .blog-container .post-teaser:not(.is-featured) .post-teaser-content {
     height: 17.438rem;
 }
 .block-blog-post .blog-container .post-teaser .post-teaser-content .post-meta {
@@ -98,17 +98,17 @@
     margin-right: -0.5rem;
 }
 /* Two first items */
-.block-blog-post .blog-container .post-teaser.post-teaser-first {
+.block-blog-post .blog-container .post-teaser.is-featured {
     width: calc((100% / 3) - (2rem * 2 / 3));
     flex-direction: column;
 }
-.block-blog-post .blog-container .post-teaser.post-teaser-first > * {
+.block-blog-post .blog-container .post-teaser.is-featured > * {
     width: 100%;
 }
-.block-blog-post .blog-container .post-teaser.post-teaser-first img {
+.block-blog-post .blog-container .post-teaser.is-featured img {
     height: 23.625rem;
 }
-.block-blog-post .blog-container .post-teaser.post-teaser-first .post-teaser-content .title {
+.block-blog-post .blog-container .post-teaser.is-featured .post-teaser-content .title {
     -webkit-line-clamp: 2;
     height: 4.375rem;
 }
@@ -124,7 +124,7 @@
 }
 
 @media only screen and (max-width: 1199px) {
-    .block-blog-post .blog-container .post-teaser.post-teaser-first {
+    .block-blog-post .blog-container .post-teaser.is-featured {
         width: calc((100% / 2) - (2rem / 2));
     }
 }
@@ -152,7 +152,7 @@
     .blog-container-filter .filter-btn {
         padding: 0.563rem 1.5rem;
     }
-    .block-blog-post .blog-container .post-teaser.post-teaser-first {
+    .block-blog-post .blog-container .post-teaser.is-featured {
         width: 100%;
     }
     .block-blog-post .blog-container .post-teaser {
@@ -165,7 +165,7 @@
     .block-blog-post .blog-container .post-teaser .post-teaser-content {
         padding: 2rem;
     }
-    .block-blog-post .blog-container .post-teaser:not(.post-teaser-first) .post-teaser-content {
+    .block-blog-post .blog-container .post-teaser:not(.is-featured) .post-teaser-content {
         height: auto;
         width: 100%;
     }

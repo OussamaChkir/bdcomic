@@ -40,7 +40,18 @@
                                 <span class="author"><?php _e('from', 'korsch'); ?> <?php echo esc_html($author); ?>, </span>
                             <?php endif; ?>
                             <span class="posted-on"><?php echo get_the_date('d.m.Y'); ?>, </span>
-                            <span class="time-ago"><?php _e('Reading Time', 'korsch'); ?>: <?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ); ?></span>
+
+                            <?php
+                                $content = apply_filters('the_content', get_post_field('post_content', get_the_ID()));
+                                $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content);
+                                $content = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', $content);
+                                $word_count = str_word_count(strip_tags($content));
+                                $reading_time = ceil($word_count / 200);
+                            ?>
+                            <span class="time-ago">
+                                <?php _e('Reading Time', 'korsch'); ?>: 
+                                <?php echo sprintf(_n('%d Minute', '%d Minutes', $reading_time, 'korsch'), $reading_time); ?>
+                            </span>
                         </div>
 
                         <?php if (!empty($description)) : ?>

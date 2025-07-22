@@ -52,7 +52,7 @@ if ($post_teaser_list) :
                         <div class="row">
                             <?php while( $query->have_posts() ): $query->the_post(); ?>
                                 <div class="col-xl-4 col-md-6">
-                                    <div class="post-teaser">
+                                    <a class="post-teaser" href="<?php the_permalink(); ?>">
                                         <?php if( has_post_thumbnail() ): ?>
                                             <?php echo get_the_post_thumbnail('', 'post-teaser'); ?>
                                         <?php endif; ?>
@@ -73,9 +73,7 @@ if ($post_teaser_list) :
 
                                             <div class="icon icon-arrow-right-white"></div>
                                         </div>
-
-                                        <a class="post-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    </div>
+                                    </a>
                                 </div>
                             <?php endwhile; ?>
                         </div>

@@ -1,10 +1,5 @@
 html {
-    font-size: var(--base-font-size);
-}
-@media only screen and (max-width: 992px) {
-    html {
-        font-size: var(--base-font-size-mobile);
-   }
+    font-size: 100%;
 }
 
 html:not([data-theme]) {
@@ -14,6 +9,13 @@ html:not([data-theme]) {
 body {
     position: relative;
     overflow-x: hidden;
+    
+    font-size: var(--base-font-size);
+}
+@media only screen and (max-width: 992px) {
+    body {
+        font-size: var(--base-font-size-mobile);
+    }
 }
 
 

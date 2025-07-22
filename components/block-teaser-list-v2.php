@@ -50,11 +50,16 @@ if ($teaser_list_v2) :
                                 $icon = $item['icon'];
                                 $headerItem = $item['header'];
                                 $subheaderItem = $item['subheader'];
-                                $buttonItem = $item['button'];
+                                $buttonItem = $item['button'] ?? '';
                             ?>
 
                                 <div class="col-lg-6">
-                                    <div class="teaser">
+                                    <?php if ($buttonItem): ?>
+                                        <a class="teaser" href="<?php echo $buttonItem["url"]; ?>" target="<?php echo $buttonItem["target"]; ?>">
+                                    <?php else: ?>    
+                                        <div class="teaser">
+                                    <?php endif; ?>    
+
                                         <?php if ($image) : ?>
                                             <?php echo wp_get_attachment_image( $image['ID'], 'image-list', false, array('loading' => 'lazy') ); ?>
                                         <?php endif; ?>
@@ -76,11 +81,11 @@ if ($teaser_list_v2) :
                                                 <div class="icon icon-arrow-right-white"></div>
                                             <?php endif; ?>
                                         </div>
-
-                                        <?php if ($buttonItem): ?>
-                                            <a class="teaser-link" href="<?php echo $buttonItem["url"]; ?>" target="<?php echo $buttonItem["target"]; ?>"><?php echo $buttonItem["title"]; ?></a>
-                                        <?php endif; ?>
-                                    </div>
+                                    <?php if ($buttonItem): ?>
+                                        </a>
+                                    <?php else: ?>    
+                                        </div>
+                                    <?php endif; ?> 
                                 </div>
                             <?php endforeach; ?>
                         </div>

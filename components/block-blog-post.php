@@ -91,12 +91,12 @@ if ($blog_post) :
                             $is_featured = get_field('is_featured', get_the_ID());
                             $featured_class = $is_featured ? ' is-featured' : '';
                         ?>
-                            <div class="post-teaser <?php echo esc_attr($tag_class . $featured_class); ?>" style="display: <?php echo ($post_count > 6) ? 'none' : 'flex'; ?>;">
+                            <a class="post-teaser <?php echo esc_attr($tag_class . $featured_class); ?>" style="display: <?php echo ($post_count > 6) ? 'none' : 'flex'; ?>;" href="<?php the_permalink(); ?>">
                                 <?php if( has_post_thumbnail() ): ?>
                                     <?php echo get_the_post_thumbnail('', 'post-teaser'); ?>
                                 <?php endif; ?>
 
-                                <div class="post-teaser-content primary-bg">
+                                <div class="post-teaser-content primary-bg<?php if ( ! has_post_thumbnail() ): ?> noImg<?php endif; ?>">
                                     <div class="post-meta h6 m-0">
                                         <?php 
                                         if ( ! empty( $tags ) ) : ?>
@@ -118,9 +118,7 @@ if ($blog_post) :
 
                                     <div class="icon icon-arrow-right-white"></div>
                                 </div>
-
-                                <a class="post-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </div>
+                            </a>
                         <?php endwhile; ?>
                     </div>
                     <?php wp_reset_postdata(); ?>

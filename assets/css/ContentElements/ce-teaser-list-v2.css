@@ -40,14 +40,6 @@
 .teasers-list-container .teaser:hover .icon {
   margin-right: -0.5rem;
 }
-.teasers-list-container .teaser .teaser-link {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  font-size: 0;
-}
 
 /* Responsive */
 @media only screen and (max-width: 1440px) {

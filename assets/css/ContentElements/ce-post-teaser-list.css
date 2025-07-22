@@ -39,14 +39,6 @@
 .post-teaser-container .post-teaser:hover .icon {
     margin-right: -0.5rem;
 }
-.post-teaser-container .post-teaser .post-link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    font-size: 0;
-}
 
 /* Responsive */
 @media only screen and (max-width: 1440px) {

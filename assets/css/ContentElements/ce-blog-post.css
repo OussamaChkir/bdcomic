@@ -50,6 +50,9 @@
     flex-direction: column;
     gap: 1.5rem;
 }
+.block-blog-post .blog-container .post-teaser .post-teaser-content.noImg {
+    width: 100%;
+}
 .block-blog-post .blog-container .post-teaser:not(.post-teaser-first) .post-teaser-content {
     height: 17.438rem;
 }
@@ -93,14 +96,6 @@
 }
 .block-blog-post .blog-container .post-teaser:hover .icon {
     margin-right: -0.5rem;
-}
-.block-blog-post .blog-container .post-teaser .post-link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    font-size: 0;
 }
 /* Two first items */
 .block-blog-post .blog-container .post-teaser.post-teaser-first {

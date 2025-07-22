@@ -171,11 +171,19 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
         $atts = array();
         $atts['class'] = 'nav-link'; // Add class to a element
+
         if (in_array('dropdown', $classes)) {
             $atts['class'] .= ' dropdown-toggle';
             $atts['data-bs-toggle'] = 'collapse';
             $atts['aria-expanded'] = 'false';
         }
+
+        // Add active class and aria-current if this is the current item
+        if (in_array('current-menu-item', $classes) || in_array('current_page_item', $classes)) {
+            $atts['class'] .= ' active';
+            $atts['aria-current'] = 'page';
+        }
+
         $atts['href']  = !empty($item->url) ? $item->url : '';
         if (!empty($item->target)) {
             $atts['target'] = $item->target;

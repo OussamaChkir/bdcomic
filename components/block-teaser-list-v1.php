@@ -18,9 +18,9 @@ if ($teaser_list_v1) :
 ?>
 
     <div class="block-teaser-list-v1 <?php echo $background_color; ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>
-        <div class="container">
-            <div class="block-container">
-                <?php if ($header || $subheader || $text): ?>
+        <div class="block-container">
+            <?php if ($header || $subheader || $text): ?>
+                <div class="container">
                     <div class="header-wrapper">
                         <?php if ($header): ?>
                             <div class="header">
@@ -40,9 +40,11 @@ if ($teaser_list_v1) :
                             </div>
                         <?php endif; ?>
                     </div>
-                <?php endif; ?>
+                </div>
+            <?php endif; ?>
 
-                <?php if ($teasers) : ?>
+            <?php if ($teasers) : ?>
+                <div class="container-xxl teasers-wrapper">
                     <div class="teasers-container">
                         <div class="row">
                             <?php foreach ($teasers as $item):
@@ -73,14 +75,16 @@ if ($teaser_list_v1) :
                             <?php endforeach; ?>
                         </div>
                     </div>
-                <?php endif; ?>
+                </div>
+            <?php endif; ?>
 
-                <?php if ($button) : ?>
+            <?php if ($button) : ?>
+                <div class="container">
                     <div class="d-flex justify-content-center">
                         <a class="btn btn-icon" href="<?php echo $button["url"]; ?>" target="<?php echo $button["target"]; ?>"><span class="icon icon-arrow-right"></span><span class="label"><?php echo $button["title"]; ?></span></a>
                     </div>
-                <?php endif; ?>
-            </div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 <?php endif; ?>

@@ -8,17 +8,21 @@ function getCookie(name) {
   return match ? match[2] : null;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+// Immediately apply theme to prevent flash of unstyled content
+(function() {
   const savedTheme = getCookie('theme');
 
   if (savedTheme === 'dark' || savedTheme === 'light') {
-    setTheme(savedTheme); // User preference saved in cookie
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
   } else {
-    // Browser/system preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', 'light');
   }
+})();
 
+// Wait for DOM ready to setup toggle button event
+document.addEventListener('DOMContentLoaded', function () {
   const toggle = document.getElementById('theme-toggle');
   if (toggle) {
     toggle.addEventListener('click', function () {

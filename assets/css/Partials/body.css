@@ -7,6 +7,10 @@ html {
    }
 }
 
+html:not([data-theme]) {
+  visibility: hidden;
+}
+
 body {
     position: relative;
     overflow-x: hidden;

@@ -19,8 +19,6 @@ if ($blog_post) :
         'post_type'      => 'post',
         'posts_per_page' => -1,
         'meta_key'       => 'is_featured',
-        'orderby'        => 'meta_value_num',
-        'order'          => 'DESC',
     );
 
     $query = new WP_Query($args);

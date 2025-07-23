@@ -89,7 +89,7 @@
     text-overflow: ellipsis;
     height: 2.188rem;
 }
-.block-blog-post .blog-container .post-teaser .post-teaser-content .excerpt {
+.block-blog-post .blog-container .post-teaser .post-teaser-content .author {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;

@@ -92,9 +92,10 @@ if ($blog_post) :
 
                             $is_featured = get_field('is_featured', get_the_ID());
                             $featured_class = $is_featured ? ' is-featured' : '';
+                            $author = get_field('author', get_the_ID());
                         ?>
-                            <a class="post-teaser <?php echo esc_attr($tag_class . $featured_class); ?><?php if ( ! has_post_thumbnail() ): ?> noImg<?php endif; ?>" style="display: <?php echo ($post_count > 6) ? 'none' : 'flex'; ?>;" href="<?php the_permalink(); ?>">
-                                <div class="image gradient-bg">
+                            <a class="post-teaser<?php if ( ! has_post_thumbnail() ): ?> noImg<?php endif; ?> <?php echo esc_attr($tag_class . $featured_class); ?>" style="display: <?php echo ($post_count > 6) ? 'none' : 'flex'; ?>;" href="<?php the_permalink(); ?>">
+                                <div class="image<?php if ( ! has_post_thumbnail() ): ?> gradient-bg<?php endif; ?>">
                                     <?php if( has_post_thumbnail() ): ?>
                                         <?php echo get_the_post_thumbnail('', 'post-teaser'); ?>
                                     <?php endif; ?>
@@ -118,7 +119,7 @@ if ($blog_post) :
 
                                     <div class="title h4 m-0"><?php the_title(); ?></div>
 
-                                    <div class="excerpt h6 m-0"><?php the_excerpt(); ?></div>
+                                    <?php if (!empty($author)) : ?><div class="author h6 m-0"><?php echo esc_html($author); ?></div><?php endif; ?>
 
                                     <div class="icon icon-arrow-right-white"></div>
                                 </div>

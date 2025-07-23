@@ -6,6 +6,8 @@
   border-radius: 5px;
   overflow: hidden;
   height: 100%;
+  display: block;
+  text-decoration: none;
 }
 .teasers-list-container .teaser img {
   height: 23.5rem;

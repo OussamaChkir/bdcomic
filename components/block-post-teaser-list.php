@@ -53,9 +53,11 @@ if ($post_teaser_list) :
                             <?php while( $query->have_posts() ): $query->the_post(); ?>
                                 <div class="col-xl-4 col-md-6">
                                     <a class="post-teaser" href="<?php the_permalink(); ?>">
-                                        <?php if( has_post_thumbnail() ): ?>
-                                            <?php echo get_the_post_thumbnail('', 'post-teaser'); ?>
-                                        <?php endif; ?>
+                                        <div class="image<?php if ( ! has_post_thumbnail() ): ?> gradient-bg<?php endif; ?>">
+                                            <?php if( has_post_thumbnail() ): ?>
+                                                <?php echo get_the_post_thumbnail('', 'post-teaser'); ?>
+                                            <?php endif; ?>
+                                        </div>
 
                                         <div class="post-teaser-content primary-bg">
                                             <div class="post-meta h6">

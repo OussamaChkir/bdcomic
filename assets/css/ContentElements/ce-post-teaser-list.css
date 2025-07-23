@@ -6,9 +6,14 @@
     border-radius: 5px;
     overflow: hidden;
     height: 100%;
+    display: block;
+    text-decoration: none;
+}
+.post-teaser-container .post-teaser .image {
+  height: 23.667rem;
 }
 .post-teaser-container .post-teaser img {
-  height: 23.667rem;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 }
@@ -57,7 +62,7 @@
     .block-post-teaser-list {
         padding: 4rem 0;
     }
-    .post-teaser-container .post-teaser img {
+    .post-teaser-container .post-teaser .image {
         height: 24.75rem;
     }
     .post-teaser-container .post-teaser .post-teaser-content .title {

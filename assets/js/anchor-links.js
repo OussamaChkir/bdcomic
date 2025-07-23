@@ -45,10 +45,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (accordionItem) {
                     const button = accordionItem.querySelector(".accordion-button");
                     if (button && button.classList.contains("collapsed")) {
-                        button.click();
+                        const collapse = accordionItem.querySelector(".accordion-collapse");
+
+                        // Scroll after the collapse is fully shown
+                        collapse.addEventListener("shown.bs.collapse", function onShown() {
+                            const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                            window.scrollTo({ top: y, behavior: "smooth" });
+                            collapse.removeEventListener("shown.bs.collapse", onShown);
+                        });
+
+                        button.click(); // triggers accordion opening
+                    } else {
+                        const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top: y, behavior: "smooth" });
                     }
-                    const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top: y, behavior: "smooth" });
                 } else {
                     const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({ top: y, behavior: "smooth" });

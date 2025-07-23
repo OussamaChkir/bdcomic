@@ -184,13 +184,18 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
             $classes[] = 'dropdown';
         }
 
+        // Add active class to <li> instead of <a>
+        if (in_array('current-menu-item', $classes) || in_array('current_page_item', $classes)) {
+            $classes[] = 'active';
+        }
+
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
-        $output .= $indent . '<li' . $class_names .'>';
+        $output .= $indent . '<li' . $class_names .'>'; // <li class="nav-item active">
 
         $atts = array();
-        $atts['class'] = 'nav-link'; // Add class to a element
+        $atts['class'] = 'nav-link'; // Only nav-link on <a>
 
         if (in_array('dropdown', $classes)) {
             $atts['class'] .= ' dropdown-toggle';
@@ -198,9 +203,8 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
             $atts['aria-expanded'] = 'false';
         }
 
-        // Add active class and aria-current if this is the current item
+        // Add aria-current only to <a>, not class active
         if (in_array('current-menu-item', $classes) || in_array('current_page_item', $classes)) {
-            $atts['class'] .= ' active';
             $atts['aria-current'] = 'page';
         }
 

@@ -18,7 +18,8 @@ class wbg_theme {
         add_action('wp_enqueue_scripts', array($this, 'theme_styles_scripts'));
 
         // include favicons in header
-        add_action('wp_head', array($this, 'include_favicons'), 5);
+        add_action('wp_head', array($this, 'output_favicon_light'), 5);
+        add_action('wp_head', array($this, 'output_favicon_dark'), 5);
 
         // add admin ajax url into head
         add_action('wp_head', array($this, 'my_ajaxurl'));
@@ -81,22 +82,41 @@ class wbg_theme {
         }
     }
 
-    public function include_favicons() {
-        $path = get_template_directory_uri() . '/assets/img/favicons/';
+    public function output_favicon_light() {
+        $path = get_template_directory_uri() . '/assets/img/favicons/light/';
         ?>
-            <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $path . 'apple-touch-icon.png'; ?>">
-            <link rel="icon" type="image/png" sizes="192x192" href="<?php echo $path . 'web-app-manifest-192x192.png'; ?>">
-            <link rel="icon" type="image/png" sizes="512x512" href="<?php echo $path . 'web-app-manifest-512x512.png'; ?>">
-            <link rel="shortcut icon" href="<?php echo $path . 'favicon.ico'; ?>">
-            <link rel="icon" sizes="16x16 32x32 64x64" href="<?php echo $path . 'favicon.ico'; ?>">
-            <link rel="icon" type="image/png" sizes="96x96" href="<?php echo $path . 'favicon-96x96.png'; ?>">
-            <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $path . 'favicon-32x32.png'; ?>">
-            <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $path . 'favicon-16x16.png'; ?>">
-            <link rel="manifest" href="<?php echo $path . 'site.webmanifest'; ?>" crossorigin="use-credentials">
-            <link rel="mask-icon" href="<?php echo $path . 'favicon.svg'; ?>" color="#5bbad5">
-            <meta name="msapplication-TileColor" content="#f7f7f7">
-            <meta name="theme-color" content="#f7f7f7">
-            <meta name="msapplication-config" content="<?php echo $path . 'browserconfig.xml'; ?>" />
+            <link data-theme="light" rel="apple-touch-icon" sizes="180x180" href="<?php echo $path . 'apple-touch-icon.png'; ?>">
+            <link data-theme="light" rel="icon" type="image/png" sizes="192x192" href="<?php echo $path . 'web-app-manifest-192x192.png'; ?>">
+            <link data-theme="light" rel="icon" type="image/png" sizes="512x512" href="<?php echo $path . 'web-app-manifest-512x512.png'; ?>">
+            <link data-theme="light" rel="shortcut icon" href="<?php echo $path . 'favicon.ico'; ?>">
+            <link data-theme="light" rel="icon" sizes="16x16 32x32 64x64" href="<?php echo $path . 'favicon.ico'; ?>">
+            <link data-theme="light" rel="icon" type="image/png" sizes="96x96" href="<?php echo $path . 'favicon-96x96.png'; ?>">
+            <link data-theme="light" rel="icon" type="image/png" sizes="32x32" href="<?php echo $path . 'favicon-32x32.png'; ?>">
+            <link data-theme="light" rel="icon" type="image/png" sizes="16x16" href="<?php echo $path . 'favicon-16x16.png'; ?>">
+            <link data-theme="light" rel="manifest" href="<?php echo $path . 'site.webmanifest'; ?>" crossorigin="use-credentials">
+            <link data-theme="light" rel="mask-icon" href="<?php echo $path . 'favicon.svg'; ?>" color="#5bbad5">
+            <meta data-theme="light" name="msapplication-TileColor" content="#f7f7f7">
+            <meta data-theme="light" name="theme-color" content="#f7f7f7">
+            <meta data-theme="light" name="msapplication-config" content="<?php echo $path . 'browserconfig.xml'; ?>" />
+        <?php
+    }
+
+    public function output_favicon_dark() {
+        $path = get_template_directory_uri() . '/assets/img/favicons/dark/';
+        ?>
+            <link data-theme="dark" rel="apple-touch-icon" sizes="180x180" href="<?php echo $path . 'apple-touch-icon.png'; ?>">
+            <link data-theme="dark" rel="icon" type="image/png" sizes="192x192" href="<?php echo $path . 'web-app-manifest-192x192.png'; ?>">
+            <link data-theme="dark" rel="icon" type="image/png" sizes="512x512" href="<?php echo $path . 'web-app-manifest-512x512.png'; ?>">
+            <link data-theme="dark" rel="shortcut icon" href="<?php echo $path . 'favicon.ico'; ?>">
+            <link data-theme="dark" rel="icon" sizes="16x16 32x32 64x64" href="<?php echo $path . 'favicon.ico'; ?>">
+            <link data-theme="dark" rel="icon" type="image/png" sizes="96x96" href="<?php echo $path . 'favicon-96x96.png'; ?>">
+            <link data-theme="dark" rel="icon" type="image/png" sizes="32x32" href="<?php echo $path . 'favicon-32x32.png'; ?>">
+            <link data-theme="dark" rel="icon" type="image/png" sizes="16x16" href="<?php echo $path . 'favicon-16x16.png'; ?>">
+            <link data-theme="dark" rel="manifest" href="<?php echo $path . 'site.webmanifest'; ?>" crossorigin="use-credentials">
+            <link data-theme="dark" rel="mask-icon" href="<?php echo $path . 'favicon.svg'; ?>" color="#5bbad5">
+            <meta data-theme="dark" name="msapplication-TileColor" content="#f7f7f7">
+            <meta data-theme="dark" name="theme-color" content="#f7f7f7">
+            <meta data-theme="dark" name="msapplication-config" content="<?php echo $path . 'browserconfig.xml'; ?>" />
         <?php
     }
 

@@ -11,6 +11,8 @@
     --bs-accordion-btn-padding-y: 0;
     --bs-accordion-btn-icon: url('data:image/svg+xml;charset=utf-8,<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.84674 19.1993L27.4535 38.8061L47.0467 19.2129L47.0467 16.573L27.4535 36.1662L7.84674 16.5594L7.84674 19.1993Z" fill="%23182748"/><path d="M27.4522 35.3737L47.6064 15.2214L47.6064 19.4451L27.454 39.5974L7.28711 19.4305L7.28711 15.2068L27.4522 35.3737ZM8.40638 18.9675L27.4522 38.0133L46.4871 18.9802L46.4871 17.9248L27.454 36.9578L8.40638 17.9102L8.40638 18.9675Z" fill="%23182748"/></svg>');
     --bs-accordion-btn-icon-width: 3.5rem;
+    --bs-accordion-btn-bg: transparent;
+    
     --bs-accordion-btn-active-icon: var(--bs-accordion-btn-icon);
     --bs-accordion-body-padding-x: 0;
     --bs-accordion-body-padding-y: 0;

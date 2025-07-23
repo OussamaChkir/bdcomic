@@ -69,18 +69,19 @@ if ($accordeon) :
                                         <div id="<?php echo esc_attr($tab_anchor_id); ?>"></div>
                                     <?php endif; ?>
 
-                                    <button class="accordion-button h3 <?php echo $index > 0 ? 'collapsed' : ''; ?>" 
+                                    <button class="accordion-button h3 collapsed" 
                                             type="button" 
                                             data-bs-toggle="collapse" 
                                             data-bs-target="#<?php echo esc_attr($collapse_id); ?>" 
-                                            aria-expanded="<?php echo $index == 0 ? 'true' : 'false'; ?>" 
+                                            aria-expanded="false" 
                                             aria-controls="<?php echo esc_attr($collapse_id); ?>">
                                         <?php echo esc_html($title); ?>
                                     </button>
                                 </div>
                                 <div id="<?php echo esc_attr($collapse_id); ?>" 
-                                    class="accordion-collapse collapse <?php echo $index == 0 ? 'show' : ''; ?>" 
-                                    aria-labelledby="<?php echo esc_attr($heading_id); ?>">
+                                    class="accordion-collapse collapse" 
+                                    aria-labelledby="<?php echo esc_attr($heading_id); ?>"
+                                    data-bs-parent="#<?php echo esc_attr($accordion_id); ?>">
                                     <div class="accordion-body content-<?php echo $type; ?>">
                                         <?php if ($type == "text"): ?>
                                             <?php if ($textItem): ?>

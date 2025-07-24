@@ -46,9 +46,9 @@
                                 $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content);
                                 $content = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', $content);
                                 $word_count = str_word_count(strip_tags($content));
-                                $reading_time = ceil($word_count / 200);
+                                $reading_time = max(1, ceil($word_count / 200)); // Ensure minimum of 1
                             ?>
-                            <span class="time-ago">
+                            <span class="reading-time">
                                 <?php _e('Reading Time', 'korsch'); ?>: 
                                 <?php echo sprintf(_n('%d Minute', '%d Minutes', $reading_time, 'korsch'), $reading_time); ?>
                             </span>

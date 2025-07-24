@@ -112,7 +112,14 @@ if ($blog_post) :
                                             </span>
                                         <?php endif; ?>
 
-                                        <span class="post-time-ago"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ); ?></span>
+                                        <?php
+                                            $content = apply_filters('the_content', get_post_field('post_content', get_the_ID()));
+                                            $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $content);
+                                            $content = preg_replace('/<style\b[^>]*>(.*?)<\/style>/is', '', $content);
+                                            $word_count = str_word_count(strip_tags($content));
+                                            $reading_time = max(1, ceil($word_count / 200)); // Ensure minimum of 1
+                                        ?>
+                                        <span class="reading-time"><?php echo sprintf(_n('%dmin', '%dmins', $reading_time, 'korsch'), $reading_time); ?></span>
 
                                         <span class="date"><?php echo get_the_date('d.m.Y'); ?></span>
                                     </div>

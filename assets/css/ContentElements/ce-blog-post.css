@@ -68,13 +68,13 @@
     line-height: 1.563rem;
 }
 .block-blog-post .blog-container .post-teaser .post-teaser-content .post-meta .tag,
-.block-blog-post .blog-container .post-teaser .post-teaser-content .post-meta .post-time-ago {
+.block-blog-post .blog-container .post-teaser .post-teaser-content .post-meta .reading-time {
     position: relative;
 }
 .block-blog-post .blog-container .post-teaser .post-teaser-content .post-meta .tag:not(:last-child):after {
     content: ',';
 }
-.block-blog-post .blog-container .post-teaser .post-teaser-content .post-meta .post-time-ago:before {
+.block-blog-post .blog-container .post-teaser .post-teaser-content .post-meta .reading-time:before {
     content: ' | ';
 }
 .block-blog-post .blog-container .post-teaser .post-teaser-content .post-meta .date {

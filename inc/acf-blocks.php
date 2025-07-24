@@ -39,6 +39,7 @@ function gl_acf_init() {
             'product-details-table' => 'Product Details Table',
             'blog-post' => 'Blog Post',
             'newsletter' => 'Newsletter',
+            'centers-list' => 'Centers List',
         );
 
         foreach ($blocks as $name => $title) {
@@ -92,6 +93,7 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/post-teaser-list',
         'acf/blog-post',
         'acf/newsletter',
+        'acf/centers-list',
     );
 
     if ($post->post_type === 'product') {

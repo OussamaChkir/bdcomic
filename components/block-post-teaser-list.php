@@ -15,12 +15,35 @@ if ($post_teaser_list) :
     $text = $post_teaser_list['text'];
     $button = $post_teaser_list['button'];
 
+    $sticky = get_option('sticky_posts');
+    $sticky = array_slice($sticky, 0, 3);
+
     $args = array(
         'post_type'      => 'post',
         'posts_per_page' => 3,
+        'post__in'       => $sticky,
+        'orderby'        => 'post__in',
     );
 
     $query = new WP_Query($args);
+
+    if ($query->post_count < 3) {
+        $exclude_ids = wp_list_pluck($query->posts, 'ID');
+
+        $remaining = 3 - $query->post_count;
+
+        $non_sticky_args = array(
+            'post_type'           => 'post',
+            'posts_per_page'      => $remaining,
+            'post__not_in'        => $exclude_ids,
+            'ignore_sticky_posts' => true,
+        );
+
+        $fallback_query = new WP_Query($non_sticky_args);
+
+        $query->posts = array_merge($query->posts, $fallback_query->posts);
+        $query->post_count = count($query->posts);
+    }
 
     if( $query->have_posts() ): ?>
         <div class="block-post-teaser-list <?php echo $background_color; ?>"<?php if ($show_in_anchor_navi && $anchor_navi_label): ?> id="<?php echo esc_attr(sanitize_title($anchor_navi_label)); ?>"<?php endif; ?>>

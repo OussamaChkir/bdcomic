@@ -167,6 +167,7 @@
     }
     .blog-container-filter .filter-btn {
         padding: 0.563rem 1.875rem;
+        flex-shrink: 0;
     }
     .block-blog-post .blog-container {
         margin-top: 4rem;

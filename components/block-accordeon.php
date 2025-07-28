@@ -141,7 +141,7 @@ if ($accordeon) :
                                                                         <div class="col-6">
                                                                             <div class="product-title h3 m-0"><b><?php echo esc_html($title); ?></b></div>
                                                                         </div>
-                                                                        <div class="col-6">
+                                                                        <div class="col-6 col-title">
                                                                             <?php if ($subtitle) : ?>
                                                                                 <div class="product-subtitle h6 m-0"><b><?php echo esc_html($subtitle); ?></b></div>
                                                                             <?php endif; ?>

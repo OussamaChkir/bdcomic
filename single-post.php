@@ -7,22 +7,11 @@
 
 
     $author = get_field('author');
-    $teaser_image = get_field('teaser_image');
     $description = get_field('description');
 ?>
 
 <main class="post-single">
     <div class="main-inner">
-        <?php if ($teaser_image): ?>
-            <div class="block-header-image">
-                <?php echo wp_get_attachment_image( $teaser_image['ID'], 'header-image', false, array('loading' => 'lazy') ); ?>
-            </div>
-        <?php elseif ( has_post_thumbnail() ) : ?>
-            <div class="block-header-image">
-                <?php the_post_thumbnail('header-image'); ?>
-            </div>
-        <?php endif; ?>
-
         <div class="post-content content-page">
             <?php anchor_links(); ?>
             

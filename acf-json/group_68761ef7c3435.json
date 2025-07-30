@@ -43,31 +43,6 @@
             "maxlength": ""
         },
         {
-            "key": "field_68778aa01dee5",
-            "label": "Teaser image",
-            "name": "teaser_image",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "wpml_cf_preferences": 3,
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
-        },
-        {
             "key": "field_68778abb1dee7",
             "label": "Description",
             "name": "description",
@@ -105,5 +80,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1752747627
+    "modified": 1753866821
 }

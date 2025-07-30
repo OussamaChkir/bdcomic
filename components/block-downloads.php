@@ -63,7 +63,7 @@ if ($downloads) :
                                     $media_url = $media['url'] ?? '';
                                 ?>
                                     <div class="download-teaser col-lg-4 col-md-6" style="display: <?php echo ($post_count > 9) ? 'none' : 'flex'; ?>;">
-                                        <a class="download-content primary-bg" href="<?php echo esc_url($media_url); ?>" download>
+                                        <a class="download-content primary-bg" href="<?php echo esc_url($media_url); ?>" target="_blank" rel="noopener">
                                             <?php 
                                             $categories = wp_get_object_terms(get_the_ID(), get_object_taxonomies(get_post_type()));
                                             if ( ! empty( $categories ) ) :

@@ -93,4 +93,67 @@ function register_product_cpt() {
     register_post_type('product', $args);
 }
 add_action('init', 'register_product_cpt');
+
+
+
+/**************************************************
+ Register "Download" Custom Post Type
+ **************************************************/
+function register_download_cpt() {
+    $labels = array(
+        'name'               => _x('Downloads', 'Post Type General Name', 'korsch'),
+        'singular_name'      => _x('Download', 'Post Type Singular Name', 'korsch'),
+        'menu_name'          => __('Downloads', 'korsch'),
+        'all_items'          => __('All Downloads', 'korsch'),
+        'add_new_item'       => __('Add New Download', 'korsch'),
+        'edit_item'          => __('Edit Download', 'korsch'),
+        'new_item'           => __('New Download', 'korsch'),
+        'view_item'          => __('View Download', 'korsch'),
+        'search_items'       => __('Search Downloads', 'korsch'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => true,
+        'show_in_rest'       => true, // Enable Gutenberg + ACF Blocks
+        'supports'           => array('title', 'thumbnail'),
+        'menu_position'      => 22,
+        'menu_icon'          => 'dashicons-download',
+    );
+
+    register_post_type('download', $args);
+}
+add_action('init', 'register_download_cpt');
+
+function register_download_taxonomy() {
+    $labels = array(
+        'name'              => _x('Download Categories', 'taxonomy general name', 'korsch'),
+        'singular_name'     => _x('Download Category', 'taxonomy singular name', 'korsch'),
+        'search_items'      => __('Search Download Categories', 'korsch'),
+        'all_items'         => __('All Download Categories', 'korsch'),
+        'parent_item'       => __('Parent Category', 'korsch'),
+        'parent_item_colon' => __('Parent Category:', 'korsch'),
+        'edit_item'         => __('Edit Download Category', 'korsch'),
+        'update_item'       => __('Update Download Category', 'korsch'),
+        'add_new_item'      => __('Add New Download Category', 'korsch'),
+        'new_item_name'     => __('New Download Category Name', 'korsch'),
+        'menu_name'         => __('Download Categories', 'korsch'),
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => array('slug' => 'download-category'),
+    );
+
+    register_taxonomy('download_category', array('download'), $args);
+}
+add_action('init', 'register_download_taxonomy');
+
 ?>

@@ -10,7 +10,7 @@ class Goldland_TinyMCE_Setup {
 
     public function mce_buttons( $buttons ) {
         $my_buttons = array(
-            'formatselect', 'bold', 'italic', 'bullist', 'numlist', 'hr', 'aligncenter', 'alignleft', 'alignright', 'link', 'unlink', 'removeformat', 'charmap', 'forecolor','styleselect','removeformat'
+            'formatselect', 'bold', 'italic', 'bullist', 'numlist', 'hr', 'aligncenter', 'alignleft', 'alignright', 'link', 'unlink', 'removeformat', 'charmap', 'forecolor','styleselect','removeformat', 'sup', 'sub'
         );
         return $my_buttons;
     }

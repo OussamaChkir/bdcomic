@@ -5,8 +5,8 @@ b, strong {
 p {
     letter-spacing: 0.008rem;
 }
-p:last-of-type,
-ul:last-of-type {
+p:last-child,
+ul:last-child {
     margin-bottom: 0;
 }
 

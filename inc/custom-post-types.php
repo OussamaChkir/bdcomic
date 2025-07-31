@@ -119,6 +119,8 @@ function register_download_cpt() {
         'show_in_menu'       => true,
         'has_archive'        => true,
         'show_in_rest'       => true, // Enable Gutenberg + ACF Blocks
+        'rewrite'            => false, // disables permalink structure
+        'publicly_queryable' => false, // disables front-end access
         'supports'           => array('title', 'thumbnail'),
         'menu_position'      => 22,
         'menu_icon'          => 'dashicons-download',

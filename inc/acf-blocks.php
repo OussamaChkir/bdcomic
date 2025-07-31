@@ -42,6 +42,7 @@ function gl_acf_init() {
             'centers-list' => 'Centers List',
             'salesforce-contact-form' => 'Salesforce Contact Form',
             'downloads' => 'Downloads',
+            'contact-persons' => 'Contact Persons',
         );
 
         foreach ($blocks as $name => $title) {
@@ -98,6 +99,7 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/centers-list',
         'acf/salesforce-contact-form',
         'acf/downloads',
+        'acf/contact-persons',
     );
 
     if ($post->post_type === 'product') {

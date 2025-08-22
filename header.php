@@ -1,24 +1,23 @@
-<!doctype html>
-<html class="no-js" <?php language_attributes(); ?>>
-
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-    
+
 <?php
+    // Get logo from ACF options
     $logo = get_field('logo', 'option');
-        $logo_light = $logo['logo_light'];
-        $logo_dark = $logo['logo_dark'];
-    $show_language_switcher = get_field('show_language_switcher', 'option');
+    $logo_light = isset($logo['logo_light']) ? $logo['logo_light'] : null;
+    $logo_dark = isset($logo['logo_dark']) ? $logo['logo_dark'] : null;
 ?>
 
-
-<header>
-    <div class="container">
+    <header id="masthead" class="site-header">
+        <div class="container">
         <div class="header-container">
             <div class="site-logo">
                 <a href="<?php echo home_url(); ?>">
@@ -50,27 +49,6 @@
                         } ?>
                     </nav>
 
-                    <button id="theme-toggle" class="icon-contrast"><?php _e('Contrast', 'korsch'); ?></button>
-
-                    <?php if ($show_language_switcher) : ?>
-                        <nav class="language-switcher">
-                            <ul class="nav">
-                                <?php
-                                    $languages = apply_filters('wpml_active_languages', null);
-                                    if (!empty($languages)) {
-                                        foreach ($languages as $language) {
-                                            $active_class = $language['active'] ? 'active' : '';
-                                            echo '<li class="nav-item ' . $active_class . '">';
-                                                echo '<a href="' . esc_url($language['url']) . '" class="nav-link">';
-                                                echo esc_html($language['language_code']);
-                                                echo '</a>';
-                                            echo '</li>';
-                                        }
-                                    }
-                                ?>
-                            </ul>
-                        </nav>
-                    <?php endif; ?>
                 </div>
 
                 <nav class="main-navigation navbar navbar-expand-xl underline">
@@ -91,19 +69,19 @@
                 </nav>
             </div>
         </div>
-    </div>
+        </div>
 
-    <div id="main-menu-mobile" class="main-menu-dropdown collapse">
-        <div class="container">
-            <div class="menu-items-children">
-                <?php if (has_nav_menu('main-menu')) {
+        <div id="main-menu-mobile" class="main-menu-dropdown collapse">
+            <div class="container">
+                <div class="menu-items-children">
+                    <?php if (has_nav_menu('main-menu')) {
                         wp_nav_menu([
                             'theme_location' => 'main-menu',
                             'menu_class' => 'navbar-nav',
                             'depth' => 1,
                             'walker' => new WP_Bootstrap_Navwalker()
                         ]); 
-                } ?>
+                    } ?>
 
                 <div class="bottom-header-mobile">
                     <nav class="meta-menu-mobile">
@@ -120,4 +98,5 @@
             </div>
         </div>
     </div>
-</header>
+    </div>
+    </header>

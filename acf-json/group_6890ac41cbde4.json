@@ -1,9 +1,9 @@
 {
-    "key": "group_66d075c36091e",
+    "key": "group_6890ac41cbde4",
     "title": "Theme Options",
     "fields": [
         {
-            "key": "field_66e99d4a5d9c1",
+            "key": "field_6890ac611faa4",
             "label": "Header",
             "name": "",
             "type": "tab",
@@ -15,13 +15,11 @@
                 "class": "",
                 "id": ""
             },
-            "aria-label": "",
-            "wpml_cf_preferences": 3,
             "placement": "top",
             "endpoint": 0
         },
         {
-            "key": "field_68500d4dd8fd6",
+            "key": "field_6890add21faa5",
             "label": "Logo",
             "name": "logo",
             "type": "group",
@@ -33,12 +31,11 @@
                 "class": "",
                 "id": ""
             },
-            "wpml_cf_preferences": 3,
-            "layout": "row",
+            "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_6793ad5e4f252",
-                    "label": "Light Mode",
+                    "key": "field_6890adfd1faa6",
+                    "label": "logo light",
                     "name": "logo_light",
                     "type": "image",
                     "instructions": "",
@@ -49,9 +46,8 @@
                         "class": "",
                         "id": ""
                     },
-                    "wpml_cf_preferences": 3,
                     "return_format": "array",
-                    "preview_size": "thumbnail",
+                    "preview_size": "medium",
                     "library": "all",
                     "min_width": "",
                     "min_height": "",
@@ -62,8 +58,8 @@
                     "mime_types": ""
                 },
                 {
-                    "key": "field_68500cbffc498",
-                    "label": "Dark Mode",
+                    "key": "field_6890ae4d1faa7",
+                    "label": "logo dark",
                     "name": "logo_dark",
                     "type": "image",
                     "instructions": "",
@@ -74,9 +70,8 @@
                         "class": "",
                         "id": ""
                     },
-                    "wpml_cf_preferences": 3,
                     "return_format": "array",
-                    "preview_size": "thumbnail",
+                    "preview_size": "medium",
                     "library": "all",
                     "min_width": "",
                     "min_height": "",
@@ -89,9 +84,9 @@
             ]
         },
         {
-            "key": "field_684c49ffdd0dd",
-            "label": "Show the language switcher",
-            "name": "show_language_switcher",
+            "key": "field_6890ae731faa8",
+            "label": "Enable the language toggle",
+            "name": "enable_the_language_toggle",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -101,15 +96,14 @@
                 "class": "",
                 "id": ""
             },
-            "wpml_cf_preferences": 3,
             "message": "",
-            "default_value": 1,
-            "ui": 1,
+            "default_value": 0,
+            "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
         },
         {
-            "key": "field_66d075d965cec",
+            "key": "field_6890af84056ee",
             "label": "Footer",
             "name": "",
             "type": "tab",
@@ -121,14 +115,12 @@
                 "class": "",
                 "id": ""
             },
-            "aria-label": "",
-            "wpml_cf_preferences": 3,
             "placement": "top",
             "endpoint": 0
         },
         {
-            "key": "field_6793ad724f253",
-            "label": "Footer Logo",
+            "key": "field_6890b023056ef",
+            "label": "Footer logo",
             "name": "footer_logo",
             "type": "image",
             "instructions": "",
@@ -139,9 +131,8 @@
                 "class": "",
                 "id": ""
             },
-            "wpml_cf_preferences": 3,
             "return_format": "array",
-            "preview_size": "thumbnail",
+            "preview_size": "medium",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -152,7 +143,7 @@
             "mime_types": ""
         },
         {
-            "key": "field_685022992167c",
+            "key": "field_6890b078056f0",
             "label": "Addresses",
             "name": "addresses",
             "type": "repeater",
@@ -164,15 +155,14 @@
                 "class": "",
                 "id": ""
             },
-            "wpml_cf_preferences": 3,
             "collapsed": "",
             "min": 0,
             "max": 0,
-            "layout": "row",
+            "layout": "table",
             "button_label": "",
             "sub_fields": [
                 {
-                    "key": "field_6793ae6462f47",
+                    "key": "field_6890b0b3056f1",
                     "label": "Address",
                     "name": "address",
                     "type": "wysiwyg",
@@ -184,19 +174,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "wpml_cf_preferences": 2,
                     "default_value": "",
                     "tabs": "all",
                     "toolbar": "full",
-                    "media_upload": 1,
+                    "media_upload": 0,
                     "delay": 0
                 }
             ]
         },
         {
-            "key": "field_6850246f77399",
+            "key": "field_6890b0f3056f2",
             "label": "Social networks",
-            "name": "social_networks",
+            "name": "social-networks",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -206,12 +195,11 @@
                 "class": "",
                 "id": ""
             },
-            "wpml_cf_preferences": 3,
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_6850249db20ac",
-                    "label": "Youtube",
+                    "key": "field_6890b152056f3",
+                    "label": "youtube",
                     "name": "youtube",
                     "type": "url",
                     "instructions": "",
@@ -222,13 +210,12 @@
                         "class": "",
                         "id": ""
                     },
-                    "wpml_cf_preferences": 3,
                     "default_value": "",
                     "placeholder": ""
                 },
                 {
-                    "key": "field_685024b8b20ad",
-                    "label": "Linkedin",
+                    "key": "field_6890b166056f4",
+                    "label": "LinkedIn",
                     "name": "linkedin",
                     "type": "url",
                     "instructions": "",
@@ -239,13 +226,12 @@
                         "class": "",
                         "id": ""
                     },
-                    "wpml_cf_preferences": 3,
                     "default_value": "",
                     "placeholder": ""
                 },
                 {
-                    "key": "field_685024d2b20ae",
-                    "label": "Wikipedia",
+                    "key": "field_6890b181056f5",
+                    "label": "wikipedia",
                     "name": "wikipedia",
                     "type": "url",
                     "instructions": "",
@@ -256,129 +242,10 @@
                         "class": "",
                         "id": ""
                     },
-                    "wpml_cf_preferences": 3,
                     "default_value": "",
                     "placeholder": ""
                 }
             ]
-        },
-        {
-            "key": "field_685ac3f8b8da0",
-            "label": "Prefooter",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "wpml_cf_preferences": 3,
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_685ac423b8da1",
-            "label": "Header",
-            "name": "header",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "wpml_cf_preferences": 2,
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_685ac44cb8da2",
-            "label": "Subheader",
-            "name": "subheader",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "wpml_cf_preferences": 2,
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_685ac47ab8da3",
-            "label": "Text",
-            "name": "text",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "wpml_cf_preferences": 2,
-            "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
-        },
-        {
-            "key": "field_685ac493b8da4",
-            "label": "Contact Form page",
-            "name": "contact_form_page",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "wpml_cf_preferences": 3,
-            "return_format": "array"
-        },
-        {
-            "key": "field_6862a9040da2d",
-            "label": "Prefooter Image",
-            "name": "prefooter_image",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "wpml_cf_preferences": 3,
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
         }
     ],
     "location": [
@@ -398,5 +265,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1752571897
+    "modified": 1754313141
 }

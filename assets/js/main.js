@@ -2,13 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     headerStickyAdminbar();
     hoverslippery();
     cookieFooterItem();
-    mobileMenu();
     backtotop();
 });
 
 window.addEventListener('resize', function() {
     headerStickyAdminbar();
-    mobileMenu();
 });
 
 window.addEventListener('scroll', function() {
@@ -51,12 +49,6 @@ function cookieFooterItem() {
     if ($cookieItem.length) {
         $cookieItem.attr('data-cc', 'show-preferencesModal');
     }
-}
-
-function mobileMenu() {
-    $(".main-navigation .navbar-toggler").on("click", function () {
-        $('header').toggleClass('open');
-    });
 }
 
 function backtotop() {

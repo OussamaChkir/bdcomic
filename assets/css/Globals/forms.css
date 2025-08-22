@@ -8,6 +8,20 @@ form label {
     letter-spacing: 0.005em;
     margin-bottom: 0.25rem;
 }
+.form-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-direction: column;
+}
+.form-group:not(:last-child) {
+    margin-bottom: 2rem;
+}
+.form-group label {
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
+    letter-spacing: 0.008rem;
+    font-weight: var(--font-weight-semi-bold);
+}
 form .form-group br {
     display: none;
 }
@@ -234,6 +248,12 @@ form[name="loginform"] .form-control:-ms-input-placeholder {
 
 
 /* Responsive */
+@media only screen and (max-width: 991px) {
+    .form-group:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+}
+
 @media only screen and (max-width: 767px) {
     form[name="loginform"] {
         min-width: 100%;

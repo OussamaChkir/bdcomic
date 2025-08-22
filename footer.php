@@ -17,15 +17,6 @@
                 </a>    
             </div>
             
-            <div class="address-wrapper">
-            <?php if ($addresses) : ?>
-                <?php foreach ($addresses as $address) : ?>
-                    <div class="footer-address">
-                        <?php echo ($address['address']); ?>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>  
-            </div>
             
             <?php if ($social_networks) :
                 $youtube = $social_networks['youtube'];

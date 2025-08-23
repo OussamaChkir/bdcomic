@@ -19,10 +19,10 @@
             "endpoint": 0
         },
         {
-            "key": "field_6890add21faa5",
-            "label": "Logo",
-            "name": "logo",
-            "type": "group",
+            "key": "field_68a9aa1de6845",
+            "label": "header logo",
+            "name": "header_logo",
+            "type": "image",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -31,76 +31,16 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_6890adfd1faa6",
-                    "label": "logo light",
-                    "name": "logo_light",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "preview_size": "medium",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_6890ae4d1faa7",
-                    "label": "logo dark",
-                    "name": "logo_dark",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "preview_size": "medium",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": ""
-                }
-            ]
-        },
-        {
-            "key": "field_6890ae731faa8",
-            "label": "Enable the language toggle",
-            "name": "enable_the_language_toggle",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         },
         {
             "key": "field_6890af84056ee",
@@ -143,10 +83,10 @@
             "mime_types": ""
         },
         {
-            "key": "field_6890b078056f0",
-            "label": "Addresses",
-            "name": "addresses",
-            "type": "repeater",
+            "key": "field_68a9aa7fe6846",
+            "label": "Copyright",
+            "name": "copyright",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -155,32 +95,11 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "",
-            "sub_fields": [
-                {
-                    "key": "field_6890b0b3056f1",
-                    "label": "Address",
-                    "name": "address",
-                    "type": "wysiwyg",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "tabs": "all",
-                    "toolbar": "full",
-                    "media_upload": 0,
-                    "delay": 0
-                }
-            ]
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_6890b0f3056f2",
@@ -198,9 +117,9 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_6890b152056f3",
-                    "label": "youtube",
-                    "name": "youtube",
+                    "key": "field_6890b181056f5",
+                    "label": "Facebook",
+                    "name": "facebook",
                     "type": "url",
                     "instructions": "",
                     "required": 0,
@@ -215,8 +134,8 @@
                 },
                 {
                     "key": "field_6890b166056f4",
-                    "label": "LinkedIn",
-                    "name": "linkedin",
+                    "label": "Instagram",
+                    "name": "instagram",
                     "type": "url",
                     "instructions": "",
                     "required": 0,
@@ -230,9 +149,9 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_6890b181056f5",
-                    "label": "wikipedia",
-                    "name": "wikipedia",
+                    "key": "field_6890b152056f3",
+                    "label": "youtube",
+                    "name": "youtube",
                     "type": "url",
                     "instructions": "",
                     "required": 0,
@@ -265,5 +184,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1754313141
+    "modified": 1755950012
 }

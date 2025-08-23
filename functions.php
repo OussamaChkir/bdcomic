@@ -28,15 +28,15 @@ class wbg_theme {
         add_theme_support('custom-logo');
 
         register_nav_menus( array(
-            'meta-menu'    => __( 'Meta Menu', 'korsch' ),
-            'main-menu'   => __( 'Main Menu', 'korsch' ),
-            'footer-menu' => __( 'Footer Menu', 'korsch' ),
-            'meta-menu-mobile'    => __( 'Meta Menu Mobile', 'korsch' ),
+            'meta-menu'    => __( 'Meta Menu', 'bdcomic_theme' ),
+            'main-menu'   => __( 'Main Menu', 'bdcomic_theme' ),
+            'footer-menu' => __( 'Footer Menu', 'bdcomic_theme' ),
+            'meta-menu-mobile'    => __( 'Meta Menu Mobile', 'bdcomic_theme' ),
         ) );
 
         // for multi language support
         // language files under /languages
-        load_theme_textdomain('korsch', get_template_directory() . '/languages');
+        load_theme_textdomain('bdcomic_theme', get_template_directory() . '/languages');
 
         // theme support options
         add_theme_support('title-tag');

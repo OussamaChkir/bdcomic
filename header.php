@@ -11,25 +11,18 @@
 
 <?php
     // Get logo from ACF options
-    $logo = get_field('logo', 'option');
-    $logo_light = isset($logo['logo_light']) ? $logo['logo_light'] : null;
-    $logo_dark = isset($logo['logo_dark']) ? $logo['logo_dark'] : null;
+    $header_logo = get_field('header_logo', 'option');
 ?>
 
     <header id="masthead" class="site-header">
         <div class="container">
         <div class="header-container">
-            <div class="site-logo">
+             <div class="site-logo">
                 <a href="<?php echo home_url(); ?>">
                     <?php if (has_custom_logo()) : ?>
                         <?php the_custom_logo(); ?>
-                    <?php elseif ($logo_light || $logo_dark) : ?>
-                        <?php if ($logo_light) : ?>
-                            <?php echo wp_get_attachment_image( $logo_light['ID'], 'full', false, array('class' => 'logo logo-light','loading' => 'eager', 'alt' => esc_attr(get_bloginfo('name')) ) ); ?>
-                        <?php endif; ?>
-                        <?php if ($logo_dark) : ?>
-                            <?php echo wp_get_attachment_image( $logo_dark['ID'], 'full', false, array('class' => 'logo logo-dark','loading' => 'eager', 'alt' => esc_attr(get_bloginfo('name')) ) ); ?>
-                        <?php endif; ?>
+                    <?php elseif ($header_logo) : ?>
+                        <?php echo wp_get_attachment_image( $header_logo['ID'], 'full', false, array('class' => 'logo logo-header','loading' => 'eager', 'alt' => esc_attr(get_bloginfo('name')) ) ); ?>
                     <?php else : ?>
                         <?php bloginfo('name'); ?>
                     <?php endif; ?>
@@ -37,20 +30,6 @@
             </div>
 
             <div class="nav-container">
-                <div class="top-header">
-                    <nav class="meta-menu">
-                        <?php if (has_nav_menu('meta-menu')) {
-                            wp_nav_menu([
-                                'theme_location' => 'meta-menu',
-                                'menu_class' => 'nav',
-                                'depth' => 1,
-                                'walker' => new WP_Bootstrap_Navwalker()
-                            ]); 
-                        } ?>
-                    </nav>
-
-                </div>
-
                 <nav class="main-navigation navbar navbar-expand-xl underline">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu-mobile" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>

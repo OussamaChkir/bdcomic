@@ -1,15 +1,15 @@
 <?php 
 /**************************************************
- Register "Contact Person" Custom Post Type
+ Register "Collection" Custom Post Type
  **************************************************/
-/* function register_contact_person_cpt() {
+ function register_collection_cpt() {
     $labels = array(
-        'name'               => _x('Contact Persons', 'Post Type General Name', 'korsch'),
-        'singular_name'      => _x('Contact Person', 'Post Type Singular Name', 'korsch'),
-        'menu_name'          => __('Contact Persons', 'korsch'),
-        'all_items'          => __('All Contact Persons', 'korsch'),
-        'add_new_item'       => __('Add New Contact Person', 'korsch'),
-        'edit_item'          => __('Edit Contact Person', 'korsch'),
+        'name'               => _x('Collections', 'Post Type General Name', 'bdcomic'),
+        'singular_name'      => _x('Collection', 'Post Type Singular Name', 'bdcomic'),
+        'menu_name'          => __('Collections', 'bdcomic'),
+        'all_items'          => __('All Collections', 'bdcomic'),
+        'add_new_item'       => __('Add New Collection', 'bdcomic'),
+        'edit_item'          => __('Edit Collection', 'bdcomic'),
     );
 
     $args = array(
@@ -23,13 +23,13 @@
         'publicly_queryable' => false, // disables front-end access
         'supports'           => array('title'),
         'menu_position'      => 20,
-        'menu_icon'          => 'dashicons-id',
+        'menu_icon'          => 'dashicons-book-alt',
     );
 
-    register_post_type('contact_person', $args);
+    register_post_type('collection', $args);
 }
-add_action('init', 'register_contact_person_cpt');
-
+add_action('init', 'register_collection_cpt');
+/*
 // Register Custom Taxonomy: countries
 function register_contact_person_taxonomies() {
     $labels = array(
@@ -59,3 +59,96 @@ function register_contact_person_taxonomies() {
     register_taxonomy('countries', array('contact_person'), $args);
 }
 add_action('init', 'register_contact_person_taxonomies'); */
+
+/**************************************************
+ Register "Artiste" Custom Post Type
+ **************************************************/
+ function register_artiste_cpt() {
+    $labels = array(
+        'name'               => _x('Artistes', 'Post Type General Name', 'bdcomic'),
+        'singular_name'      => _x('Artiste', 'Post Type Singular Name', 'bdcomic'),
+        'menu_name'          => __('Artistes', 'bdcomic'),
+        'all_items'          => __('All Artistes', 'bdcomic'),
+        'add_new_item'       => __('Add New Artiste', 'bdcomic'),
+        'edit_item'          => __('Edit Artiste', 'bdcomic'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => false,
+        'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
+        'rewrite'            => false, // disables permalink structure
+        'publicly_queryable' => false, // disables front-end access
+        'supports'           => array('title'),
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-art',
+    );
+
+    register_post_type('artiste', $args);
+}
+add_action('init', 'register_artiste_cpt');
+
+/**************************************************
+ Register "editeur" Custom Post Type
+ **************************************************/
+ function register_editeur_cpt() {
+    $labels = array(
+        'name'               => _x('Editeurs', 'Post Type General Name', 'bdcomic'),
+        'singular_name'      => _x('Editeur', 'Post Type Singular Name', 'bdcomic'),
+        'menu_name'          => __('Editeurs', 'bdcomic'),
+        'all_items'          => __('All Editeurs', 'bdcomic'),
+        'add_new_item'       => __('Add New Editeur', 'bdcomic'),
+        'edit_item'          => __('Edit Editeur', 'bdcomic'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => false,
+        'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
+        'rewrite'            => false, // disables permalink structure
+        'publicly_queryable' => false, // disables front-end access
+        'supports'           => array('title'),
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-building',
+    );
+
+    register_post_type('editeur', $args);
+}
+add_action('init', 'register_editeur_cpt');
+
+/**************************************************
+ Register "livre" Custom Post Type
+ **************************************************/
+ function register_livre_cpt() {
+    $labels = array(
+        'name'               => _x('Livres', 'Post Type General Name', 'bdcomic'),
+        'singular_name'      => _x('Livre', 'Post Type Singular Name', 'bdcomic'),
+        'menu_name'          => __('Livres', 'bdcomic'),
+        'all_items'          => __('All Livres', 'bdcomic'),
+        'add_new_item'       => __('Add New Livre', 'bdcomic'),
+        'edit_item'          => __('Edit Livre', 'bdcomic'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => false,
+        'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
+        'rewrite'            => false, // disables permalink structure
+        'publicly_queryable' => false, // disables front-end access
+        'supports'           => array('title'),
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-book',
+    );
+
+    register_post_type('livre', $args);
+}
+add_action('init', 'register_livre_cpt');

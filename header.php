@@ -40,7 +40,7 @@
                             wp_nav_menu([
                                 'theme_location' => 'main-menu',
                                 'menu_class' => 'navbar-nav menu-main-navigation',
-                                'depth' => 1,
+                                'depth' => 2,
                                 'walker' => new WP_Bootstrap_Navwalker()
                             ]); 
                         } ?>
@@ -57,7 +57,7 @@
                         wp_nav_menu([
                             'theme_location' => 'main-menu',
                             'menu_class' => 'navbar-nav',
-                            'depth' => 1,
+                            'depth' => 2,
                             'walker' => new WP_Bootstrap_Navwalker()
                         ]); 
                     } ?>

@@ -180,7 +180,7 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
         if (in_array('dropdown', $classes)) {
             $atts['class'] .= ' dropdown-toggle';
-            $atts['data-bs-toggle'] = 'collapse';
+            $atts['data-bs-toggle'] = 'dropdown';
             $atts['aria-expanded'] = 'false';
         }
 

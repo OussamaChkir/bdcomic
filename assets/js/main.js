@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     headerStickyAdminbar();
-    hoverslippery();
+    //hoverslippery();
     cookieFooterItem();
     backtotop();
 });
@@ -23,6 +23,7 @@ function headerStickyAdminbar() {
 }
 
 function hoverslippery() {
+
     $('.underline').hoverSlippery({
         border: true,
         borderWidth: "2px",
@@ -40,6 +41,7 @@ function hoverslippery() {
             left: '0'
         });
     });
+
 }
 
 function cookieFooterItem() {

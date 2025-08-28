@@ -17,10 +17,10 @@
         'public'             => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
-        'has_archive'        => false,
+        'has_archive'        => true,
         'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
-        'rewrite'            => false, // disables permalink structure
-        'publicly_queryable' => false, // disables front-end access
+        'rewrite'            => array('slug' => 'collections'),
+        'publicly_queryable' => true,
         'supports'           => array('title'),
         'menu_position'      => 20,
         'menu_icon'          => 'dashicons-book-alt',
@@ -78,10 +78,10 @@ add_action('init', 'register_contact_person_taxonomies'); */
         'public'             => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
-        'has_archive'        => false,
+        'has_archive'        => true,
         'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
-        'rewrite'            => false, // disables permalink structure
-        'publicly_queryable' => false, // disables front-end access
+        'rewrite'            => array('slug' => 'artistes'),
+        'publicly_queryable' => true,
         'supports'           => array('title'),
         'menu_position'      => 20,
         'menu_icon'          => 'dashicons-art',
@@ -109,10 +109,10 @@ add_action('init', 'register_artiste_cpt');
         'public'             => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
-        'has_archive'        => false,
+        'has_archive'        => true,
         'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
-        'rewrite'            => false, // disables permalink structure
-        'publicly_queryable' => false, // disables front-end access
+        'rewrite'            => array('slug' => 'editeurs'),
+        'publicly_queryable' => true,
         'supports'           => array('title'),
         'menu_position'      => 20,
         'menu_icon'          => 'dashicons-building',
@@ -140,10 +140,10 @@ add_action('init', 'register_editeur_cpt');
         'public'             => true,
         'show_ui'            => true,
         'show_in_menu'       => true,
-        'has_archive'        => false,
+        'has_archive'        => true,
         'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
-        'rewrite'            => false, // disables permalink structure
-        'publicly_queryable' => false, // disables front-end access
+        'rewrite'            => array('slug' => 'livres'),
+        'publicly_queryable' => true,
         'supports'           => array('title'),
         'menu_position'      => 20,
         'menu_icon'          => 'dashicons-book',

@@ -1,0 +1,157 @@
+/* Register Block Styles */
+.block-register {
+    padding: 4rem 0;
+    background: var(--color-background, #ffffff);
+}
+
+.block-register .header-wrapper {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.block-register .header h2 {
+    margin-bottom: 1rem;
+    color: var(--color-headline, #333333);
+}
+
+.block-register .subheader {
+    color: var(--color-text, #666666);
+    margin-bottom: 1rem;
+}
+
+.block-register .description {
+    color: var(--color-text, #666666);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.register-form-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--color-background-secondary, #f8f9fa);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ultimate Member Form Styling */
+.register-form-wrapper .um {
+    margin: 0;
+}
+
+.register-form-wrapper .um-form {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.register-form-wrapper .um-field {
+    margin-bottom: 1.5rem;
+}
+
+.register-form-wrapper .um-field-label {
+    font-weight: 600;
+    color: var(--color-headline, #333333);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.register-form-wrapper .um-field-area input[type="text"],
+.register-form-wrapper .um-field-area input[type="email"],
+.register-form-wrapper .um-field-area input[type="password"],
+.register-form-wrapper .um-field-area textarea,
+.register-form-wrapper .um-field-area select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border, #ddd);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.register-form-wrapper .um-field-area input:focus,
+.register-form-wrapper .um-field-area textarea:focus,
+.register-form-wrapper .um-field-area select:focus {
+    outline: none;
+    border-color: var(--color-primary, #007bff);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.register-form-wrapper .um-btn {
+    background: var(--color-primary, #007bff);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.register-form-wrapper .um-btn:hover {
+    background: var(--color-primary-dark, #0056b3);
+}
+
+.register-form-wrapper .um-field-error {
+    color: var(--color-error, #dc3545);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.register-form-wrapper .um-field-valid {
+    color: var(--color-success, #28a745);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Alert styling */
+.register-form-wrapper .alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.register-form-wrapper .alert-warning {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .block-register {
+        padding: 2rem 0;
+    }
+    
+    .register-form-wrapper {
+        margin: 0 1rem;
+        padding: 1.5rem;
+    }
+    
+    .block-register .header-wrapper {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-form-wrapper {
+        padding: 1rem;
+    }
+    
+    .register-form-wrapper .um-field-area input[type="text"],
+    .register-form-wrapper .um-field-area input[type="email"],
+    .register-form-wrapper .um-field-area input[type="password"],
+    .register-form-wrapper .um-field-area textarea,
+    .register-form-wrapper .um-field-area select {
+        padding: 0.625rem;
+        font-size: 0.875rem;
+    }
+    
+    .register-form-wrapper .um-btn {
+        padding: 0.625rem 1.5rem;
+        font-size: 0.875rem;
+    }
+}

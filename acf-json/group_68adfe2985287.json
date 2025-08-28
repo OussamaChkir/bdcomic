@@ -266,11 +266,64 @@
                 "id": ""
             },
             "collapsed": "",
-            "min": 0,
+            "min": 1,
             "max": 0,
             "layout": "table",
             "button_label": "",
-            "sub_fields": []
+            "sub_fields": [
+                {
+                    "key": "field_68ae00d5283fe",
+                    "label": "Rôle",
+                    "name": "role",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Scénariste": "Scénariste",
+                        "Dessinateur": "Dessinateur",
+                        "Coloriste": "Coloriste",
+                        "Encreur": "Encreur",
+                        "Lettreur": "Lettreur",
+                        "Couverture": "Couverture",
+                        "Traducteur": "Traducteur"
+                    },
+                    "default_value": false,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_68ae012a283ff",
+                    "label": "Artiste",
+                    "name": "artiste",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "artiste"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "object",
+                    "ui": 1
+                }
+            ]
         },
         {
             "key": "field_68ae01ab28400",
@@ -324,11 +377,52 @@
                 "id": ""
             },
             "collapsed": "",
-            "min": 0,
+            "min": 1,
             "max": 0,
             "layout": "table",
             "button_label": "",
-            "sub_fields": []
+            "sub_fields": [
+                {
+                    "key": "field_68ae023d28403",
+                    "label": "Titre épisode",
+                    "name": "titre_episode",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_68ae025a28404",
+                    "label": "Numéro épisode",
+                    "name": "numero_episode",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                }
+            ]
         }
     ],
     "location": [
@@ -348,5 +442,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1756234372
+    "modified": 1756245650
 }

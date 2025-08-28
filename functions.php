@@ -211,3 +211,22 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
     }
 }
+
+// Flush rewrite rules on theme activation to enable custom post type archives
+function bdcomic_flush_rewrite_rules() {
+    // Only flush if we haven't done it before
+    if (!get_option('bdcomic_rewrite_flushed')) {
+        flush_rewrite_rules();
+        update_option('bdcomic_rewrite_flushed', true);
+    }
+}
+add_action('after_switch_theme', 'bdcomic_flush_rewrite_rules');
+
+// Also flush rewrite rules when custom post types are registered
+function bdcomic_flush_rewrite_rules_on_init() {
+    if (get_option('bdcomic_rewrite_flushed')) {
+        delete_option('bdcomic_rewrite_flushed');
+        flush_rewrite_rules();
+    }
+}
+add_action('init', 'bdcomic_flush_rewrite_rules_on_init', 20);

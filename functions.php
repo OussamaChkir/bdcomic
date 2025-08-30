@@ -65,6 +65,36 @@ class wbg_theme {
             wp_enqueue_style('print', get_template_directory_uri() . '/assets/css/print.css', false, '1.0', 'print');
             wp_enqueue_style('style-layout', get_template_directory_uri() . '/assets/css/style.css', false, '1.0');
 
+            // Enqueue archive and single page specific styles
+            if (is_post_type_archive('artiste')) {
+                wp_enqueue_style('archive-artiste', get_template_directory_uri() . '/assets/css/Globals/archive-artiste.css', false, '1.0');
+                wp_enqueue_style('archive-search', get_template_directory_uri() . '/assets/css/Globals/archive-search.css', false, '1.0');
+            }
+            if (is_post_type_archive('collection')) {
+                wp_enqueue_style('archive-collection', get_template_directory_uri() . '/assets/css/Globals/archive-collection.css', false, '1.0');
+                wp_enqueue_style('archive-search', get_template_directory_uri() . '/assets/css/Globals/archive-search.css', false, '1.0');
+            }
+            if (is_post_type_archive('editeur')) {
+                wp_enqueue_style('archive-editeur', get_template_directory_uri() . '/assets/css/Globals/archive-editeur.css', false, '1.0');
+                wp_enqueue_style('archive-search', get_template_directory_uri() . '/assets/css/Globals/archive-search.css', false, '1.0');
+            }
+            if (is_post_type_archive('livre')) {
+                wp_enqueue_style('archive-livre', get_template_directory_uri() . '/assets/css/Globals/archive-livre.css', false, '1.0');
+                wp_enqueue_style('archive-search', get_template_directory_uri() . '/assets/css/Globals/archive-search.css', false, '1.0');
+            }
+            if (is_singular('artiste')) {
+                wp_enqueue_style('single-artiste', get_template_directory_uri() . '/assets/css/Globals/single-artiste.css', false, '1.0');
+            }
+            if (is_singular('collection')) {
+                wp_enqueue_style('single-collection', get_template_directory_uri() . '/assets/css/Globals/single-collection.css', false, '1.0');
+            }
+            if (is_singular('editeur')) {
+                wp_enqueue_style('single-editeur', get_template_directory_uri() . '/assets/css/Globals/single-editeur.css', false, '1.0');
+            }
+            if (is_singular('livre')) {
+                wp_enqueue_style('single-livre', get_template_directory_uri() . '/assets/css/Globals/single-livre.css', false, '1.0');
+            }
+
             // Enqueue scripts
             wp_enqueue_script('jquery-custom', get_template_directory_uri() . '/assets/plugins/jquery/jquery.js', [], null, true);
             wp_enqueue_script('bootstrap-bundle', get_template_directory_uri() . '/assets/plugins/bootstrap/bootstrap.bundle.min.js', ['jquery-custom'], null, true);
@@ -78,6 +108,15 @@ class wbg_theme {
 
             // Main script
             wp_enqueue_script('main-script', get_template_directory_uri() . '/assets/js/main.js', ['jquery-custom'], false, true);
+
+            // Archive search script for archive pages
+            if (is_post_type_archive()) {
+                wp_enqueue_script('archive-search', get_template_directory_uri() . '/assets/js/archive-search.js', ['jquery-custom'], false, true);
+                wp_localize_script('archive-search', 'archiveSearchData', array(
+                    'nonce' => wp_create_nonce('archive_search_nonce'),
+                    'ajaxurl' => admin_url('admin-ajax.php')
+                ));
+            }
         }
     }
 
@@ -230,3 +269,253 @@ function bdcomic_flush_rewrite_rules_on_init() {
     }
 }
 add_action('init', 'bdcomic_flush_rewrite_rules_on_init', 20);
+
+// Archive Search AJAX Functions
+function archive_search_ajax() {
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['nonce'], 'archive_search_nonce')) {
+        wp_die('Security check failed');
+    }
+
+    $post_type = sanitize_text_field($_POST['post_type']);
+    $search_data = $_POST['search'];
+    $page = intval($_POST['page']);
+    $posts_per_page = get_option('posts_per_page', 10);
+
+    // Build query args
+    $args = array(
+        'post_type' => $post_type,
+        'post_status' => 'publish',
+        'posts_per_page' => $posts_per_page,
+        'paged' => $page,
+        'meta_query' => array('relation' => 'AND'),
+        'tax_query' => array()
+    );
+
+    // Add search term
+    if (!empty($search_data['search_term'])) {
+        $search_term = sanitize_text_field($search_data['search_term']);
+        $args['s'] = $search_term;
+    }
+
+    // Add filters based on post type
+    if (!empty($search_data['filters'])) {
+        $filters = $search_data['filters'];
+        
+        switch ($post_type) {
+            case 'artiste':
+                if (!empty($filters['nationality'])) {
+                    $args['meta_query'][] = array(
+                        'key' => 'nationalite_artiste',
+                        'value' => sanitize_text_field($filters['nationality']),
+                        'compare' => '='
+                    );
+                }
+                if (!empty($filters['role'])) {
+                    $args['meta_query'][] = array(
+                        'key' => 'roles_artiste',
+                        'value' => '"' . sanitize_text_field($filters['role']) . '"',
+                        'compare' => 'LIKE'
+                    );
+                }
+                break;
+                
+            case 'collection':
+                if (!empty($filters['status'])) {
+                    $args['meta_query'][] = array(
+                        'key' => 'statut_collection',
+                        'value' => sanitize_text_field($filters['status']),
+                        'compare' => '='
+                    );
+                }
+                if (!empty($filters['publisher'])) {
+                    // For publisher, we need to search by post title since it's a relationship field
+                    $publisher_posts = get_posts(array(
+                        'post_type' => 'editeur',
+                        'posts_per_page' => -1,
+                        'title' => sanitize_text_field($filters['publisher'])
+                    ));
+                    
+                    if (!empty($publisher_posts)) {
+                        $publisher_ids = wp_list_pluck($publisher_posts, 'ID');
+                        $args['meta_query'][] = array(
+                            'key' => 'editeur_collection',
+                            'value' => $publisher_ids,
+                            'compare' => 'IN'
+                        );
+                    }
+                }
+                break;
+                
+            case 'editeur':
+                if (!empty($filters['country'])) {
+                    $args['meta_query'][] = array(
+                        'key' => 'pays_editeur',
+                        'value' => sanitize_text_field($filters['country']),
+                        'compare' => '='
+                    );
+                }
+                break;
+                
+            case 'livre':
+                if (!empty($filters['publisher'])) {
+                    // For publisher, we need to search by post title since it's a relationship field
+                    $publisher_posts = get_posts(array(
+                        'post_type' => 'editeur',
+                        'posts_per_page' => -1,
+                        'title' => sanitize_text_field($filters['publisher'])
+                    ));
+                    
+                    if (!empty($publisher_posts)) {
+                        $publisher_ids = wp_list_pluck($publisher_posts, 'ID');
+                        $args['meta_query'][] = array(
+                            'key' => 'maison_d\'edition',
+                            'value' => $publisher_ids,
+                            'compare' => 'IN'
+                        );
+                    }
+                }
+                if (!empty($filters['collection'])) {
+                    // For collection, we need to search by post title since it's a relationship field
+                    $collection_posts = get_posts(array(
+                        'post_type' => 'collection',
+                        'posts_per_page' => -1,
+                        'title' => sanitize_text_field($filters['collection'])
+                    ));
+                    
+                    if (!empty($collection_posts)) {
+                        $collection_ids = wp_list_pluck($collection_posts, 'ID');
+                        $args['meta_query'][] = array(
+                            'key' => 'collection',
+                            'value' => $collection_ids,
+                            'compare' => 'IN'
+                        );
+                    }
+                }
+                if (!empty($filters['variant'])) {
+                    $args['meta_query'][] = array(
+                        'key' => 'variante',
+                        'value' => '1',
+                        'compare' => '='
+                    );
+                }
+                break;
+        }
+    }
+
+    // Remove the relation if no meta queries were added
+    if (count($args['meta_query']) === 1) {
+        unset($args['meta_query']['relation']);
+    }
+
+    // Execute query
+    $query = new WP_Query($args);
+    
+    if ($query->have_posts()) {
+        ob_start();
+        
+        // Start the loop
+        while ($query->have_posts()) {
+            $query->the_post();
+            
+            // Include the appropriate template part based on post type
+            switch ($post_type) {
+                case 'artiste':
+                    include(get_template_directory() . '/template-parts/content-artiste.php');
+                    break;
+                case 'collection':
+                    include(get_template_directory() . '/template-parts/content-collection.php');
+                    break;
+                case 'editeur':
+                    include(get_template_directory() . '/template-parts/content-editeur.php');
+                    break;
+                case 'livre':
+                    include(get_template_directory() . '/template-parts/content-livre.php');
+                    break;
+                default:
+                    get_template_part('template-parts/content', get_post_type());
+            }
+        }
+        
+        $html = ob_get_clean();
+        wp_reset_postdata();
+        
+        // Generate pagination
+        $pagination = '';
+        if ($query->max_num_pages > 1) {
+            $pagination = paginate_links(array(
+                'base' => '#',
+                'format' => '?paged=%#%',
+                'current' => $page,
+                'total' => $query->max_num_pages,
+                'prev_text' => __('&laquo; Précédent'),
+                'next_text' => __('Suivant &raquo;'),
+                'type' => 'array'
+            ));
+            
+            if ($pagination) {
+                $pagination = '<div class="archive-pagination">' . implode('', $pagination) . '</div>';
+            }
+        }
+        
+        wp_send_json_success(array(
+            'html' => $html,
+            'pagination' => $pagination,
+            'total_results' => $query->found_posts,
+            'current_page' => $page,
+            'max_pages' => $query->max_num_pages
+        ));
+    } else {
+        wp_send_json_success(array(
+            'html' => '<div class="no-posts"><p>Aucun résultat trouvé.</p></div>',
+            'pagination' => '',
+            'total_results' => 0,
+            'current_page' => $page,
+            'max_pages' => 0
+        ));
+    }
+}
+add_action('wp_ajax_archive_search', 'archive_search_ajax');
+add_action('wp_ajax_nopriv_archive_search', 'archive_search_ajax');
+
+// Archive Autocomplete AJAX Function
+function archive_autocomplete_ajax() {
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['nonce'], 'archive_search_nonce')) {
+        wp_die('Security check failed');
+    }
+
+    $post_type = sanitize_text_field($_POST['post_type']);
+    $term = sanitize_text_field($_POST['term']);
+    $suggestions = array();
+
+    if (strlen($term) >= 2) {
+        $args = array(
+            'post_type' => $post_type,
+            'post_status' => 'publish',
+            'posts_per_page' => 10,
+            's' => $term,
+            'orderby' => 'title',
+            'order' => 'ASC'
+        );
+
+        $query = new WP_Query($args);
+        
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+                
+                $title = get_the_title();
+                $suggestions[] = array(
+                    'label' => $title,
+                    'value' => $title
+                );
+            }
+            wp_reset_postdata();
+        }
+    }
+
+    wp_send_json_success($suggestions);
+}
+add_action('wp_ajax_archive_autocomplete', 'archive_autocomplete_ajax');
+add_action('wp_ajax_nopriv_archive_autocomplete', 'archive_autocomplete_ajax');

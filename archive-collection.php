@@ -41,35 +41,7 @@ get_header(); ?>
                             <option value="">Tous les statuts</option>
                             <option value="En cours">En cours</option>
                             <option value="Terminée">Terminée</option>
-                            <option value="Abandonnée">Abandonnée</option>
-                        </select>
-                    </div>
-                    
-                    <div class="archive-filter-group">
-                        <label class="archive-filter-label">Éditeur</label>
-                        <select class="archive-filter-select" data-filter="publisher">
-                            <option value="">Tous les éditeurs</option>
-                            <?php
-                            // Get unique publishers from ACF field
-                            $publishers = array();
-                            $collections = get_posts(array(
-                                'post_type' => 'collection',
-                                'posts_per_page' => -1,
-                                'meta_key' => 'editeur_collection'
-                            ));
-                            
-                            foreach ($collections as $collection) {
-                                $publisher = get_field('editeur_collection', $collection->ID);
-                                if ($publisher && !in_array($publisher->post_title, $publishers)) {
-                                    $publishers[] = $publisher->post_title;
-                                }
-                            }
-                            
-                            sort($publishers);
-                            foreach ($publishers as $publisher) {
-                                echo '<option value="' . esc_attr($publisher) . '">' . esc_html($publisher) . '</option>';
-                            }
-                            ?>
+                            <option value="Abandonné">Abandonné</option>
                         </select>
                     </div>
                 </div>

@@ -323,26 +323,35 @@ function archive_search_ajax() {
             case 'collection':
                 if (!empty($filters['status'])) {
                     $args['meta_query'][] = array(
-                        'key' => 'statut_collection',
+                        'key' => 'etat_collection',
                         'value' => sanitize_text_field($filters['status']),
                         'compare' => '='
                     );
                 }
                 if (!empty($filters['publisher'])) {
-                    // For publisher, we need to search by post title since it's a relationship field
-                    $publisher_posts = get_posts(array(
+                    // Relationship field stores IDs; find editor by exact title then match IDs
+                    $publisher_term = sanitize_text_field($filters['publisher']);
+                    $publisher_query = get_posts(array(
                         'post_type' => 'editeur',
                         'posts_per_page' => -1,
-                        'title' => sanitize_text_field($filters['publisher'])
+                        's' => $publisher_term,
+                        'fields' => 'ids',
                     ));
-                    
-                    if (!empty($publisher_posts)) {
-                        $publisher_ids = wp_list_pluck($publisher_posts, 'ID');
-                        $args['meta_query'][] = array(
-                            'key' => 'editeur_collection',
-                            'value' => $publisher_ids,
-                            'compare' => 'IN'
-                        );
+                    if (!empty($publisher_query)) {
+                        // Filter to exact title match to handle hyphens and special chars
+                        $matching_ids = array();
+                        foreach ($publisher_query as $publisher_id) {
+                            if (get_the_title($publisher_id) === $publisher_term) {
+                                $matching_ids[] = $publisher_id;
+                            }
+                        }
+                        if (!empty($matching_ids)) {
+                            $args['meta_query'][] = array(
+                                'key' => 'editeur_collection',
+                                'value' => $matching_ids,
+                                'compare' => 'IN'
+                            );
+                        }
                     }
                 }
                 break;
@@ -359,37 +368,51 @@ function archive_search_ajax() {
                 
             case 'livre':
                 if (!empty($filters['publisher'])) {
-                    // For publisher, we need to search by post title since it's a relationship field
-                    $publisher_posts = get_posts(array(
+                    $publisher_term = sanitize_text_field($filters['publisher']);
+                    $publisher_query = get_posts(array(
                         'post_type' => 'editeur',
                         'posts_per_page' => -1,
-                        'title' => sanitize_text_field($filters['publisher'])
+                        's' => $publisher_term,
+                        'fields' => 'ids',
                     ));
-                    
-                    if (!empty($publisher_posts)) {
-                        $publisher_ids = wp_list_pluck($publisher_posts, 'ID');
-                        $args['meta_query'][] = array(
-                            'key' => 'maison_d\'edition',
-                            'value' => $publisher_ids,
-                            'compare' => 'IN'
-                        );
+                    if (!empty($publisher_query)) {
+                        $matching_ids = array();
+                        foreach ($publisher_query as $publisher_id) {
+                            if (get_the_title($publisher_id) === $publisher_term) {
+                                $matching_ids[] = $publisher_id;
+                            }
+                        }
+                        if (!empty($matching_ids)) {
+                            $args['meta_query'][] = array(
+                                'key' => 'maison_d\'edition',
+                                'value' => $matching_ids,
+                                'compare' => 'IN'
+                            );
+                        }
                     }
                 }
                 if (!empty($filters['collection'])) {
-                    // For collection, we need to search by post title since it's a relationship field
-                    $collection_posts = get_posts(array(
+                    $collection_term = sanitize_text_field($filters['collection']);
+                    $collection_query = get_posts(array(
                         'post_type' => 'collection',
                         'posts_per_page' => -1,
-                        'title' => sanitize_text_field($filters['collection'])
+                        's' => $collection_term,
+                        'fields' => 'ids',
                     ));
-                    
-                    if (!empty($collection_posts)) {
-                        $collection_ids = wp_list_pluck($collection_posts, 'ID');
-                        $args['meta_query'][] = array(
-                            'key' => 'collection',
-                            'value' => $collection_ids,
-                            'compare' => 'IN'
-                        );
+                    if (!empty($collection_query)) {
+                        $matching_ids = array();
+                        foreach ($collection_query as $collection_id) {
+                            if (get_the_title($collection_id) === $collection_term) {
+                                $matching_ids[] = $collection_id;
+                            }
+                        }
+                        if (!empty($matching_ids)) {
+                            $args['meta_query'][] = array(
+                                'key' => 'collection',
+                                'value' => $matching_ids,
+                                'compare' => 'IN'
+                            );
+                        }
                     }
                 }
                 if (!empty($filters['variant'])) {

@@ -36,34 +36,6 @@ get_header(); ?>
                 
                 <div class="archive-filters-row">
                     <div class="archive-filter-group">
-                        <label class="archive-filter-label">Nationalité</label>
-                        <select class="archive-filter-select" data-filter="nationality">
-                            <option value="">Toutes les nationalités</option>
-                            <?php
-                            // Get unique nationalities from ACF field
-                            $nationalities = array();
-                            $artistes = get_posts(array(
-                                'post_type' => 'artiste',
-                                'posts_per_page' => -1,
-                                'meta_key' => 'nationalite_artiste'
-                            ));
-                            
-                            foreach ($artistes as $artiste) {
-                                $nationality = get_field('nationalite_artiste', $artiste->ID);
-                                if ($nationality && !in_array($nationality, $nationalities)) {
-                                    $nationalities[] = $nationality;
-                                }
-                            }
-                            
-                            sort($nationalities);
-                            foreach ($nationalities as $nationality) {
-                                echo '<option value="' . esc_attr($nationality) . '">' . esc_html($nationality) . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    
-                    <div class="archive-filter-group">
                         <label class="archive-filter-label">Rôle</label>
                         <select class="archive-filter-select" data-filter="role">
                             <option value="">Tous les rôles</option>

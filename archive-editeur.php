@@ -34,35 +34,6 @@ get_header(); ?>
                            autocomplete="off">
                 </div>
                 
-                <div class="archive-filters-row">
-                    <div class="archive-filter-group">
-                        <label class="archive-filter-label">Pays</label>
-                        <select class="archive-filter-select" data-filter="country">
-                            <option value="">Tous les pays</option>
-                            <?php
-                            // Get unique countries from ACF field
-                            $countries = array();
-                            $editeurs = get_posts(array(
-                                'post_type' => 'editeur',
-                                'posts_per_page' => -1,
-                                'meta_key' => 'pays_editeur'
-                            ));
-                            
-                            foreach ($editeurs as $editeur) {
-                                $country = get_field('pays_editeur', $editeur->ID);
-                                if ($country && !in_array($country, $countries)) {
-                                    $countries[] = $country;
-                                }
-                            }
-                            
-                            sort($countries);
-                            foreach ($countries as $country) {
-                                echo '<option value="' . esc_attr($country) . '">' . esc_html($country) . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
             </form>
         </div>
 

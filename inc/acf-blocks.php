@@ -19,6 +19,8 @@ function gl_acf_init() {
         $blocks = array(
             'text' => 'Text',
             'register' => 'Register',
+            'login' => 'Login',
+            'profile' => 'Profile',
         );
 
         foreach ($blocks as $name => $title) {
@@ -53,6 +55,8 @@ function gl_allowed_block_types($allowed_blocks, $post) {
     $allowed_blocks = array(
         'acf/text',
         'acf/register',
+        'acf/profile',
+        'acf/login',
     );
 
     return $allowed_blocks;

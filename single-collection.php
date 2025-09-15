@@ -9,48 +9,48 @@ get_header(); ?>
 
 <main id="main" class="site-main">
     <div class="container">
-        <?php while (have_posts()) : the_post(); ?>
+        <?php while (have_posts()):
+            the_post(); ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class('single-collection'); ?>>
-                <header class="collection-header">
+                <div class="collection-header">
                     <div class="collection-hero">
                         <div class="collection-image">
                             <?php
                             $logo = get_field('logo_collection');
-                            if ($logo) : ?>
-                                <img src="<?php echo esc_url($logo['url']); ?>" 
-                                     alt="<?php echo esc_attr($logo['alt']); ?>" 
-                                     class="collection-logo">
-                            <?php else : ?>
+                            if ($logo): ?>
+                                <img src="<?php echo esc_url($logo['url']); ?>" alt="<?php echo esc_attr($logo['alt']); ?>"
+                                    class="collection-logo">
+                            <?php else: ?>
                                 <div class="no-image-placeholder">
                                     <span class="dashicons dashicons-book-alt"></span>
                                 </div>
                             <?php endif; ?>
                         </div>
-                        
+
                         <div class="collection-info">
                             <h1 class="collection-title">
-                                <?php 
+                                <?php
                                 $nom = get_field('nom_collection');
-                                echo $nom ? esc_html($nom) : get_the_title(); 
+                                echo $nom ? esc_html($nom) : get_the_title();
                                 ?>
                             </h1>
-                            
+
                             <?php
                             $date_sortie = get_field('date_de_sortie_collection');
                             $date_fin = get_field('date_de_fin_collection');
                             $etat = get_field('etat_collection');
                             ?>
-                            
-                            <?php if ($date_sortie || $date_fin) : ?>
+
+                            <?php if ($date_sortie || $date_fin): ?>
                                 <div class="collection-dates">
-                                    <?php if ($date_sortie) : ?>
+                                    <?php if ($date_sortie): ?>
                                         <div class="date-item">
                                             <span class="date-label">Date de sortie:</span>
                                             <span class="date-value"><?php echo esc_html($date_sortie); ?></span>
                                         </div>
                                     <?php endif; ?>
-                                    
-                                    <?php if ($date_fin) : ?>
+
+                                    <?php if ($date_fin): ?>
                                         <div class="date-item">
                                             <span class="date-label">Date de fin:</span>
                                             <span class="date-value"><?php echo esc_html($date_fin); ?></span>
@@ -58,60 +58,58 @@ get_header(); ?>
                                     <?php endif; ?>
                                 </div>
                             <?php endif; ?>
-                            
-                            <?php if ($etat) : ?>
+
+                            <?php if ($etat): ?>
                                 <div class="collection-status">
                                     <span class="status-badge status-<?php echo esc_attr(strtolower($etat)); ?>">
                                         <?php echo esc_html($etat); ?>
                                     </span>
                                 </div>
                             <?php endif; ?>
-                            
-                            <?php if (is_user_logged_in()) : ?>
+
+                            <?php if (is_user_logged_in()): ?>
                                 <div class="book-actions">
                                     <?php
                                     $current_user_id = get_current_user_id();
                                     $post_id = get_the_ID();
-                                    
+
                                     // Collection wishlist button
                                     $in_collection_wishlist = is_book_in_user_list($current_user_id, $post_id, 'collection_wishlist');
                                     ?>
-                                    <button class="book-action-btn <?php echo $in_collection_wishlist ? 'active' : ''; ?>" 
-                                            data-post-id="<?php echo $post_id; ?>" 
-                                            data-list-type="collection_wishlist" 
-                                            data-action="<?php echo $in_collection_wishlist ? 'remove' : 'add'; ?>"
-                                            data-post-type="collection"
-                                            data-bs-toggle="tooltip" 
-                                            title="<?php echo $in_collection_wishlist ? __('Retirer des souhaits de collection', 'bdcomic_theme') : __('Ajouter aux souhaits de collection', 'bdcomic_theme'); ?>">
+                                    <button class="book-action-btn <?php echo $in_collection_wishlist ? 'active' : ''; ?>"
+                                        data-post-id="<?php echo $post_id; ?>" data-list-type="collection_wishlist"
+                                        data-action="<?php echo $in_collection_wishlist ? 'remove' : 'add'; ?>"
+                                        data-post-type="collection" data-bs-toggle="tooltip"
+                                        title="<?php echo $in_collection_wishlist ? __('Retirer des souhaits de collection', 'bdcomic_theme') : __('Ajouter aux souhaits de collection', 'bdcomic_theme'); ?>">
                                         <span class="btn-icon dashicons dashicons-star-filled"></span>
-                                        <span class="btn-text"><?php echo $in_collection_wishlist ? __('Retirer des souhaits de collection', 'bdcomic_theme') : __('Ajouter aux souhaits de collection', 'bdcomic_theme'); ?></span>
+                                        <span
+                                            class="btn-text"><?php echo $in_collection_wishlist ? __('Retirer des souhaits de collection', 'bdcomic_theme') : __('Ajouter aux souhaits de collection', 'bdcomic_theme'); ?></span>
                                     </button>
-                                    
+
                                     <?php
                                     // Missing albums button
                                     $in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
                                     ?>
-                                    <button class="book-action-btn <?php echo $in_missing_albums ? 'active' : ''; ?>" 
-                                            data-post-id="<?php echo $post_id; ?>" 
-                                            data-list-type="missing_albums" 
-                                            data-action="<?php echo $in_missing_albums ? 'remove' : 'add'; ?>"
-                                            data-post-type="collection"
-                                            data-bs-toggle="tooltip" 
-                                            title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
+                                    <button class="book-action-btn <?php echo $in_missing_albums ? 'active' : ''; ?>"
+                                        data-post-id="<?php echo $post_id; ?>" data-list-type="missing_albums"
+                                        data-action="<?php echo $in_missing_albums ? 'remove' : 'add'; ?>"
+                                        data-post-type="collection" data-bs-toggle="tooltip"
+                                        title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
                                         <span class="btn-icon dashicons dashicons-minus"></span>
-                                        <span class="btn-text"><?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?></span>
+                                        <span
+                                            class="btn-text"><?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?></span>
                                     </button>
                                 </div>
                             <?php endif; ?>
                         </div>
                     </div>
-                </header>
+                </div>
 
                 <div class="collection-content">
                     <div class="collection-main">
                         <?php
                         $resume = get_field('resume_collection');
-                        if ($resume) : ?>
+                        if ($resume): ?>
                             <section class="collection-summary">
                                 <h2>Résumé de la collection</h2>
                                 <div class="summary-content">
@@ -133,23 +131,23 @@ get_header(); ?>
                                 )
                             )
                         ));
-                        
-                        if ($books_in_collection) : ?>
+
+                        if ($books_in_collection): ?>
                             <section class="collection-books">
                                 <h2>Livres de la collection</h2>
                                 <div class="books-grid">
-                                    <?php foreach ($books_in_collection as $book) : 
+                                    <?php foreach ($books_in_collection as $book):
                                         $photo_devant = get_field('photo_devant', $book->ID);
                                         $titre = get_field('titre_livre', $book->ID);
                                         $date_sortie_livre = get_field('date_sortie_livre', $book->ID);
                                         $n_sortie = get_field('n_sortie', $book->ID);
-                                    ?>
+                                        ?>
                                         <div class="book-item">
                                             <div class="book-cover">
-                                                <?php if ($photo_devant) : ?>
-                                                    <img src="<?php echo esc_url($photo_devant['url']); ?>" 
-                                                         alt="<?php echo esc_attr($photo_devant['alt']); ?>">
-                                                <?php else : ?>
+                                                <?php if ($photo_devant): ?>
+                                                    <img src="<?php echo esc_url($photo_devant['url']); ?>"
+                                                        alt="<?php echo esc_attr($photo_devant['alt']); ?>">
+                                                <?php else: ?>
                                                     <div class="no-cover-placeholder">
                                                         <span class="dashicons dashicons-book"></span>
                                                     </div>
@@ -161,10 +159,10 @@ get_header(); ?>
                                                         <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
                                                     </a>
                                                 </h3>
-                                                <?php if ($n_sortie) : ?>
+                                                <?php if ($n_sortie): ?>
                                                     <div class="book-number">N° <?php echo esc_html($n_sortie); ?></div>
                                                 <?php endif; ?>
-                                                <?php if ($date_sortie_livre) : ?>
+                                                <?php if ($date_sortie_livre): ?>
                                                     <div class="book-date"><?php echo esc_html($date_sortie_livre); ?></div>
                                                 <?php endif; ?>
                                             </div>
@@ -179,25 +177,25 @@ get_header(); ?>
                         <div class="collection-meta">
                             <h3>Informations</h3>
                             <ul class="meta-list">
-                                <?php if ($date_sortie) : ?>
+                                <?php if ($date_sortie): ?>
                                     <li>
                                         <strong>Sortie:</strong> <?php echo esc_html($date_sortie); ?>
                                     </li>
                                 <?php endif; ?>
-                                
-                                <?php if ($date_fin) : ?>
+
+                                <?php if ($date_fin): ?>
                                     <li>
                                         <strong>Fin:</strong> <?php echo esc_html($date_fin); ?>
                                     </li>
                                 <?php endif; ?>
-                                
-                                <?php if ($etat) : ?>
+
+                                <?php if ($etat): ?>
                                     <li>
                                         <strong>État:</strong> <?php echo esc_html($etat); ?>
                                     </li>
                                 <?php endif; ?>
-                                
-                                <?php if ($books_in_collection) : ?>
+
+                                <?php if ($books_in_collection): ?>
                                     <li>
                                         <strong>Nombre de livres:</strong> <?php echo count($books_in_collection); ?>
                                     </li>

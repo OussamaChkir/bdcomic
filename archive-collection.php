@@ -9,7 +9,7 @@ get_header(); ?>
 
 <main id="main" class="site-main">
     <div class="container">
-        <header class="page-header">
+        <div class="page-header">
             <h1 class="page-title"><?php post_type_archive_title(); ?></h1>
             <?php
             $archive_description = get_the_archive_description();
@@ -17,7 +17,7 @@ get_header(); ?>
                 echo '<div class="archive-description">' . $archive_description . '</div>';
             }
             ?>
-        </header>
+        </div>
 
         <!-- Archive Search Container -->
         <div class="archive-search-container">

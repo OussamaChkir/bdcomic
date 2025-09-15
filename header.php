@@ -46,7 +46,60 @@
                         } ?>
                     </div>
                 </nav>
+
+
             </div>
+                <!-- User Actions Container -->
+                <div class="header-actions-container">
+                    <?php if (is_user_logged_in()) : ?>
+                        <!-- Logged in user dropdown menu -->
+                        <div class="user-dropdown">
+                            <button class="user-dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="dashicons dashicons-admin-users"></i>
+                                <span class="user-name"><?php echo wp_get_current_user()->display_name; ?></span>
+                                <i class="dashicons dashicons-arrow-down-alt2"></i>
+                            </button>
+                            <ul class="dropdown-menu user-dropdown-menu">
+                                <li><a class="dropdown-item" href="<?php echo home_url('/ma-bibliotheque'); ?>">
+                                    <i class="dashicons dashicons-book"></i> Ma Bibliothèque
+                                </a></li>
+                                <li><a class="dropdown-item" href="<?php echo home_url('/ma-collection'); ?>">
+                                    <i class="dashicons dashicons-portfolio"></i> Ma Collection
+                                </a></li>
+                                <li><a class="dropdown-item" href="<?php echo home_url('/mes-souhaits'); ?>">
+                                    <i class="dashicons dashicons-heart"></i> Mes Souhaits
+                                </a></li>
+                                <li><a class="dropdown-item" href="<?php echo home_url('/mes-albums-manquants'); ?>">
+                                    <i class="dashicons dashicons-search"></i> Mes Albums Manquants
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="<?php echo wp_logout_url(home_url()); ?>">
+                                    <i class="dashicons dashicons-exit"></i> Déconnexion
+                                </a></li>
+                            </ul>
+                        </div>
+                    <?php else : ?>
+                        <!-- Non-logged in user login dropdown -->
+                        <div class="login-dropdown">
+                            <button class="login-dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="dashicons dashicons-admin-users"></i>
+                                <span>Connexion</span>
+                                <i class="dashicons dashicons-arrow-down-alt2"></i>
+                            </button>
+                            <div class="dropdown-menu login-dropdown-menu">
+                                <div class="login-form-container">
+                                    <?php if (class_exists('UM')) : ?>
+                                        <?php echo do_shortcode('[ultimatemember form_id="42"]'); ?>
+                                    <?php else : ?>
+                                        <div class="alert alert-warning">
+                                            <?php _e('Ultimate Member plugin is not active. Please install and activate the Ultimate Member plugin to display the login form.', 'bdcomic_theme'); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
         </div>
         </div>
 

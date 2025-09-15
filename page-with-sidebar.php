@@ -153,12 +153,12 @@ get_header(); ?>
             <!-- Main Content -->
             <div class="col-lg-9 col-md-8">
                 <div class="page-content">
-                    <header class="page-header">
+                    <div class="page-header">
                         <h1 class="page-title"><?php the_title(); ?></h1>
                         <?php if (get_field('page_subtitle')) : ?>
                             <p class="page-subtitle"><?php the_field('page_subtitle'); ?></p>
                         <?php endif; ?>
-                    </header>
+                        </div>
                     
                     <div class="page-body">
                         <?php

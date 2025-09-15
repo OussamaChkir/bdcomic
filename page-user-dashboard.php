@@ -16,14 +16,14 @@ get_header(); ?>
 <main id="main" class="site-main">
     <div class="container">
         <div class="user-books-dashboard">
-            <header class="dashboard-header">
+            <div class="dashboard-header">
                 <h1 class="dashboard-title">
                     <?php _e('Mon Tableau de Bord', 'bdcomic_theme'); ?>
                 </h1>
                 <p class="dashboard-subtitle">
                     <?php _e('Gérez vos livres, souhaits et collections', 'bdcomic_theme'); ?>
                 </p>
-            </header>
+            </div>
 
             <?php
             $current_user = wp_get_current_user();

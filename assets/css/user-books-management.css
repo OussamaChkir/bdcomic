@@ -1,0 +1,481 @@
+/**
+ * User Books Management Styles
+ * Styles for user book collections, wishes, and read books interface
+ */
+
+/* Book Actions Container */
+.book-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    align-items: center;
+}
+
+.book-actions .book-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.book-actions .book-action-btn:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-actions .book-action-btn:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.book-actions .book-action-btn:disabled,
+.book-actions .book-action-btn.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.book-actions .book-action-btn .btn-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* Wishlist Button */
+.book-action-btn[data-list-type="wishlist"] {
+    color: #dc2626;
+    border-color: #dc2626;
+    background-color: transparent;
+}
+
+.book-action-btn[data-list-type="wishlist"]:hover {
+    background-color: #dc2626;
+    color: white;
+}
+
+.book-action-btn[data-list-type="wishlist"].active {
+    background-color: #dc2626;
+    color: white;
+}
+
+/* Read Books Button */
+.book-action-btn[data-list-type="read"] {
+    color: #059669;
+    border-color: #059669;
+    background-color: transparent;
+}
+
+.book-action-btn[data-list-type="read"]:hover {
+    background-color: #059669;
+    color: white;
+}
+
+.book-action-btn[data-list-type="read"].active {
+    background-color: #059669;
+    color: white;
+}
+
+/* Collection Wishlist Button */
+.book-action-btn[data-list-type="collection_wishlist"] {
+    color: #d97706;
+    border-color: #d97706;
+    background-color: transparent;
+}
+
+.book-action-btn[data-list-type="collection_wishlist"]:hover {
+    background-color: #d97706;
+    color: white;
+}
+
+.book-action-btn[data-list-type="collection_wishlist"].active {
+    background-color: #d97706;
+    color: white;
+}
+
+/* Missing Albums Button */
+.book-action-btn[data-list-type="missing_albums"] {
+    color: #7c3aed;
+    border-color: #7c3aed;
+    background-color: transparent;
+}
+
+.book-action-btn[data-list-type="missing_albums"]:hover {
+    background-color: #7c3aed;
+    color: white;
+}
+
+.book-action-btn[data-list-type="missing_albums"].active {
+    background-color: #7c3aed;
+    color: white;
+}
+
+/* Quick Action Buttons (Single Click Toggle) */
+.book-quick-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.book-quick-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px solid;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #6b7280;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.book-quick-action:hover {
+    transform: scale(1.1);
+    text-decoration: none;
+}
+
+.book-quick-action.active {
+    background-color: currentColor;
+    color: white;
+}
+
+.book-quick-action[data-list-type="wishlist"] {
+    border-color: #dc2626;
+    color: #dc2626;
+}
+
+.book-quick-action[data-list-type="read"] {
+    border-color: #059669;
+    color: #059669;
+}
+
+.book-quick-action[data-list-type="collection_wishlist"] {
+    border-color: #d97706;
+    color: #d97706;
+}
+
+.book-quick-action[data-list-type="missing_albums"] {
+    border-color: #7c3aed;
+    color: #7c3aed;
+}
+
+/* Action Messages */
+.book-action-message {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    animation: slideInDown 0.3s ease-out;
+}
+
+.book-action-message.message-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.book-action-message.message-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+/* User Dashboard Styles */
+.user-books-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.user-books-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.user-books-stat-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.user-books-stat-card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.user-books-stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.user-books-stat-description {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.user-books-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.user-books-section {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.user-books-section h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.user-books-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-books-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.user-books-list-item:last-child {
+    border-bottom: none;
+}
+
+.user-books-list-item-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.book-thumbnail {
+    width: 50px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.book-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-books-list-item-title {
+    font-weight: 500;
+    color: #1f2937;
+    margin: 0 0 0.25rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-books-list-item-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.user-books-list-item-title a:hover {
+    text-decoration: underline;
+}
+
+.user-books-list-item-meta {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.user-books-list-item-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+/* Empty State */
+.user-books-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6b7280;
+}
+
+.user-books-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.user-books-empty h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.user-books-empty p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Loading States */
+.user-books-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: #6b7280;
+}
+
+.user-books-loading::before {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #e5e7eb;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-books-dashboard {
+        padding: 1rem;
+    }
+    
+    .user-books-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .user-books-sections {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .book-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .book-actions .book-action-btn {
+        justify-content: center;
+    }
+    
+    .user-books-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .user-books-list-item-info {
+        width: 100%;
+        gap: 0.75rem;
+    }
+    
+    .book-thumbnail {
+        width: 40px;
+        height: 56px;
+    }
+    
+    .user-books-list-item-actions {
+        margin-left: 0;
+        align-self: flex-end;
+    }
+    
+    .book-quick-actions {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Animations */
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .user-books-stat-card,
+    .user-books-section {
+        background: #1f2937;
+        border-color: #374151;
+        color: #f9fafb;
+    }
+    
+    .user-books-stat-card h3,
+    .user-books-section h2 {
+        color: #f9fafb;
+    }
+    
+    .user-books-stat-number {
+        color: #f9fafb;
+    }
+    
+    .user-books-stat-description {
+        color: #9ca3af;
+    }
+    
+    .user-books-list-item-title {
+        color: #f9fafb;
+    }
+    
+    .user-books-list-item-meta {
+        color: #9ca3af;
+    }
+    
+    .user-books-empty {
+        color: #9ca3af;
+    }
+    
+    .user-books-loading {
+        color: #9ca3af;
+    }
+}

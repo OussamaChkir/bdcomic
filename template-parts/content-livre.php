@@ -129,6 +129,39 @@
                 <a href="<?php the_permalink(); ?>" class="read-more">
                     Voir le livre
                 </a>
+                
+                <?php if (is_user_logged_in()) : ?>
+                    <div class="book-quick-actions">
+                        <?php
+                        $current_user_id = get_current_user_id();
+                        $post_id = get_the_ID();
+                        
+                        // Quick wishlist button
+                        $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
+                        ?>
+                        <button class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>" 
+                                data-post-id="<?php echo $post_id; ?>" 
+                                data-list-type="wishlist"
+                                data-post-type="livre"
+                                data-bs-toggle="tooltip" 
+                                title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
+                            <span class="dashicons <?php echo $in_wishlist ? 'dashicons-heart-filled' : 'dashicons-heart'; ?>"></span>
+                        </button>
+                        
+                        <?php
+                        // Quick read button
+                        $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
+                        ?>
+                        <button class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>" 
+                                data-post-id="<?php echo $post_id; ?>" 
+                                data-list-type="read"
+                                data-post-type="livre"
+                                data-bs-toggle="tooltip" 
+                                title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
+                            <span class="dashicons <?php echo $is_read ? 'dashicons-yes' : 'dashicons-yes-alt'; ?>"></span>
+                        </button>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

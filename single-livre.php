@@ -116,6 +116,43 @@ get_header(); ?>
                                     </span>
                                 </div>
                             <?php endif; ?>
+                            
+                            <?php if (is_user_logged_in()) : ?>
+                                <div class="book-actions">
+                                    <?php
+                                    $current_user_id = get_current_user_id();
+                                    $post_id = get_the_ID();
+                                    
+                                    // Wishlist button
+                                    $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
+                                    ?>
+                                    <button class="book-action-btn <?php echo $in_wishlist ? 'active' : ''; ?>" 
+                                            data-post-id="<?php echo $post_id; ?>" 
+                                            data-list-type="wishlist" 
+                                            data-action="<?php echo $in_wishlist ? 'remove' : 'add'; ?>"
+                                            data-post-type="livre"
+                                            data-bs-toggle="tooltip" 
+                                            title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
+                                        <span class="btn-icon dashicons <?php echo $in_wishlist ? 'dashicons-heart-filled' : 'dashicons-heart'; ?>"></span>
+                                        <span class="btn-text"><?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?></span>
+                                    </button>
+                                    
+                                    <?php
+                                    // Read books button
+                                    $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
+                                    ?>
+                                    <button class="book-action-btn <?php echo $is_read ? 'active' : ''; ?>" 
+                                            data-post-id="<?php echo $post_id; ?>" 
+                                            data-list-type="read" 
+                                            data-action="<?php echo $is_read ? 'remove' : 'add'; ?>"
+                                            data-post-type="livre"
+                                            data-bs-toggle="tooltip" 
+                                            title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
+                                        <span class="btn-icon dashicons <?php echo $is_read ? 'dashicons-yes' : 'dashicons-yes-alt'; ?>"></span>
+                                        <span class="btn-text"><?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?></span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </header>

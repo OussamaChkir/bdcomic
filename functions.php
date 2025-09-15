@@ -5,6 +5,7 @@ require_once('inc/tinymce-setup.php');
 require_once('inc/functions.php');
 require_once('inc/custom-post-types.php');
 require_once('inc/anchor-links.php');
+require_once('inc/user-books-management.php');
 
 class wbg_theme {
     // set the option name you use in your settings page
@@ -93,6 +94,9 @@ class wbg_theme {
             }
             if (is_singular('livre')) {
                 wp_enqueue_style('single-livre', get_template_directory_uri() . '/assets/css/Globals/single-livre.css', false, '1.0');
+            }
+            if (is_page_template('page-with-sidebar.php')) {
+                wp_enqueue_style('page-with-sidebar', get_template_directory_uri() . '/assets/css/Globals/page-with-sidebar.css', false, '1.0');
             }
 
             // Enqueue scripts

@@ -73,6 +73,39 @@
                 <a href="<?php the_permalink(); ?>" class="read-more">
                     Voir la collection
                 </a>
+                
+                <?php if (is_user_logged_in()) : ?>
+                    <div class="book-quick-actions">
+                        <?php
+                        $current_user_id = get_current_user_id();
+                        $post_id = get_the_ID();
+                        
+                        // Quick collection wishlist button
+                        $in_collection_wishlist = is_book_in_user_list($current_user_id, $post_id, 'collection_wishlist');
+                        ?>
+                        <button class="book-quick-action <?php echo $in_collection_wishlist ? 'active' : ''; ?>" 
+                                data-post-id="<?php echo $post_id; ?>" 
+                                data-list-type="collection_wishlist"
+                                data-post-type="collection"
+                                data-bs-toggle="tooltip" 
+                                title="<?php echo $in_collection_wishlist ? __('Retirer des souhaits de collection', 'bdcomic_theme') : __('Ajouter aux souhaits de collection', 'bdcomic_theme'); ?>">
+                            <span class="dashicons dashicons-star-filled"></span>
+                        </button>
+                        
+                        <?php
+                        // Quick missing albums button
+                        $in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
+                        ?>
+                        <button class="book-quick-action <?php echo $in_missing_albums ? 'active' : ''; ?>" 
+                                data-post-id="<?php echo $post_id; ?>" 
+                                data-list-type="missing_albums"
+                                data-post-type="collection"
+                                data-bs-toggle="tooltip" 
+                                title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
+                            <span class="dashicons dashicons-minus"></span>
+                        </button>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

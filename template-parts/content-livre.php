@@ -160,6 +160,19 @@
                                 title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
                             <span class="dashicons <?php echo $is_read ? 'dashicons-yes' : 'dashicons-yes-alt'; ?>"></span>
                         </button>
+
+                        <?php
+                        // Quick missing albums button for book
+                        $in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
+                        ?>
+                        <button class="book-quick-action <?php echo $in_missing_albums ? 'active' : ''; ?>" 
+                                data-post-id="<?php echo $post_id; ?>" 
+                                data-list-type="missing_albums"
+                                data-post-type="livre"
+                                data-bs-toggle="tooltip" 
+                                title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
+                            <span class="dashicons dashicons-minus"></span>
+                        </button>
                     </div>
                 <?php endif; ?>
             </div>

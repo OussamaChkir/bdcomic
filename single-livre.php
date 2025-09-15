@@ -137,6 +137,21 @@ get_header(); ?>
                                     </button>
 
                                     <?php
+                                    // Missing albums button for book
+                                    $in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
+                                    ?>
+                                    <button class="book-action-btn <?php echo $in_missing_albums ? 'active' : ''; ?>" 
+                                            data-post-id="<?php echo $post_id; ?>" 
+                                            data-list-type="missing_albums" 
+                                            data-action="<?php echo $in_missing_albums ? 'remove' : 'add'; ?>"
+                                            data-post-type="livre"
+                                            data-bs-toggle="tooltip" 
+                                            title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
+                                        <span class="btn-icon dashicons dashicons-minus"></span>
+                                        <span class="btn-text"><?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?></span>
+                                    </button>
+                                    
+                                    <?php
                                     // Read books button
                                     $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
                                     ?>

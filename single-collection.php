@@ -66,40 +66,9 @@ get_header(); ?>
                                     </span>
                                 </div>
                             <?php endif; ?>
-
-                            <?php if (is_user_logged_in()): ?>
-                                <div class="book-actions">
-                                    <?php
-                                    $current_user_id = get_current_user_id();
-                                    $post_id = get_the_ID();
-
-                                    // Collection wishlist button
-                                    $in_collection_wishlist = is_book_in_user_list($current_user_id, $post_id, 'collection_wishlist');
-                                    ?>
-                                    <button class="book-action-btn <?php echo $in_collection_wishlist ? 'active' : ''; ?>"
-                                        data-post-id="<?php echo $post_id; ?>" data-list-type="collection_wishlist"
-                                        data-action="<?php echo $in_collection_wishlist ? 'remove' : 'add'; ?>"
-                                        data-post-type="collection" data-bs-toggle="tooltip"
-                                        title="<?php echo $in_collection_wishlist ? __('Retirer des souhaits de collection', 'bdcomic_theme') : __('Ajouter aux souhaits de collection', 'bdcomic_theme'); ?>">
-                                        <span class="btn-icon dashicons dashicons-star-filled"></span>
-                                        <span
-                                            class="btn-text"><?php echo $in_collection_wishlist ? __('Retirer des souhaits de collection', 'bdcomic_theme') : __('Ajouter aux souhaits de collection', 'bdcomic_theme'); ?></span>
-                                    </button>
-
-                                    <?php
-                                    // Missing albums button
-                                    $in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
-                                    ?>
-                                    <button class="book-action-btn <?php echo $in_missing_albums ? 'active' : ''; ?>"
-                                        data-post-id="<?php echo $post_id; ?>" data-list-type="missing_albums"
-                                        data-action="<?php echo $in_missing_albums ? 'remove' : 'add'; ?>"
-                                        data-post-type="collection" data-bs-toggle="tooltip"
-                                        title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
-                                        <span class="btn-icon dashicons dashicons-minus"></span>
-                                        <span
-                                            class="btn-text"><?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?></span>
-                                    </button>
-                                </div>
+                            
+                            <?php if (is_user_logged_in()) : ?>
+                                <div class="book-actions"></div>
                             <?php endif; ?>
                         </div>
                     </div>

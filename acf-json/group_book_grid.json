@@ -1,0 +1,128 @@
+{
+    "key": "group_book_grid",
+    "title": "Book Grid Settings",
+    "fields": [
+        {
+            "key": "field_book_grid_settings",
+            "label": "Book Grid Settings",
+            "name": "book_grid_settings",
+            "type": "group",
+            "instructions": "Configure the book grid display options",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_show_tabs",
+                    "label": "Show Tabs",
+                    "name": "show_tabs",
+                    "type": "true_false",
+                    "instructions": "Enable tab navigation for different book collections",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Display books in tabs (Latest, Read, Wishlist)",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Yes",
+                    "ui_off_text": "No"
+                },
+                {
+                    "key": "field_books_per_tab",
+                    "label": "Books Per Tab",
+                    "name": "books_per_tab",
+                    "type": "number",
+                    "instructions": "Number of books to display per tab",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 20,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "books",
+                    "min": 1,
+                    "max": 100,
+                    "step": 1
+                },
+                {
+                    "key": "field_show_actions",
+                    "label": "Show Action Buttons",
+                    "name": "show_actions",
+                    "type": "true_false",
+                    "instructions": "Display wishlist and read action buttons on books",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Show wishlist/read buttons",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Yes",
+                    "ui_off_text": "No"
+                },
+                {
+                    "key": "field_grid_columns",
+                    "label": "Grid Columns",
+                    "name": "grid_columns",
+                    "type": "select",
+                    "instructions": "Number of columns in the grid (responsive)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "auto": "Auto (Responsive)",
+                        "1": "1 Column",
+                        "2": "2 Columns",
+                        "3": "3 Columns",
+                        "4": "4 Columns",
+                        "5": "5 Columns"
+                    },
+                    "default_value": "auto",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/book-grid"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Settings for the Book Grid block component"
+}

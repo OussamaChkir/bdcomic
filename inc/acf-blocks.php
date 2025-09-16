@@ -21,6 +21,7 @@ function gl_acf_init() {
             'register' => 'Register',
             'login' => 'Login',
             'profile' => 'Profile',
+            'book-grid' => 'Book Grid',
         );
 
         foreach ($blocks as $name => $title) {
@@ -57,6 +58,7 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/register',
         'acf/profile',
         'acf/login',
+        'acf/book-grid',
     );
 
     return $allowed_blocks;

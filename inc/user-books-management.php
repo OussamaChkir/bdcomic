@@ -22,6 +22,7 @@ function init_user_books_management() {
     add_action('wp_ajax_add_to_user_books', 'add_to_user_books_ajax');
     add_action('wp_ajax_remove_from_user_books', 'remove_from_user_books_ajax');
     add_action('wp_ajax_get_user_books', 'get_user_books_ajax');
+    add_action('wp_ajax_search_user_wishlist', 'search_user_wishlist_ajax');
     
     // Enqueue scripts and styles
     add_action('wp_enqueue_scripts', 'enqueue_user_books_scripts');
@@ -268,19 +269,75 @@ function get_user_books_ajax() {
     if (!wp_verify_nonce($_POST['nonce'], 'user_books_nonce')) {
         wp_send_json_error('Security check failed');
     }
-    
+
     // Check if user is logged in
     if (!is_user_logged_in()) {
         wp_send_json_error('User not logged in');
     }
-    
+
     $list_type = sanitize_text_field($_POST['list_type']);
     $post_type = isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : null;
     $user_id = get_current_user_id();
-    
+
     $books = get_user_books($user_id, $list_type, $post_type);
-    
+
     wp_send_json_success($books);
+}
+
+/**
+ * AJAX handler to search user's wishlisted books
+ */
+function search_user_wishlist_ajax() {
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['nonce'], 'whislisted_book_grid_nonce')) {
+        wp_send_json_error('Security check failed');
+    }
+
+    // Check if user is logged in
+    if (!is_user_logged_in()) {
+        wp_send_json_error('User not logged in');
+    }
+
+    $search_term = isset($_POST['search_term']) ? sanitize_text_field($_POST['search_term']) : '';
+    $user_id = get_current_user_id();
+
+    $wishlist_books = get_user_books($user_id, 'wishlist', 'livre');
+
+    if (empty($search_term)) {
+        $filtered_books = $wishlist_books;
+    } else {
+        // Filter books by title or collection
+        $filtered_books = array();
+        foreach ($wishlist_books as $book_data) {
+            $post = $book_data['post'];
+            $title = get_field('titre_livre', $post->ID) ?: $post->post_title;
+            $collection_id = get_field('collection', $post->ID);
+            $collection_name = '';
+            if ($collection_id) {
+                $collection_name = get_field('nom_collection', $collection_id) ?: get_the_title($collection_id);
+            }
+
+            // Check if search term matches title or collection
+            if (stripos($title, $search_term) !== false || stripos($collection_name, $search_term) !== false) {
+                $filtered_books[] = $book_data;
+            }
+        }
+    }
+
+    // Generate HTML
+    ob_start();
+    if (!empty($filtered_books)) {
+        foreach ($filtered_books as $book_data) {
+            $post = $book_data['post'];
+            $GLOBALS['current_book_id'] = $post->ID;
+            get_template_part('template-parts/content-livre-grid');
+        }
+    } else {
+        echo '<div class="no-books-message"><p>Aucun livre trouvé pour cette recherche.</p></div>';
+    }
+    $html = ob_get_clean();
+
+    wp_send_json_success(array('html' => $html));
 }
 
 /**

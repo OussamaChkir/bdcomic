@@ -1,0 +1,40 @@
+.block-whislisted-book-grid {
+    margin-top: 20px;
+}
+
+.whislisted-book-search {
+    margin-bottom: 15px;
+}
+
+.search-input-container {
+    position: relative;
+    max-width: 400px;
+}
+
+#whislisted-book-search-input {
+    width: 100%;
+    padding-right: 30px;
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+}
+
+.books-grid.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.no-books-message {
+    font-style: italic;
+    color: #666;
+    padding: 10px;
+}

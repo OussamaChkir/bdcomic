@@ -27,6 +27,7 @@ function init_user_books_management() {
     
     // Enqueue scripts and styles
     add_action('wp_enqueue_scripts', 'enqueue_user_books_scripts');
+    add_action('wp_enqueue_scripts', 'enqueue_my_collections_grid_scripts');
 }
 add_action('init', 'init_user_books_management');
 
@@ -433,6 +434,30 @@ function enqueue_user_books_scripts() {
     wp_enqueue_style(
         'user-books-management',
         get_template_directory_uri() . '/assets/css/user-books-management.css',
+        array(),
+        '1.0.0'
+    );
+}
+
+/**
+ * Enqueue scripts and styles for my collections grid
+ */
+function enqueue_my_collections_grid_scripts() {
+    if (!is_user_logged_in()) {
+        return;
+    }
+    
+    wp_enqueue_script(
+        'my-collections-grid',
+        get_template_directory_uri() . '/assets/js/block-my-collections-grid.js',
+        array('jquery'),
+        '1.0.0',
+        true
+    );
+    
+    wp_enqueue_style(
+        'my-collections-grid',
+        get_template_directory_uri() . '/assets/css/ContentElements/ce-my-collections-grid.css',
         array(),
         '1.0.0'
     );

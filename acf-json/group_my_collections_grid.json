@@ -1,0 +1,165 @@
+{
+    "key": "group_my_collections_grid",
+    "title": "My Collections Grid",
+    "fields": [
+        {
+            "key": "field_my_collections_grid_title",
+            "label": "Titre de la section",
+            "name": "collections_title",
+            "type": "text",
+            "instructions": "Titre affiché au-dessus de la grille des collections",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Mes Collections",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_my_collections_grid_description",
+            "label": "Description",
+            "name": "collections_description",
+            "type": "textarea",
+            "instructions": "Description optionnelle affichée sous le titre",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_my_collections_grid_show_stats",
+            "label": "Afficher les statistiques",
+            "name": "show_statistics",
+            "type": "true_false",
+            "instructions": "Afficher ou masquer la section des statistiques",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Oui",
+            "ui_off_text": "Non"
+        },
+        {
+            "key": "field_my_collections_grid_show_search",
+            "label": "Afficher la recherche",
+            "name": "show_search",
+            "type": "true_false",
+            "instructions": "Afficher ou masquer la section de recherche et filtres",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Oui",
+            "ui_off_text": "Non"
+        },
+        {
+            "key": "field_my_collections_grid_books_per_row",
+            "label": "Livres par ligne",
+            "name": "books_per_row",
+            "type": "select",
+            "instructions": "Nombre de livres affichés par ligne dans la grille",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "2 livres par ligne",
+                "3": "3 livres par ligne",
+                "4": "4 livres par ligne",
+                "5": "5 livres par ligne",
+                "6": "6 livres par ligne"
+            },
+            "default_value": "4",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_my_collections_grid_show_collection_logos",
+            "label": "Afficher les logos de collection",
+            "name": "show_collection_logos",
+            "type": "true_false",
+            "instructions": "Afficher ou masquer les logos des collections",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Oui",
+            "ui_off_text": "Non"
+        },
+        {
+            "key": "field_my_collections_grid_show_status_icons",
+            "label": "Afficher les icônes de statut",
+            "name": "show_status_icons",
+            "type": "true_false",
+            "instructions": "Afficher ou masquer les icônes de statut des livres (lu, prêté, etc.)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Oui",
+            "ui_off_text": "Non"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/my-collections-grid"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Configuration pour le bloc My Collections Grid"
+}

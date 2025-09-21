@@ -24,6 +24,7 @@ function gl_acf_init() {
             'book-grid' => 'Book Grid',
             'whislisted-book-grid' => 'Whislisted Book Grid',
             'missing-albums-grid' => 'Missing Albums Grid',
+            'my-collections-grid' => 'My Collections Grid',
         );
 
         foreach ($blocks as $name => $title) {
@@ -63,6 +64,7 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/book-grid',
         'acf/whislisted-book-grid',
         'acf/missing-albums-grid',
+        'acf/my-collections-grid',
     );
 
     return $allowed_blocks;

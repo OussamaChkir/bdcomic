@@ -16,6 +16,12 @@
 
     <header id="masthead" class="site-header">
         <div class="container">
+            <div class="top-header d-flex justify-content-between align-items-center">
+                    <!-- Global Search Form -->
+                <div class="header-search">
+                 <?php get_search_form(); ?>
+                </div>
+            </div>
         <div class="header-container">
              <div class="site-logo">
                 <a href="<?php echo home_url(); ?>">

@@ -183,6 +183,45 @@ header .site-logo img {
     border: 1px solid #fca5a5;
 }
 
+
+.header-search {
+    position: relative;
+    display: inline-block;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-field {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.search-submit {
+    background: #0073aa;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Icon-only search toggle (for header) */
+.search-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.search-form.hidden {
+    display: none;
+}
+
 /* Responsive */
 @media only screen and (max-width: 1199px) {
     header {

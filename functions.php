@@ -546,3 +546,10 @@ function archive_autocomplete_ajax() {
 }
 add_action('wp_ajax_archive_autocomplete', 'archive_autocomplete_ajax');
 add_action('wp_ajax_nopriv_archive_autocomplete', 'archive_autocomplete_ajax');
+
+function bdcomic_search_query($query) {
+    if ($query->is_search() && !is_admin()) {
+        $query->set('post_type', array('post', 'page', 'Collection', 'Artiste', 'Editeur', 'Livre')); // Add your custom types
+    }
+}
+add_action('pre_get_posts', 'bdcomic_search_query');

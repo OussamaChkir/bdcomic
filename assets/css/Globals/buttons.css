@@ -1,7 +1,7 @@
 /******* Bootstrap Variables ***********/
 .btn {
-    --bs-btn-font-size: 1.563rem; /*25px*/
-    --bs-btn-line-height: 2.188rem; /*35px*/
+    --bs-btn-font-size: 1rem; /*16px*/
+    --bs-btn-line-height: 1.5rem; /*24px*/
     --bs-btn-font-weight: var(--font-weight-regular);
     --letter-spacing-btn: 0.008em;
 
@@ -38,12 +38,14 @@ a:hover {
 
 .btn {
     letter-spacing: var(--letter-spacing-btn);
-    padding: 1.281rem 3.875rem;
+    padding: 0.5rem 1rem;
     display: inline-block;
     text-align: center;
     box-sizing: border-box;
     text-transform: none ;
     text-decoration: none;
+    border-radius: 30px;
+    width: fit-content;
 }
 .btn:focus, .btn:focus-visible, .btn:active {
     color: var(--bs-btn-active-color);
@@ -56,6 +58,10 @@ a:hover {
 }
 
 /* btn with icon */
+.btn-icon:hover{
+    padding: 0.5rem 1.5rem;
+    transition: all .5s ease-in-out;
+}
 .btn-icon .icon {
     position: absolute;
     margin-top: 2px;

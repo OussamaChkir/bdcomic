@@ -1,0 +1,133 @@
+{
+    "key": "group_guide_lecture",
+    "title": "Guide De Lecture",
+    "fields": [
+        {
+            "key": "field_guide_image",
+            "label": "Image du Guide",
+            "name": "image_guide",
+            "type": "image",
+            "instructions": "Image représentative du guide de lecture",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_guide_description",
+            "label": "Description du Guide",
+            "name": "description_guide",
+            "type": "wysiwyg",
+            "instructions": "Description détaillée du guide de lecture",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_guide_collection",
+            "label": "Collection",
+            "name": "collection_guide",
+            "type": "post_object",
+            "instructions": "Sélectionnez la collection concernée par ce guide",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "collection"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        },
+        {
+            "key": "field_guide_ordre_lecture",
+            "label": "Ordre de Lecture",
+            "name": "ordre_lecture",
+            "type": "repeater",
+            "instructions": "Définissez l'ordre de lecture des livres dans ce guide. Glissez-déposez pour réorganiser.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 1,
+            "max": "",
+            "layout": "table",
+            "button_label": "Ajouter un livre",
+            "sub_fields": [
+                {
+                    "key": "field_guide_livre",
+                    "label": "Livre",
+                    "name": "livre",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "livre"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "guide_lecture"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Champs pour la gestion des guides de lecture",
+    "show_in_rest": 1,
+    "modified": 1577836800
+}

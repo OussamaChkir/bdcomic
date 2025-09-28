@@ -152,3 +152,41 @@ add_action('init', 'register_editeur_cpt');
     register_post_type('livre', $args);
 }
 add_action('init', 'register_livre_cpt');
+
+/**************************************************
+| Register "Guide De Lecture" Custom Post Type
+**************************************************/
+function register_guide_lecture_cpt() {
+    $labels = array(
+        'name'               => _x('Guides De Lecture', 'Post Type General Name', 'bdcomic'),
+        'singular_name'      => _x('Guide De Lecture', 'Post Type Singular Name', 'bdcomic'),
+        'menu_name'          => __('Guides De Lecture', 'bdcomic'),
+        'all_items'          => __('All Guides De Lecture', 'bdcomic'),
+        'add_new_item'       => __('Add New Guide De Lecture', 'bdcomic'),
+        'edit_item'          => __('Edit Guide De Lecture', 'bdcomic'),
+        'new_item'           => __('New Guide De Lecture', 'bdcomic'),
+        'view_item'          => __('View Guide De Lecture', 'bdcomic'),
+        'search_items'       => __('Search Guides De Lecture', 'bdcomic'),
+        'not_found'          => __('No Guides De Lecture found', 'bdcomic'),
+        'not_found_in_trash' => __('No Guides De Lecture found in Trash', 'bdcomic'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => true,
+        'show_in_rest'       => true, // Enable Gutenberg + ACF blocks
+        'rewrite'            => array('slug' => 'guides-lecture'),
+        'publicly_queryable' => true,
+        'supports'           => array('title', 'editor', 'thumbnail'),
+        'menu_position'      => 21,
+        'menu_icon'          => 'dashicons-list-view',
+        'capability_type'    => 'post',
+        'hierarchical'       => false,
+    );
+
+    register_post_type('guide_lecture', $args);
+}
+add_action('init', 'register_guide_lecture_cpt');

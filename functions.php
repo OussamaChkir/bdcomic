@@ -83,6 +83,10 @@ class wbg_theme {
                 wp_enqueue_style('archive-livre', get_template_directory_uri() . '/assets/css/Globals/archive-livre.css', false, '1.0');
                 wp_enqueue_style('archive-search', get_template_directory_uri() . '/assets/css/Globals/archive-search.css', false, '1.0');
             }
+            if (is_post_type_archive('guide_lecture')) {
+                wp_enqueue_style('archive-guide-lecture', get_template_directory_uri() . '/assets/css/Globals/archive-guide-lecture.css', false, '1.0');
+                wp_enqueue_style('archive-search', get_template_directory_uri() . '/assets/css/Globals/archive-search.css', false, '1.0');
+            }
             if (is_singular('artiste')) {
                 wp_enqueue_style('single-artiste', get_template_directory_uri() . '/assets/css/Globals/single-artiste.css', false, '1.0');
             }
@@ -94,6 +98,9 @@ class wbg_theme {
             }
             if (is_singular('livre')) {
                 wp_enqueue_style('single-livre', get_template_directory_uri() . '/assets/css/Globals/single-livre.css', false, '1.0');
+            }
+            if (is_singular('guide_lecture')) {
+                wp_enqueue_style('single-guide-lecture', get_template_directory_uri() . '/assets/css/Globals/single-guide-lecture.css', false, '1.0');
             }
             if (is_page_template('page-with-sidebar.php')) {
                 wp_enqueue_style('page-with-sidebar', get_template_directory_uri() . '/assets/css/Globals/page-with-sidebar.css', false, '1.0');

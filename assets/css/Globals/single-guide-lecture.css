@@ -1,0 +1,375 @@
+/**
+ * Single Guide De Lecture Styles
+ * 
+ * @package bdcomic_theme
+ */
+
+/* Guide Header */
+.single-guide-lecture .guide-header {
+    margin-bottom: 3rem;
+}
+
+.guide-hero {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 2rem;
+}
+
+.guide-hero .guide-image {
+    position: relative;
+}
+
+.guide-featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.guide-hero .no-image-placeholder {
+    width: 100%;
+    height: 300px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    border: 2px dashed var(--border-color);
+}
+
+.guide-hero .no-image-placeholder .dashicons {
+    font-size: 4rem;
+}
+
+.guide-info {
+    padding: 1rem 0;
+}
+
+.guide-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1.5rem 0;
+    color: var(--text-primary);
+}
+
+.guide-collection {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.guide-collection .label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 80px;
+}
+
+.collection-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.collection-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.guide-stats {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.stat-item {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.guide-actions {
+    margin-top: 2rem;
+}
+
+/* Guide Content */
+.guide-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: start;
+}
+
+.guide-main {
+    min-width: 0; /* Prevents grid overflow */
+}
+
+.guide-description,
+.guide-additional-content,
+.guide-reading-order {
+    margin-bottom: 3rem;
+}
+
+.guide-description h2,
+.guide-additional-content h2,
+.guide-reading-order h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.description-content,
+.additional-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+/* Reading Order List */
+.reading-order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.reading-order-item {
+    display: grid;
+    grid-template-columns: 60px 120px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reading-order-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.order-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.reading-order-item .book-cover {
+    width: 100px;
+    height: 140px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.reading-order-item .book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reading-order-item .no-cover-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.reading-order-item .book-info {
+    min-width: 0;
+}
+
+.reading-order-item .book-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.reading-order-item .book-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.reading-order-item .book-title a:hover {
+    color: var(--primary-color);
+}
+
+.book-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.book-summary {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.book-user-actions {
+    text-align: right;
+}
+
+.btn-view-book {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-view-book:hover {
+    background: var(--primary-dark);
+    color: white;
+}
+
+/* Sidebar */
+.guide-sidebar {
+    position: sticky;
+    top: 2rem;
+}
+
+.guide-meta,
+.related-guides {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.guide-meta h3,
+.related-guides h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.meta-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.meta-list li {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.meta-list li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.related-guides-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.related-guides-list li {
+    margin-bottom: 0.5rem;
+}
+
+.related-guides-list a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.related-guides-list a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .guide-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .guide-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .guide-hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .guide-hero .guide-image {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .guide-title {
+        font-size: 2rem;
+    }
+    
+    .reading-order-item {
+        grid-template-columns: 50px 100px 1fr;
+        gap: 1rem;
+    }
+    
+    .book-user-actions {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .reading-order-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .order-number {
+        margin: 0 auto;
+    }
+    
+    .reading-order-item .book-cover {
+        margin: 0 auto;
+    }
+    
+    .guide-title {
+        font-size: 1.75rem;
+    }
+}

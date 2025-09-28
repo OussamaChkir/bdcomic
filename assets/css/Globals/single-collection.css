@@ -1,6 +1,6 @@
 /* Single Collection Styles */
 
-.single-collection {
+article.single-collection {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 0;

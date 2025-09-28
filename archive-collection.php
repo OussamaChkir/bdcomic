@@ -92,22 +92,7 @@ get_header(); ?>
                                     </a>
                                 </h2>
 
-                                <?php if ($date_sortie || $date_fin) : ?>
-                                    <div class="collection-dates">
-                                        <?php if ($date_sortie) : ?>
-                                            <span class="date-sortie">
-                                                <strong>Sortie:</strong> <?php echo esc_html($date_sortie); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                        
-                                        <?php if ($date_fin) : ?>
-                                            <span class="date-fin">
-                                                <strong>Fin:</strong> <?php echo esc_html($date_fin); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endif; ?>
-
+                            
                                 <?php if ($etat) : ?>
                                     <div class="collection-status">
                                         <span class="status-badge status-<?php echo esc_attr(strtolower($etat)); ?>">

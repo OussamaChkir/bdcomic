@@ -22,7 +22,7 @@ get_header(); ?>
                                     class="artiste-photo">
                             <?php else: ?>
                                 <div class="no-image-placeholder">
-                                    <span class="dashicons dashicons-admin-users"></span>
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/avatar.png" alt="No Image">
                                 </div>
                             <?php endif; ?>
                         </div>

@@ -108,7 +108,7 @@ get_header(); ?>
                                          class="artiste-photo">
                                 <?php else : ?>
                                     <div class="no-image-placeholder">
-                                        <span class="dashicons dashicons-admin-users"></span>
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/avatar.png" alt="No Image">
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -131,30 +131,6 @@ get_header(); ?>
                                 <?php if ($nom && $prenom && !$nom_dartiste) : ?>
                                     <div class="artiste-real-name">
                                         <small><?php echo esc_html($prenom . ' ' . $nom); ?></small>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($date_naissance || $deces) : ?>
-                                    <div class="artiste-dates">
-                                        <?php if ($date_naissance) : ?>
-                                            <span class="date-naissance">
-                                                <strong>Né(e):</strong> <?php echo esc_html($date_naissance); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                        
-                                        <?php if ($deces) : ?>
-                                            <span class="date-deces">
-                                                <strong>Décédé(e):</strong> <?php echo esc_html($deces); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($nationalite) : ?>
-                                    <div class="artiste-nationality">
-                                        <span class="nationality-badge">
-                                            <?php echo esc_html($nationalite); ?>
-                                        </span>
                                     </div>
                                 <?php endif; ?>
 

@@ -16,7 +16,7 @@
 
     <header id="masthead" class="site-header">
         <div class="container">
-            <div class="top-header d-flex justify-content-between align-items-center">
+            <div class="top-header d-flex align-items-center">
                     <!-- Global Search Form -->
                 <div class="header-search">
                  <?php get_search_form(); ?>

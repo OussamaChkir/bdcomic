@@ -4,7 +4,7 @@ footer {
     font-size: var(--font-size-textFtr);
     line-height: var(--line-height-textFtr);
     letter-spacing: 0.008rem;
-    padding: 6rem 0 2rem;
+    padding: 2rem 0;
 }
 
 footer .widget p:last-child {
@@ -20,32 +20,28 @@ footer .footer-wrapper {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 4rem;
+    gap: 0.5rem;
 }
 
-footer .footer-logo {
-    padding: 1.511rem 0 1.566rem;
-}
-footer .footer-logo img {
-    max-height: 2.861rem;
-}
-
-footer .social-networks {
+.footer-social-networks {
     display: flex;
     gap: 0.5rem;
     align-items: center;
 }
-footer .social-networks .social {
-    font-size: 0;
+
+.footer-social-networks svg {
+    width: 1.5rem;
+    height: auto;
 }
 
 footer .menu {
+    display: flex;
     padding: 0;
     margin: 0;
     list-style: none;
     font-size: var(--font-size-navFtr);
     line-height: var(--line-height-navFtr);
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .backtotop {
@@ -74,17 +70,9 @@ footer .menu {
 
 @media only screen and (max-width: 991px) {
     footer {
-        padding: 3rem 0 1.5rem;
+        padding: 1.5rem 0;
     }
-    footer .footer-wrapper {
-        gap: 2rem;
-    }
-    footer .footer-logo {
-        padding: 1.033rem 0 1.071rem;
-    }
-    footer .footer-logo img {
-        max-height: 1.958rem;
-    }
+
     footer .menu {
         gap: 1rem;
     }

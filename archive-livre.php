@@ -116,6 +116,7 @@ get_header(); ?>
         <?php if (have_posts()) : ?>
                 <?php while (have_posts()) : the_post(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('livre-item'); ?>>
+                    <a href="<?php the_permalink(); ?>">
                         <div class="livre-content">
                             <?php
                             // Get ACF fields
@@ -143,18 +144,10 @@ get_header(); ?>
                                              class="livre-cover">
                                     <?php else : ?>
                                         <div class="no-image-placeholder">
-                                            <span class="dashicons dashicons-book"></span>
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
                                         </div>
                                     <?php endif; ?>
                                 </div>
-                                
-                                <?php if ($photo_derriere) : ?>
-                                    <div class="cover-back">
-                                        <img src="<?php echo esc_url($photo_derriere['url']); ?>" 
-                                             alt="<?php echo esc_attr($photo_derriere['alt']); ?>" 
-                                             class="livre-cover back-cover">
-                                    </div>
-                                <?php endif; ?>
                             </div>
 
                             <div class="livre-details">
@@ -163,102 +156,9 @@ get_header(); ?>
                                         <?php echo $titre ? esc_html($titre) : get_the_title(); ?>
                                     </a>
                                 </h2>
-
-                                <?php if ($variante) : ?>
-                                    <div class="livre-variant">
-                                        <span class="variant-badge">Variante</span>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($maison_edition) : ?>
-                                    <div class="livre-publisher">
-                                        <strong>Éditeur:</strong> 
-                                        <a href="<?php echo get_permalink($maison_edition->ID); ?>">
-                                            <?php echo esc_html($maison_edition->post_title); ?>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($collection) : ?>
-                                    <div class="livre-collection">
-                                        <strong>Collection:</strong> 
-                                        <a href="<?php echo get_permalink($collection->ID); ?>">
-                                            <?php echo esc_html($collection->post_title); ?>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-
-                                <div class="livre-meta">
-                                    <?php if ($date_sortie) : ?>
-                                        <span class="meta-item">
-                                            <strong>Sortie:</strong> <?php echo esc_html($date_sortie); ?>
-                                        </span>
-                                    <?php endif; ?>
-                                    
-                                    <?php if ($nombre_pages) : ?>
-                                        <span class="meta-item">
-                                            <strong>Pages:</strong> <?php echo esc_html($nombre_pages); ?>
-                                        </span>
-                                    <?php endif; ?>
-                                    
-                                    <?php if ($n_sortie) : ?>
-                                        <span class="meta-item">
-                                            <strong>N° Sortie:</strong> <?php echo esc_html($n_sortie); ?>
-                                        </span>
-                                    <?php endif; ?>
-                                    
-                                    <?php if ($n_frise) : ?>
-                                        <span class="meta-item">
-                                            <strong>N° Frise:</strong> <?php echo esc_html($n_frise); ?>
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-
-                                <?php if ($tirage_limite) : ?>
-                                    <div class="livre-limited">
-                                        <span class="limited-badge">
-                                            Tirage limité: <?php echo esc_html($tirage_limite); ?> ex.
-                                        </span>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($equipe_creative && is_array($equipe_creative)) : ?>
-                                    <div class="livre-team">
-                                        <h4>Équipe créative:</h4>
-                                        <div class="team-list">
-                                            <?php foreach ($equipe_creative as $membre) : ?>
-                                                <?php if (!empty($membre['role']) && !empty($membre['artiste'])) : ?>
-                                                    <div class="team-member">
-                                                        <span class="role"><?php echo esc_html($membre['role']); ?>:</span>
-                                                        <a href="<?php echo get_permalink($membre['artiste']->ID); ?>">
-                                                            <?php echo esc_html($membre['artiste']->post_title); ?>
-                                                        </a>
-                                                    </div>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($resume) : ?>
-                                    <div class="livre-summary">
-                                        <?php echo wp_trim_words($resume, 25, '...'); ?>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($isbnean13) : ?>
-                                    <div class="livre-isbn">
-                                        <small><strong>ISBN/EAN13:</strong> <?php echo esc_html($isbnean13); ?></small>
-                                    </div>
-                                <?php endif; ?>
-
-                                <div class="livre-actions">
-                                    <a href="<?php the_permalink(); ?>" class="read-more">
-                                        Voir le livre
-                                    </a>
-                                </div>
                             </div>
                         </div>
+                                </a>
                     </article>
                 <?php endwhile; ?>
 

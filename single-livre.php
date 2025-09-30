@@ -26,7 +26,7 @@ get_header(); ?>
                                         alt="<?php echo esc_attr($photo_devant['alt']); ?>" class="livre-cover">
                                 <?php else: ?>
                                     <div class="no-cover-placeholder">
-                                        <span class="dashicons dashicons-book"></span>
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -131,7 +131,7 @@ get_header(); ?>
                                         data-bs-toggle="tooltip"
                                         title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
                                         <span
-                                            class="btn-icon dashicons <?php echo $in_wishlist ? 'dashicons-heart-filled' : 'dashicons-heart'; ?>"></span>
+                                            class="btn-icon dashicons <?php echo $in_wishlist ? 'dashicons-heart filled' : 'dashicons-heart'; ?>"></span>
                                         <span
                                             class="btn-text"><?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?></span>
                                     </button>
@@ -147,7 +147,7 @@ get_header(); ?>
                                             data-post-type="livre"
                                             data-bs-toggle="tooltip" 
                                             title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
-                                        <span class="btn-icon dashicons dashicons-minus"></span>
+                                        <span class="dashicons dashicons-minus"></span>
                                         <span class="btn-text"><?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?></span>
                                     </button>
                                     
@@ -161,7 +161,7 @@ get_header(); ?>
                                         data-bs-toggle="tooltip"
                                         title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
                                         <span
-                                            class="btn-icon dashicons <?php echo $is_read ? 'dashicons-yes' : 'dashicons-yes-alt'; ?>"></span>
+                                            class="dashicons <?php echo $is_read ? 'dashicons-yes' : 'dashicons-yes-alt'; ?>"></span>
                                         <span
                                             class="btn-text"><?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?></span>
                                     </button>

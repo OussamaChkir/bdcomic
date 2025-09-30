@@ -2,20 +2,18 @@
 
 .livres-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
     margin: 2rem 0;
 }
 
-.livre-item {
-    border: 1px solid #e0e0e0;
+.livre-item  .livre-covers{
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    background: white;
 }
 
-.livre-item:hover {
+.livre-item:hover .livre-covers{
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
@@ -27,8 +25,9 @@
 .livre-covers {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin:0 auto 1.5rem;
     justify-content: center;
+    width: fit-content;
 }
 
 .cover-front,
@@ -67,9 +66,12 @@
 }
 
 .livre-title {
-    font-size: 1.3rem;
-    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
     text-align: center;
+    line-height: 28px;
+    max-width:350px;
+    margin:0 auto 0.5rem;
+    font-weight: 600;
 }
 
 .livre-title a {

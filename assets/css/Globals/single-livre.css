@@ -334,6 +334,7 @@ article.single-livre {
     .livre-hero {
         flex-direction: column;
         gap: 2rem;
+        align-items: center;
     }
     
     .livre-covers {

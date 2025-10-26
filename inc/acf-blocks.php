@@ -25,6 +25,8 @@ function gl_acf_init() {
             'whislisted-book-grid' => 'Whislisted Book Grid',
             'missing-albums-grid' => 'Missing Albums Grid',
             'my-collections-grid' => 'My Collections Grid',
+            'artist-slider' => 'Artist Slider',
+            'book-slider' => 'Book Slider',
         );
 
         foreach ($blocks as $name => $title) {
@@ -65,6 +67,8 @@ function gl_allowed_block_types($allowed_blocks, $post) {
         'acf/whislisted-book-grid',
         'acf/missing-albums-grid',
         'acf/my-collections-grid',
+        'acf/artist-slider',
+        'acf/book-slider',
     );
 
     return $allowed_blocks;

@@ -1,0 +1,230 @@
+{
+    "key": "group_artist_slider",
+    "title": "Artist Slider Settings",
+    "fields": [
+        {
+            "key": "field_artist_slider_settings",
+            "label": "Artist Slider Settings",
+            "name": "artist_slider_settings",
+            "type": "group",
+            "instructions": "Configure the artist slider display options",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_artists_per_slider",
+                    "label": "Number of Artists",
+                    "name": "artists_per_slider",
+                    "type": "number",
+                    "instructions": "Total number of artists to display in the slider",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 10,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "artists",
+                    "min": 1,
+                    "max": 50,
+                    "step": 1
+                },
+                {
+                    "key": "field_slides_to_show",
+                    "label": "Slides to Show",
+                    "name": "slides_to_show",
+                    "type": "number",
+                    "instructions": "Number of slides visible at once",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 4,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "slides",
+                    "min": 1,
+                    "max": 6,
+                    "step": 1
+                },
+                {
+                    "key": "field_slides_to_scroll",
+                    "label": "Slides to Scroll",
+                    "name": "slides_to_scroll",
+                    "type": "number",
+                    "instructions": "Number of slides to scroll at once",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "slides",
+                    "min": 1,
+                    "max": 6,
+                    "step": 1
+                },
+                {
+                    "key": "field_autoplay",
+                    "label": "Autoplay",
+                    "name": "autoplay",
+                    "type": "true_false",
+                    "instructions": "Enable automatic slide progression",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Enable autoplay",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "On",
+                    "ui_off_text": "Off"
+                },
+                {
+                    "key": "field_autoplay_speed",
+                    "label": "Autoplay Speed",
+                    "name": "autoplay_speed",
+                    "type": "number",
+                    "instructions": "Time between autoplay transitions (in milliseconds)",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_autoplay",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 3000,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "ms",
+                    "min": 1000,
+                    "max": 10000,
+                    "step": 500
+                },
+                {
+                    "key": "field_infinite",
+                    "label": "Infinite Loop",
+                    "name": "infinite",
+                    "type": "true_false",
+                    "instructions": "Loop back to beginning after reaching the end",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Enable infinite loop",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "On",
+                    "ui_off_text": "Off"
+                },
+                {
+                    "key": "field_arrows",
+                    "label": "Show Arrows",
+                    "name": "arrows",
+                    "type": "true_false",
+                    "instructions": "Display navigation arrows",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Show navigation arrows",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Show",
+                    "ui_off_text": "Hide"
+                },
+                {
+                    "key": "field_dots",
+                    "label": "Show Dots",
+                    "name": "dots",
+                    "type": "true_false",
+                    "instructions": "Display navigation dots",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Show navigation dots",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Show",
+                    "ui_off_text": "Hide"
+                },
+                {
+                    "key": "field_speed",
+                    "label": "Transition Speed",
+                    "name": "speed",
+                    "type": "number",
+                    "instructions": "Slide transition speed (in milliseconds)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 500,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "ms",
+                    "min": 100,
+                    "max": 2000,
+                    "step": 100
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/artist-slider"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Settings for the Artist Slider block component"
+}
+

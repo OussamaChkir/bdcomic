@@ -1,0 +1,229 @@
+{
+    "key": "group_book_slider",
+    "title": "Book Slider Settings",
+    "fields": [
+        {
+            "key": "field_book_slider_settings",
+            "label": "Book Slider Settings",
+            "name": "book_slider_settings",
+            "type": "group",
+            "instructions": "Configure the book slider display options",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_books_per_slider",
+                    "label": "Books per Slider",
+                    "name": "books_per_slider",
+                    "type": "number",
+                    "instructions": "Number of books to display in the slider (max 20)",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 10,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "books",
+                    "min": 1,
+                    "max": 20,
+                    "step": 1
+                },
+                {
+                    "key": "field_slides_to_show",
+                    "label": "Slides to Show",
+                    "name": "slides_to_show",
+                    "type": "number",
+                    "instructions": "Number of slides visible at once",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 4,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "slides",
+                    "min": 1,
+                    "max": 6,
+                    "step": 1
+                },
+                {
+                    "key": "field_slides_to_scroll",
+                    "label": "Slides to Scroll",
+                    "name": "slides_to_scroll",
+                    "type": "number",
+                    "instructions": "Number of slides to scroll at once",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "slides",
+                    "min": 1,
+                    "max": 4,
+                    "step": 1
+                },
+                {
+                    "key": "field_autoplay",
+                    "label": "Autoplay",
+                    "name": "autoplay",
+                    "type": "true_false",
+                    "instructions": "Enable automatic sliding",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_autoplay_speed",
+                    "label": "Autoplay Speed",
+                    "name": "autoplay_speed",
+                    "type": "number",
+                    "instructions": "Autoplay delay in milliseconds",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_autoplay",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 3000,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "ms",
+                    "min": 1000,
+                    "max": 10000,
+                    "step": 500
+                },
+                {
+                    "key": "field_infinite",
+                    "label": "Infinite Loop",
+                    "name": "infinite",
+                    "type": "true_false",
+                    "instructions": "Enable infinite loop scrolling",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_arrows",
+                    "label": "Navigation Arrows",
+                    "name": "arrows",
+                    "type": "true_false",
+                    "instructions": "Show navigation arrows",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_dots",
+                    "label": "Pagination Dots",
+                    "name": "dots",
+                    "type": "true_false",
+                    "instructions": "Show pagination dots",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_speed",
+                    "label": "Transition Speed",
+                    "name": "speed",
+                    "type": "number",
+                    "instructions": "Transition speed in milliseconds",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 500,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "ms",
+                    "min": 100,
+                    "max": 2000,
+                    "step": 100
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/book-slider"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Settings for the Book Slider block"
+}

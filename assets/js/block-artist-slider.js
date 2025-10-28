@@ -124,11 +124,6 @@
                 onlyInViewport: true
             },
             
-            // Mouse wheel control
-            mousewheel: {
-                invert: false,
-            },
-            
             // Events
             on: {
                 init: function() {

@@ -1,6 +1,6 @@
 /**
- * Book Slider Block JavaScript
- * Handles Swiper carousel initialization for the book slider component
+ * Collection Slider Block JavaScript
+ * Handles Swiper carousel initialization for the collection slider component
  */
 
 (function() {
@@ -12,7 +12,7 @@
         var checkSwiper = setInterval(function() {
             if (typeof Swiper !== 'undefined') {
                 clearInterval(checkSwiper);
-                initBookSlider();
+                initCollectionSlider();
             }
         }, 100);
         
@@ -22,20 +22,20 @@
             if (typeof Swiper === 'undefined') {
                 console.error('Swiper slider failed to load from CDN. Please check your internet connection.');
             } else {
-                initBookSlider();
+                initCollectionSlider();
             }
         }, 3000);
     });
 
     /**
-     * Initialize book slider functionality
+     * Initialize collection slider functionality
      */
-    function initBookSlider() {
-        var sliderElement = document.getElementById('book-slider');
+    function initCollectionSlider() {
+        var sliderElement = document.getElementById('collection-slider');
 
         // Check if slider exists and Swiper is available
         if (!sliderElement) {
-            console.warn('Book slider element not found');
+            console.warn('Collection slider element not found');
             return;
         }
 
@@ -47,15 +47,15 @@
         // Check if slider has slides
         var slides = sliderElement.querySelectorAll('.swiper-slide');
         if (slides.length === 0) {
-            console.warn('No book slides found in slider');
+            console.warn('No collection slides found in slider');
             return;
         }
 
         // Get slider settings from localized data
-        var settings = window.bookSliderData || {};
+        var settings = window.collectionSliderData || {};
         
         // Initialize Swiper
-        var swiper = new Swiper('#book-slider', {
+        var swiper = new Swiper('#collection-slider', {
             // Basic settings
             slidesPerView: settings.slidesToShow || 4,
             spaceBetween: 20,
@@ -112,10 +112,10 @@
             // Accessibility
             a11y: {
                 enabled: true,
-                prevSlideMessage: 'Previous slide',
-                nextSlideMessage: 'Next slide',
-                firstSlideMessage: 'This is the first slide',
-                lastSlideMessage: 'This is the last slide'
+                prevSlideMessage: 'Slide précédent',
+                nextSlideMessage: 'Slide suivant',
+                firstSlideMessage: 'C\'est le premier slide',
+                lastSlideMessage: 'C\'est le dernier slide'
             },
             
             // Keyboard control
@@ -127,7 +127,7 @@
             // Events
             on: {
                 init: function() {
-                    console.log('Book slider initialized successfully');
+                    console.log('Collection slider initialized successfully');
                     addCustomStyles();
                     handleImageLoading();
                 },
@@ -135,10 +135,10 @@
                     // Optional: Add any slide change logic here
                 },
                 autoplayStart: function() {
-                    console.log('Book slider autoplay started');
+                    console.log('Collection slider autoplay started');
                 },
                 autoplayStop: function() {
-                    console.log('Book slider autoplay stopped');
+                    console.log('Collection slider autoplay stopped');
                 }
             }
         });
@@ -155,14 +155,14 @@
         });
 
         // Store swiper instance globally for external access
-        window.bookSwiper = swiper;
+        window.collectionSwiper = swiper;
     }
 
     /**
      * Handle image loading and display
      */
     function handleImageLoading() {
-        var images = document.querySelectorAll('#book-slider .book-cover');
+        var images = document.querySelectorAll('#collection-slider .collection-logo');
         
         images.forEach(function(img) {
             // Handle lazy loading
@@ -174,7 +174,6 @@
                 img.addEventListener('error', function() {
                     console.warn('Failed to load image:', this.src);
                     // Fallback to placeholder
-                    this.src = window.location.origin + '/wp-content/themes/bdcomic_theme/assets/img/placeholder/cover.png';
                     this.classList.add('loaded');
                 });
             }
@@ -185,13 +184,13 @@
      * Add custom styles for slider controls
      */
     function addCustomStyles() {
-        if (!document.getElementById('book-slider-custom-styles')) {
+        if (!document.getElementById('collection-slider-custom-styles')) {
             var style = document.createElement('style');
-            style.id = 'book-slider-custom-styles';
+            style.id = 'collection-slider-custom-styles';
             style.textContent = `
-                /* Book Slider Navigation Buttons */
-                .book-slider .swiper-button-next,
-                .book-slider .swiper-button-prev {
+                /* Collection Slider Navigation Buttons */
+                .collection-slider .swiper-button-next,
+                .collection-slider .swiper-button-prev {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
@@ -210,39 +209,39 @@
                     color: var(--color-accent, #0066cc);
                 }
 
-                .book-slider .swiper-button-next:hover,
-                .book-slider .swiper-button-prev:hover {
+                .collection-slider .swiper-button-next:hover,
+                .collection-slider .swiper-button-prev:hover {
                     background: #ffffff;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                     transform: translateY(-50%) scale(1.1);
                 }
 
-                .book-slider .swiper-button-prev {
+                .collection-slider .swiper-button-prev {
                     left: 10px;
                 }
 
-                .book-slider .swiper-button-next {
+                .collection-slider .swiper-button-next {
                     right: 10px;
                 }
 
-                .book-slider .swiper-button-next::after,
-                .book-slider .swiper-button-prev::after {
+                .collection-slider .swiper-button-next::after,
+                .collection-slider .swiper-button-prev::after {
                     font-size: 20px;
                     font-weight: bold;
                 }
 
-                .book-slider .swiper-button-disabled {
+                .collection-slider .swiper-button-disabled {
                     opacity: 0.3;
                     cursor: not-allowed;
                 }
 
-                .book-slider .swiper-button-disabled:hover {
+                .collection-slider .swiper-button-disabled:hover {
                     transform: translateY(-50%);
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                 }
 
-                /* Book Slider Pagination */
-                .book-slider .swiper-pagination {
+                /* Collection Slider Pagination */
+                .collection-slider .swiper-pagination {
                     position: absolute;
                     bottom: 10px;
                     left: 50%;
@@ -250,7 +249,7 @@
                     z-index: 10;
                 }
 
-                .book-slider .swiper-pagination-bullet {
+                .collection-slider .swiper-pagination-bullet {
                     width: 12px;
                     height: 12px;
                     background: rgba(0, 0, 0, 0.2);
@@ -260,27 +259,27 @@
                     margin: 0 4px;
                 }
 
-                .book-slider .swiper-pagination-bullet:hover,
-                .book-slider .swiper-pagination-bullet-active {
+                .collection-slider .swiper-pagination-bullet:hover,
+                .collection-slider .swiper-pagination-bullet-active {
                     background: var(--color-accent, #0066cc);
                     transform: scale(1.2);
                 }
 
-                /* Book Slider Loading State */
-                .book-slider.swiper-container-loading .swiper-wrapper {
+                /* Collection Slider Loading State */
+                .collection-slider.swiper-container-loading .swiper-wrapper {
                     opacity: 0.5;
                 }
 
                 /* Responsive adjustments */
                 @media (max-width: 768px) {
-                    .book-slider .swiper-button-next,
-                    .book-slider .swiper-button-prev {
+                    .collection-slider .swiper-button-next,
+                    .collection-slider .swiper-button-prev {
                         width: 40px;
                         height: 40px;
                     }
                     
-                    .book-slider .swiper-button-next::after,
-                    .book-slider .swiper-button-prev::after {
+                    .collection-slider .swiper-button-next::after,
+                    .collection-slider .swiper-button-prev::after {
                         font-size: 16px;
                     }
                 }
@@ -292,41 +291,42 @@
     /**
      * Destroy slider on unmount (for dynamic content)
      */
-    window.destroyBookSlider = function() {
-        if (window.bookSwiper) {
-            window.bookSwiper.destroy(true, true);
-            window.bookSwiper = null;
+    window.destroyCollectionSlider = function() {
+        if (window.collectionSwiper) {
+            window.collectionSwiper.destroy(true, true);
+            window.collectionSwiper = null;
         }
     };
 
     /**
      * Reinitialize slider (for dynamic content)
      */
-    window.reinitBookSlider = function() {
-        if (window.bookSwiper) {
-            window.bookSwiper.destroy(true, true);
+    window.reinitCollectionSlider = function() {
+        if (window.collectionSwiper) {
+            window.collectionSwiper.destroy(true, true);
         }
         setTimeout(function() {
-            initBookSlider();
+            initCollectionSlider();
         }, 100);
     };
 
     /**
      * Pause autoplay
      */
-    window.pauseBookSlider = function() {
-        if (window.bookSwiper && window.bookSwiper.autoplay) {
-            window.bookSwiper.autoplay.pause();
+    window.pauseCollectionSlider = function() {
+        if (window.collectionSwiper && window.collectionSwiper.autoplay) {
+            window.collectionSwiper.autoplay.pause();
         }
     };
 
     /**
      * Resume autoplay
      */
-    window.resumeBookSlider = function() {
-        if (window.bookSwiper && window.bookSwiper.autoplay) {
-            window.bookSwiper.autoplay.resume();
+    window.resumeCollectionSlider = function() {
+        if (window.collectionSwiper && window.collectionSwiper.autoplay) {
+            window.collectionSwiper.autoplay.resume();
         }
     };
 
 })();
+

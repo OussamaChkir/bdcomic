@@ -1,11 +1,69 @@
 .block-text {
     position: relative;
-    padding: 8rem 0;
+    padding: 4rem 0;
+}
+
+.block-text .header-wrapper{
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+    border-radius: 1rem;
+}
+
+.block-text .header-wrapper h2,
+.block-text .header-wrapper h3,
+.block-text .header-wrapper p {
+    color: #fff;
+}
+.block-text .button-wrapper .btn{
+    color: #fff;
+    border-color: #fff;
+}
+
+.block-text[style*="background-image"] {
+    position: relative;
+}
+
+.block-text[style*="background-image"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.block-text[style*="background-image"] .container {
+    position: relative;
+    z-index: 2;
 }
 
 .block-text__header {
     font-weight: 700;
     line-height: 1.2;
+}
+
+.block-text .button-wrapper {
+    margin-top: 2rem;
+}
+
+.block-text .button-wrapper .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.block-text[style*="background-image"] .header-wrapper {
+    color: #fff;
+}
+
+.block-text[style*="background-image"] .header-wrapper h2,
+.block-text[style*="background-image"] .header-wrapper h3,
+.block-text[style*="background-image"] .header-wrapper p {
+    color: #fff;
 }
 
 

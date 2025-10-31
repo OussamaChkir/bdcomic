@@ -100,16 +100,6 @@
     --line-height-textFtr: 1.5rem; /* 24px */
 }
 
-[data-theme="dark"] {
-    --bg-color: #182748;
-    --text-color: #ffffff;
-
-    --bg-box: #2C3A5C;
-    --text-box: #182748;
-
-    --bg-gradient: #EEEEEE;
-}
-
 .row {
     --bs-gutter-x: 2rem; /* 32px */
 }

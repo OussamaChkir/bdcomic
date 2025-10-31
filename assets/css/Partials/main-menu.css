@@ -41,9 +41,6 @@
 header.open .navbar-toggler-icon {
     background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.7383 6L15.3676 16.0035L24.7318 26H25.9935L16.6293 16.0035L26 6L24.7383 6Z" fill="%23182748"/><path d="M7.26168 6L16.6324 16.0035L7.26818 26H6.0065L15.3707 16.0035L6 6L7.26168 6Z" fill="%23182748"/><path d="M24.7383 6L15.3676 16.0035L24.7318 26H25.9935L16.6293 16.0035L26 6L24.7383 6Z" stroke="%23182748" stroke-width="0.6"/><path d="M7.26168 6L16.6324 16.0035L7.26818 26H6.0065L15.3707 16.0035L6 6L7.26168 6Z" stroke="%23182748" stroke-width="0.6"/></svg>');
 }
-[data-theme="dark"] header.open .navbar-toggler-icon {
-    background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.7383 6L15.3676 16.0035L24.7318 26H25.9935L16.6293 16.0035L26 6L24.7383 6Z" fill="white"/><path d="M7.26168 6L16.6324 16.0035L7.26818 26H6.0065L15.3707 16.0035L6 6L7.26168 6Z" fill="white"/><path d="M24.7383 6L15.3676 16.0035L24.7318 26H25.9935L16.6293 16.0035L26 6L24.7383 6Z" stroke="white" stroke-width="0.6"/><path d="M7.26168 6L16.6324 16.0035L7.26818 26H6.0065L15.3707 16.0035L6 6L7.26168 6Z" stroke="white" stroke-width="0.6"/></svg>');
-}
 .navbar-toggler:focus {
     box-shadow: none;
 }

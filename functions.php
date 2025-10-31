@@ -110,7 +110,7 @@ class wbg_theme {
             wp_enqueue_script('jquery-custom', get_template_directory_uri() . '/assets/plugins/jquery/jquery.js', [], null, true);
             wp_enqueue_script('bootstrap-bundle', get_template_directory_uri() . '/assets/plugins/bootstrap/bootstrap.bundle.min.js', ['jquery-custom'], null, true);
 
-            wp_enqueue_script('theme-toggle', get_template_directory_uri() . '/assets/js/theme-toggle.js', [], null, true);
+            // wp_enqueue_script('theme-toggle', get_template_directory_uri() . '/assets/js/theme-toggle.js', [], null, true);
 
             wp_enqueue_script('hoverSlippery', get_template_directory_uri() . '/assets/plugins/hoverslippery/hoverSlippery.js', [], null, true);
 

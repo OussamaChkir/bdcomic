@@ -107,25 +107,36 @@ $speed = $block_settings['speed'] ?? 500;
                     ?>
 
                     <div class="swiper-slide artist-slide">
-                        <article class="artist-card">
-                            <div class="artist-image-wrapper">
+                        <article  id="post-<?php the_ID(); ?>" class="artist-card">
+                        <div class="artiste-content">
+                            <?php
+                            // Get ACF fields
+                            $nom = get_field('nom_artiste');
+                            $prenom = get_field('prenom_artiste');
+                            $nom_dartiste = get_field('nom_dartiste');
+                            $date_naissance = get_field('date_de_naissance_artiste');
+                            $deces = get_field('deces');
+                            $nationalite = get_field('nationalite_artiste');
+                            $roles = get_field('roles_artiste');
+                            $biographie = get_field('biographie_artiste');
+                            $site_web = get_field('site_web');
+                            $instagram = get_field('instagram');
+                            ?>
+                            
+                            <div class="artiste-image">
                                 <?php if ($photo) : ?>
-                                    <a href="<?php the_permalink(); ?>" class="artist-link">
-                                        <img src="<?php echo esc_url($photo['url']); ?>" 
-                                             alt="<?php echo esc_attr($photo['alt']); ?>" 
-                                             class="artist-photo">
-                                    </a>
+                                    <img src="<?php echo esc_url($photo['url']); ?>" 
+                                         alt="<?php echo esc_attr($photo['alt']); ?>" 
+                                         class="artiste-photo">
                                 <?php else : ?>
-                                    <a href="<?php the_permalink(); ?>" class="artist-link">
-                                        <div class="no-image-placeholder">
-                                            <span class="dashicons dashicons-admin-users"></span>
-                                        </div>
-                                    </a>
+                                    <div class="no-image-placeholder">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/avatar.png" alt="No Image">
+                                    </div>
                                 <?php endif; ?>
                             </div>
 
-                            <div class="artist-info">
-                                <h3 class="artist-name">
+                            <div class="artiste-details">
+                                <h2 class="artiste-title">
                                     <a href="<?php the_permalink(); ?>">
                                         <?php 
                                         if ($nom_dartiste) {
@@ -137,33 +148,41 @@ $speed = $block_settings['speed'] ?? 500;
                                         }
                                         ?>
                                     </a>
-                                </h3>
+                                </h2>
+
+                                <?php if ($nom && $prenom && !$nom_dartiste) : ?>
+                                    <div class="artiste-real-name">
+                                        <small><?php echo esc_html($prenom . ' ' . $nom); ?></small>
+                                    </div>
+                                <?php endif; ?>
 
                                 <?php if ($roles && is_array($roles)) : ?>
-                                    <div class="artist-roles">
-                                        <?php 
-                                        // Show only first 2 roles
-                                        $displayed_roles = array_slice($roles, 0, 2);
-                                        foreach ($displayed_roles as $role) : ?>
-                                            <span class="role-badge"><?php echo esc_html($role); ?></span>
+                                    <div class="artiste-roles">
+                                        <?php foreach ($roles as $role) : ?>
+                                            <span class="role-badge <?php echo esc_html($role); ?>"><?php echo esc_html($role); ?></span>
                                         <?php endforeach; ?>
-                                        <?php if (count($roles) > 2) : ?>
-                                            <span class="role-badge role-more">+<?php echo count($roles) - 2; ?></span>
-                                        <?php endif; ?>
                                     </div>
                                 <?php endif; ?>
 
-                                <?php if ($nationalite) : ?>
-                                    <div class="artist-nationality">
-                                        <span class="nationality-badge"><?php echo esc_html($nationalite); ?></span>
-                                    </div>
-                                <?php endif; ?>
-
-                                <a href="<?php the_permalink(); ?>" class="artist-view-btn">
-                                    Voir le profil
-                                    <span class="dashicons dashicons-arrow-right-alt"></span>
-                                </a>
+                                <div class="artiste-links">
+                                    <?php if ($site_web) : ?>
+                                        <a href="<?php echo esc_url($site_web); ?>" class="external-link" target="_blank" rel="noopener">
+                                            <span class="icon-web"></span>
+                                        </a>
+                                    <?php endif; ?>
+                                    
+                                    <?php if ($instagram) : ?>
+                                        <a href="<?php echo esc_url($instagram); ?>" class="external-link" target="_blank" rel="noopener">
+                                            <span class="icon-instagram"></span>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                                
+                                <a href="<?php the_permalink(); ?>" class="read-more">
+                                        Voir le profil
+                                    </a>
                             </div>
+                        </div>
                         </article>
                     </div>
 

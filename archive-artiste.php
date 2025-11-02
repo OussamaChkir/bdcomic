@@ -137,34 +137,28 @@ get_header(); ?>
                                 <?php if ($roles && is_array($roles)) : ?>
                                     <div class="artiste-roles">
                                         <?php foreach ($roles as $role) : ?>
-                                            <span class="role-badge"><?php echo esc_html($role); ?></span>
+                                            <span class="role-badge <?php echo esc_html($role); ?>"><?php echo esc_html($role); ?></span>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endif; ?>
 
-                                <?php if ($biographie) : ?>
-                                    <div class="artiste-bio">
-                                        <?php echo wp_trim_words($biographie, 25, '...'); ?>
-                                    </div>
-                                <?php endif; ?>
-
                                 <div class="artiste-links">
-                                    <a href="<?php the_permalink(); ?>" class="read-more">
-                                        Voir le profil
-                                    </a>
-                                    
                                     <?php if ($site_web) : ?>
                                         <a href="<?php echo esc_url($site_web); ?>" class="external-link" target="_blank" rel="noopener">
-                                            <span class="dashicons dashicons-admin-links"></span> Site web
+                                            <span class="icon-web"></span>
                                         </a>
                                     <?php endif; ?>
                                     
                                     <?php if ($instagram) : ?>
                                         <a href="<?php echo esc_url($instagram); ?>" class="external-link" target="_blank" rel="noopener">
-                                            <span class="dashicons dashicons-instagram"></span> Instagram
+                                            <span class="icon-instagram"></span>
                                         </a>
                                     <?php endif; ?>
                                 </div>
+                                
+                                <a href="<?php the_permalink(); ?>" class="read-more">
+                                        Voir le profil
+                                    </a>
                             </div>
                         </div>
                     </article>

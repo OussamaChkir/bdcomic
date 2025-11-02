@@ -116,122 +116,80 @@ $speed = $block_settings['speed'] ?? 500;
                     ?>
 
                     <div class="swiper-slide book-slide">
-                        <article class="book-card">
-                            <div class="book-image-wrapper">
-                                <!-- Debug info (remove in production) -->
-                                <?php if (WP_DEBUG) : ?>
-                                    <div style="position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.8); color: white; padding: 5px; font-size: 10px; z-index: 1000;">
-                                        <?php if ($photo_devant) : ?>
-                                            Has Image: <?php echo isset($photo_devant['url']) ? 'Yes' : 'No'; ?><br>
-                                            URL: <?php echo isset($photo_devant['url']) ? $photo_devant['url'] : 'None'; ?>
-                                        <?php else : ?>
-                                            No Image Data
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endif; ?>
-                                
-                                <a href="<?php the_permalink(); ?>" class="book-link">
+                        <article class="">
+                        <a href="<?php the_permalink(); ?>">
+                        <div class="livre-content">
+
+                            <div class="livre-covers">
+                                <div class="cover-front">
                                     <?php if ($photo_devant) : ?>
                                         <img src="<?php echo esc_url($photo_devant['url']); ?>" 
                                              alt="<?php echo esc_attr($photo_devant['alt']); ?>" 
-                                             class="book-cover">
+                                             class="livre-cover">
                                     <?php else : ?>
                                         <div class="no-image-placeholder">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" 
-                                                 alt="No Image" 
-                                                 class="book-cover placeholder">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
                                         </div>
                                     <?php endif; ?>
-                                </a>
-                                
-                                <?php if ($tirage_limite) : ?>
-                                    <div class="book-badge limited-badge">
-                                        <span class="dashicons dashicons-star-filled"></span>
-                                        Tirage limité
-                                    </div>
-                                <?php endif; ?>
-                                
-                                <?php if ($variante) : ?>
-                                    <div class="book-badge variant-badge">
-                                        <span class="dashicons dashicons-format-image"></span>
-                                        Variante
-                                    </div>
-                                <?php endif; ?>
+                                </div>
                             </div>
 
-                            <div class="book-info">
-                                <h3 class="book-title">
+                            <div class="livre-details">
+                                <h2 class="livre-title">
                                     <a href="<?php the_permalink(); ?>">
                                         <?php echo $titre ? esc_html($titre) : get_the_title(); ?>
                                     </a>
-                                </h3>
-
-                                <?php if ($collection) : ?>
-                                    <div class="book-collection">
-                                        <span class="collection-badge">
-                                            <span class="dashicons dashicons-book-alt"></span>
-                                            <?php echo esc_html($collection->post_title); ?>
-                                        </span>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($maison_edition) : ?>
-                                    <div class="book-publisher">
-                                        <span class="publisher-badge">
-                                            <span class="dashicons dashicons-building"></span>
-                                            <?php echo esc_html($maison_edition->post_title); ?>
-                                        </span>
-                                    </div>
-                                <?php endif; ?>
-
-                                <div class="book-meta">
-                                    <?php if ($n_sortie) : ?>
-                                        <span class="meta-item">
-                                            <span class="dashicons dashicons-sort"></span>
-                                            N°<?php echo esc_html($n_sortie); ?>
-                                        </span>
-                                    <?php endif; ?>
-                                    
-                                    <?php if ($date_sortie) : ?>
-                                        <span class="meta-item">
-                                            <span class="dashicons dashicons-calendar-alt"></span>
-                                            <?php echo esc_html($date_sortie); ?>
-                                        </span>
-                                    <?php endif; ?>
-                                    
-                                    <?php if ($nombre_pages) : ?>
-                                        <span class="meta-item">
-                                            <span class="dashicons dashicons-text-page"></span>
-                                            <?php echo esc_html($nombre_pages); ?> pages
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-
-                                <?php if ($equipe_creative && is_array($equipe_creative) && count($equipe_creative) > 0) : ?>
-                                    <div class="book-creative-team">
-                                        <span class="team-label">Équipe:</span>
-                                        <?php 
-                                        // Show only first 2 team members
-                                        $displayed_team = array_slice($equipe_creative, 0, 2);
-                                        foreach ($displayed_team as $member) : ?>
-                                            <span class="team-member">
-                                                <?php echo esc_html($member['nom']); ?>
-                                                <?php if ($member['role']) : ?>
-                                                    <span class="role">(<?php echo esc_html($member['role']); ?>)</span>
-                                                <?php endif; ?>
-                                            </span>
-                                        <?php endforeach; ?>
-                                        <?php if (count($equipe_creative) > 2) : ?>
-                                            <span class="team-more">+<?php echo count($equipe_creative) - 2; ?></span>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endif; ?>
-
-                                <a href="<?php the_permalink(); ?>" class="book-view-btn">
-                                    Voir le livre
-                                    <span class="dashicons dashicons-arrow-right-alt"></span>
-                                </a>
+                                </h2>
                             </div>
+                            <div class="livre-actions">
+                                    <?php if (is_user_logged_in()) : ?>
+                                    <div class="book-quick-actions">
+                                        <?php
+                                        $current_user_id = get_current_user_id();
+                                        $post_id = get_the_ID();
+                                        
+                                        // Quick wishlist button
+                                        $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
+                                        ?>
+                                        <button class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>" 
+                                                data-post-id="<?php echo $post_id; ?>" 
+                                                data-list-type="wishlist"
+                                                data-post-type="livre"
+                                                data-bs-toggle="tooltip" 
+                                                title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
+                                            <span class="dashicons <?php echo $in_wishlist ? 'dashicons-heart-filled' : 'dashicons-heart'; ?>"></span>
+                                        </button>
+                                        
+                                        <?php
+                                        // Quick read button
+                                        $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
+                                        ?>
+                                        <button class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>" 
+                                                data-post-id="<?php echo $post_id; ?>" 
+                                                data-list-type="read"
+                                                data-post-type="livre"
+                                                data-bs-toggle="tooltip" 
+                                                title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
+                                            <span class="dashicons <?php echo $is_read ? 'dashicons-yes' : 'dashicons-yes-alt'; ?>"></span>
+                                        </button>
+
+                                        <?php
+                                        // Quick missing albums button for book
+                                        $in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
+                                        ?>
+                                        <button class="book-quick-action <?php echo $in_missing_albums ? 'active' : ''; ?>" 
+                                                data-post-id="<?php echo $post_id; ?>" 
+                                                data-list-type="missing_albums"
+                                                data-post-type="livre"
+                                                data-bs-toggle="tooltip" 
+                                                title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
+                                            <span class="dashicons dashicons-minus"></span>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                                </a>
                         </article>
                     </div>
 

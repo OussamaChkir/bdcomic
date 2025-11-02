@@ -117,6 +117,79 @@
     flex-direction: column;
 }
 
+/****************/
+.livre-item  .livre-covers{
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.livre-item:hover .livre-covers{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.livre-content {
+    padding: 1.5rem;
+}
+
+.livre-covers {
+    display: flex;
+    gap: 1rem;
+    margin:0 auto 1.5rem;
+    justify-content: center;
+    width: fit-content;
+}
+
+.cover-front,
+.cover-back {
+    flex: 1;
+    max-width: 120px;
+}
+
+.livre-cover {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.no-image-placeholder {
+    width: 100%;
+    background: #f5f5f5;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+}
+
+.no-image-placeholder .dashicons {
+    font-size: 3rem;
+    color: #ccc;
+}
+
+.livre-title {
+    font-size: 1rem;
+    text-align: center;
+    line-height: 28px;
+    max-width:350px;
+    margin:0 auto 0.5rem;
+    font-weight: 600;
+}
+
+.livre-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.livre-title a:hover {
+    color: #007cba;
+}
+/**************/
+
 .book-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -165,7 +238,6 @@
 
 .no-image-placeholder {
     width: 100%;
-    height: 280px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -119,7 +119,8 @@ article.single-collection {
 }
 
 .collection-summary h2,
-.collection-books h2 {
+.collection-books h2,
+.collection-sous-collections h2 {
     font-size: 1.5rem;
     margin: 0 0 1rem 0;
     color: #333;
@@ -139,6 +140,68 @@ article.single-collection {
 
 .collection-books {
     margin-top: 2rem;
+}
+
+/* Sous-collections */
+.collection-sous-collections {
+    margin-top: 2rem;
+}
+
+.sous-collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.sous-collection-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sous-collection-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sous-collection-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.sous-collection-thumb {
+    height: 180px;
+    overflow: hidden;
+    background: #f8f8f8;
+}
+
+.sous-collection-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.sous-collection-info {
+    padding: 1rem;
+}
+
+.sous-collection-title {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.sous-collection-dates {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.sous-collection-status {
+    margin-top: 0.75rem;
 }
 
 .books-grid {
@@ -271,5 +334,14 @@ article.single-collection {
     
     .book-cover {
         height: 200px;
+    }
+
+    .sous-collections-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .sous-collection-thumb {
+        height: 160px;
     }
 }

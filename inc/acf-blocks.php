@@ -18,6 +18,7 @@ function gl_acf_init() {
     if (function_exists('acf_register_block')) {
         $blocks = array(
             'text' => 'Text',
+            'text-image' => 'Text Image',
             'register' => 'Register',
             'login' => 'Login',
             'profile' => 'Profile',
@@ -61,6 +62,7 @@ function gl_acf_block_render_callback($block) {
 function gl_allowed_block_types($allowed_blocks, $post) {
     $allowed_blocks = array(
         'acf/text',
+        'acf/text-image',
         'acf/register',
         'acf/profile',
         'acf/login',

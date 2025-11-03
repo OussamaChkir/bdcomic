@@ -190,3 +190,174 @@ function register_guide_lecture_cpt() {
     register_post_type('guide_lecture', $args);
 }
 add_action('init', 'register_guide_lecture_cpt');
+
+/**************************************************
+ Register "Sous Collection" Custom Post Type
+ - Fields: Name (title), Image, Date Sortie, Date Fin
+ - Relationship: linked to one parent Collection (collection CPT)
+ **************************************************/
+function register_sous_collection_cpt() {
+    $labels = array(
+        'name'               => _x('Sous Collections', 'Post Type General Name', 'bdcomic'),
+        'singular_name'      => _x('Sous Collection', 'Post Type Singular Name', 'bdcomic'),
+        'menu_name'          => __('Sous Collections', 'bdcomic'),
+        'all_items'          => __('All Sous Collections', 'bdcomic'),
+        'add_new_item'       => __('Add New Sous Collection', 'bdcomic'),
+        'edit_item'          => __('Edit Sous Collection', 'bdcomic'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'has_archive'        => true,
+        'show_in_rest'       => true,
+        'rewrite'            => array('slug' => 'sous-collections'),
+        'publicly_queryable' => true,
+        'supports'           => array('title'),
+        'menu_position'      => 22,
+        'menu_icon'          => 'dashicons-index-card',
+    );
+
+register_post_type('sous_collection', $args);
+}
+add_action('init', 'register_sous_collection_cpt');
+
+// Meta keys
+define('SC_META_IMAGE', 'sc_image');
+define('SC_META_DATE_SORTIE', 'sc_date_sortie');
+define('SC_META_DATE_FIN', 'sc_date_fin');
+define('SC_META_PARENT_COLLECTION', 'sc_parent_collection');
+define('SC_META_ETAT', 'sc_etat');
+
+// ACF Field Group for Sous Collection
+add_action('acf/init', function() {
+    if (!function_exists('acf_add_local_field_group')) { return; }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_sc_fields',
+        'title' => __('Sous Collection', 'bdcomic'),
+        'fields' => array(
+            array(
+                'key' => 'field_sc_parent_collection',
+                'label' => __('Parent Collection', 'bdcomic'),
+                'name' => SC_META_PARENT_COLLECTION,
+                'type' => 'post_object',
+                'post_type' => array('collection'),
+                'return_format' => 'id',
+                'ui' => 1,
+                'required' => 0,
+            ),
+            array(
+                'key' => 'field_sc_etat',
+                'label' => __('État', 'bdcomic'),
+                'name' => SC_META_ETAT,
+                'type' => 'select',
+                'choices' => array(
+                    'En Cours' => 'En Cours',
+                    'Terminée' => 'Terminée',
+                ),
+                'allow_null' => 1,
+                'ui' => 1,
+                'return_format' => 'value',
+            ),
+            array(
+                'key' => 'field_sc_date_sortie',
+                'label' => __('Date Sortie', 'bdcomic'),
+                'name' => SC_META_DATE_SORTIE,
+                'type' => 'date_picker',
+                'display_format' => 'Y-m-d',
+                'return_format' => 'Y-m-d',
+                'required' => 0,
+            ),
+            array(
+                'key' => 'field_sc_date_fin',
+                'label' => __('Date Fin', 'bdcomic'),
+                'name' => SC_META_DATE_FIN,
+                'type' => 'date_picker',
+                'display_format' => 'Y-m-d',
+                'return_format' => 'Y-m-d',
+                'required' => 0,
+            ),
+            array(
+                'key' => 'field_sc_image',
+                'label' => __('Image', 'bdcomic'),
+                'name' => SC_META_IMAGE,
+                'type' => 'image',
+                'return_format' => 'id',
+                'preview_size' => 'thumbnail',
+                'library' => 'all',
+                'required' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'sous_collection',
+                ),
+            ),
+        ),
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'active' => true,
+        'show_in_rest' => 1,
+    ));
+});
+
+// Admin columns
+function sc_columns($columns) {
+    $columns['sc_parent'] = __('Collection', 'bdcomic');
+    $columns['sc_date_sortie'] = __('Date Sortie', 'bdcomic');
+    $columns['sc_date_fin'] = __('Date Fin', 'bdcomic');
+    return $columns;
+}
+add_filter('manage_sous_collection_posts_columns', 'sc_columns');
+
+function sc_custom_column($column, $post_id) {
+    switch ($column) {
+        case 'sc_parent':
+            $parent_id = (int) get_post_meta($post_id, SC_META_PARENT_COLLECTION, true);
+            if ($parent_id) {
+                echo esc_html(get_the_title($parent_id));
+            } else {
+                echo '—';
+            }
+            break;
+        case 'sc_date_sortie':
+            $v = get_post_meta($post_id, SC_META_DATE_SORTIE, true);
+            echo $v ? esc_html($v) : '—';
+            break;
+        case 'sc_date_fin':
+            $v = get_post_meta($post_id, SC_META_DATE_FIN, true);
+            echo $v ? esc_html($v) : '—';
+            break;
+    }
+}
+add_action('manage_sous_collection_posts_custom_column', 'sc_custom_column', 10, 2);
+
+function sc_sortable_columns($columns) {
+    $columns['sc_date_sortie'] = 'sc_date_sortie';
+    $columns['sc_date_fin'] = 'sc_date_fin';
+    return $columns;
+}
+add_filter('manage_edit-sous_collection_sortable_columns', 'sc_sortable_columns');
+
+function sc_orderby($query) {
+    if (!is_admin() || !$query->is_main_query()) return;
+    if ($query->get('post_type') !== 'sous_collection') return;
+
+    $orderby = $query->get('orderby');
+    if ($orderby === 'sc_date_sortie') {
+        $query->set('meta_key', SC_META_DATE_SORTIE);
+        $query->set('orderby', 'meta_value');
+    } elseif ($orderby === 'sc_date_fin') {
+        $query->set('meta_key', SC_META_DATE_FIN);
+        $query->set('orderby', 'meta_value');
+    }
+}
+add_action('pre_get_posts', 'sc_orderby');

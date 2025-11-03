@@ -87,8 +87,69 @@ get_header(); ?>
                             </section>
                         <?php endif; ?>
 
-                        <?php
-                        // Get books in this collection
+					<?php
+					// Get sous collections linked to this collection
+					$sous_collections = get_posts(array(
+						'post_type' => 'sous_collection',
+						'posts_per_page' => -1,
+						'orderby' => 'title',
+						'order' => 'ASC',
+						'meta_query' => array(
+							array(
+								'key' => 'sc_parent_collection',
+								'value' => get_the_ID(),
+								'compare' => '='
+							)
+						)
+					));
+
+					if ($sous_collections): ?>
+						<section class="collection-sous-collections">
+							<h2><?php echo esc_html__('Sous collections', 'bdcomic'); ?></h2>
+							<div class="sous-collections-grid">
+								<?php foreach ($sous_collections as $sc):
+									$sc_image_id = get_field('sc_image', $sc->ID);
+									$sc_img_url = $sc_image_id ? wp_get_attachment_image_url($sc_image_id, 'image-teaser') : '';
+									$sc_date_sortie = get_field('sc_date_sortie', $sc->ID);
+									$sc_date_fin = get_field('sc_date_fin', $sc->ID);
+                                    $sc_etat = get_field('sc_etat', $sc->ID);
+								?>
+									<div class="sous-collection-item">
+										<a class="sous-collection-card" href="<?php echo get_permalink($sc->ID); ?>">
+											<div class="sous-collection-thumb">
+												<?php if ($sc_img_url): ?>
+													<img src="<?php echo esc_url($sc_img_url); ?>" alt="<?php echo esc_attr(get_the_title($sc->ID)); ?>">
+												<?php else: ?>
+													<div class="no-cover-placeholder"><span class="dashicons dashicons-index-card"></span></div>
+												<?php endif; ?>
+											</div>
+											<div class="sous-collection-info">
+												<h3 class="sous-collection-title"><?php echo esc_html(get_the_title($sc->ID)); ?></h3>
+												<div class="sous-collection-dates">
+													<?php if ($sc_date_sortie): ?>
+														<span class="date-start"><?php echo esc_html($sc_date_sortie); ?></span>
+													<?php endif; ?>
+													<?php if ($sc_date_fin): ?>
+														<span class="date-end"> - <?php echo esc_html($sc_date_fin); ?></span>
+													<?php endif; ?>
+												</div>
+												<?php if ($sc_etat): ?>
+													<div class="sous-collection-status">
+														<span class="status-badge status-<?php echo esc_attr(strtolower($sc_etat)); ?>">
+															<?php echo esc_html($sc_etat); ?>
+														</span>
+													</div>
+												<?php endif; ?>
+											</div>
+										</a>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</section>
+					<?php endif; ?>
+
+					<?php
+					// Get books in this collection
                         $books_in_collection = get_posts(array(
                             'post_type' => 'livre',
                             'posts_per_page' => -1,

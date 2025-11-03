@@ -1,0 +1,45 @@
+{
+    "key": "group_6shortcuts_block",
+    "title": "Block Shortcode",
+    "fields": [
+        {
+            "key": "field_6shortcode_single",
+            "label": "Shortcode",
+            "name": "shortcode",
+            "type": "text",
+            "instructions": "Paste any WordPress shortcode, e.g. [ultimatemember_password].",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "[ultimatemember_password]",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/shortcuts"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1754311000
+}
+
+

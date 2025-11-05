@@ -209,15 +209,6 @@ get_header(); ?>
                     </article>
                 <?php endwhile; ?>
 
-            <?php
-            // Pagination
-            the_posts_pagination(array(
-                'mid_size' => 2,
-                'prev_text' => __('&laquo; Précédent'),
-                'next_text' => __('Suivant &raquo;'),
-            ));
-            ?>
-
         <?php else : ?>
             <div class="no-posts">
                 <p><?php _e('Aucun livre trouvé.', 'bdcomic'); ?></p>
@@ -226,7 +217,6 @@ get_header(); ?>
         </div>
 
         <!-- Pagination Container -->
-        <div class="archive-pagination">
             <?php
             // Initial pagination
             the_posts_pagination(array(
@@ -235,7 +225,6 @@ get_header(); ?>
                 'next_text' => __('Suivant &raquo;'),
             ));
             ?>
-        </div>
     </div>
 </main>
 

@@ -560,3 +560,10 @@ function bdcomic_search_query($query) {
     }
 }
 add_action('pre_get_posts', 'bdcomic_search_query');
+
+function bdcomic_set_collections_per_page( $query ) {
+    if ( ! is_admin() && $query->is_main_query() && is_post_type_archive('collection') ) {
+        $query->set( 'posts_per_page', 9 );
+    }
+}
+add_action( 'pre_get_posts', 'bdcomic_set_collections_per_page' );

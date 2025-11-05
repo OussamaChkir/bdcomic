@@ -159,7 +159,7 @@
     opacity: 1;
 }
 
-.no-image-placeholder {
+.collection-slide .no-image-placeholder {
     width: 100%;
     height: 200px;
     display: flex;
@@ -171,14 +171,14 @@
     overflow: hidden;
 }
 
-.no-image-placeholder .dashicons {
+.collection-slide .no-image-placeholder .dashicons {
     font-size: 48px;
     width: 48px;
     height: 48px;
     color: var(--color-text-muted, #999);
 }
 
-.collection-info {
+.collection-slide .collection-info {
     padding: 20px;
     flex: 1;
     display: flex;
@@ -207,7 +207,7 @@
     margin-bottom: 8px;
 }
 
-.publisher-badge {
+.collection-slide .publisher-badge {
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -219,7 +219,7 @@
     border-radius: 4px;
 }
 
-.publisher-badge .dashicons {
+.collection-slide .publisher-badge .dashicons {
     font-size: 12px;
     width: 12px;
     height: 12px;
@@ -229,7 +229,7 @@
     margin-bottom: 12px;
 }
 
-.status-badge {
+.collection-slide .status-badge {
     display: inline-block;
     padding: 4px 10px;
     font-size: 0.75rem;
@@ -238,7 +238,7 @@
     text-transform: capitalize;
 }
 
-.status-badge.status-en-cours {
+.collection-slide .status-badge.status-en-cours {
     background: var(--color-success-light, #d4edda);
     color: var(--color-success, #28a745);
 }
@@ -366,7 +366,7 @@
         padding: 15px;
     }
 
-    .no-image-placeholder {
+    .collection-slide .no-image-placeholder {
         height: 160px;
     }
 

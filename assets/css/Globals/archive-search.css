@@ -170,8 +170,7 @@
     margin-top: 30px;
     text-align: center;
 }
-
-.archive-pagination .page-numbers {
+ .page-numbers {
     display: inline-block;
     padding: 8px 12px;
     margin: 0 2px;
@@ -182,12 +181,12 @@
     transition: all 0.3s ease;
 }
 
-.archive-pagination .page-numbers:hover {
+ .page-numbers:hover {
     background-color: #f8f9fa;
     border-color: #007bff;
 }
 
-.archive-pagination .current {
+ .current {
     background-color: #007bff;
     color: white;
     border-color: #007bff;

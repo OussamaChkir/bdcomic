@@ -78,24 +78,16 @@ $speed = $block_settings['speed'] ?? 500;
             $artists_query = new WP_Query(array(
                 'post_type' => 'artiste',
                 'posts_per_page' => min($artists_per_slider, 20), // Limit to max 20 posts
-                'post_status' => 'publish',
-                'orderby' => 'date',
-                'order' => 'DESC',
-                'meta_query' => array(
-                    array(
-                        'key' => 'photo_artiste',
-                        'compare' => 'EXISTS'
-                    )
-                ),
+                'post_status' => 'publish',  
                 'no_found_rows' => true, // Skip pagination count
                 'update_post_meta_cache' => false, // Skip meta cache
                 'update_post_term_cache' => false // Skip term cache
             ));
-
+            
             if ($artists_query->have_posts() && $artists_query->post_count > 0) :
                 while ($artists_query->have_posts()) : $artists_query->the_post();
                     // Get ACF fields
-                    $photo = get_field('photo_artiste');
+                    $photo = get_field('photo_artiste', get_the_ID());
                     $nom = get_field('nom_artiste');
                     $prenom = get_field('prenom_artiste');
                     $nom_dartiste = get_field('nom_dartiste');

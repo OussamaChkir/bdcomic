@@ -6,7 +6,7 @@
             "key": "field_690cb56fba4b8",
             "label": "Logo",
             "name": "logo_sous_collection",
-            "type": "image",
+            "type": "image_aspect_ratio_crop",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -15,6 +15,7 @@
                 "class": "",
                 "id": ""
             },
+            "crop_type": "free_crop",
             "return_format": "array",
             "preview_size": "medium",
             "library": "all",
@@ -144,5 +145,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762440876
+    "modified": 1762526380
 }

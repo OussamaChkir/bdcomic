@@ -130,17 +130,16 @@ get_header(); ?>
                                         data-action="<?php echo $in_wishlist ? 'remove' : 'add'; ?>" data-post-type="livre"
                                         data-bs-toggle="tooltip"
                                         title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
-                                        <span
-                                            class="btn-icon dashicons <?php echo $in_wishlist ? 'dashicons-heart filled' : 'dashicons-heart'; ?>"></span>
+                                            <i class="bi <?php echo $in_wishlist ? 'bi-heart' : 'bi-heart-fill'; ?>"></i>
                                         <span
                                             class="btn-text"><?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?></span>
                                     </button>
 
                                     <?php
                                     // Missing albums button for book
-                                    $in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
+                                    //$in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
                                     ?>
-                                    <button class="book-action-btn <?php echo $in_missing_albums ? 'active' : ''; ?>" 
+                                    <!-- <button class="book-action-btn <?php echo $in_missing_albums ? 'active' : ''; ?>" 
                                             data-post-id="<?php echo $post_id; ?>" 
                                             data-list-type="missing_albums" 
                                             data-action="<?php echo $in_missing_albums ? 'remove' : 'add'; ?>"
@@ -149,7 +148,7 @@ get_header(); ?>
                                             title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
                                         <span class="dashicons dashicons-minus"></span>
                                         <span class="btn-text"><?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?></span>
-                                    </button>
+                                    </button> -->
                                     
                                     <?php
                                     // Read books button
@@ -160,8 +159,7 @@ get_header(); ?>
                                         data-action="<?php echo $is_read ? 'remove' : 'add'; ?>" data-post-type="livre"
                                         data-bs-toggle="tooltip"
                                         title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
-                                        <span
-                                            class="dashicons <?php echo $is_read ? 'dashicons-yes' : 'dashicons-yes-alt'; ?>"></span>
+                                        <i class="bi <?php echo $is_read ? 'bi-check-lg' : 'bi-check-circle-fill'; ?>"></i>
                                         <span
                                             class="btn-text"><?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?></span>
                                     </button>

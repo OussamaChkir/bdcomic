@@ -166,6 +166,11 @@
 }
 
 /* Pagination */
+
+nav.navigation.pagination {
+    justify-content: center;
+    margin: 20px 0;
+}
 .archive-pagination {
     margin-top: 30px;
     text-align: center;
@@ -183,13 +188,14 @@
 
  .page-numbers:hover {
     background-color: #f8f9fa;
-    border-color: #007bff;
+    border-color: #182748;
+    color: #182748;
 }
 
  .current {
-    background-color: #007bff;
+    background-color: #182748;
     color: white;
-    border-color: #007bff;
+    border-color: #182748;
 }
 
 /* Responsive Design */

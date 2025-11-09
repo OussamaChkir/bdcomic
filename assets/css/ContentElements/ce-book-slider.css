@@ -118,18 +118,19 @@
 }
 
 /****************/
-.livre-item  .livre-covers{
+ .livre-covers{
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.livre-item:hover .livre-covers{
-    transform: translateY(-3px);
+.livre-covers:hover{
+    transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .livre-content {
+    position: relative;
     padding: 1.5rem;
 }
 
@@ -425,6 +426,32 @@
 .book-view-btn:hover .dashicons {
     transform: translateX(4px);
 }
+
+.livre-actions {
+    position: absolute;
+    top: 0;
+    right: 30px;
+}
+
+i.bi.bi-heart-fill {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%23dc2626" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+i.bi.bi-heart {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%23dc2626" viewBox="0 0 16 16"><path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
 
 /* No Books Message */
 .no-books-message {

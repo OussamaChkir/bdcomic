@@ -48,6 +48,25 @@ $isbnean13 = get_field('isbnean13', $post_id);
 // Get post title as fallback
 $post_title = get_the_title($post_id);
 $book_title = $titre ? $titre : $post_title;
+
+// Check if user is logged in and get book status
+$is_loaned = false;
+$has_problem = false;
+if (is_user_logged_in()) {
+    $current_user_id = get_current_user_id();
+    $is_loaned = is_book_in_user_list($current_user_id, $post_id, 'loaned');
+    
+    // Check if book has pending problem reports
+    $problem_reports = get_field('livre_problem_reports', $post_id);
+    if (is_array($problem_reports) && !empty($problem_reports)) {
+        foreach ($problem_reports as $report) {
+            if (isset($report['status']) && $report['status'] === 'pending') {
+                $has_problem = true;
+                break;
+            }
+        }
+    }
+}
 ?>
 
 <article id="post-<?php echo $post_id; ?>" class="livre-item">
@@ -62,6 +81,31 @@ $book_title = $titre ? $titre : $post_title;
                     <div class="no-image-placeholder">
                         <span class="dashicons dashicons-book"></span>
                     </div>
+                <?php endif; ?>
+                
+                <?php if (is_user_logged_in()) : ?>
+                <div class="livre-status-icons">
+                    <?php if ($is_loaned) : ?>
+                        <span class="status-icon loaned" title="<?php _e('Prêté', 'bdcomic_theme'); ?>">
+                            <span class="dashicons dashicons-share"></span>
+                        </span>
+                    <?php endif; ?>
+                    
+                    <?php if ($has_problem) : ?>
+                        <span class="status-icon problem-reported" title="<?php _e('Problème signalé', 'bdcomic_theme'); ?>">
+                            <span class="dashicons dashicons-warning"></span>
+                        </span>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="livre-action-icons">
+                    <button class="book-action-icon report-problem-btn" 
+                            data-book-id="<?php echo $post_id; ?>"
+                            title="<?php _e('Signaler un problème', 'bdcomic_theme'); ?>"
+                            aria-label="<?php _e('Signaler un problème', 'bdcomic_theme'); ?>">
+                        <span class="dashicons dashicons-flag"></span>
+                    </button>
+                </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -168,21 +212,19 @@ $book_title = $titre ? $titre : $post_title;
                                 data-bs-toggle="tooltip" 
                                 title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
                             <i class="bi <?php echo $is_read ? 'bi-check-lg' : 'bi-check-circle-fill'; ?>"></i>
-                            
                         </button>
-
+                        
                         <?php
-                        // Quick missing albums button for book
-                        $in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
+                        // Quick loaned button
                         ?>
-                       <!--  <button class="book-quick-action <?php echo $in_missing_albums ? 'active' : ''; ?>" 
+                        <button class="book-quick-action <?php echo $is_loaned ? 'active' : ''; ?>" 
                                 data-post-id="<?php echo $post_id; ?>" 
-                                data-list-type="missing_albums"
+                                data-list-type="loaned"
                                 data-post-type="livre"
                                 data-bs-toggle="tooltip" 
-                                title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
-                            <span class="dashicons dashicons-minus"></span>
-                        </button> -->
+                                title="<?php echo $is_loaned ? __('Marquer comme non prêté', 'bdcomic_theme') : __('Marquer comme prêté', 'bdcomic_theme'); ?>">
+                            <span class="dashicons dashicons-share"></span>
+                        </button>
                     </div>
                 <?php endif; ?>
             </div>

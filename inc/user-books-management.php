@@ -24,6 +24,7 @@ function init_user_books_management() {
     add_action('wp_ajax_get_user_books', 'get_user_books_ajax');
     add_action('wp_ajax_search_user_wishlist', 'search_user_wishlist_ajax');
     add_action('wp_ajax_search_user_missing_albums', 'search_user_missing_albums_ajax');
+    add_action('wp_ajax_report_book_problem', 'report_book_problem_ajax');
     
     // Enqueue scripts and styles
     add_action('wp_enqueue_scripts', 'enqueue_user_books_scripts');
@@ -77,7 +78,7 @@ function add_to_user_books($user_id, $post_id, $list_type) {
     }
     
     // Validate list type
-    if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'missing_albums'])) {
+    if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'missing_albums', 'loaned'])) {
         return false;
     }
     
@@ -417,6 +418,7 @@ function enqueue_user_books_scripts() {
     wp_localize_script('user-books-management', 'userBooksData', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('user_books_nonce'),
+        'reportNonce' => wp_create_nonce('report_book_problem_nonce'),
         'strings' => array(
             'addToWishlist' => __('Ajouter aux souhaits', 'bdcomic_theme'),
             'removeFromWishlist' => __('Retirer des souhaits', 'bdcomic_theme'),
@@ -427,7 +429,15 @@ function enqueue_user_books_scripts() {
             'addToMissingAlbums' => __('Ajouter aux albums manquants', 'bdcomic_theme'),
             'removeFromMissingAlbums' => __('Retirer des albums manquants', 'bdcomic_theme'),
             'loading' => __('Chargement...', 'bdcomic_theme'),
-            'error' => __('Une erreur est survenue', 'bdcomic_theme')
+            'error' => __('Une erreur est survenue', 'bdcomic_theme'),
+            'reportProblem' => __('Signaler un problème', 'bdcomic_theme'),
+            'reportProblemTitle' => __('Signaler un problème avec ce livre', 'bdcomic_theme'),
+            'reportProblemMessage' => __('Décrivez le problème que vous avez rencontré:', 'bdcomic_theme'),
+            'reportProblemPlaceholder' => __('Ex: Informations incorrectes, image manquante, erreur dans les détails...', 'bdcomic_theme'),
+            'submitReport' => __('Envoyer le signalement', 'bdcomic_theme'),
+            'cancel' => __('Annuler', 'bdcomic_theme'),
+            'reportSuccess' => __('Problème signalé avec succès. Merci de votre contribution.', 'bdcomic_theme'),
+            'reportError' => __('Erreur lors de l\'envoi du signalement', 'bdcomic_theme')
         )
     ));
     
@@ -471,7 +481,8 @@ function get_list_type_labels() {
         'wishlist' => __('Souhaits', 'bdcomic_theme'),
         'read' => __('Lus', 'bdcomic_theme'),
         'collection_wishlist' => __('Souhaits de Collection', 'bdcomic_theme'),
-        'missing_albums' => __('Mes Albums Manquants', 'bdcomic_theme')
+        'missing_albums' => __('Mes Albums Manquants', 'bdcomic_theme'),
+        'loaned' => __('Prêtés', 'bdcomic_theme')
     );
 }
 
@@ -483,7 +494,8 @@ function get_list_type_descriptions() {
         'wishlist' => __('Livres que vous souhaitez lire', 'bdcomic_theme'),
         'read' => __('Livres que vous avez lus', 'bdcomic_theme'),
         'collection_wishlist' => __('Collections que vous souhaitez suivre', 'bdcomic_theme'),
-        'missing_albums' => __('Albums manquants dans vos collections', 'bdcomic_theme')
+        'missing_albums' => __('Albums manquants dans vos collections', 'bdcomic_theme'),
+        'loaned' => __('Livres que vous avez prêtés', 'bdcomic_theme')
     );
 }
 
@@ -521,7 +533,7 @@ function user_books_list_shortcode($atts) {
     $show_actions = $atts['show_actions'] === 'true';
     
     // Validate list type
-    if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'missing_albums'])) {
+    if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'missing_albums', 'loaned'])) {
         return '<p>' . __('Type de liste invalide.', 'bdcomic_theme') . '</p>';
     }
     
@@ -621,4 +633,75 @@ function user_books_list_shortcode($atts) {
     $output .= '</div>';
     
     return $output;
+}
+
+/**
+ * AJAX handler to report a book problem
+ */
+function report_book_problem_ajax() {
+    // Verify nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'report_book_problem_nonce')) {
+        wp_send_json_error(array('message' => __('Échec de la vérification de sécurité', 'bdcomic_theme')));
+    }
+    
+    // Check if user is logged in
+    if (!is_user_logged_in()) {
+        wp_send_json_error(array('message' => __('Vous devez être connecté pour signaler un problème', 'bdcomic_theme')));
+    }
+    
+    $post_id = intval($_POST['post_id']);
+    $message = sanitize_textarea_field($_POST['message']);
+    $user_id = get_current_user_id();
+    
+    // Validate post exists
+    $post = get_post($post_id);
+    if (!$post || $post->post_type !== 'livre') {
+        wp_send_json_error(array('message' => __('Livre introuvable', 'bdcomic_theme')));
+    }
+    
+    // Validate message
+    if (empty($message)) {
+        wp_send_json_error(array('message' => __('Veuillez décrire le problème', 'bdcomic_theme')));
+    }
+    
+    // Get existing reports
+    $reports = get_field('livre_problem_reports', $post_id);
+    if (!is_array($reports)) {
+        $reports = array();
+    }
+    
+    // Add new report - ACF will automatically map field names to field keys
+    $new_report = array(
+        'user_id' => $user_id,
+        'message' => $message,
+        'date' => current_time('Y-m-d H:i:s'),
+        'status' => 'pending'
+    );
+    
+    $reports[] = $new_report;
+    
+    // Save reports - ACF will handle the field keys automatically
+    update_field('livre_problem_reports', $reports, $post_id);
+    
+    // Send email notification to moderators
+    $moderators = get_users(array('role' => 'administrator'));
+    if (!empty($moderators)) {
+        $book_title = get_field('titre_livre', $post_id) ?: get_the_title($post_id);
+        $user = get_userdata($user_id);
+        $subject = sprintf(__('[%s] Signalement de problème - %s', 'bdcomic_theme'), get_bloginfo('name'), $book_title);
+        $email_message = sprintf(
+            __("Un utilisateur a signalé un problème concernant le livre suivant:\n\nLivre: %s\nLien: %s\n\nUtilisateur: %s (%s)\n\nMessage:\n%s\n\n", 'bdcomic_theme'),
+            $book_title,
+            get_permalink($post_id),
+            $user->display_name,
+            $user->user_email,
+            $message
+        );
+        
+        foreach ($moderators as $moderator) {
+            wp_mail($moderator->user_email, $subject, $email_message);
+        }
+    }
+    
+    wp_send_json_success(array('message' => __('Problème signalé avec succès. Merci de votre contribution.', 'bdcomic_theme')));
 }

@@ -13,12 +13,136 @@ jQuery(document).ready(function($) {
         // Bind click events to book action buttons
         bindBookActionButtons();
         
+        // Initialize report problem modal
+        initReportProblemModal();
+        
         // Initialize tooltips if Bootstrap is available
         if (typeof bootstrap !== 'undefined') {
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl);
             });
+        }
+    }
+    
+    function initReportProblemModal() {
+        // Create modal HTML if it doesn't exist
+        if ($('#report-problem-modal').length === 0) {
+            var modalHTML = '<div id="report-problem-modal" class="report-problem-modal">' +
+                '<div class="report-problem-modal-content">' +
+                '<div class="report-problem-modal-header">' +
+                '<h3>' + (userBooksData.strings.reportProblemTitle || 'Signaler un problème') + '</h3>' +
+                '<button type="button" class="report-problem-modal-close" aria-label="Fermer">&times;</button>' +
+                '</div>' +
+                '<div class="report-problem-modal-body">' +
+                '<div class="report-problem-modal-message" style="display: none;"></div>' +
+                '<label for="report-problem-message">' + (userBooksData.strings.reportProblemMessage || 'Décrivez le problème:') + '</label>' +
+                '<textarea id="report-problem-message" placeholder="' + (userBooksData.strings.reportProblemPlaceholder || 'Ex: Informations incorrectes, image manquante...') + '"></textarea>' +
+                '</div>' +
+                '<div class="report-problem-modal-footer">' +
+                '<button type="button" class="report-problem-modal-btn report-problem-modal-btn-cancel">' + (userBooksData.strings.cancel || 'Annuler') + '</button>' +
+                '<button type="button" class="report-problem-modal-btn report-problem-modal-btn-submit">' + (userBooksData.strings.submitReport || 'Envoyer') + '</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+            $('body').append(modalHTML);
+        }
+        
+        var $modal = $('#report-problem-modal');
+        var $message = $modal.find('.report-problem-modal-message');
+        var $textarea = $modal.find('#report-problem-message');
+        var $submitBtn = $modal.find('.report-problem-modal-btn-submit');
+        var currentBookId = null;
+        
+        // Open modal on report button click
+        $(document).on('click', '.report-problem-btn', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            currentBookId = $(this).data('book-id');
+            $textarea.val('');
+            $message.hide().removeClass('success error');
+            $modal.addClass('active');
+            $textarea.focus();
+        });
+        
+        // Close modal
+        function closeModal() {
+            $modal.removeClass('active');
+            $textarea.val('');
+            $message.hide().removeClass('success error');
+            currentBookId = null;
+        }
+        
+        $modal.find('.report-problem-modal-close, .report-problem-modal-btn-cancel').on('click', function() {
+            closeModal();
+        });
+        
+        // Close on outside click
+        $modal.on('click', function(e) {
+            if ($(e.target).is('.report-problem-modal')) {
+                closeModal();
+            }
+        });
+        
+        // Close on Escape key
+        $(document).on('keydown', function(e) {
+            if (e.key === 'Escape' && $modal.hasClass('active')) {
+                closeModal();
+            }
+        });
+        
+        // Submit report
+        $submitBtn.on('click', function() {
+            if (!currentBookId) {
+                return;
+            }
+            
+            var message = $textarea.val().trim();
+            if (!message) {
+                showReportMessage('error', userBooksData.strings.reportProblemMessage || 'Veuillez décrire le problème');
+                return;
+            }
+            
+            // Disable submit button
+            $submitBtn.prop('disabled', true).text(userBooksData.strings.loading || 'Envoi...');
+            
+            // Send AJAX request
+            $.ajax({
+                url: userBooksData.ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'report_book_problem',
+                    post_id: currentBookId,
+                    message: message,
+                    nonce: userBooksData.reportNonce
+                },
+                success: function(response) {
+                    if (response.success) {
+                        showReportMessage('success', response.data.message || userBooksData.strings.reportSuccess || 'Problème signalé avec succès');
+                        $textarea.val('');
+                        
+                        // Close modal after 2 seconds
+                        setTimeout(function() {
+                            closeModal();
+                        }, 2000);
+                    } else {
+                        showReportMessage('error', response.data.message || userBooksData.strings.reportError || 'Erreur lors de l\'envoi');
+                    }
+                },
+                error: function() {
+                    showReportMessage('error', userBooksData.strings.reportError || 'Erreur lors de l\'envoi');
+                },
+                complete: function() {
+                    $submitBtn.prop('disabled', false).text(userBooksData.strings.submitReport || 'Envoyer');
+                }
+            });
+        });
+        
+        function showReportMessage(type, text) {
+            $message.removeClass('success error').addClass(type).text(text).show();
+            setTimeout(function() {
+                $message.fadeOut();
+            }, 5000);
         }
     }
 

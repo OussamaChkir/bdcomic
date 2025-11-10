@@ -442,6 +442,107 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_livre_problem_reports",
+            "label": "Rapports de problème",
+            "name": "livre_problem_reports",
+            "type": "repeater",
+            "instructions": "Liste des rapports de problème signalés par les utilisateurs",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Ajouter un rapport",
+            "sub_fields": [
+                {
+                    "key": "field_livre_problem_report_user",
+                    "label": "Utilisateur",
+                    "name": "user_id",
+                    "type": "user",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "role": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "object"
+                },
+                {
+                    "key": "field_livre_problem_report_message",
+                    "label": "Message",
+                    "name": "message",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_livre_problem_report_date",
+                    "label": "Date",
+                    "name": "date",
+                    "type": "date_time_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d/m/Y g:i a",
+                    "return_format": "Y-m-d H:i:s",
+                    "first_day": 1
+                },
+                {
+                    "key": "field_livre_problem_report_status",
+                    "label": "Statut",
+                    "name": "status",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "pending": "En attente",
+                        "resolved": "Résolu",
+                        "dismissed": "Rejeté"
+                    },
+                    "default_value": "pending",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
         }
     ],
     "location": [

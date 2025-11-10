@@ -56,9 +56,9 @@ $read_books = $read_books_data;
 $read_book_ids = array_column($read_books, 'post');
 $read_book_ids = array_column($read_book_ids, 'ID');
 
-// Get user's loaned books (we'll need to add this functionality)
-// For now, we'll use a placeholder
-$loaned_books = array(); // TODO: Implement loaned books functionality
+// Get user's loaned books
+$loaned_books_data = get_user_books($current_user_id, 'loaned', 'livre');
+$loaned_books = array_column($loaned_books_data, 'post');
 
 // Calculate statistics
 $total_owned = count($owned_books);
@@ -100,8 +100,9 @@ foreach ($owned_books as $book_data) {
             $collections_data[$group_key]['read_books']++;
         }
         
-        // TODO: Check if book is loaned
-        if (in_array($book->ID, array_column($loaned_books, 'ID'))) {
+        // Check if book is loaned
+        $loaned_book_ids = array_column($loaned_books, 'ID');
+        if (in_array($book->ID, $loaned_book_ids)) {
             $collections_data[$group_key]['loaned_books']++;
         }
     }
@@ -314,7 +315,8 @@ ksort($collections_data);
                         <?php foreach ($collection_data['books'] as $book) : ?>
                             <?php
                             $is_read = in_array($book->ID, $read_book_ids);
-                            $is_loaned = in_array($book->ID, array_column($loaned_books, 'ID'));
+                            $loaned_book_ids = array_column($loaned_books, 'ID');
+                            $is_loaned = in_array($book->ID, $loaned_book_ids);
                             $book_classes = array('book-item');
                             if ($is_read) $book_classes[] = 'book-read';
                             if ($is_loaned) $book_classes[] = 'book-loaned';
@@ -322,6 +324,18 @@ ksort($collections_data);
                             $photo_devant = get_field('photo_devant', $book->ID);
                             $titre = get_field('titre_livre', $book->ID) ?: $book->post_title;
                             $n_sortie = get_field('n_sortie', $book->ID);
+                            
+                            // Check if book has pending problem reports
+                            $problem_reports = get_field('livre_problem_reports', $book->ID);
+                            $has_problem = false;
+                            if (is_array($problem_reports) && !empty($problem_reports)) {
+                                foreach ($problem_reports as $report) {
+                                    if (isset($report['status']) && $report['status'] === 'pending') {
+                                        $has_problem = true;
+                                        break;
+                                    }
+                                }
+                            }
                             ?>
                             
                             <div class="<?php echo implode(' ', $book_classes); ?>" 
@@ -357,8 +371,23 @@ ksort($collections_data);
                                                 <span class="dashicons dashicons-share"></span>
                                             </span>
                                         <?php endif; ?>
+                                        
+                                        <?php if ($has_problem) : ?>
+                                            <span class="status-icon problem-reported" title="<?php _e('Problème signalé', 'bdcomic_theme'); ?>">
+                                                <span class="dashicons dashicons-warning"></span>
+                                            </span>
+                                        <?php endif; ?>
                                     </div>
                                     <?php endif; ?>
+                                    
+                                    <div class="book-action-icons">
+                                        <button class="book-action-icon report-problem-btn" 
+                                                data-book-id="<?php echo $book->ID; ?>"
+                                                title="<?php _e('Signaler un problème', 'bdcomic_theme'); ?>"
+                                                aria-label="<?php _e('Signaler un problème', 'bdcomic_theme'); ?>">
+                                            <span class="dashicons dashicons-flag"></span>
+                                        </button>
+                                    </div>
                                 </div>
                                 
                                 <div class="book-info">

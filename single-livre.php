@@ -29,6 +29,49 @@ get_header(); ?>
                                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
                                     </div>
                                 <?php endif; ?>
+                                
+                                <?php if (is_user_logged_in()): ?>
+                                    <?php
+                                    $current_user_id = get_current_user_id();
+                                    $post_id = get_the_ID();
+                                    $is_loaned = is_book_in_user_list($current_user_id, $post_id, 'loaned');
+                                    
+                                    // Check if book has pending problem reports
+                                    $problem_reports = get_field('livre_problem_reports', $post_id);
+                                    $has_problem = false;
+                                    if (is_array($problem_reports) && !empty($problem_reports)) {
+                                        foreach ($problem_reports as $report) {
+                                            if (isset($report['status']) && $report['status'] === 'pending') {
+                                                $has_problem = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    
+                                    <div class="livre-status-icons">
+                                        <?php if ($is_loaned): ?>
+                                            <span class="status-icon loaned" title="<?php _e('Prêté', 'bdcomic_theme'); ?>">
+                                                <span class="dashicons dashicons-share"></span>
+                                            </span>
+                                        <?php endif; ?>
+                                        
+                                        <?php if ($has_problem): ?>
+                                            <span class="status-icon problem-reported" title="<?php _e('Problème signalé', 'bdcomic_theme'); ?>">
+                                                <span class="dashicons dashicons-warning"></span>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
+                                    
+                                    <div class="livre-action-icons">
+                                        <button class="book-action-icon report-problem-btn" 
+                                                data-book-id="<?php echo $post_id; ?>"
+                                                title="<?php _e('Signaler un problème', 'bdcomic_theme'); ?>"
+                                                aria-label="<?php _e('Signaler un problème', 'bdcomic_theme'); ?>">
+                                            <span class="dashicons dashicons-flag"></span>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
                             </div>
 
                             <?php if ($photo_derriere): ?>
@@ -134,21 +177,6 @@ get_header(); ?>
                                         <span
                                             class="btn-text"><?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?></span>
                                     </button>
-
-                                    <?php
-                                    // Missing albums button for book
-                                    //$in_missing_albums = is_book_in_user_list($current_user_id, $post_id, 'missing_albums');
-                                    ?>
-                                    <!-- <button class="book-action-btn <?php echo $in_missing_albums ? 'active' : ''; ?>" 
-                                            data-post-id="<?php echo $post_id; ?>" 
-                                            data-list-type="missing_albums" 
-                                            data-action="<?php echo $in_missing_albums ? 'remove' : 'add'; ?>"
-                                            data-post-type="livre"
-                                            data-bs-toggle="tooltip" 
-                                            title="<?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?>">
-                                        <span class="dashicons dashicons-minus"></span>
-                                        <span class="btn-text"><?php echo $in_missing_albums ? __('Retirer des albums manquants', 'bdcomic_theme') : __('Ajouter aux albums manquants', 'bdcomic_theme'); ?></span>
-                                    </button> -->
                                     
                                     <?php
                                     // Read books button
@@ -162,6 +190,20 @@ get_header(); ?>
                                         <i class="bi <?php echo $is_read ? 'bi-check-lg' : 'bi-check-circle-fill'; ?>"></i>
                                         <span
                                             class="btn-text"><?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?></span>
+                                    </button>
+                                    
+                                    <?php
+                                    // Loaned button
+                                    $is_loaned = is_book_in_user_list($current_user_id, $post_id, 'loaned');
+                                    ?>
+                                    <button class="book-action-btn <?php echo $is_loaned ? 'active' : ''; ?>"
+                                        data-post-id="<?php echo $post_id; ?>" data-list-type="loaned"
+                                        data-action="<?php echo $is_loaned ? 'remove' : 'add'; ?>" data-post-type="livre"
+                                        data-bs-toggle="tooltip"
+                                        title="<?php echo $is_loaned ? __('Marquer comme non prêté', 'bdcomic_theme') : __('Marquer comme prêté', 'bdcomic_theme'); ?>">
+                                        <span class="dashicons dashicons-share"></span>
+                                        <span
+                                            class="btn-text"><?php echo $is_loaned ? __('Marquer comme non prêté', 'bdcomic_theme') : __('Marquer comme prêté', 'bdcomic_theme'); ?></span>
                                     </button>
                                 </div>
                             <?php endif; ?>

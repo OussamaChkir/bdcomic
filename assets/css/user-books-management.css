@@ -84,6 +84,23 @@
     color: white;
 }
 
+/* Loaned Button */
+.book-action-btn[data-list-type="loaned"] {
+    color: #f59e0b;
+    border-color: #f59e0b;
+    background-color: transparent;
+}
+
+.book-action-btn[data-list-type="loaned"]:hover {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.book-action-btn[data-list-type="loaned"].active {
+    background-color: #f59e0b;
+    color: white;
+}
+
 /* Collection Wishlist Button */
 .book-action-btn[data-list-type="collection_wishlist"] {
     color: #d97706;

@@ -98,7 +98,10 @@ get_header(); ?>
                                     'value' => get_the_ID(),
                                     'compare' => '='
                                 )
-                            )
+                                ),
+                                'meta_key' => 'n_sortie',
+                                'orderby' => 'meta_value_num',
+                                'order' => 'ASC',
                         ));
 
                         if ($books_in_collection): ?>

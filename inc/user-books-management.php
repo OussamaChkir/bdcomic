@@ -78,7 +78,7 @@ function add_to_user_books($user_id, $post_id, $list_type) {
     }
     
     // Validate list type
-    if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'missing_albums', 'loaned'])) {
+	if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'missing_albums', 'loaned', 'owned'])) {
         return false;
     }
     
@@ -203,6 +203,7 @@ function get_user_books_stats($user_id) {
     $stats = array(
         'wishlist_books' => count(get_user_books($user_id, 'wishlist', 'livre')),
         'read_books' => count(get_user_books($user_id, 'read', 'livre')),
+		'owned_books' => count(get_user_books($user_id, 'owned', 'livre')),
         'collection_wishlist' => count(get_user_books($user_id, 'collection_wishlist', 'collection')),
         'missing_albums' => count(get_user_books($user_id, 'missing_albums', 'collection'))
     );
@@ -424,6 +425,8 @@ function enqueue_user_books_scripts() {
             'removeFromWishlist' => __('Retirer des souhaits', 'bdcomic_theme'),
             'markAsRead' => __('Marquer comme lu', 'bdcomic_theme'),
             'markAsUnread' => __('Marquer comme non lu', 'bdcomic_theme'),
+			'markAsOwned' => __('Marquer comme possédé', 'bdcomic_theme'),
+			'markAsNotOwned' => __('Marquer comme non possédé', 'bdcomic_theme'),
             'addToCollectionWishlist' => __('Ajouter aux souhaits de collection', 'bdcomic_theme'),
             'removeFromCollectionWishlist' => __('Retirer des souhaits de collection', 'bdcomic_theme'),
             'addToMissingAlbums' => __('Ajouter aux albums manquants', 'bdcomic_theme'),
@@ -480,6 +483,7 @@ function get_list_type_labels() {
     return array(
         'wishlist' => __('Souhaits', 'bdcomic_theme'),
         'read' => __('Lus', 'bdcomic_theme'),
+		'owned' => __('Possédés', 'bdcomic_theme'),
         'collection_wishlist' => __('Souhaits de Collection', 'bdcomic_theme'),
         'missing_albums' => __('Mes Albums Manquants', 'bdcomic_theme'),
         'loaned' => __('Prêtés', 'bdcomic_theme')
@@ -493,6 +497,7 @@ function get_list_type_descriptions() {
     return array(
         'wishlist' => __('Livres que vous souhaitez lire', 'bdcomic_theme'),
         'read' => __('Livres que vous avez lus', 'bdcomic_theme'),
+		'owned' => __('Livres que vous possédez', 'bdcomic_theme'),
         'collection_wishlist' => __('Collections que vous souhaitez suivre', 'bdcomic_theme'),
         'missing_albums' => __('Albums manquants dans vos collections', 'bdcomic_theme'),
         'loaned' => __('Livres que vous avez prêtés', 'bdcomic_theme')
@@ -533,7 +538,7 @@ function user_books_list_shortcode($atts) {
     $show_actions = $atts['show_actions'] === 'true';
     
     // Validate list type
-    if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'missing_albums', 'loaned'])) {
+	if (!in_array($list_type, ['wishlist', 'read', 'owned', 'collection_wishlist', 'missing_albums', 'loaned'])) {
         return '<p>' . __('Type de liste invalide.', 'bdcomic_theme') . '</p>';
     }
     
@@ -612,6 +617,9 @@ function user_books_list_shortcode($atts) {
                 case 'read':
                     $output .= 'dashicons-yes';
                     break;
+				case 'owned':
+					$output .= 'dashicons-archive';
+					break;
                 case 'collection_wishlist':
                     $output .= 'dashicons-star-filled';
                     break;

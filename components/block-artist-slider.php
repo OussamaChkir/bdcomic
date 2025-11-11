@@ -60,8 +60,8 @@ $speed = $block_settings['speed'] ?? 500;
     <div class="container">
         <div class="slider-header">
             <div class="slider-title-section">
-                <h2 class="slider-title">Derniers artistes ajoutés</h2>
-                <p class="slider-description">Découvrez les nouveaux artistes de la base de données</p>
+                <h2 class="slider-title">Les Maîtres du Crayon</h2>
+                <p class="slider-description">Découvre les artistes qui ont façonné l'univers des comics </p>
             </div>
             <div class="slider-actions">
                 <a href="<?php echo get_post_type_archive_link('artiste'); ?>" class="view-all-artists-btn">

@@ -312,6 +312,8 @@ jQuery(document).ready(function($) {
                     return strings.addToWishlist;
                 case 'read':
                     return strings.markAsRead;
+				case 'owned':
+					return strings.markAsOwned;
                 case 'collection_wishlist':
                     return strings.addToCollectionWishlist;
                 case 'missing_albums':
@@ -325,6 +327,8 @@ jQuery(document).ready(function($) {
                     return strings.removeFromWishlist;
                 case 'read':
                     return strings.markAsUnread;
+				case 'owned':
+					return strings.markAsNotOwned;
                 case 'collection_wishlist':
                     return strings.removeFromCollectionWishlist;
                 case 'missing_albums':
@@ -342,6 +346,8 @@ jQuery(document).ready(function($) {
                     return 'dashicons-heart';
                 case 'read':
                     return 'dashicons-yes-alt';
+				case 'owned':
+					return 'dashicons-archive';
                 case 'collection_wishlist':
                     return 'dashicons-star-filled';
                 case 'missing_albums':
@@ -355,6 +361,8 @@ jQuery(document).ready(function($) {
                     return 'dashicons-heart-filled';
                 case 'read':
                     return 'dashicons-yes';
+				case 'owned':
+					return 'dashicons-archive';
                 case 'collection_wishlist':
                     return 'dashicons-star-filled';
                 case 'missing_albums':
@@ -378,6 +386,8 @@ jQuery(document).ready(function($) {
                     return 'Livre ajouté à vos souhaits !';
                 case 'read':
                     return 'Livre marqué comme lu !';
+				case 'owned':
+					return 'Livre marqué comme possédé !';
                 case 'collection_wishlist':
                     return 'Collection ajoutée à vos souhaits !';
                 case 'missing_albums':
@@ -391,6 +401,8 @@ jQuery(document).ready(function($) {
                     return 'Livre retiré de vos souhaits.';
                 case 'read':
                     return 'Livre marqué comme non lu.';
+				case 'owned':
+					return 'Livre marqué comme non possédé.';
                 case 'collection_wishlist':
                     return 'Collection retirée de vos souhaits.';
                 case 'missing_albums':

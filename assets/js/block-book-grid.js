@@ -144,6 +144,9 @@
                 case 'read':
                     $icon.addClass('dashicons-yes');
                     break;
+				case 'owned':
+					$icon.addClass('dashicons-archive');
+					break;
                 case 'collection_wishlist':
                     $icon.addClass('dashicons-star-filled');
                     break;
@@ -159,6 +162,9 @@
                 case 'read':
                     $icon.addClass('dashicons-yes-alt');
                     break;
+				case 'owned':
+					$icon.addClass('dashicons-archive');
+					break;
                 case 'collection_wishlist':
                     $icon.addClass('dashicons-star-empty');
                     break;
@@ -184,6 +190,8 @@
                 return 'Ajouter aux souhaits';
             case 'read':
                 return 'Marquer comme lu';
+			case 'owned':
+				return 'Marquer comme possédé';
             case 'collection_wishlist':
                 return 'Ajouter aux souhaits de collection';
             case 'missing_albums':
@@ -202,6 +210,8 @@
                 return 'Retirer des souhaits';
             case 'read':
                 return 'Marquer comme non lu';
+			case 'owned':
+				return 'Marquer comme non possédé';
             case 'collection_wishlist':
                 return 'Retirer des souhaits de collection';
             case 'missing_albums':

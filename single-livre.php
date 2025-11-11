@@ -94,6 +94,7 @@ get_header(); ?>
                             $variante = get_field('variante');
                             $maison_edition = get_field('maison_d\'edition');
                             $collection = get_field('collection');
+                            $sous_collection = get_field('sous_collection');
                             $date_sortie = get_field('date_sortie_livre');
                             $nombre_pages = get_field('nombre_de_pages');
                             $n_sortie = get_field('n_sortie');
@@ -122,6 +123,14 @@ get_header(); ?>
                                     <a href="<?php echo get_permalink($collection->ID); ?>">
                                         <?php echo esc_html($collection->post_title); ?>
                                     </a>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($sous_collection): ?>
+                                <div class="livre-collection">
+                                    <strong>Sous Collection:</strong>
+                                    <span>
+                                        <?php echo esc_html($sous_collection->post_title); ?>
+                                    </span>
                                 </div>
                             <?php endif; ?>
 
@@ -191,6 +200,20 @@ get_header(); ?>
                                         <span
                                             class="btn-text"><?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?></span>
                                     </button>
+									
+									<?php
+									// Owned button
+									$is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
+									?>
+									<button class="book-action-btn <?php echo $is_owned ? 'active' : ''; ?>"
+										data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
+										data-action="<?php echo $is_owned ? 'remove' : 'add'; ?>" data-post-type="livre"
+										data-bs-toggle="tooltip"
+										title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
+										<i class="bi <?php echo $is_owned ? 'bi-bag-check-fill' : 'bi-bag-check'; ?>"></i>
+										<span
+											class="btn-text"><?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?></span>
+									</button>
                                     
                                     <?php
                                     // Loaned button
@@ -321,6 +344,14 @@ get_header(); ?>
                                         </a>
                                     </li>
                                 <?php endif; ?>
+                                <?php if ($sous_collection): ?>  
+                                    <li>
+                                        <strong>Sous Collection:</strong>
+                                        <span>
+                                            <?php echo esc_html($sous_collection->post_title); ?>
+                                        </span>
+                                    </li>
+                                <?php endif; ?>
 
                                 <?php if ($date_sortie): ?>
                                     <li>
@@ -363,6 +394,16 @@ get_header(); ?>
                                 <?php if ($equipe_creative && is_array($equipe_creative)): ?>
                                     <li>
                                         <strong>Équipe créative:</strong> <?php echo count($equipe_creative); ?> membre(s)
+                                    </li>
+                                <?php endif; ?>
+
+                                <h3>Liens pour acheter le livre</h3>
+                                <?php $liste_des_liens = get_field('liste_des_liens'); ?>
+                                <?php if ($liste_des_liens && is_array($liste_des_liens)): ?>
+                                    <li>
+                                        <?php foreach ($liste_des_liens as $lien): ?>
+                                            <a href="<?php echo esc_url($lien['url_lien']); ?>"><?php echo esc_html($lien['titre_lien']); ?></a>
+                                        <?php endforeach; ?>
                                     </li>
                                 <?php endif; ?>
                             </ul>

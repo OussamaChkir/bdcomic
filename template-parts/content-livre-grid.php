@@ -213,6 +213,19 @@ if (is_user_logged_in()) {
                                 title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
                             <i class="bi <?php echo $is_read ? 'bi-check-lg' : 'bi-check-circle-fill'; ?>"></i>
                         </button>
+						
+						<?php
+						// Quick owned button
+						$is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
+						?>
+						<button class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>" 
+								data-post-id="<?php echo $post_id; ?>" 
+								data-list-type="owned"
+								data-post-type="livre"
+								data-bs-toggle="tooltip" 
+								title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
+							<i class="bi <?php echo $is_owned ? 'bi-bag-check-fill' : 'bi-bag-check'; ?>"></i>
+						</button>
                         
                         <?php
                         // Quick loaned button

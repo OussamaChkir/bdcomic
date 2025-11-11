@@ -152,6 +152,14 @@ get_header(); ?>
             
             <!-- Main Content -->
             <div class="col-lg-9 col-md-8">
+            <?php
+                if ( shortcode_exists( 'ultimatemember_account' ) ) {
+                    echo do_shortcode( '[ultimatemember_account]' );
+                } else {
+                    // Fallback: show a message or redirect
+                    echo '<p>Ultimate Member account page not available.</p>';
+                }
+            ?>
                 <div class="page-content">
                     <div class="page-header">
                         <h1 class="page-title"><?php the_title(); ?></h1>

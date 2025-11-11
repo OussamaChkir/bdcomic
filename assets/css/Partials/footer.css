@@ -5,6 +5,7 @@ footer {
     line-height: var(--line-height-textFtr);
     letter-spacing: 0.008rem;
     padding: 2rem 0;
+    margin-top: 3rem;
 }
 
 footer .widget p:last-child {

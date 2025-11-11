@@ -684,7 +684,7 @@ function report_book_problem_ajax() {
     update_field('livre_problem_reports', $reports, $post_id);
     
     // Send email notification to moderators
-    $moderators = get_users(array('role' => 'administrator'));
+    $moderators = get_users(array('role__in' => array('administrator', 'editor')));
     if (!empty($moderators)) {
         $book_title = get_field('titre_livre', $post_id) ?: get_the_title($post_id);
         $user = get_userdata($user_id);

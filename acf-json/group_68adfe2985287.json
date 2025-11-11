@@ -133,6 +133,28 @@
             "ui": 1
         },
         {
+            "key": "field_69130ea5306dd",
+            "label": "sous collection",
+            "name": "sous_collection",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "sous_collection"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        },
+        {
             "key": "field_68ae0023283f7",
             "label": "Tirage limité",
             "name": "tirage_limite",
@@ -425,30 +447,11 @@
             ]
         },
         {
-            "key": "field_68ae030028403",
-            "label": "Sous-collection",
-            "name": "sous_collection",
-            "type": "text",
-            "instructions": "Nom de la sous-collection si applicable (ex: Tome 1, Arc 1, etc.)",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "Ex: Tome 1, Arc 1, Saison 1",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_livre_problem_reports",
-            "label": "Rapports de problème",
-            "name": "livre_problem_reports",
+            "key": "field_69130da34d49a",
+            "label": "Liste des liens",
+            "name": "liste_des_liens",
             "type": "repeater",
-            "instructions": "Liste des rapports de problème signalés par les utilisateurs",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -457,34 +460,16 @@
                 "id": ""
             },
             "collapsed": "",
-            "min": 0,
+            "min": 1,
             "max": 0,
             "layout": "table",
-            "button_label": "Ajouter un rapport",
+            "button_label": "",
             "sub_fields": [
                 {
-                    "key": "field_livre_problem_report_user",
-                    "label": "Utilisateur",
-                    "name": "user_id",
-                    "type": "user",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "role": [],
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "return_format": "object"
-                },
-                {
-                    "key": "field_livre_problem_report_message",
-                    "label": "Message",
-                    "name": "message",
-                    "type": "textarea",
+                    "key": "field_69130dd64d49b",
+                    "label": "Titre Lien",
+                    "name": "titre_lien",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -495,15 +480,15 @@
                     },
                     "default_value": "",
                     "placeholder": "",
-                    "maxlength": "",
-                    "rows": 4,
-                    "new_lines": ""
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
-                    "key": "field_livre_problem_report_date",
-                    "label": "Date",
-                    "name": "date",
-                    "type": "date_time_picker",
+                    "key": "field_69130df74d49c",
+                    "label": "Url Lien",
+                    "name": "url_lien",
+                    "type": "url",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -512,34 +497,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "display_format": "d/m/Y g:i a",
-                    "return_format": "Y-m-d H:i:s",
-                    "first_day": 1
-                },
-                {
-                    "key": "field_livre_problem_report_status",
-                    "label": "Statut",
-                    "name": "status",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "pending": "En attente",
-                        "resolved": "Résolu",
-                        "dismissed": "Rejeté"
-                    },
-                    "default_value": "pending",
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
+                    "default_value": "",
                     "placeholder": ""
                 }
             ]
@@ -562,5 +520,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1756245650
+    "modified": 1762856664
 }

@@ -89,6 +89,55 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_69147b54f93a3",
+            "label": "Livre de base du variant",
+            "name": "livre_variant",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68adfebe283f4",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "livre"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        },
+        {
+            "key": "field_69147bbbf93a4",
+            "label": "Maison",
+            "name": "maison",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_68adfee2283f5",
             "label": "Maison d’édition",
             "name": "maison_d’edition",
@@ -349,8 +398,27 @@
         },
         {
             "key": "field_68ae01ab28400",
-            "label": "ISBN\/EAN13",
+            "label": "ISBN",
             "name": "isbnean13",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_69147b3ef93a2",
+            "label": "EAN13",
+            "name": "ean13",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -520,5 +588,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762856664
+    "modified": 1762950091
 }

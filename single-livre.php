@@ -315,6 +315,31 @@ get_header(); ?>
                                 </div>
                             </section>
                         <?php endif; ?>
+                        <?php
+                        $livre_variant = get_field('livre_variant');
+                        if ($livre_variant):
+                        $photo_livre_variant = get_field('photo_devant', $livre_variant->ID);
+                        ?>
+                            <section class="livre-additional">
+                                <h2>Livre de base du variant</h2>
+                                <div class="variant-content">
+                                <a href="<?php echo get_permalink($livre_variant->ID); ?>">
+                                    <div class="livre-cover">
+                                        <?php if ($photo_livre_variant): ?>
+                                            <img src="<?php echo esc_url($photo_livre_variant['url']); ?>" alt="<?php echo esc_attr($photo_livre_variant['alt']); ?>">
+                                        <?php else: ?>
+                                            <div class="no-cover-placeholder">
+                                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="livre-title">
+                                        <?php echo esc_html($livre_variant->post_title); ?>
+                                    </div>
+                                </a>
+                                </div>
+                            </section>
+                        <?php endif; ?>
                     </div>
 
                     <aside class="livre-sidebar">
@@ -387,7 +412,14 @@ get_header(); ?>
                                 $isbnean13 = get_field('isbnean13');
                                 if ($isbnean13): ?>
                                     <li>
-                                        <strong>ISBN/EAN13:</strong> <?php echo esc_html($isbnean13); ?>
+                                        <strong>ISBN:</strong> <?php echo esc_html($isbnean13); ?>
+                                    </li>
+                                <?php endif; ?>
+                                <?php
+                                $ean13 = get_field('ean13');
+                                if ($ean13): ?>
+                                    <li>
+                                        <strong>EAN13:</strong> <?php echo esc_html($ean13); ?>
                                     </li>
                                 <?php endif; ?>
 
@@ -402,7 +434,7 @@ get_header(); ?>
                                 <?php if ($liste_des_liens && is_array($liste_des_liens)): ?>
                                     <li>
                                         <?php foreach ($liste_des_liens as $lien): ?>
-                                            <a href="<?php echo esc_url($lien['url_lien']); ?>"><?php echo esc_html($lien['titre_lien']); ?></a>
+                                            <a class="btn" style="width: 100%; margin-bottom: 0.5rem;" href="<?php echo esc_url($lien['url_lien']); ?>"><?php echo esc_html($lien['titre_lien']); ?></a>
                                         <?php endforeach; ?>
                                     </li>
                                 <?php endif; ?>

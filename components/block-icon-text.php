@@ -12,11 +12,15 @@ if ($block_icon_text) : ?>
             <div class="block-icon-text-row">
                 <?php foreach ($block_icon_text as $icon_text) :
                     $icon = $icon_text['icon'];
+                    $sous_titre = $icon_text['sous_titre'];
                     $text = $icon_text['text'];
                 ?>
                     <div class="block-icon-text-item">
                         <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>">
-                        <div class="block-icon-text-text"><?php echo esc_html($text); ?></div>
+                        <?php if ($sous_titre) : ?>
+                            <h3 class="block-icon-text-sous-titre"><?php echo esc_html($sous_titre); ?></h3>
+                        <?php endif; ?>
+                        <p class="block-icon-text-text"><?php echo esc_html($text); ?></p>
                     </div>
                 <?php endforeach; ?>
             </div>

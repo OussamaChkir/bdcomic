@@ -65,6 +65,25 @@
                     "mime_types": ""
                 },
                 {
+                    "key": "field_69149b10ff0cd",
+                    "label": "Sous Titre",
+                    "name": "sous_titre",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
                     "key": "field_69149630a7bbb",
                     "label": "Text",
                     "name": "text",
@@ -103,5 +122,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762957544
+    "modified": 1762958130
 }

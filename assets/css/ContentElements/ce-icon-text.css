@@ -11,8 +11,8 @@
     margin-bottom: 2rem;
 }
 .block-icon-text-row {
+    position: relative;
     display: flex;
-    flex-wrap: wrap;
     gap: 2rem;
 }
 
@@ -20,5 +20,28 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 1rem;
+}
+
+.block-icon-text-item img {
+    width: auto;
+    height: 100px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+.block-icon-text-item img:hover {
+    transform: scale(1.1);
+}
+
+.block-icon-text-item .block-icon-text-sous-titre {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.block-icon-text-item .block-icon-text-text {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    padding: 0 3rem;
 }

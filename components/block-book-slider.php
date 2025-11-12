@@ -54,8 +54,8 @@ $speed = $block_settings['speed'] ?? 500;
     <div class="container">
         <div class="slider-header">
             <div class="slider-title-section">
-                <h2 class="slider-title">Derniers livres ajoutés</h2>
-                <p class="slider-description">Découvrez les nouveaux livres de la base de données</p>
+                <h2 class="slider-title">Découvre les trésors de l'univers BD</h2>
+                <p class="slider-description">Toutes les sagas légendaires, numéros cultes et éditions iconiques</p>
             </div>
             <div class="slider-actions">
                 <a href="<?php echo get_post_type_archive_link('livre'); ?>" class="view-all-books-btn">

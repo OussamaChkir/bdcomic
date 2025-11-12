@@ -52,10 +52,10 @@
     align-items: center;
     gap: 8px;
     padding: 12px 24px;
-    background: var(--color-accent, #0066cc);
+    background: #182748;
     color: #ffffff;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 30px;
     font-weight: 600;
     font-size: 0.95rem;
     transition: all 0.3s ease;

@@ -191,6 +191,13 @@ function disable_autosave() {
     wp_deregister_script( 'autosave' );
 }
 
+function load_dashicons_for_users() {
+    // Always load Dashicons on the frontend
+    wp_enqueue_style('dashicons');
+}
+add_action('wp_enqueue_scripts', 'load_dashicons_for_users');
+
+
 // Custom Walker Class for adding Bootstrap classes to wp_nav_menu
 class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 

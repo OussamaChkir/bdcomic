@@ -57,11 +57,17 @@
             </div>
                 <!-- User Actions Container -->
                 <div class="header-actions-container">
-                    <?php if (is_user_logged_in()) : ?>
+                    <?php if (is_user_logged_in()) :
+                        $user_id = get_current_user_id();
+                        $profile_pic = get_avatar_url( $user_id );
+                        
+                        ?>
                         <!-- Logged in user dropdown menu -->
                         <div class="user-dropdown">
                             <button class="user-dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="dashicons dashicons-admin-users"></i>
+                                
+                            <img src="<?php echo esc_url( $profile_pic ); ?>" alt="Profile" style="width:30px; height:30px; border-radius:50%;">
+
                                 <span class="user-name"><?php echo wp_get_current_user()->display_name; ?></span>
                                 <i class="dashicons dashicons-arrow-down-alt2"></i>
                             </button>

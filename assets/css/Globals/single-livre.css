@@ -31,6 +31,7 @@ article.single-livre {
     flex: 1;
     max-width: 200px;
     position: relative;
+    border-radius: 8px;
 }
 
 .livre-cover {
@@ -56,6 +57,27 @@ article.single-livre {
     font-size: 4rem;
     color: #ccc;
 }
+
+/* The magnifier glass */
+.zoom {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 300%; /* level of zoom */
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+    transition: background-size 0.3s ease;
+  }
+  
+  .zoom img {
+    display: block;
+    width: 100%;
+    transition: opacity 0.3s ease;
+  }
+  
+  .zoom:hover img {
+    opacity: 0;
+  }  
 
 .variant-content {
     position: relative;

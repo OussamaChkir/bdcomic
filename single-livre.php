@@ -20,11 +20,13 @@ get_header(); ?>
                             $photo_derriere = get_field('photo_derriere');
                             ?>
 
-                            <div class="cover-front">
+                            
                                 <?php if ($photo_devant): ?>
+                                <div class="cover-front zoom" onmousemove="zoom(event)" style="background-image: url('<?php echo esc_url($photo_devant['url']); ?>');">
                                     <img src="<?php echo esc_url($photo_devant['url']); ?>"
                                         alt="<?php echo esc_attr($photo_devant['alt']); ?>" class="livre-cover">
                                 <?php else: ?>
+                                    <div class="cover-front">
                                     <div class="no-cover-placeholder">
                                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
                                     </div>
@@ -75,7 +77,7 @@ get_header(); ?>
                             </div>
 
                             <?php if ($photo_derriere): ?>
-                                <div class="cover-back">
+                                <div class="cover-back zoom" onmousemove="zoom(event)" style="background-image: url('<?php echo esc_url($photo_derriere['url']); ?>');">
                                     <img src="<?php echo esc_url($photo_derriere['url']); ?>"
                                         alt="<?php echo esc_attr($photo_derriere['alt']); ?>" class="livre-cover back-cover">
                                 </div>

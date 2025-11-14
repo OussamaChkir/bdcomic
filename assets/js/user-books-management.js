@@ -209,6 +209,12 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response.success) {
+                    // Clear saved original text before updating state
+                    var $text = $button.find('.btn-text');
+                    if ($text.length) {
+                        $text.removeData('original-text');
+                    }
+                    
                     // Update button state
                     updateButtonState($button, 'remove', listType);
                     
@@ -250,6 +256,12 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response.success) {
+                    // Clear saved original text before updating state
+                    var $text = $button.find('.btn-text');
+                    if ($text.length) {
+                        $text.removeData('original-text');
+                    }
+                    
                     // Update button state
                     updateButtonState($button, 'add', listType);
                     
@@ -426,7 +438,12 @@ jQuery(document).ready(function($) {
         $button.removeClass('loading disabled');
         var $text = $button.find('.btn-text');
         if ($text.length && $text.data('original-text')) {
-            $text.text($text.data('original-text'));
+            // Only restore text if it's still showing "Chargement..." (loading state)
+            // This prevents restoring old text after button state has been updated
+            var currentText = $text.text();
+            if (currentText === userBooksData.strings.loading) {
+                $text.text($text.data('original-text'));
+            }
             $text.removeData('original-text');
         }
     }

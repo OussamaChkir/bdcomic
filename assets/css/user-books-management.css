@@ -243,12 +243,16 @@ i.bi.bi-check-lg {
 
 /* Action Messages */
 .book-action-message {
+    position: fixed;
+    top: 2rem;
+    right: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     font-size: 0.875rem;
     font-weight: 500;
     margin-top: 0.5rem;
     animation: slideInDown 0.3s ease-out;
+    z-index: 99999;
 }
 
 .book-action-message.message-success {

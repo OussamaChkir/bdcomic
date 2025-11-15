@@ -569,9 +569,23 @@ function bdcomic_search_query($query) {
 }
 add_action('pre_get_posts', 'bdcomic_search_query');
 
-function bdcomic_set_collections_per_page( $query ) {
-    if ( ! is_admin() && $query->is_main_query() && is_post_type_archive('collection') ) {
-        $query->set( 'posts_per_page', 9 );
+function bdcomic_custom_posts_per_page( $query ) {
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    $limits = [
+        'collection' => 9,
+        'artiste'    => 12,
+        'livre'      => 12,
+        'editeur'    =>9,
+    ];
+
+    foreach ( $limits as $post_type => $number ) {
+        if ( $query->is_post_type_archive( $post_type ) ) {
+            $query->set( 'posts_per_page', $number );
+            break;
+        }
     }
 }
-add_action( 'pre_get_posts', 'bdcomic_set_collections_per_page' );
+add_action( 'pre_get_posts', 'bdcomic_custom_posts_per_page' );

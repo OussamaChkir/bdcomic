@@ -116,6 +116,35 @@ article.single-artiste {
     font-weight: 500;
 }
 
+.role-badge.Scénariste{
+    color:#9c4971;
+    background:#d5a6bd;
+}
+.role-badge.Dessinateur{
+    color:#61499c;
+    background: #b4a7d6;
+}
+.role-badge.Coloriste{
+    color: #195bcc;
+    background:#a4c2f4;
+}
+.role-badge.Encreur{
+    color: #1c5eca;
+    background: #6d9eeb;
+}
+.role-badge.Lettreur{
+    color: #d9730d;
+    background: #f9cb9c;
+}
+.role-badge.Couverture{
+    color: #bb432a;
+    background: #ecb7ac;
+}
+.role-badge.Traducteur{
+    color: #be2727;
+    background:#ea9999;
+}
+
 .artiste-content {
     display: grid;
     grid-template-columns: 2fr 1fr;

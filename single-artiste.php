@@ -86,7 +86,7 @@ get_header(); ?>
                             <?php if ($roles && is_array($roles)): ?>
                                 <div class="artiste-roles">
                                     <?php foreach ($roles as $role): ?>
-                                        <span class="role-badge"><?php echo esc_html($role); ?></span>
+                                        <span class="role-badge <?php echo esc_html($role); ?>"><?php echo esc_html($role); ?></span>
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>

@@ -34,6 +34,16 @@ get_header(); ?>
                            autocomplete="off">
                 </div>
                 
+                <div class="archive-filters-row">
+                    <div class="archive-filter-group">
+                        <label class="archive-filter-label">Tri alphabétique</label>
+                        <select class="archive-filter-select" data-filter="sort">
+                            <option value="">Par défaut</option>
+                            <option value="asc">A-Z</option>
+                            <option value="desc">Z-A</option>
+                        </select>
+                    </div>
+                </div>
             </form>
         </div>
 

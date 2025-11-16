@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <div class="container">
-    <h1><?php printf( __('Search Results for: %s', 'bdcomic_theme'), get_search_query() ); ?></h1>
+    <h1><?php printf( __('Résultats de recherche pour : %s', 'bdcomic_theme'), get_search_query() ); ?></h1>
     <?php if (have_posts()) : ?>
         <ul class="search-results-list">
             <?php while (have_posts()) : the_post(); ?>

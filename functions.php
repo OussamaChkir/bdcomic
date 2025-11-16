@@ -445,12 +445,34 @@ function archive_search_ajax() {
                     );
                 }
                 break;
+                
+            case 'guide_lecture':
+                if (!empty($filters['collection'])) {
+                    $collection_id = intval($filters['collection']);
+                    if ($collection_id > 0) {
+                        $args['meta_query'][] = array(
+                            'key' => 'collection_guide',
+                            'value' => $collection_id,
+                            'compare' => '='
+                        );
+                    }
+                }
+                break;
         }
     }
 
     // Remove the relation if no meta queries were added
     if (count($args['meta_query']) === 1) {
         unset($args['meta_query']['relation']);
+    }
+
+    // Add alphabetical sort if requested
+    if (!empty($search_data['filters']['sort'])) {
+        $sort_order = sanitize_text_field($search_data['filters']['sort']);
+        if ($sort_order === 'asc' || $sort_order === 'desc') {
+            $args['orderby'] = 'title';
+            $args['order'] = strtoupper($sort_order);
+        }
     }
 
     // Execute query

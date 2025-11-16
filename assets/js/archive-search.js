@@ -24,6 +24,7 @@ jQuery(document).ready(function($) {
             if (bodyClasses.includes('post-type-archive-collection')) return 'collection';
             if (bodyClasses.includes('post-type-archive-editeur')) return 'editeur';
             if (bodyClasses.includes('post-type-archive-livre')) return 'livre';
+            if (bodyClasses.includes('post-type-archive-guide_lecture')) return 'guide_lecture';
             return 'post';
         }
 

@@ -106,49 +106,18 @@ get_header(); ?>
                         if ($sous_collections): ?>
                             <section class="collection-sous-collections">
                                 <h2>Sous-collections</h2>
-                                <?php foreach ($sous_collections as $sous_collection):
-                                    $logo_sous = get_field('logo_sous_collection', $sous_collection->ID);
+                                <?php foreach ($sous_collections as $sous_collection):                                  
                                     $nom_sous = get_field('nom_sous_collection', $sous_collection->ID);
-                                    $date_sortie_sous = get_field('date_de_sortie_sous_collection', $sous_collection->ID);
-                                    $date_fin_sous = get_field('date_de_fin_sous_collection', $sous_collection->ID);
-                                    $etat_sous = get_field('etat_sous_collection', $sous_collection->ID);
                                     ?>
                                     <div class="sous-collection-item">
-                                        <div class="sous-collection-header-item">
-                                            <div class="sous-collection-image-item">
-                                                <?php if ($logo_sous): ?>
-                                                    <img src="<?php echo esc_url($logo_sous['url']); ?>" 
-                                                        alt="<?php echo esc_attr($logo_sous['alt']); ?>" 
-                                                        class="sous-collection-logo-item">
-                                                <?php else: ?>
-                                                    <div class="no-image-placeholder">
-                                                        <span class="dashicons dashicons-index-card"></span>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
+                                        <div class="sous-collection-header-item">           
                                             <div class="sous-collection-info-item">
                                                 <h3 class="sous-collection-title-item">
                                                     <a href="<?php echo get_permalink($sous_collection->ID); ?>">
                                                         <?php echo $nom_sous ? esc_html($nom_sous) : esc_html($sous_collection->post_title); ?>
                                                     </a>
                                                 </h3>
-                                                <?php if ($date_sortie_sous || $date_fin_sous): ?>
-                                                    <div class="sous-collection-dates-item">
-                                                        <?php if ($date_sortie_sous): ?>
-                                                            <span class="date-item">Sortie: <?php echo esc_html($date_sortie_sous); ?></span>
-                                                        <?php endif; ?>
-                                                        <?php if ($date_fin_sous): ?>
-                                                            <span class="date-item">Fin: <?php echo esc_html($date_fin_sous); ?></span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                <?php endif; ?>
-                                                <?php if ($etat_sous): ?>
-                                                    <div class="sous-collection-status-item">
-                                                        <span class="status-badge status-<?php echo esc_attr(str_replace(' ', '-', strtolower($etat_sous))); ?>">
-                                                            <?php echo esc_html($etat_sous); ?>
-                                                        </span>
-                                                    </div>
-                                                <?php endif; ?>
+                                            
                                             </div>
                                         </div>
 
@@ -186,7 +155,7 @@ get_header(); ?>
                                                                         alt="<?php echo esc_attr($photo_devant['alt']); ?>">
                                                                 <?php else: ?>
                                                                     <div class="no-cover-placeholder">
-                                                                        <span class="dashicons dashicons-book"></span>
+                                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
                                                                     </div>
                                                                 <?php endif; ?>
                                                             </div>

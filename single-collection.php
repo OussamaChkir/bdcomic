@@ -140,7 +140,6 @@ get_header(); ?>
 
                                         if ($books_in_sous_collection): ?>
                                             <div class="sous-collection-books">
-                                                <h4>Livres de cette sous-collection</h4>
                                                 <div class="books-grid">
                                                     <?php foreach ($books_in_sous_collection as $book):
                                                         $photo_devant = get_field('photo_devant', $book->ID);
@@ -165,12 +164,6 @@ get_header(); ?>
                                                                         <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
                                                                     </a>
                                                                 </h3>
-                                                                <?php if ($n_sortie): ?>
-                                                                    <div class="book-number">N° <?php echo esc_html($n_sortie); ?></div>
-                                                                <?php endif; ?>
-                                                                <?php if ($date_sortie_livre): ?>
-                                                                    <div class="book-date"><?php echo esc_html($date_sortie_livre); ?></div>
-                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -179,63 +172,6 @@ get_header(); ?>
                                         <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
-                            </section>
-                        <?php endif; ?>
-
-					<?php
-					// Get books in this collection
-                        $books_in_collection = get_posts(array(
-                            'post_type' => 'livre',
-                            'posts_per_page' => -1,
-                            'meta_query' => array(
-                                array(
-                                    'key' => 'collection',
-                                    'value' => get_the_ID(),
-                                    'compare' => '='
-                                )
-                                ),
-                                'meta_key' => 'n_sortie',
-                                'orderby' => 'meta_value_num',
-                                'order' => 'ASC',
-                        ));
-
-                        if ($books_in_collection): ?>
-                            <section class="collection-books">
-                                <h2>Livres de la collection</h2>
-                                <div class="books-grid">
-                                    <?php foreach ($books_in_collection as $book):
-                                        $photo_devant = get_field('photo_devant', $book->ID);
-                                        $titre = get_field('titre_livre', $book->ID);
-                                        $date_sortie_livre = get_field('date_sortie_livre', $book->ID);
-                                        $n_sortie = get_field('n_sortie', $book->ID);
-                                        ?>
-                                        <div class="book-item">
-                                            <div class="book-cover">
-                                                <?php if ($photo_devant): ?>
-                                                    <img src="<?php echo esc_url($photo_devant['url']); ?>"
-                                                        alt="<?php echo esc_attr($photo_devant['alt']); ?>">
-                                                <?php else: ?>
-                                                    <div class="no-cover-placeholder">
-                                                        <span class="dashicons dashicons-book"></span>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
-                                            <div class="book-info">
-                                                <h3 class="book-title">
-                                                    <a href="<?php echo get_permalink($book->ID); ?>">
-                                                        <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
-                                                    </a>
-                                                </h3>
-                                                <?php if ($n_sortie): ?>
-                                                    <div class="book-number">N° <?php echo esc_html($n_sortie); ?></div>
-                                                <?php endif; ?>
-                                                <?php if ($date_sortie_livre): ?>
-                                                    <div class="book-date"><?php echo esc_html($date_sortie_livre); ?></div>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
                             </section>
                         <?php endif; ?>
                     </div>

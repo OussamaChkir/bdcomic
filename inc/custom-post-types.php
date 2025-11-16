@@ -213,13 +213,19 @@ function register_sous_collection_cpt() {
         'show_in_menu'       => true,
         'has_archive'        => true,
         'show_in_rest'       => true,
-        'rewrite'            => array('slug' => 'sous-collections'),
+        'rewrite'            => array(
+            'slug' => 'sous-collections',
+            'with_front' => false,
+            'feeds' => true,
+            'pages' => true
+        ),
         'publicly_queryable' => true,
         'supports'           => array('title'),
         'menu_position'      => 22,
         'menu_icon'          => 'dashicons-index-card',
+        'query_var'          => true,
     );
 
-register_post_type('sous_collection', $args);
+    register_post_type('sous_collection', $args);
 }
 add_action('init', 'register_sous_collection_cpt');

@@ -87,6 +87,132 @@ get_header(); ?>
                             </section>
                         <?php endif; ?>
 
+                        <?php
+                        // Get sous collections related to this collection
+                        $sous_collections = get_posts(array(
+                            'post_type' => 'sous_collection',
+                            'posts_per_page' => -1,
+                            'meta_query' => array(
+                                array(
+                                    'key' => 'collection_parent',
+                                    'value' => get_the_ID(),
+                                    'compare' => '='
+                                )
+                            ),
+                            'orderby' => 'title',
+                            'order' => 'ASC',
+                        ));
+
+                        if ($sous_collections): ?>
+                            <section class="collection-sous-collections">
+                                <h2>Sous-collections</h2>
+                                <?php foreach ($sous_collections as $sous_collection):
+                                    $logo_sous = get_field('logo_sous_collection', $sous_collection->ID);
+                                    $nom_sous = get_field('nom_sous_collection', $sous_collection->ID);
+                                    $date_sortie_sous = get_field('date_de_sortie_sous_collection', $sous_collection->ID);
+                                    $date_fin_sous = get_field('date_de_fin_sous_collection', $sous_collection->ID);
+                                    $etat_sous = get_field('etat_sous_collection', $sous_collection->ID);
+                                    ?>
+                                    <div class="sous-collection-item">
+                                        <div class="sous-collection-header-item">
+                                            <div class="sous-collection-image-item">
+                                                <?php if ($logo_sous): ?>
+                                                    <img src="<?php echo esc_url($logo_sous['url']); ?>" 
+                                                        alt="<?php echo esc_attr($logo_sous['alt']); ?>" 
+                                                        class="sous-collection-logo-item">
+                                                <?php else: ?>
+                                                    <div class="no-image-placeholder">
+                                                        <span class="dashicons dashicons-index-card"></span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="sous-collection-info-item">
+                                                <h3 class="sous-collection-title-item">
+                                                    <a href="<?php echo get_permalink($sous_collection->ID); ?>">
+                                                        <?php echo $nom_sous ? esc_html($nom_sous) : esc_html($sous_collection->post_title); ?>
+                                                    </a>
+                                                </h3>
+                                                <?php if ($date_sortie_sous || $date_fin_sous): ?>
+                                                    <div class="sous-collection-dates-item">
+                                                        <?php if ($date_sortie_sous): ?>
+                                                            <span class="date-item">Sortie: <?php echo esc_html($date_sortie_sous); ?></span>
+                                                        <?php endif; ?>
+                                                        <?php if ($date_fin_sous): ?>
+                                                            <span class="date-item">Fin: <?php echo esc_html($date_fin_sous); ?></span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <?php if ($etat_sous): ?>
+                                                    <div class="sous-collection-status-item">
+                                                        <span class="status-badge status-<?php echo esc_attr(str_replace(' ', '-', strtolower($etat_sous))); ?>">
+                                                            <?php echo esc_html($etat_sous); ?>
+                                                        </span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+
+                                        <?php
+                                        // Get books in this sous collection
+                                        $books_in_sous_collection = get_posts(array(
+                                            'post_type' => 'livre',
+                                            'posts_per_page' => -1,
+                                            'meta_query' => array(
+                                                array(
+                                                    'key' => 'sous_collection',
+                                                    'value' => $sous_collection->ID,
+                                                    'compare' => '='
+                                                )
+                                            ),
+                                            'meta_key' => 'n_sortie',
+                                            'orderby' => 'meta_value_num',
+                                            'order' => 'ASC',
+                                        ));
+
+                                        if ($books_in_sous_collection): ?>
+                                            <div class="sous-collection-books">
+                                                <h4>Livres de cette sous-collection</h4>
+                                                <div class="books-grid">
+                                                    <?php foreach ($books_in_sous_collection as $book):
+                                                        $photo_devant = get_field('photo_devant', $book->ID);
+                                                        $titre = get_field('titre_livre', $book->ID);
+                                                        $date_sortie_livre = get_field('date_sortie_livre', $book->ID);
+                                                        $n_sortie = get_field('n_sortie', $book->ID);
+                                                        ?>
+                                                        <div class="book-item">
+                                                            <div class="book-cover">
+                                                                <?php if ($photo_devant): ?>
+                                                                    <img src="<?php echo esc_url($photo_devant['url']); ?>"
+                                                                        alt="<?php echo esc_attr($photo_devant['alt']); ?>">
+                                                                <?php else: ?>
+                                                                    <div class="no-cover-placeholder">
+                                                                        <span class="dashicons dashicons-book"></span>
+                                                                    </div>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                            <div class="book-info">
+                                                                <h3 class="book-title">
+                                                                    <a href="<?php echo get_permalink($book->ID); ?>">
+                                                                        <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
+                                                                    </a>
+                                                                </h3>
+                                                                <?php if ($n_sortie): ?>
+                                                                    <div class="book-number">N° <?php echo esc_html($n_sortie); ?></div>
+                                                                <?php endif; ?>
+                                                                <?php if ($date_sortie_livre): ?>
+                                                                    <div class="book-date"><?php echo esc_html($date_sortie_livre); ?></div>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </section>
+                        <?php endif; ?>
+
 					<?php
 					// Get books in this collection
                         $books_in_collection = get_posts(array(

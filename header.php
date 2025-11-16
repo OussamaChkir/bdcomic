@@ -19,7 +19,11 @@
             <div class="top-header d-flex align-items-center">
                     <!-- Global Search Form -->
                 <div class="header-search">
-                 <?php get_search_form(); ?>
+                 <?php get_search_form();
+                 $count_books = wp_count_posts('livre')->publish; ?>
+                </div>
+                <div class="nbre-livre">
+                <i class="dashicons dashicons-book"></i> <?php echo esc_html($count_books) ; ?>
                 </div>
             </div>
         <div class="header-container">

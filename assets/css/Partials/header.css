@@ -6,7 +6,7 @@ header {
     z-index: 100;
     background-color: var(--bg-color);
     box-shadow: 0px 2px 4px 0px #0000000F;
-    margin-bottom: 3rem;
+    /*margin-bottom: 3rem; */
 }
 
 header .header-container {

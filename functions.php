@@ -102,6 +102,9 @@ class wbg_theme {
             if (is_singular('guide_lecture')) {
                 wp_enqueue_style('single-guide-lecture', get_template_directory_uri() . '/assets/css/Globals/single-guide-lecture.css', false, '1.0');
             }
+            if (is_singular('sous_collection')) {
+                wp_enqueue_style('single-sous-collection', get_template_directory_uri() . '/assets/css/Globals/single-sous-collection.css', false, '1.0');
+            }
             if (is_page_template('page-with-sidebar.php')) {
                 wp_enqueue_style('page-with-sidebar', get_template_directory_uri() . '/assets/css/Globals/page-with-sidebar.css', false, '1.0');
             }

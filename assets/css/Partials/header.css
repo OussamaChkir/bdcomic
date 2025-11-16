@@ -215,6 +215,14 @@ header .site-logo img {
     height: auto;
 }
 
+.nbre-livre {
+    margin: .5rem;
+    background: #eee;
+    padding: 5px 15px;
+    border-radius: 30px;
+    color: #182748;
+}
+
 /* Icon-only search toggle (for header) */
 .search-toggle {
     background: none;

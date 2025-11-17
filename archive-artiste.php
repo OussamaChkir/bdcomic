@@ -70,7 +70,7 @@ get_header(); ?>
                     <div class="archive-filter-group">
                         <label class="archive-filter-label">Tri alphabétique</label>
                         <select class="archive-filter-select" data-filter="sort">
-                            <option value="">Par défaut</option>
+                            <option value="asc">Par défaut</option>
                             <option value="asc">A-Z</option>
                             <option value="desc">Z-A</option>
                         </select>

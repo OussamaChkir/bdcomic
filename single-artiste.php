@@ -121,12 +121,13 @@ get_header(); ?>
                         $books_by_artist = array();
                         if (!empty($related_book_ids)) {
                             $books_by_artist = get_posts(array(
-                                'post_type' => 'livre',
-                                'post__in' => $related_book_ids,
+                                'post_type'      => 'livre',
+                                'post__in'       => $related_book_ids,
                                 'posts_per_page' => -1,
-                                'orderby' => 'post__in',
-                                'post_status' => 'publish'
-                            ));
+                                'orderby'        => 'title',
+                                'order'          => 'ASC',
+                                'post_status'    => 'publish'
+                            ));                            
                         }
 
                         if ($books_by_artist): ?>

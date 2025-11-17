@@ -109,21 +109,29 @@ get_header(); ?>
 
                         <?php
                         // Get books by this artist
-                        $books_by_artist = get_posts(array(
-                            'post_type' => 'livre',
-                            'posts_per_page' => -1,
-                            'meta_query' => array(
-                                array(
-                                    'key' => 'equipe_creative',
-                                    'value' => '"artiste";s:' . strlen(get_the_ID()) . ':"' . get_the_ID() . '"',
-                                    'compare' => 'LIKE'
-                                )
-                            )
+                        global $wpdb;
+                        $current_artist_id = get_the_ID();
+                        $related_book_ids = $wpdb->get_col($wpdb->prepare(
+                            "SELECT DISTINCT post_id FROM {$wpdb->postmeta}
+                            WHERE meta_key LIKE %s AND meta_value = %d",
+                            $wpdb->esc_like('equipe_creative_') . '%_artiste',
+                            $current_artist_id
                         ));
+
+                        $books_by_artist = array();
+                        if (!empty($related_book_ids)) {
+                            $books_by_artist = get_posts(array(
+                                'post_type' => 'livre',
+                                'post__in' => $related_book_ids,
+                                'posts_per_page' => -1,
+                                'orderby' => 'post__in',
+                                'post_status' => 'publish'
+                            ));
+                        }
 
                         if ($books_by_artist): ?>
                             <section class="artiste-works">
-                                <h2>Œuvres</h2>
+                                <h2>Livres sur lesquels cet artiste a travaillé</h2>
                                 <div class="works-grid">
                                     <?php foreach ($books_by_artist as $book):
                                         $photo_devant = get_field('photo_devant', $book->ID);
@@ -160,16 +168,6 @@ get_header(); ?>
                                                         <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
                                                     </a>
                                                 </h3>
-                                                <?php if ($artist_role): ?>
-                                                    <div class="work-role"><?php echo esc_html($artist_role); ?></div>
-                                                <?php endif; ?>
-                                                <?php if ($maison_edition): ?>
-                                                    <div class="work-publisher"><?php echo esc_html($maison_edition->post_title); ?>
-                                                    </div>
-                                                <?php endif; ?>
-                                                <?php if ($date_sortie): ?>
-                                                    <div class="work-date"><?php echo esc_html($date_sortie); ?></div>
-                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>

@@ -610,6 +610,8 @@ function bdcomic_custom_posts_per_page( $query ) {
     foreach ( $limits as $post_type => $number ) {
         if ( $query->is_post_type_archive( $post_type ) ) {
             $query->set( 'posts_per_page', $number );
+            $query->set( 'orderby', 'title' );
+            $query->set( 'order', 'ASC' );
             break;
         }
     }

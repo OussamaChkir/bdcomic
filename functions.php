@@ -6,6 +6,7 @@ require_once('inc/functions.php');
 require_once('inc/custom-post-types.php');
 require_once('inc/anchor-links.php');
 require_once('inc/user-books-management.php');
+require_once('inc/admin-book-problems.php');
 
 class wbg_theme {
     // set the option name you use in your settings page

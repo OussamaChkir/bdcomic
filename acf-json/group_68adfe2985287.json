@@ -89,34 +89,55 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_69147b54f93a3",
-            "label": "Livre de base du variant",
-            "name": "livre_variant",
-            "type": "post_object",
+            "key": "field_691b1b2644a45",
+            "label": "Liste livres variants",
+            "name": "liste_livres_variants",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_68adfebe283f4",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "livre"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "multiple": 0,
-            "return_format": "object",
-            "ui": 1
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_69147b54f93a3",
+                    "label": "Livre de base du variant",
+                    "name": "livre_variant",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_68adfebe283f4",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "livre"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "object",
+                    "ui": 1
+                }
+            ]
         },
         {
             "key": "field_69147bbbf93a4",
@@ -588,5 +609,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1762950091
+    "modified": 1763384275
 }

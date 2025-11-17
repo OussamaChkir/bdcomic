@@ -84,7 +84,9 @@ article.single-livre {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .variant-content a {

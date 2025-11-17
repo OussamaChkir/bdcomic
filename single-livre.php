@@ -320,27 +320,38 @@ get_header(); ?>
                             </section>
                         <?php endif; ?>
                         <?php
-                        $livre_variant = get_field('livre_variant');
-                        if ($livre_variant):
-                        $photo_livre_variant = get_field('photo_devant', $livre_variant->ID);
-                        ?>
+                        $liste_livres_variants = get_field('liste_livres_variants');
+                        if ($liste_livres_variants && is_array($liste_livres_variants)): ?>
                             <section class="livre-additional">
-                                <h2>Livre de base du variant</h2>
+                                <h2>Livres de base des variants</h2>
                                 <div class="variant-content">
-                                <a href="<?php echo get_permalink($livre_variant->ID); ?>">
-                                    <div class="livre-cover">
-                                        <?php if ($photo_livre_variant): ?>
-                                            <img src="<?php echo esc_url($photo_livre_variant['url']); ?>" alt="<?php echo esc_attr($photo_livre_variant['alt']); ?>">
-                                        <?php else: ?>
-                                            <div class="no-cover-placeholder">
-                                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
+                                <?php foreach ($liste_livres_variants as $livre_var): ?>
+                                    <?php 
+                                    // Check if livre_variant exists and is valid
+                                    if (isset($livre_var['livre_variant']) && is_object($livre_var['livre_variant']) && isset($livre_var['livre_variant']->ID)):
+                                        $livre_variant_id = $livre_var['livre_variant']->ID;
+                                        $livre_variant_title = $livre_var['livre_variant']->post_title;
+                                        $livre_variant_permalink = get_permalink($livre_variant_id);
+                                        $photo_livre_variant = get_field('photo_devant', $livre_variant_id);
+                                    ?>
+                                    
+                                        <a href="<?php echo esc_url($livre_variant_permalink); ?>">
+                                            <div class="livre-cover">
+                                                <?php if ($photo_livre_variant): ?>
+                                                    <img src="<?php echo esc_url($photo_livre_variant['url']); ?>" alt="<?php echo esc_attr($photo_livre_variant['alt']); ?>">
+                                                <?php else: ?>
+                                                    <div class="no-cover-placeholder">
+                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="livre-title">
-                                        <?php echo esc_html($livre_variant->post_title); ?>
-                                    </div>
-                                </a>
+                                            <div class="livre-title">
+                                                <?php echo esc_html($livre_variant_title); ?>
+                                            </div>
+                                        </a>
+                                    
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                                 </div>
                             </section>
                         <?php endif; ?>

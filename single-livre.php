@@ -321,16 +321,82 @@ get_header(); ?>
                         <?php endif; ?>
                         <?php
                         $liste_livres_variants = get_field('liste_livres_variants');
-                        if ($liste_livres_variants && is_array($liste_livres_variants)): ?>
+                        $current_book_id = get_the_ID();
+                        
+                        // If this book doesn't have variants listed, check if it's referenced as a variant in other books
+                        if ((!$liste_livres_variants || !is_array($liste_livres_variants) || empty($liste_livres_variants))) {
+                            global $wpdb;
+                            
+                            // Query to find books that reference this book in their liste_livres_variants repeater field
+                            // ACF stores repeater sub-fields as: liste_livres_variants_{row}_{field_name}
+                            $referencing_book_ids = $wpdb->get_col($wpdb->prepare(
+                                "SELECT DISTINCT post_id 
+                                FROM {$wpdb->postmeta}
+                                WHERE meta_key LIKE %s 
+                                AND meta_value = %d
+                                AND post_id != %d",
+                                $wpdb->esc_like('liste_livres_variants_') . '%_livre_variant',
+                                $current_book_id,
+                                $current_book_id
+                            ));
+                            
+                            // Also check in the serialized format (ACF sometimes stores arrays)
+                            $serialized_referencing_ids = $wpdb->get_col($wpdb->prepare(
+                                "SELECT DISTINCT post_id 
+                                FROM {$wpdb->postmeta}
+                                WHERE meta_key = 'liste_livres_variants'
+                                AND meta_value LIKE %s
+                                AND post_id != %d",
+                                '%' . $wpdb->esc_like('"' . $current_book_id . '"') . '%',
+                                $current_book_id
+                            ));
+                            
+                            // Merge and get unique IDs
+                            $all_referencing_ids = array_unique(array_merge($referencing_book_ids, $serialized_referencing_ids));
+                            
+                            // Get the actual post objects
+                            if (!empty($all_referencing_ids)) {
+                                $referencing_books = get_posts(array(
+                                    'post_type' => 'livre',
+                                    'post__in' => $all_referencing_ids,
+                                    'posts_per_page' => -1,
+                                    'post_status' => 'publish',
+                                    'orderby' => 'title',
+                                    'order' => 'ASC'
+                                ));
+                                
+                                // Convert to the same format as liste_livres_variants
+                                if ($referencing_books) {
+                                    $liste_livres_variants = array();
+                                    foreach ($referencing_books as $book) {
+                                        $liste_livres_variants[] = array(
+                                            'livre_variant' => $book
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if ($liste_livres_variants && is_array($liste_livres_variants) && !empty($liste_livres_variants)): ?>
                             <section class="livre-additional">
                                 <h2>Livres de base des variants</h2>
                                 <div class="variant-content">
                                 <?php foreach ($liste_livres_variants as $livre_var): ?>
                                     <?php 
                                     // Check if livre_variant exists and is valid
-                                    if (isset($livre_var['livre_variant']) && is_object($livre_var['livre_variant']) && isset($livre_var['livre_variant']->ID)):
-                                        $livre_variant_id = $livre_var['livre_variant']->ID;
-                                        $livre_variant_title = $livre_var['livre_variant']->post_title;
+                                    $livre_variant_obj = null;
+                                    if (isset($livre_var['livre_variant'])) {
+                                        // Could be an object or an ID
+                                        if (is_object($livre_var['livre_variant'])) {
+                                            $livre_variant_obj = $livre_var['livre_variant'];
+                                        } elseif (is_numeric($livre_var['livre_variant'])) {
+                                            $livre_variant_obj = get_post($livre_var['livre_variant']);
+                                        }
+                                    }
+                                    
+                                    if ($livre_variant_obj && isset($livre_variant_obj->ID)):
+                                        $livre_variant_id = $livre_variant_obj->ID;
+                                        $livre_variant_title = $livre_variant_obj->post_title;
                                         $livre_variant_permalink = get_permalink($livre_variant_id);
                                         $photo_livre_variant = get_field('photo_devant', $livre_variant_id);
                                     ?>

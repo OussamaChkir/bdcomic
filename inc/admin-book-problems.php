@@ -105,11 +105,12 @@ function bdcomic_render_book_problem_page() {
                                 <?php echo esc_html(bdcomic_format_report_date($row['date'])); ?>
                             </td>
                             <td>
-                                <form method="post" style="display:inline-block;">
+                                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" style="display:inline-block;">
                                     <?php wp_nonce_field('bdcomic_resolve_book_problem'); ?>
                                     <input type="hidden" name="action" value="bdcomic_resolve_book_problem">
                                     <input type="hidden" name="post_id" value="<?php echo esc_attr($row['post_id']); ?>">
                                     <input type="hidden" name="report_index" value="<?php echo esc_attr($row['report_index']); ?>">
+                                    <input type="hidden" name="new_status" value="resolved">
                                     <button type="submit" class="button button-primary">
                                         <?php esc_html_e('Marquer comme résolu', 'bdcomic_theme'); ?>
                                     </button>
@@ -231,8 +232,9 @@ function bdcomic_resolve_book_problem() {
         exit;
     }
 
-    unset($reports[$report_index]);
-    $reports = array_values($reports);
+    $new_status = isset($_POST['new_status']) ? sanitize_text_field($_POST['new_status']) : 'resolved';
+
+    $reports[$report_index]['status'] = $new_status;
     update_field('livre_problem_reports', $reports, $post_id);
 
     wp_safe_redirect(add_query_arg(array(

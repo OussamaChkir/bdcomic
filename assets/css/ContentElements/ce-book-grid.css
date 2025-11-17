@@ -391,6 +391,50 @@
     right: unset;
 }
 
+.livre-action-icons {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+.cover-front:hover .livre-action-icons {
+    opacity: 1;
+}
+
+.livre-action-icons .book-action-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.livre-action-icons .book-action-icon:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.livre-action-icons .book-action-icon.report-problem-btn {
+    background: rgba(239, 68, 68, 0.8);
+}
+
+.livre-action-icons .book-action-icon.report-problem-btn:hover {
+    background: rgba(239, 68, 68, 1);
+}
+
 i.bi.bi-heart-fill {
     width: 20px;
     height: 20px;

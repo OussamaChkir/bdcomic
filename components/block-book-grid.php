@@ -43,38 +43,34 @@ $current_user_id = get_current_user_id();
 
             <!-- Tab Content -->
             <div class="tab-content" id="bookGridTabContent">
-                <!-- Latest Books Tab -->
+                <!-- Owned Books Tab -->
                 <div class="tab-pane fade show active" id="latest" role="tabpanel" aria-labelledby="latest-tab">
                     <div class="tab-header">
                         <h3>Dernières acquisitions</h3>
-                        <p class="tab-description">Les 20 derniers livres </p>
+                        <p class="tab-description">Livres que vous possédez</p>
                     </div>
                     <div class="books-grid <?php echo $grid_columns !== 'auto' ? 'grid-cols-' . $grid_columns : ''; ?>" id="latest-books-grid">
-                        <?php
-                        // Query for latest 20 books
-                        $latest_books = new WP_Query(array(
-                            'post_type' => 'livre',
-                            'posts_per_page' => $books_per_tab,
-                            'post_status' => 'publish',
-                            'orderby' => 'date',
-                            'order' => 'DESC',
-                            'meta_query' => array(
-                                array(
-                                    'key' => 'photo_devant',
-                                    'compare' => 'EXISTS'
-                                )
-                            )
-                        ));
-
-                        if ($latest_books->have_posts()) :
-                            while ($latest_books->have_posts()) : $latest_books->the_post();
-                                get_template_part('template-parts/content-livre-grid');
-                            endwhile;
-                            wp_reset_postdata();
-                        else :
-                            echo '<div class="no-books-message"><p>Aucun livre trouvé.</p></div>';
-                        endif;
-                        ?>
+                        <?php if (is_user_logged_in()) : ?>
+                            <?php
+                            $owned_books = get_user_books($current_user_id, 'owned', 'livre');
+                            if (!empty($owned_books)) :
+                                $owned_books = array_slice($owned_books, 0, $books_per_tab);
+                                foreach ($owned_books as $book_data) :
+                                    $post = $book_data['post'];
+                                    $GLOBALS['current_book_id'] = $post->ID;
+                                    get_template_part('template-parts/content-livre-grid');
+                                endforeach;
+                                wp_reset_postdata();
+                            else :
+                                echo '<div class="no-books-message"><p>Vous n\'avez pas encore ajouté de livres possédés.</p></div>';
+                            endif;
+                            ?>
+                        <?php else : ?>
+                            <div class="login-required-message">
+                                <p>Vous devez être connecté pour voir vos livres possédés.</p>
+                                <a href="<?php echo wp_login_url(get_permalink()); ?>" class="btn btn-primary">Se connecter</a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 

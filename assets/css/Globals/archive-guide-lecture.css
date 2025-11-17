@@ -78,13 +78,13 @@
 }
 
 .guide-title a {
-    color: var(--text-primary);
+    color: #182748;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .guide-title a:hover {
-    color: var(--primary-color);
+    color: #182748;
 }
 
 .guide-collection {
@@ -151,10 +151,10 @@
 .read-more {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background: var(--primary-color);
+    background: #182748;
     color: white;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 30px;
     font-weight: 500;
     transition: background-color 0.3s ease;
     align-self: flex-start;
@@ -162,7 +162,7 @@
 }
 
 .read-more:hover {
-    background: var(--primary-dark);
+    background: #0052a3;
     color: white;
 }
 

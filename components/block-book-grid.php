@@ -47,7 +47,7 @@ $current_user_id = get_current_user_id();
                 <div class="tab-pane fade show active" id="latest" role="tabpanel" aria-labelledby="latest-tab">
                     <div class="tab-header">
                         <h3>Dernières acquisitions</h3>
-                        <p class="tab-description">Les 20 derniers livres ajoutés à la base de données</p>
+                        <p class="tab-description">Les 20 derniers livres </p>
                     </div>
                     <div class="books-grid <?php echo $grid_columns !== 'auto' ? 'grid-cols-' . $grid_columns : ''; ?>" id="latest-books-grid">
                         <?php

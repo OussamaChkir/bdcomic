@@ -176,18 +176,18 @@ get_header(); ?>
                                     $current_user_id = get_current_user_id();
                                     $post_id = get_the_ID();
 
-                                    // Wishlist button
-                                    $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
+                                    // Owned button
+									$is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
                                     ?>
-                                    <button class="book-action-btn <?php echo $in_wishlist ? 'active' : ''; ?>"
-                                        data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
-                                        data-action="<?php echo $in_wishlist ? 'remove' : 'add'; ?>" data-post-type="livre"
-                                        data-bs-toggle="tooltip"
-                                        title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
-                                            <i class="bi <?php echo $in_wishlist ? 'bi-heart' : 'bi-heart-fill'; ?>"></i>
-                                        <span
-                                            class="btn-text"><?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?></span>
-                                    </button>
+                                    <button class="book-action-btn <?php echo $is_owned ? 'active' : ''; ?>"
+										data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
+										data-action="<?php echo $is_owned ? 'remove' : 'add'; ?>" data-post-type="livre"
+										data-bs-toggle="tooltip"
+										title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
+										<i class="bi <?php echo $is_owned ? 'bi-bag-check-fill' : 'bi-bag-check'; ?>"></i>
+										<span
+											class="btn-text"><?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?></span>
+									</button>
                                     
                                     <?php
                                     // Read books button
@@ -204,18 +204,20 @@ get_header(); ?>
                                     </button>
 									
 									<?php
-									// Owned button
-									$is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
+                                    // Wishlist button
+                                    $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
 									?>
-									<button class="book-action-btn <?php echo $is_owned ? 'active' : ''; ?>"
-										data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
-										data-action="<?php echo $is_owned ? 'remove' : 'add'; ?>" data-post-type="livre"
-										data-bs-toggle="tooltip"
-										title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
-										<i class="bi <?php echo $is_owned ? 'bi-bag-check-fill' : 'bi-bag-check'; ?>"></i>
-										<span
-											class="btn-text"><?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?></span>
-									</button>
+									
+
+                                    <button class="book-action-btn <?php echo $in_wishlist ? 'active' : ''; ?>"
+                                        data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
+                                        data-action="<?php echo $in_wishlist ? 'remove' : 'add'; ?>" data-post-type="livre"
+                                        data-bs-toggle="tooltip"
+                                        title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
+                                            <i class="bi <?php echo $in_wishlist ? 'bi-heart' : 'bi-heart-fill'; ?>"></i>
+                                        <span
+                                            class="btn-text"><?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?></span>
+                                    </button>
                                     
                                     <?php
                                     // Loaned button

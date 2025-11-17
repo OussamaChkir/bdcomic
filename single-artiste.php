@@ -168,6 +168,11 @@ get_header(); ?>
                                                         <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
                                                     </a>
                                                 </h3>
+                                                <?php if ($artist_role): ?>
+                                                    <span class="role-badge <?php echo esc_html($artist_role); ?>">
+                                                        <?php echo esc_html($artist_role); ?>
+                                                </span>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>

@@ -138,14 +138,8 @@ get_header(); ?>
                                 <?php 
                                 // Use guide description if available, otherwise use collection summary
                                 $collection_summary = $collection ? get_field('resume_collection', $collection->ID) : null;
-                                $display_description = $description ?: $collection_summary;
-                                
-                                if ($display_description) : ?>
-                                    <div class="guide-description">
-                                        <?php echo wp_trim_words($display_description, 25, '...'); ?>
-                                    </div>
-                                <?php endif; ?>
-
+                                ?>
+                    
                                 <?php if ($ordre_lecture && is_array($ordre_lecture)) : ?>
                                     <div class="guide-books-count">
                                         <strong><?php echo count($ordre_lecture); ?></strong> livre(s) dans ce guide

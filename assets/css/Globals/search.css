@@ -5,6 +5,7 @@ ul.search-results-list.grouped-list {
     margin: 2rem 0;
     list-style: none;
     text-align: center;
+    padding: 0;
 }
 
 li.search-item a{

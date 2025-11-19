@@ -1,0 +1,28 @@
+ul.search-results-list.grouped-list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+li.search-item a{
+ text-decoration: none;
+}
+
+.search-item-img {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.search-item-img img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.search-item-info h3 {
+    font-size: 20px;
+}

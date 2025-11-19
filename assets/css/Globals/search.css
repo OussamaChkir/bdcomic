@@ -3,6 +3,8 @@ ul.search-results-list.grouped-list {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
     margin: 2rem 0;
+    list-style: none;
+    text-align: center;
 }
 
 li.search-item a{

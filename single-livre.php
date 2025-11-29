@@ -517,7 +517,7 @@ get_header(); ?>
                             $book_stats = get_book_user_stats(get_the_ID());
                             ?>
                             <div class="livre-meta-details" style="margin-top: 2rem;">
-                                <h3>Statistiques (Admin/Editor)</h3>
+                                <h3>Statistiques</h3>
                                 <ul class="meta-list">
                                     <li>
                                         <strong>Possédé par:</strong> <?php echo intval($book_stats['owned']); ?> utilisateur(s)

@@ -1,0 +1,32 @@
+ul.search-results-list.grouped-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+
+li.search-item a{
+ text-decoration: none;
+}
+
+.search-item-img {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.search-item-img img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.search-item-info h3 {
+    font-size: 18px;
+    line-height: normal;
+    margin-top: 10px;
+}

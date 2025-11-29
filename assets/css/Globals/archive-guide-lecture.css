@@ -80,7 +80,7 @@
 }
 
 .guide-title a {
-    color: #182748;
+    color: #314890;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -180,11 +180,11 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .guide-details {
         padding: 1rem;
     }
-    
+
     .guide-image {
         height: 150px;
     }
@@ -194,7 +194,7 @@
     .guide-image {
         height: 120px;
     }
-    
+
     .guide-title {
         font-size: 1.1rem;
     }

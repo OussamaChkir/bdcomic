@@ -66,8 +66,8 @@ get_header(); ?>
                                     </span>
                                 </div>
                             <?php endif; ?>
-                            
-                            <?php if (is_user_logged_in()) : ?>
+
+                            <?php if (is_user_logged_in()): ?>
                                 <div class="book-actions"></div>
                             <?php endif; ?>
                         </div>
@@ -106,18 +106,26 @@ get_header(); ?>
                         if ($sous_collections): ?>
                             <section class="collection-sous-collections">
                                 <h2>Sous-collections</h2>
-                                <?php foreach ($sous_collections as $sous_collection):                                  
+                                <?php foreach ($sous_collections as $sous_collection):
                                     $nom_sous = get_field('nom_sous_collection', $sous_collection->ID);
                                     ?>
                                     <div class="sous-collection-item">
-                                        <div class="sous-collection-header-item">           
+                                        <div class="sous-collection-header-item">
                                             <div class="sous-collection-info-item">
                                                 <h3 class="sous-collection-title-item">
                                                     <a href="<?php echo get_permalink($sous_collection->ID); ?>">
                                                         <?php echo $nom_sous ? esc_html($nom_sous) : esc_html($sous_collection->post_title); ?>
                                                     </a>
                                                 </h3>
-                                            
+                                                <div class="book-meta">
+                                                    <?php if ($n_sortie): ?>
+                                                        <span class="meta-item">N° Sortie: <?php echo esc_html($n_sortie); ?></span>
+                                                    <?php endif; ?>
+                                                    <?php if ($n_frise): ?>
+                                                        <span class="meta-item">N° Frise: <?php echo esc_html($n_frise); ?></span>
+                                                    <?php endif; ?>
+                                                </div>
+
                                             </div>
                                         </div>
 
@@ -146,6 +154,7 @@ get_header(); ?>
                                                         $titre = get_field('titre_livre', $book->ID);
                                                         $date_sortie_livre = get_field('date_sortie_livre', $book->ID);
                                                         $n_sortie = get_field('n_sortie', $book->ID);
+                                                        $n_frise = get_field('n_frise', $book->ID);
                                                         ?>
                                                         <div class="book-item">
                                                             <div class="book-cover">
@@ -154,7 +163,8 @@ get_header(); ?>
                                                                         alt="<?php echo esc_attr($photo_devant['alt']); ?>">
                                                                 <?php else: ?>
                                                                     <div class="no-cover-placeholder">
-                                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png" alt="No Image">
+                                                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/cover.png"
+                                                                            alt="No Image">
                                                                     </div>
                                                                 <?php endif; ?>
                                                             </div>
@@ -164,6 +174,16 @@ get_header(); ?>
                                                                         <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
                                                                     </a>
                                                                 </h3>
+                                                                <div class="book-meta">
+                                                                    <?php if ($n_sortie): ?>
+                                                                        <span class="meta-item">N° Sortie:
+                                                                            <?php echo esc_html($n_sortie); ?></span>
+                                                                    <?php endif; ?>
+                                                                    <?php if ($n_frise): ?>
+                                                                        <span class="meta-item">N° Frise:
+                                                                            <?php echo esc_html($n_frise); ?></span>
+                                                                    <?php endif; ?>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -173,23 +193,23 @@ get_header(); ?>
                                     </div>
                                 <?php endforeach; ?>
                             </section>
-                        <?php else : 
-                         // Get books in this collection
-                        $books_in_collection = get_posts(array(
-                            'post_type' => 'livre',
-                            'posts_per_page' => -1,
-                            'meta_query' => array(
-                                array(
-                                    'key' => 'collection',
-                                    'value' => get_the_ID(),
-                                    'compare' => '='
-                                )
+                        <?php else:
+                            // Get books in this collection
+                            $books_in_collection = get_posts(array(
+                                'post_type' => 'livre',
+                                'posts_per_page' => -1,
+                                'meta_query' => array(
+                                    array(
+                                        'key' => 'collection',
+                                        'value' => get_the_ID(),
+                                        'compare' => '='
+                                    )
                                 ),
                                 'meta_key' => 'n_sortie',
                                 'orderby' => 'meta_value_num',
                                 'order' => 'ASC',
-                        ));   ?>
-                         <section class="collection-books">
+                            )); ?>
+                            <section class="collection-books">
                                 <h2>Livres de la collection</h2>
                                 <div class="books-grid">
                                     <?php foreach ($books_in_collection as $book):
@@ -197,6 +217,7 @@ get_header(); ?>
                                         $titre = get_field('titre_livre', $book->ID);
                                         $date_sortie_livre = get_field('date_sortie_livre', $book->ID);
                                         $n_sortie = get_field('n_sortie', $book->ID);
+                                        $n_frise = get_field('n_frise', $book->ID);
                                         ?>
                                         <div class="book-item">
                                             <div class="book-cover">
@@ -215,6 +236,14 @@ get_header(); ?>
                                                         <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
                                                     </a>
                                                 </h3>
+                                                <div class="book-meta">
+                                                    <?php if ($n_sortie): ?>
+                                                        <span class="meta-item">N° Sortie: <?php echo esc_html($n_sortie); ?></span>
+                                                    <?php endif; ?>
+                                                    <?php if ($n_frise): ?>
+                                                        <span class="meta-item">N° Frise: <?php echo esc_html($n_frise); ?></span>
+                                                    <?php endif; ?>
+                                                </div>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
@@ -226,6 +255,14 @@ get_header(); ?>
                     <aside class="collection-sidebar">
                         <div class="collection-meta">
                             <h3>Informations</h3>
+                            <div class="book-meta">
+                                <?php if ($n_sortie): ?>
+                                    <span class="meta-item">N° Sortie: <?php echo esc_html($n_sortie); ?></span>
+                                <?php endif; ?>
+                                <?php if ($n_frise): ?>
+                                    <span class="meta-item">N° Frise: <?php echo esc_html($n_frise); ?></span>
+                                <?php endif; ?>
+                            </div>
                             <ul class="meta-list">
                                 <?php if ($date_sortie): ?>
                                     <li>

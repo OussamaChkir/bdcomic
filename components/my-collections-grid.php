@@ -61,7 +61,7 @@ $loaned_books_data = get_user_books($current_user_id, 'loaned', 'livre');
 $loaned_books = array_column($loaned_books_data, 'post');
 
 // Calculate statistics
-$total_owned = count($owned_books);
+$total_owned = count($wishlist_books);  // Only count wishlist books as 'owned'
 $total_read = count($read_books);
 $total_loaned = count($loaned_books);
 $total_unread = $total_owned - $total_read;
@@ -434,6 +434,8 @@ ksort($collections_data);
             var artisteFilter = $('#filter-artiste').val();
             var dateFilter = $('#filter-date').val();
             var viewFilter = $('.filter-btn.active').data('filter');
+
+            console.log('Filter called with viewFilter:', viewFilter);
 
             // First, show all collections and books
             $('.collection-group').show();

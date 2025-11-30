@@ -130,8 +130,12 @@ get_header(); ?>
                                         <span class="stat-label"><?php echo $list_labels['read']; ?></span>
                                     </div>
                                     <div class="sidebar-stat-item">
-                                        <span class="stat-number"><?php echo $user_stats['collection_wishlist']; ?></span>
-                                        <span class="stat-label"><?php echo $list_labels['collection_wishlist']; ?></span>
+                                        <span class="stat-number"><?php echo $user_stats['owned_books']; ?></span>
+                                        <span class="stat-label"><?php echo $list_labels['owned']; ?></span>
+                                    </div>
+                                    <div class="sidebar-stat-item">
+                                        <span class="stat-number"><?php echo $user_stats['loaned_books']; ?></span>
+                                        <span class="stat-label"><?php echo $list_labels['loaned']; ?></span>
                                     </div>
 
                                 </div>

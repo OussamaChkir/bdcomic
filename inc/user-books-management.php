@@ -214,9 +214,9 @@ function get_user_books_stats($user_id)
     $stats = array(
         'wishlist_books' => count(get_user_books($user_id, 'wishlist', 'livre')),
         'read_books' => count(get_user_books($user_id, 'read', 'livre')),
-        'owned_books' => count(get_user_books($user_id, 'owned', 'livre')),
+        'owned_books' => count(get_user_books($user_id, 'wishlist', 'livre')), // Mapped to wishlist as per user requirement
         'collection_wishlist' => count(get_user_books($user_id, 'collection_wishlist', 'collection')),
-
+        'loaned_books' => count(get_user_books($user_id, 'loaned', 'livre')),
     );
 
     return $stats;

@@ -79,7 +79,7 @@ foreach ($owned_books as $book_data) {
         // Get sous-collection field
         $sous_collection = get_field('sous_collection', $book->ID);
 
-        
+
         // Convert sous_collection to string if it's an object or array
         $sous_collection_name = '';
         if ($sous_collection) {
@@ -88,10 +88,10 @@ foreach ($owned_books as $book_data) {
             } elseif (is_array($sous_collection)) {
                 $sous_collection_name = isset($sous_collection['post_title']) ? $sous_collection['post_title'] : '';
             } else {
-                $sous_collection_name = (string)$sous_collection;
+                $sous_collection_name = (string) $sous_collection;
             }
         }
-        
+
         $group_key = $sous_collection_name ? $sous_collection_name : $collection_name;
 
         if (!isset($collections_data[$group_key])) {
@@ -218,8 +218,8 @@ ksort($collections_data);
                 <div class="stat-label"><?php _e('Comics détenus', 'bdcomic_theme'); ?></div>
             </div>
             <div class="stat-card">
-                <div class="stat-number"><?php echo $total_unread; ?></div>
-                <div class="stat-label"><?php _e('Non lus', 'bdcomic_theme'); ?></div>
+                <div class="stat-number"><?php echo $total_read; ?></div>
+                <div class="stat-label"><?php _e('Lus', 'bdcomic_theme'); ?></div>
             </div>
             <div class="stat-card">
                 <div class="stat-number"><?php echo $total_loaned; ?></div>
@@ -457,24 +457,35 @@ ksort($collections_data);
                     showCollection = false;
                 }
 
-                // View filter - show all books for owned, filter for read/loaned
-                if (viewFilter !== 'owned') {
-                    var hasMatchingBooks = false;
-                    $collection.find('.book-item').each(function () {
-                        var $book = $(this);
-                        var isRead = $book.data('read') == 1;
-                        var isLoaned = $book.data('loaned') == 1;
+                // View filter - show/hide individual books based on filter
+                $collection.find('.book-item').each(function () {
+                    var $book = $(this);
+                    var isRead = $book.data('read') == 1;
+                    var isLoaned = $book.data('loaned') == 1;
+                    var showBook = true;
 
-                        if (viewFilter === 'read' && isRead) {
-                            hasMatchingBooks = true;
-                        } else if (viewFilter === 'loaned' && isLoaned) {
-                            hasMatchingBooks = true;
-                        }
-                    });
-
-                    if (!hasMatchingBooks) {
-                        showCollection = false;
+                    if (viewFilter === 'owned') {
+                        // Show all owned books
+                        showBook = true;
+                    } else if (viewFilter === 'read') {
+                        // Show only read books
+                        showBook = isRead;
+                    } else if (viewFilter === 'loaned') {
+                        // Show only loaned books
+                        showBook = isLoaned;
                     }
+
+                    if (showBook) {
+                        $book.show();
+                    } else {
+                        $book.hide();
+                    }
+                });
+
+                // Hide collection if no books are visible
+                var visibleBooks = $collection.find('.book-item:visible').length;
+                if (visibleBooks === 0) {
+                    showCollection = false;
                 }
 
                 if (showCollection) {

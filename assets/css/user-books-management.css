@@ -133,6 +133,13 @@
     right: 30px;
 }
 
+button.book-quick-action {
+    border-radius: 5px;
+    height: 37px;
+    background: #182748;
+    color: white;
+}
+
 i.bi.bi-heart-fill {
     width: 20px;
     height: 20px;

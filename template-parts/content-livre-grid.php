@@ -51,10 +51,14 @@ $book_title = $titre ? $titre : $post_title;
 
 // Check if user is logged in and get book status
 $is_loaned = false;
+$is_read = false;
+$is_owned = false;
 $has_problem = false;
 if (is_user_logged_in()) {
     $current_user_id = get_current_user_id();
     $is_loaned = is_book_in_user_list($current_user_id, $post_id, 'loaned');
+    $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
+    $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
     
     // Check if book has pending problem reports
     $problem_reports = get_field('livre_problem_reports', $post_id);
@@ -85,6 +89,17 @@ if (is_user_logged_in()) {
                 
                 <?php if (is_user_logged_in()) : ?>
                 <div class="livre-status-icons">
+                    <?php if ($is_owned) : ?>
+                        <span class="status-icon owned" title="<?php _e('Possédé', 'bdcomic_theme'); ?>">
+                            <span class="dashicons dashicons-yes"></span>
+                        </span>
+                    <?php endif; ?>
+
+                    <?php if ($is_read) : ?>
+                        <span class="status-icon read" title="<?php _e('Lu', 'bdcomic_theme'); ?>">
+                            <span class="dashicons dashicons-visibility"></span>
+                        </span>
+                    <?php endif; ?>
                     <?php if ($is_loaned) : ?>
                         <span class="status-icon loaned" title="<?php _e('Prêté', 'bdcomic_theme'); ?>">
                             <span class="dashicons dashicons-share"></span>

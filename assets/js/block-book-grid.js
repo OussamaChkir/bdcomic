@@ -3,11 +3,11 @@
  * Handles tab switching and AJAX loading for the book grid component
  */
 
-(function($) {
+(function ($) {
     'use strict';
 
     // Initialize when document is ready
-    $(document).ready(function() {
+    $(document).ready(function () {
         initBookGrid();
     });
 
@@ -28,24 +28,24 @@
         }
 
         // Handle tab switching
-        $('#bookGridTabs button[data-bs-toggle="tab"]').on('click', function(e) {
+        $('#bookGridTabs button[data-bs-toggle="tab"]').on('click', function (e) {
             e.preventDefault();
             var target = $(this).data('bs-target');
             var tabId = target.replace('#', '');
-            
+
             // Update active states
             $('#bookGridTabs .nav-link').removeClass('active');
             $(this).addClass('active');
-            
+
             $('.tab-pane').removeClass('active show');
             $(target).addClass('active show');
-            
+
             // Load content if needed (for future AJAX implementation)
             loadTabContent(tabId);
         });
 
         // Handle book actions
-        $(document).on('click', '.book-quick-action', function(e) {
+        $(document).on('click', '.book-quick-action', function (e) {
             e.preventDefault();
             handleBookAction($(this));
         });
@@ -97,17 +97,17 @@
             url: bookGridData.ajaxurl,
             type: 'POST',
             data: data,
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
                     // Toggle active state
                     $button.toggleClass('active');
-                    
+
                     // Update icon and tooltip
                     updateButtonState($button, listType, !isActive);
-                    
+
                     // Show success message (optional)
                     showNotification('Action effectuée avec succès', 'success');
-                    
+
                     // Update tab counts if needed
                     updateTabCounts();
                 } else {
@@ -115,11 +115,11 @@
                     $button.html(originalContent);
                 }
             },
-            error: function() {
+            error: function () {
                 showNotification(bookGridData.strings.error, 'error');
                 $button.html(originalContent);
             },
-            complete: function() {
+            complete: function () {
                 $button.prop('disabled', false);
             }
         });
@@ -131,11 +131,11 @@
     function updateButtonState($button, listType, isActive) {
         var $icon = $button.find('.dashicons');
         var $text = $button.find('.btn-text');
-        
+
         // Update icon
         $icon.removeClass();
         $icon.addClass('dashicons');
-        
+
         if (isActive) {
             switch (listType) {
                 case 'wishlist':
@@ -144,15 +144,13 @@
                 case 'read':
                     $icon.addClass('dashicons-yes');
                     break;
-				case 'owned':
-					$icon.addClass('dashicons-archive');
-					break;
+                case 'owned':
+                    $icon.addClass('dashicons-archive');
+                    break;
                 case 'collection_wishlist':
                     $icon.addClass('dashicons-star-filled');
                     break;
-                case 'missing_albums':
-                    $icon.addClass('dashicons-minus');
-                    break;
+
             }
         } else {
             switch (listType) {
@@ -162,21 +160,19 @@
                 case 'read':
                     $icon.addClass('dashicons-yes-alt');
                     break;
-				case 'owned':
-					$icon.addClass('dashicons-archive');
-					break;
+                case 'owned':
+                    $icon.addClass('dashicons-archive');
+                    break;
                 case 'collection_wishlist':
                     $icon.addClass('dashicons-star-empty');
                     break;
-                case 'missing_albums':
-                    $icon.addClass('dashicons-plus');
-                    break;
+
             }
         }
-        
+
         // Update tooltip
-        var newTitle = isActive ? 
-            getRemoveText(listType) : 
+        var newTitle = isActive ?
+            getRemoveText(listType) :
             getAddText(listType);
         $button.attr('title', newTitle);
     }
@@ -190,12 +186,11 @@
                 return 'Ajouter aux souhaits';
             case 'read':
                 return 'Marquer comme lu';
-			case 'owned':
-				return 'Marquer comme possédé';
+            case 'owned':
+                return 'Marquer comme possédé';
             case 'collection_wishlist':
                 return 'Ajouter aux souhaits de collection';
-            case 'missing_albums':
-                return 'Ajouter aux albums manquants';
+
             default:
                 return 'Ajouter';
         }
@@ -210,12 +205,11 @@
                 return 'Retirer des souhaits';
             case 'read':
                 return 'Marquer comme non lu';
-			case 'owned':
-				return 'Marquer comme non possédé';
+            case 'owned':
+                return 'Marquer comme non possédé';
             case 'collection_wishlist':
                 return 'Retirer des souhaits de collection';
-            case 'missing_albums':
-                return 'Retirer des albums manquants';
+
             default:
                 return 'Retirer';
         }
@@ -235,19 +229,19 @@
     function showNotification(message, type) {
         // Create notification element
         var $notification = $('<div class="book-grid-notification ' + type + '">' + message + '</div>');
-        
+
         // Add to page
         $('body').append($notification);
-        
+
         // Show notification
-        setTimeout(function() {
+        setTimeout(function () {
             $notification.addClass('show');
         }, 100);
-        
+
         // Hide notification after 3 seconds
-        setTimeout(function() {
+        setTimeout(function () {
             $notification.removeClass('show');
-            setTimeout(function() {
+            setTimeout(function () {
                 $notification.remove();
             }, 300);
         }, 3000);
@@ -259,12 +253,12 @@
     function refreshTabContent(tabId) {
         var $tabPane = $('#' + tabId);
         var $booksGrid = $tabPane.find('.books-grid');
-        
+
         // Show loading state
         $booksGrid.addClass('loading');
-        
+
         // Simulate loading (replace with actual AJAX call)
-        setTimeout(function() {
+        setTimeout(function () {
             $booksGrid.removeClass('loading');
             // Reload content here
         }, 1000);
@@ -279,7 +273,7 @@
 })(jQuery);
 
 // Add notification styles
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     if (!$('#book-grid-notification-styles').length) {
         $('head').append(`
             <style id="book-grid-notification-styles">

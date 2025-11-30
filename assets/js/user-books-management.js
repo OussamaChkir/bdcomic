@@ -3,7 +3,7 @@
  * Handles AJAX interactions for user book collections
  */
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     'use strict';
 
     // Initialize user books management
@@ -12,10 +12,10 @@ jQuery(document).ready(function($) {
     function initUserBooksManagement() {
         // Bind click events to book action buttons
         bindBookActionButtons();
-        
+
         // Initialize report problem modal
         initReportProblemModal();
-        
+
         // Initialize tooltips if Bootstrap is available
         if (typeof bootstrap !== 'undefined') {
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
             });
         }
     }
-    
+
     function initReportProblemModal() {
         // Create modal HTML if it doesn't exist
         if ($('#report-problem-modal').length === 0) {
@@ -47,15 +47,15 @@ jQuery(document).ready(function($) {
                 '</div>';
             $('body').append(modalHTML);
         }
-        
+
         var $modal = $('#report-problem-modal');
         var $message = $modal.find('.report-problem-modal-message');
         var $textarea = $modal.find('#report-problem-message');
         var $submitBtn = $modal.find('.report-problem-modal-btn-submit');
         var currentBookId = null;
-        
+
         // Open modal on report button click
-        $(document).on('click', '.report-problem-btn', function(e) {
+        $(document).on('click', '.report-problem-btn', function (e) {
             e.preventDefault();
             e.stopPropagation();
             currentBookId = $(this).data('book-id');
@@ -64,7 +64,7 @@ jQuery(document).ready(function($) {
             $modal.addClass('active');
             $textarea.focus();
         });
-        
+
         // Close modal
         function closeModal() {
             $modal.removeClass('active');
@@ -72,40 +72,40 @@ jQuery(document).ready(function($) {
             $message.hide().removeClass('success error');
             currentBookId = null;
         }
-        
-        $modal.find('.report-problem-modal-close, .report-problem-modal-btn-cancel').on('click', function() {
+
+        $modal.find('.report-problem-modal-close, .report-problem-modal-btn-cancel').on('click', function () {
             closeModal();
         });
-        
+
         // Close on outside click
-        $modal.on('click', function(e) {
+        $modal.on('click', function (e) {
             if ($(e.target).is('.report-problem-modal')) {
                 closeModal();
             }
         });
-        
+
         // Close on Escape key
-        $(document).on('keydown', function(e) {
+        $(document).on('keydown', function (e) {
             if (e.key === 'Escape' && $modal.hasClass('active')) {
                 closeModal();
             }
         });
-        
+
         // Submit report
-        $submitBtn.on('click', function() {
+        $submitBtn.on('click', function () {
             if (!currentBookId) {
                 return;
             }
-            
+
             var message = $textarea.val().trim();
             if (!message) {
                 showReportMessage('error', userBooksData.strings.reportProblemMessage || 'Veuillez décrire le problème');
                 return;
             }
-            
+
             // Disable submit button
             $submitBtn.prop('disabled', true).text(userBooksData.strings.loading || 'Envoi...');
-            
+
             // Send AJAX request
             $.ajax({
                 url: userBooksData.ajaxurl,
@@ -116,31 +116,31 @@ jQuery(document).ready(function($) {
                     message: message,
                     nonce: userBooksData.reportNonce
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         showReportMessage('success', response.data.message || userBooksData.strings.reportSuccess || 'Problème signalé avec succès');
                         $textarea.val('');
-                        
+
                         // Close modal after 2 seconds
-                        setTimeout(function() {
+                        setTimeout(function () {
                             closeModal();
                         }, 2000);
                     } else {
                         showReportMessage('error', response.data.message || userBooksData.strings.reportError || 'Erreur lors de l\'envoi');
                     }
                 },
-                error: function() {
+                error: function () {
                     showReportMessage('error', userBooksData.strings.reportError || 'Erreur lors de l\'envoi');
                 },
-                complete: function() {
+                complete: function () {
                     $submitBtn.prop('disabled', false).text(userBooksData.strings.submitReport || 'Envoyer');
                 }
             });
         });
-        
+
         function showReportMessage(type, text) {
             $message.removeClass('success error').addClass(type).text(text).show();
-            setTimeout(function() {
+            setTimeout(function () {
                 $message.fadeOut();
             }, 5000);
         }
@@ -148,24 +148,24 @@ jQuery(document).ready(function($) {
 
     function bindBookActionButtons() {
         // Handle book action button clicks
-        $(document).on('click', '.book-action-btn', function(e) {
+        $(document).on('click', '.book-action-btn', function (e) {
             e.preventDefault();
-            
+
             var $button = $(this);
             var $container = $button.closest('.book-actions');
             var postId = $button.data('post-id');
             var listType = $button.data('list-type');
             var action = $button.data('action');
             var postType = $button.data('post-type') || 'livre';
-            
+
             // Prevent multiple clicks
             if ($button.hasClass('loading')) {
                 return;
             }
-            
+
             // Show loading state
             showButtonLoading($button);
-            
+
             // Perform action
             if (action === 'add') {
                 addToUserBooks(postId, listType, postType, $button, $container);
@@ -173,20 +173,20 @@ jQuery(document).ready(function($) {
                 removeFromUserBooks(postId, listType, postType, $button, $container);
             }
         });
-        
+
         // Handle quick actions (single click toggles)
-        $(document).on('click', '.book-quick-action', function(e) {
+        $(document).on('click', '.book-quick-action', function (e) {
             e.preventDefault();
-            
+
             var $button = $(this);
             var postId = $button.data('post-id');
             var listType = $button.data('list-type');
             var postType = $button.data('post-type') || 'livre';
-            
+
             if ($button.hasClass('loading')) {
                 return;
             }
-            
+
             // Check current state and toggle
             if ($button.hasClass('active')) {
                 removeFromUserBooks(postId, listType, postType, $button, $button);
@@ -207,23 +207,23 @@ jQuery(document).ready(function($) {
                 post_type: postType,
                 nonce: userBooksData.nonce
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
                     // Clear saved original text before updating state
                     var $text = $button.find('.btn-text');
                     if ($text.length) {
                         $text.removeData('original-text');
                     }
-                    
+
                     // Update button state
                     updateButtonState($button, 'remove', listType);
-                    
+
                     // Show success message
                     showMessage($container, 'success', getSuccessMessage('add', listType));
-                    
+
                     // Update counter if exists
                     updateCounter($container, listType, 1);
-                    
+
                     // Trigger custom event
                     $(document).trigger('userBookAdded', {
                         postId: postId,
@@ -234,10 +234,10 @@ jQuery(document).ready(function($) {
                     showMessage($container, 'error', response.data || userBooksData.strings.error);
                 }
             },
-            error: function() {
+            error: function () {
                 showMessage($container, 'error', userBooksData.strings.error);
             },
-            complete: function() {
+            complete: function () {
                 hideButtonLoading($button);
             }
         });
@@ -254,23 +254,23 @@ jQuery(document).ready(function($) {
                 post_type: postType,
                 nonce: userBooksData.nonce
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
                     // Clear saved original text before updating state
                     var $text = $button.find('.btn-text');
                     if ($text.length) {
                         $text.removeData('original-text');
                     }
-                    
+
                     // Update button state
                     updateButtonState($button, 'add', listType);
-                    
+
                     // Show success message
                     showMessage($container, 'success', getSuccessMessage('remove', listType));
-                    
+
                     // Update counter if exists
                     updateCounter($container, listType, -1);
-                    
+
                     // Trigger custom event
                     $(document).trigger('userBookRemoved', {
                         postId: postId,
@@ -281,10 +281,10 @@ jQuery(document).ready(function($) {
                     showMessage($container, 'error', response.data || userBooksData.strings.error);
                 }
             },
-            error: function() {
+            error: function () {
                 showMessage($container, 'error', userBooksData.strings.error);
             },
-            complete: function() {
+            complete: function () {
                 hideButtonLoading($button);
             }
         });
@@ -292,22 +292,22 @@ jQuery(document).ready(function($) {
 
     function updateButtonState($button, action, listType) {
         var $container = $button.closest('.book-actions');
-        
+
         // Update button classes and attributes
         $button.removeClass('active').addClass(action === 'remove' ? 'active' : '');
         $button.data('action', action);
-        
+
         // Update button text
         var newText = getButtonText(action, listType);
         $button.find('.btn-text').text(newText);
-        
+
         // Update icon if exists
         var $icon = $button.find('.btn-icon');
         if ($icon.length) {
             var newIcon = getButtonIcon(action, listType);
             $icon.removeClass().addClass('btn-icon ' + newIcon);
         }
-        
+
         // Update tooltip if exists
         if ($button.attr('data-bs-toggle') === 'tooltip') {
             var newTooltip = getButtonTooltip(action, listType);
@@ -317,19 +317,18 @@ jQuery(document).ready(function($) {
 
     function getButtonText(action, listType) {
         var strings = userBooksData.strings;
-        
+
         if (action === 'add') {
             switch (listType) {
                 case 'wishlist':
                     return strings.addToWishlist;
                 case 'read':
                     return strings.markAsRead;
-				case 'owned':
-					return strings.markAsOwned;
+                case 'owned':
+                    return strings.markAsOwned;
                 case 'collection_wishlist':
                     return strings.addToCollectionWishlist;
-                case 'missing_albums':
-                    return strings.addToMissingAlbums;
+
                 default:
                     return strings.addToWishlist;
             }
@@ -339,12 +338,11 @@ jQuery(document).ready(function($) {
                     return strings.removeFromWishlist;
                 case 'read':
                     return strings.markAsUnread;
-				case 'owned':
-					return strings.markAsNotOwned;
+                case 'owned':
+                    return strings.markAsNotOwned;
                 case 'collection_wishlist':
                     return strings.removeFromCollectionWishlist;
-                case 'missing_albums':
-                    return strings.removeFromMissingAlbums;
+
                 default:
                     return strings.removeFromWishlist;
             }
@@ -358,12 +356,11 @@ jQuery(document).ready(function($) {
                     return 'dashicons-heart';
                 case 'read':
                     return 'dashicons-yes-alt';
-				case 'owned':
-					return 'dashicons-archive';
+                case 'owned':
+                    return 'dashicons-archive';
                 case 'collection_wishlist':
                     return 'dashicons-star-filled';
-                case 'missing_albums':
-                    return 'dashicons-minus';
+
                 default:
                     return 'dashicons-plus';
             }
@@ -373,12 +370,11 @@ jQuery(document).ready(function($) {
                     return 'dashicons-heart-filled';
                 case 'read':
                     return 'dashicons-yes';
-				case 'owned':
-					return 'dashicons-archive';
+                case 'owned':
+                    return 'dashicons-archive';
                 case 'collection_wishlist':
                     return 'dashicons-star-filled';
-                case 'missing_albums':
-                    return 'dashicons-minus';
+
                 default:
                     return 'dashicons-minus';
             }
@@ -391,19 +387,18 @@ jQuery(document).ready(function($) {
 
     function getSuccessMessage(action, listType) {
         var strings = userBooksData.strings;
-        
+
         if (action === 'add') {
             switch (listType) {
                 case 'wishlist':
                     return 'Livre ajouté à vos souhaits !';
                 case 'read':
                     return 'Livre marqué comme lu !';
-				case 'owned':
-					return 'Livre marqué comme possédé !';
+                case 'owned':
+                    return 'Livre marqué comme possédé !';
                 case 'collection_wishlist':
                     return 'Collection ajoutée à vos souhaits !';
-                case 'missing_albums':
-                    return 'Collection ajoutée aux albums manquants !';
+
                 default:
                     return 'Ajouté avec succès !';
             }
@@ -413,12 +408,11 @@ jQuery(document).ready(function($) {
                     return 'Livre retiré de vos souhaits.';
                 case 'read':
                     return 'Livre marqué comme non lu.';
-				case 'owned':
-					return 'Livre marqué comme non possédé.';
+                case 'owned':
+                    return 'Livre marqué comme non possédé.';
                 case 'collection_wishlist':
                     return 'Collection retirée de vos souhaits.';
-                case 'missing_albums':
-                    return 'Collection retirée des albums manquants.';
+
                 default:
                     return 'Retiré avec succès.';
             }
@@ -451,16 +445,16 @@ jQuery(document).ready(function($) {
     function showMessage($container, type, message) {
         // Remove existing messages
         $container.find('.book-action-message').remove();
-        
+
         // Create message element
         var $message = $('<div class="book-action-message message-' + type + '">' + message + '</div>');
-        
+
         // Add to container
         $container.append($message);
-        
+
         // Auto-hide after 3 seconds
-        setTimeout(function() {
-            $message.fadeOut(function() {
+        setTimeout(function () {
+            $message.fadeOut(function () {
                 $message.remove();
             });
         }, 3000);

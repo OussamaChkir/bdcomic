@@ -24,7 +24,7 @@ function init_user_books_management()
     add_action('wp_ajax_remove_from_user_books', 'remove_from_user_books_ajax');
     add_action('wp_ajax_get_user_books', 'get_user_books_ajax');
     add_action('wp_ajax_search_user_wishlist', 'search_user_wishlist_ajax');
-    add_action('wp_ajax_search_user_missing_albums', 'search_user_missing_albums_ajax');
+
     add_action('wp_ajax_report_book_problem', 'report_book_problem_ajax');
 
     // Enqueue scripts and styles
@@ -50,7 +50,7 @@ function create_user_books_tables()
         user_id bigint(20) NOT NULL,
         post_id bigint(20) NOT NULL,
         post_type varchar(20) NOT NULL,
-        list_type varchar(20) NOT NULL, -- 'wishlist', 'read', 'collection_wishlist', 'missing_albums'
+        list_type varchar(20) NOT NULL, -- 'wishlist', 'read', 'collection_wishlist'
         added_date datetime DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         UNIQUE KEY user_post_list (user_id, post_id, list_type),
@@ -81,7 +81,7 @@ function add_to_user_books($user_id, $post_id, $list_type)
     }
 
     // Validate list type
-    if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'missing_albums', 'loaned', 'owned'])) {
+    if (!in_array($list_type, ['wishlist', 'read', 'collection_wishlist', 'loaned', 'owned'])) {
         return false;
     }
 
@@ -216,7 +216,7 @@ function get_user_books_stats($user_id)
         'read_books' => count(get_user_books($user_id, 'read', 'livre')),
         'owned_books' => count(get_user_books($user_id, 'owned', 'livre')),
         'collection_wishlist' => count(get_user_books($user_id, 'collection_wishlist', 'collection')),
-        'missing_albums' => count(get_user_books($user_id, 'missing_albums', 'collection'))
+
     );
 
     return $stats;
@@ -397,62 +397,7 @@ function search_user_wishlist_ajax()
     wp_send_json_success(array('html' => $html));
 }
 
-/**
- * AJAX handler to search user's missing albums books
- */
-function search_user_missing_albums_ajax()
-{
-    // Verify nonce
-    if (!wp_verify_nonce($_POST['nonce'], 'missing_albums_grid_nonce')) {
-        wp_send_json_error('Security check failed');
-    }
 
-    // Check if user is logged in
-    if (!is_user_logged_in()) {
-        wp_send_json_error('User not logged in');
-    }
-
-    $search_term = isset($_POST['search_term']) ? sanitize_text_field($_POST['search_term']) : '';
-    $user_id = get_current_user_id();
-
-    $missing_books = get_user_books($user_id, 'missing_albums', 'livre');
-
-    if (empty($search_term)) {
-        $filtered_books = $missing_books;
-    } else {
-        // Filter books by title or collection
-        $filtered_books = array();
-        foreach ($missing_books as $book_data) {
-            $post = $book_data['post'];
-            $title = get_field('titre_livre', $post->ID) ?: $post->post_title;
-            $collection_id = get_field('collection', $post->ID);
-            $collection_name = '';
-            if ($collection_id) {
-                $collection_name = get_field('nom_collection', $collection_id) ?: get_the_title($collection_id);
-            }
-
-            // Check if search term matches title or collection
-            if (stripos($title, $search_term) !== false || stripos($collection_name, $search_term) !== false) {
-                $filtered_books[] = $book_data;
-            }
-        }
-    }
-
-    // Generate HTML
-    ob_start();
-    if (!empty($filtered_books)) {
-        foreach ($filtered_books as $book_data) {
-            $post = $book_data['post'];
-            $GLOBALS['current_book_id'] = $post->ID;
-            get_template_part('template-parts/content-livre-grid');
-        }
-    } else {
-        echo '<div class="no-books-message"><p>Aucun livre trouvé pour cette recherche.</p></div>';
-    }
-    $html = ob_get_clean();
-
-    wp_send_json_success(array('html' => $html));
-}
 
 /**
  * Enqueue scripts and styles for user books management
@@ -484,8 +429,7 @@ function enqueue_user_books_scripts()
             'markAsNotOwned' => __('Marquer comme non possédé', 'bdcomic_theme'),
             'addToCollectionWishlist' => __('Ajouter aux souhaits de collection', 'bdcomic_theme'),
             'removeFromCollectionWishlist' => __('Retirer des souhaits de collection', 'bdcomic_theme'),
-            'addToMissingAlbums' => __('Ajouter aux albums manquants', 'bdcomic_theme'),
-            'removeFromMissingAlbums' => __('Retirer des albums manquants', 'bdcomic_theme'),
+
             'loading' => __('Chargement...', 'bdcomic_theme'),
             'error' => __('Une erreur est survenue', 'bdcomic_theme'),
             'reportProblem' => __('Signaler un problème', 'bdcomic_theme'),
@@ -542,7 +486,7 @@ function get_list_type_labels()
         'read' => __('Lus', 'bdcomic_theme'),
         'owned' => __('Possédés', 'bdcomic_theme'),
         'collection_wishlist' => __('Souhaits de Collection', 'bdcomic_theme'),
-        'missing_albums' => __('Mes Albums Manquants', 'bdcomic_theme'),
+
         'loaned' => __('Prêtés', 'bdcomic_theme')
     );
 }
@@ -557,7 +501,7 @@ function get_list_type_descriptions()
         'read' => __('Livres que vous avez lus', 'bdcomic_theme'),
         'owned' => __('Livres que vous possédez', 'bdcomic_theme'),
         'collection_wishlist' => __('Collections que vous souhaitez suivre', 'bdcomic_theme'),
-        'missing_albums' => __('Albums manquants dans vos collections', 'bdcomic_theme'),
+
         'loaned' => __('Livres que vous avez prêtés', 'bdcomic_theme')
     );
 }
@@ -598,7 +542,7 @@ function user_books_list_shortcode($atts)
     $show_actions = $atts['show_actions'] === 'true';
 
     // Validate list type
-    if (!in_array($list_type, ['wishlist', 'read', 'owned', 'collection_wishlist', 'missing_albums', 'loaned'])) {
+    if (!in_array($list_type, ['wishlist', 'read', 'owned', 'collection_wishlist', 'loaned'])) {
         return '<p>' . __('Type de liste invalide.', 'bdcomic_theme') . '</p>';
     }
 
@@ -683,9 +627,7 @@ function user_books_list_shortcode($atts)
                 case 'collection_wishlist':
                     $output .= 'dashicons-star-filled';
                     break;
-                case 'missing_albums':
-                    $output .= 'dashicons-minus';
-                    break;
+
             }
 
             $output .= '"></span>';

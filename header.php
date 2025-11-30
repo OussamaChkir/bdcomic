@@ -94,7 +94,7 @@
                                     </a></li>
                                 <?php if (current_user_can('administrator') || current_user_can('editor')): ?>
                                     <li><a class="dropdown-item" href="<?php echo home_url('/members'); ?>">
-                                            <i class="dashicons dashicons-users"></i> Membres
+                                            <i class="dashicons dashicons-admin-users"></i> Membres
                                         </a></li>
                                 <?php endif; ?>
                                 <li>

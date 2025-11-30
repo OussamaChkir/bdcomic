@@ -17,23 +17,23 @@ get_header(); ?>
                         <?php
                         // Get sidebar menu items from ACF fields
                         $sidebar_menu_items = get_field('sidebar_menu_items');
-                        
-                        if ($sidebar_menu_items) :
-                        ?>
+
+                        if ($sidebar_menu_items):
+                            ?>
                             <nav class="sidebar-menu">
                                 <ul class="sidebar-menu-list">
-                                    <?php foreach ($sidebar_menu_items as $item) : 
+                                    <?php foreach ($sidebar_menu_items as $item):
                                         $menu_item = $item['menu_item'];
                                         $menu_type = $menu_item['menu_type'];
                                         $custom_title = $menu_item['custom_title'];
                                         $custom_url = $menu_item['custom_url'];
                                         $page_link = $menu_item['page_link'];
-                                        
+
                                         // Determine the URL and title
                                         $url = '#';
                                         $title = '';
                                         $icon = '';
-                                        
+
                                         switch ($menu_type) {
                                             case 'ma_bibliotheque':
                                                 $url = get_permalink(get_page_by_path('ma-bibliotheque'));
@@ -50,11 +50,7 @@ get_header(); ?>
                                                 $title = $custom_title ?: __('Mes Souhaits', 'bdcomic_theme');
                                                 $icon = 'dashicons-heart';
                                                 break;
-                                            case 'mes_albums_manquants':
-                                                $url = get_permalink(get_page_by_path('mes-albums-manquants'));
-                                                $title = $custom_title ?: __('Mes Albums Manquants', 'bdcomic_theme');
-                                                $icon = 'dashicons-minus';
-                                                break;
+
                                             case 'custom':
                                                 $url = $custom_url;
                                                 $title = $custom_title;
@@ -66,7 +62,7 @@ get_header(); ?>
                                                 $icon = $menu_item['custom_icon'] ?: 'dashicons-admin-page';
                                                 break;
                                         }
-                                        
+
                                         // Check if current page is active
                                         $is_active = false;
                                         if ($menu_type === 'page' && $page_link && is_page($page_link)) {
@@ -74,9 +70,9 @@ get_header(); ?>
                                         } elseif ($menu_type === 'custom' && $custom_url && (is_page() && get_permalink() === $custom_url)) {
                                             $is_active = true;
                                         }
-                                        
+
                                         $active_class = $is_active ? 'active' : '';
-                                    ?>
+                                        ?>
                                         <li class="sidebar-menu-item <?php echo $active_class; ?>">
                                             <a href="<?php echo esc_url($url); ?>" class="sidebar-menu-link">
                                                 <span class="menu-icon dashicons <?php echo esc_attr($icon); ?>"></span>
@@ -86,44 +82,42 @@ get_header(); ?>
                                     <?php endforeach; ?>
                                 </ul>
                             </nav>
-                        <?php else : ?>
+                        <?php else: ?>
                             <!-- Default menu if no ACF fields are set -->
                             <nav class="sidebar-menu">
                                 <ul class="sidebar-menu-list">
                                     <li class="sidebar-menu-item">
-                                        <a href="<?php echo get_permalink(get_page_by_path('ma-bibliotheque')); ?>" class="sidebar-menu-link">
+                                        <a href="<?php echo get_permalink(get_page_by_path('ma-bibliotheque')); ?>"
+                                            class="sidebar-menu-link">
                                             <span class="menu-icon dashicons dashicons-book-alt"></span>
                                             <span class="menu-text"><?php _e('Ma Bibliothèque', 'bdcomic_theme'); ?></span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item">
-                                        <a href="<?php echo get_permalink(get_page_by_path('ma-collection')); ?>" class="sidebar-menu-link">
+                                        <a href="<?php echo get_permalink(get_page_by_path('ma-collection')); ?>"
+                                            class="sidebar-menu-link">
                                             <span class="menu-icon dashicons dashicons-portfolio"></span>
                                             <span class="menu-text"><?php _e('Ma Collection', 'bdcomic_theme'); ?></span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item">
-                                        <a href="<?php echo get_permalink(get_page_by_path('mes-souhaits')); ?>" class="sidebar-menu-link">
+                                        <a href="<?php echo get_permalink(get_page_by_path('mes-souhaits')); ?>"
+                                            class="sidebar-menu-link">
                                             <span class="menu-icon dashicons dashicons-heart"></span>
                                             <span class="menu-text"><?php _e('Mes Souhaits', 'bdcomic_theme'); ?></span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a href="<?php echo get_permalink(get_page_by_path('mes-albums-manquants')); ?>" class="sidebar-menu-link">
-                                            <span class="menu-icon dashicons dashicons-minus"></span>
-                                            <span class="menu-text"><?php _e('Mes Albums Manquants', 'bdcomic_theme'); ?></span>
-                                        </a>
-                                    </li>
+
                                 </ul>
                             </nav>
                         <?php endif; ?>
-                        
+
                         <!-- User Books Statistics (if user is logged in) -->
-                        <?php if (is_user_logged_in()) : 
+                        <?php if (is_user_logged_in()):
                             $current_user = wp_get_current_user();
                             $user_stats = get_user_books_stats($current_user->ID);
                             $list_labels = get_list_type_labels();
-                        ?>
+                            ?>
                             <div class="sidebar-stats">
                                 <h4 class="sidebar-stats-title"><?php _e('Mes Statistiques', 'bdcomic_theme'); ?></h4>
                                 <div class="sidebar-stats-grid">
@@ -139,47 +133,44 @@ get_header(); ?>
                                         <span class="stat-number"><?php echo $user_stats['collection_wishlist']; ?></span>
                                         <span class="stat-label"><?php echo $list_labels['collection_wishlist']; ?></span>
                                     </div>
-                                    <div class="sidebar-stat-item">
-                                        <span class="stat-number"><?php echo $user_stats['missing_albums']; ?></span>
-                                        <span class="stat-label"><?php echo $list_labels['missing_albums']; ?></span>
-                                    </div>
+
                                 </div>
                             </div>
                         <?php endif; ?>
                     </div>
                 </aside>
             </div>
-            
+
             <!-- Main Content -->
             <div class="col-lg-9 col-md-8">
-            <?php
-                if ( shortcode_exists( 'ultimatemember_account' ) ) {
-                    echo do_shortcode( '[ultimatemember_account]' );
+                <?php
+                if (shortcode_exists('ultimatemember_account')) {
+                    echo do_shortcode('[ultimatemember_account]');
                 } else {
                     // Fallback: show a message or redirect
                     echo '<p>Ultimate Member account page not available.</p>';
                 }
-            ?>
+                ?>
                 <div class="page-content">
                     <div class="page-header">
                         <h1 class="page-title"><?php the_title(); ?></h1>
-                        <?php if (get_field('page_subtitle')) : ?>
+                        <?php if (get_field('page_subtitle')): ?>
                             <p class="page-subtitle"><?php the_field('page_subtitle'); ?></p>
                         <?php endif; ?>
-                        </div>
-                    
+                    </div>
+
                     <div class="page-body">
                         <?php
-                        while (have_posts()) :
+                        while (have_posts()):
                             the_post();
                             ?>
                             <div class="entry-content">
                                 <?php
                                 the_content();
-                                
+
                                 wp_link_pages(array(
                                     'before' => '<div class="page-links">' . esc_html__('Pages:', 'bdcomic_theme'),
-                                    'after'  => '</div>',
+                                    'after' => '</div>',
                                 ));
                                 ?>
                             </div>

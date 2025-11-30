@@ -72,6 +72,11 @@
     color: white;
 }
 
+.book-action-btn[data-list-type="owned"].active {
+    background-color: #182748;
+    color: white;
+}
+
 /* Read Books Button */
 .book-action-btn[data-list-type="read"] {
     color: #059669;

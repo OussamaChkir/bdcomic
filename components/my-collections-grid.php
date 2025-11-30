@@ -435,6 +435,10 @@ ksort($collections_data);
             var dateFilter = $('#filter-date').val();
             var viewFilter = $('.filter-btn.active').data('filter');
 
+            // First, show all collections and books
+            $('.collection-group').show();
+            $('.book-item').show();
+
             $('.collection-group').each(function () {
                 var $collection = $(this);
                 var showCollection = true;

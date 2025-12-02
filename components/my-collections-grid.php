@@ -352,7 +352,7 @@ ksort($collections_data);
 
                                             <?php if ($is_read): ?>
                                                 <span class="status-icon read" title="<?php _e('Lu', 'bdcomic_theme'); ?>">
-                                                    <span class="dashicons dashicons-visibility"></span>
+                                                    <span class="dashicons dashicons-yes-alt"></span>
                                                 </span>
                                             <?php endif; ?>
 

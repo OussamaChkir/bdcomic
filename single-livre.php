@@ -198,7 +198,7 @@ get_header(); ?>
                                         data-action="<?php echo $is_read ? 'remove' : 'add'; ?>" data-post-type="livre"
                                         data-bs-toggle="tooltip"
                                         title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
-                                        <i class="dashicons <?php echo $is_read ? 'dashicons-check' : 'dashicons-check-empty'; ?>"></i>
+                                        <i class="dashicons <?php echo $is_read ? 'dashicons-yes-alt' : 'dashicons-yes'; ?>"></i>
                                         <span
                                             class="btn-text"><?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?></span>
                                     </button>

@@ -51,80 +51,94 @@
 }
 
 /* Wishlist Button */
-button.book-quick-action[data-list-type="wishlist"] {
+button.book-quick-action[data-list-type="wishlist"],
+.book-action-btn[data-list-type="wishlist"] {
     color: #dc2626;
     border-color: #dc2626;
     background-color: transparent;
 }
 
-button.book-quick-action[data-list-type="wishlist"]:hover {
+button.book-quick-action[data-list-type="wishlist"]:hover,
+.book-action-btn[data-list-type="wishlist"]:hover {
     background-color: #dc2626;
     color: white;
 }
 
-button.book-quick-action[data-list-type="wishlist"].active {
+button.book-quick-action[data-list-type="wishlist"].active,
+.book-action-btn[data-list-type="wishlist"].active {
     background-color: #dc2626;
     color: white;
 }
 
-button.book-quick-action[data-list-type="owned"]:hover {
+button.book-quick-action[data-list-type="owned"]:hover,
+.book-action-btn[data-list-type="owned"]:hover {
     color: #182748;
     border-color: #182748;
     background-color: transparent;
 }
 
-button.book-quick-action[data-list-type="owned"].active {
+button.book-quick-action[data-list-type="owned"].active,
+.book-action-btn[data-list-type="owned"].active {
     background-color: #182748;
     color: white;
 }
 
 /* Read Books Button */
-button.book-quick-action[data-list-type="read"] {
+button.book-quick-action[data-list-type="read"],
+.book-action-btn[data-list-type="read"] {
     color: #059669;
     border-color: #059669;
     background-color: transparent;
 }
 
-button.book-quick-action[data-list-type="read"]:hover {
+button.book-quick-action[data-list-type="read"]:hover,
+.book-action-btn[data-list-type="read"]:hover {
     background-color: #059669;
     color: white;
 }
 
-button.book-quick-action[data-list-type="read"].active {
+button.book-quick-action[data-list-type="read"].active,
+.book-action-btn[data-list-type="read"].active {
     background-color: #059669;
     color: white;
 }
 
 /* Loaned Button */
+button.book-quick-action[data-list-type="loaned"],
 .book-action-btn[data-list-type="loaned"] {
     color: #f59e0b;
     border-color: #f59e0b;
     background-color: transparent;
 }
 
+button.book-quick-action[data-list-type="loaned"]:hover,
 .book-action-btn[data-list-type="loaned"]:hover {
     background-color: #f59e0b;
     color: white;
 }
 
+button.book-quick-action[data-list-type="loaned"].active,
 .book-action-btn[data-list-type="loaned"].active {
     background-color: #f59e0b;
     color: white;
 }
 
 /* Collection Wishlist Button */
+button.book-quick-action[data-list-type="collection_wishlist"],
 .book-action-btn[data-list-type="collection_wishlist"] {
     color: #d97706;
     border-color: #d97706;
     background-color: transparent;
 }
 
-button.book-quick-action[data-list-type="collection_wishlist"]:hover {
+button.book-quick-action[data-list-type="collection_wishlist"]:hover,
+.book-action-btn[data-list-type="collection_wishlist"]:hover {
     background-color: #d97706;
     color: white;
 }
 
-button.book-quick-action[data-list-type="loaned"].active {
+button.book-quick-action[data-list-type="collection_wishlist"].active,
+.book-action-btn[data-list-type="collection_wishlist"].active {
     background-color: #f59e0b;
 }
 

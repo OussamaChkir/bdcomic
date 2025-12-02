@@ -156,7 +156,8 @@ $speed = $block_settings['speed'] ?? 500;
                                                             data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
                                                             data-post-type="livre" data-bs-toggle="tooltip"
                                                             title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
-                                                            <span class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
+                                                            <span
+                                                                class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
                                                         </button>
 
                                                         <?php
@@ -167,7 +168,8 @@ $speed = $block_settings['speed'] ?? 500;
                                                             data-post-id="<?php echo $post_id; ?>" data-list-type="read"
                                                             data-post-type="livre" data-bs-toggle="tooltip"
                                                             title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
-                                                            <span class="dashicons <?php echo $is_read ? 'dashicons-visibility' : 'dashicons-visibility'; ?>"></span>
+                                                            <span
+                                                                class="dashicons <?php echo $is_read ? 'dashicons-yes-alt' : 'dashicons-yes'; ?>"></span>
                                                         </button>
 
                                                         <?php
@@ -178,7 +180,8 @@ $speed = $block_settings['speed'] ?? 500;
                                                             data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
                                                             data-post-type="livre" data-bs-toggle="tooltip"
                                                             title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
-                                                            <span class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
+                                                            <span
+                                                                class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
                                                         </button>
 
                                                     </div>

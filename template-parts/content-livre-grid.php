@@ -96,7 +96,7 @@ if (is_user_logged_in()) {
 
                         <?php if ($is_read): ?>
                             <span class="status-icon read" title="<?php _e('Lu', 'bdcomic_theme'); ?>">
-                                <span class="dashicons dashicons-visibility"></span>
+                                <span class="dashicons dashicons-yes-alt"></span>
                             </span>
                         <?php endif; ?>
                         <?php if ($is_loaned): ?>

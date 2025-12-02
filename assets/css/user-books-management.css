@@ -51,45 +51,46 @@
 }
 
 /* Wishlist Button */
-.book-action-btn[data-list-type="wishlist"] {
+button.book-quick-action[data-list-type="wishlist"] {
     color: #dc2626;
     border-color: #dc2626;
     background-color: transparent;
 }
 
-.book-action-btn[data-list-type="wishlist"]:hover {
+button.book-quick-action[data-list-type="wishlist"]:hover {
     background-color: #dc2626;
     color: white;
 }
 
-.book-action-btn[data-list-type="wishlist"].active {
+button.book-quick-action[data-list-type="wishlist"].active {
     background-color: #dc2626;
     color: white;
 }
 
-.book-action-btn[data-list-type="owned"]:hover {
-    background-color: #182748;
-    color: white;
+button.book-quick-action[data-list-type="owned"]:hover {
+    color: #182748;
+    border-color: #182748;
+    background-color: transparent;
 }
 
-.book-action-btn[data-list-type="owned"].active {
+button.book-quick-action[data-list-type="owned"].active {
     background-color: #182748;
     color: white;
 }
 
 /* Read Books Button */
-.book-action-btn[data-list-type="read"] {
+button.book-quick-action[data-list-type="read"] {
     color: #059669;
     border-color: #059669;
     background-color: transparent;
 }
 
-.book-action-btn[data-list-type="read"]:hover {
+button.book-quick-action[data-list-type="read"]:hover {
     background-color: #059669;
     color: white;
 }
 
-.book-action-btn[data-list-type="read"].active {
+button.book-quick-action[data-list-type="read"].active {
     background-color: #059669;
     color: white;
 }
@@ -118,12 +119,12 @@
     background-color: transparent;
 }
 
-.book-action-btn[data-list-type="collection_wishlist"]:hover {
+button.book-quick-action[data-list-type="collection_wishlist"]:hover {
     background-color: #d97706;
     color: white;
 }
 
-.book-quick-action[data-list-type="loaned"].active {
+button.book-quick-action[data-list-type="loaned"].active {
     background-color: #f59e0b;
 }
 

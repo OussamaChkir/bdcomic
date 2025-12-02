@@ -184,7 +184,7 @@ get_header(); ?>
 										data-action="<?php echo $is_owned ? 'remove' : 'add'; ?>" data-post-type="livre"
 										data-bs-toggle="tooltip"
 										title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
-										<i class="bi <?php echo $is_owned ? 'bi-bag-check-fill' : 'bi-bag-check'; ?>"></i>
+										<i class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></i>
 										<span
 											class="btn-text"><?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?></span>
 									</button>
@@ -198,7 +198,7 @@ get_header(); ?>
                                         data-action="<?php echo $is_read ? 'remove' : 'add'; ?>" data-post-type="livre"
                                         data-bs-toggle="tooltip"
                                         title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
-                                        <i class="bi <?php echo $is_read ? 'bi-check-lg' : 'bi-check-circle-fill'; ?>"></i>
+                                        <i class="dashicons <?php echo $is_read ? 'dashicons-check' : 'dashicons-check-empty'; ?>"></i>
                                         <span
                                             class="btn-text"><?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?></span>
                                     </button>
@@ -214,7 +214,7 @@ get_header(); ?>
                                         data-action="<?php echo $in_wishlist ? 'remove' : 'add'; ?>" data-post-type="livre"
                                         data-bs-toggle="tooltip"
                                         title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
-                                            <i class="bi <?php echo $in_wishlist ? 'bi-heart' : 'bi-heart-fill'; ?>"></i>
+                                            <i class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></i>
                                         <span
                                             class="btn-text"><?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?></span>
                                     </button>

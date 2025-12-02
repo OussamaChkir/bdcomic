@@ -167,7 +167,32 @@ get_header(); ?>
                                 </div>
                                 <div class="livre-actions">
                                     <?php if (is_user_logged_in()): ?>
+
                                         <div class="book-quick-actions">
+                                            <?php
+                                            // Quick owned button
+                                            $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
+                                            ?>
+                                            <button class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
+                                                data-post-id="<?php echo $post_id; ?>" data-list-type="owned" data-post-type="livre"
+                                                data-bs-toggle="tooltip"
+                                                title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
+                                                <span
+                                                    class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
+                                            </button>
+
+                                            <?php
+                                            // Quick read button
+                                            $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
+                                            ?>
+                                            <button class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>"
+                                                data-post-id="<?php echo $post_id; ?>" data-list-type="read" data-post-type="livre"
+                                                data-bs-toggle="tooltip"
+                                                title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
+                                                <span
+                                                    class="dashicons <?php echo $is_read ? 'dashicons-yes-alt' : 'dashicons-yes'; ?>"></span>
+                                            </button>
+
                                             <?php
                                             $current_user_id = get_current_user_id();
                                             $post_id = get_the_ID();
@@ -179,30 +204,11 @@ get_header(); ?>
                                                 data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
                                                 data-post-type="livre" data-bs-toggle="tooltip"
                                                 title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
-                                                <span class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
+                                                <span
+                                                    class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
                                             </button>
 
-                                            <?php
-                                            // Quick read button
-                                            $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
-                                            ?>
-                                            <button class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>"
-                                                data-post-id="<?php echo $post_id; ?>" data-list-type="read" data-post-type="livre"
-                                                data-bs-toggle="tooltip"
-                                                title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
-                                                <span class="dashicons <?php echo $is_read ? 'dashicons-visibility' : 'dashicons-visibility'; ?>"></span>
-                                            </button>
 
-                                            <?php
-                                            // Quick owned button
-                                            $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
-                                            ?>
-                                            <button class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
-                                                data-post-id="<?php echo $post_id; ?>" data-list-type="owned" data-post-type="livre"
-                                                data-bs-toggle="tooltip"
-                                                title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
-                                                <span class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
-                                            </button>
                                         </div>
                                     <?php endif; ?>
                                 </div>

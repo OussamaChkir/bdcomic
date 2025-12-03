@@ -72,9 +72,9 @@ button.book-quick-action[data-list-type="wishlist"].active,
 
 button.book-quick-action[data-list-type="owned"]:hover,
 .book-action-btn[data-list-type="owned"]:hover {
-    color: #182748;
+    color: white;
     border-color: #182748;
-    background-color: transparent;
+    background-color: #182748;
 }
 
 button.book-quick-action[data-list-type="owned"].active,
@@ -151,8 +151,8 @@ button.book-quick-action[data-list-type="collection_wishlist"].active,
 button.book-quick-action {
     border-radius: 5px;
     height: 37px;
-    background: #182748;
-    color: white;
+    background: transparent;
+    color: #182748;
 }
 
 i.bi.bi-heart-fill {

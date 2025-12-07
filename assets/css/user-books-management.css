@@ -145,7 +145,8 @@ button.book-quick-action[data-list-type="collection_wishlist"].active,
 .livre-actions {
     position: absolute;
     top: 0;
-    right: 30px;
+    right: 0;
+    left: 0;
 }
 
 button.book-quick-action {

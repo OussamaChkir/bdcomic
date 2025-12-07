@@ -508,7 +508,17 @@ get_header(); ?>
                                     <li>
                                         <strong>Équipe créative:</strong> <?php echo count($equipe_creative); ?> membre(s)
                                     </li>
-                        <?php endif; ?>
+                                <?php endif; ?>
+                                <h3>Liens pour acheter le livre</h3>
+                                <?php $liste_des_liens = get_field('liste_des_liens'); ?>
+                                <?php if ($liste_des_liens && is_array($liste_des_liens)): ?>
+                                    <li>
+                                        <?php foreach ($liste_des_liens as $lien): ?>
+                                            <a class="btn" style="width: 100%; margin-bottom: 0.5rem;" href="<?php echo esc_url($lien['url_lien']); ?>"><?php echo esc_html($lien['titre_lien']); ?></a>
+                                        <?php endforeach; ?>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
                     </div>
 
                     <aside class="livre-sidebar">

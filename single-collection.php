@@ -117,15 +117,6 @@ get_header(); ?>
                                                         <?php echo $nom_sous ? esc_html($nom_sous) : esc_html($sous_collection->post_title); ?>
                                                     </a>
                                                 </h3>
-                                                <div class="book-meta">
-                                                    <?php if ($n_sortie): ?>
-                                                        <span class="meta-item">N° Sortie: <?php echo esc_html($n_sortie); ?></span>
-                                                    <?php endif; ?>
-                                                    <?php if ($n_frise): ?>
-                                                        <span class="meta-item">N° Frise: <?php echo esc_html($n_frise); ?></span>
-                                                    <?php endif; ?>
-                                                </div>
-
                                             </div>
                                         </div>
 
@@ -255,14 +246,6 @@ get_header(); ?>
                     <aside class="collection-sidebar">
                         <div class="collection-meta">
                             <h3>Informations</h3>
-                            <div class="book-meta">
-                                <?php if ($n_sortie): ?>
-                                    <span class="meta-item">N° Sortie: <?php echo esc_html($n_sortie); ?></span>
-                                <?php endif; ?>
-                                <?php if ($n_frise): ?>
-                                    <span class="meta-item">N° Frise: <?php echo esc_html($n_frise); ?></span>
-                                <?php endif; ?>
-                            </div>
                             <ul class="meta-list">
                                 <?php if ($date_sortie): ?>
                                     <li>

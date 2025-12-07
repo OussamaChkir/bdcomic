@@ -149,15 +149,15 @@ $speed = $block_settings['speed'] ?? 500;
                                                         $current_user_id = get_current_user_id();
                                                         $post_id = get_the_ID();
 
-                                                        // Quick wishlist button
-                                                        $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
+                                                        // Quick owned button
+                                                        $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
                                                         ?>
-                                                        <button class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>"
-                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
+                                                        <button class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
+                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
                                                             data-post-type="livre" data-bs-toggle="tooltip"
-                                                            title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
+                                                            title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
                                                             <span
-                                                                class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
+                                                                class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
                                                         </button>
 
                                                         <?php
@@ -173,15 +173,16 @@ $speed = $block_settings['speed'] ?? 500;
                                                         </button>
 
                                                         <?php
-                                                        // Quick owned button
-                                                        $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
+                                                        // Quick wishlist button
+                                                        $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
                                                         ?>
-                                                        <button class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
-                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
+
+                                                        <button class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>"
+                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
                                                             data-post-type="livre" data-bs-toggle="tooltip"
-                                                            title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
+                                                            title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
                                                             <span
-                                                                class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
+                                                                class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
                                                         </button>
 
                                                     </div>

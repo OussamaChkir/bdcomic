@@ -9,7 +9,8 @@ get_header(); ?>
 
 <main id="main" class="site-main">
     <div class="container">
-        <?php while (have_posts()): the_post(); ?>
+        <?php while (have_posts()):
+            the_post(); ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class('single-guide-lecture'); ?>>
                 <div class="guide-header">
                     <div class="guide-hero">
@@ -18,15 +19,13 @@ get_header(); ?>
                             $image_guide = get_field('image_guide');
                             $collection = get_field('collection_guide');
                             $collection_logo = $collection ? get_field('logo_collection', $collection->ID) : null;
-                            
+
                             if ($image_guide): ?>
-                                <img src="<?php echo esc_url($image_guide['url']); ?>" 
-                                     alt="<?php echo esc_attr($image_guide['alt']); ?>" 
-                                     class="guide-featured-image">
+                                <img src="<?php echo esc_url($image_guide['url']); ?>"
+                                    alt="<?php echo esc_attr($image_guide['alt']); ?>" class="guide-featured-image">
                             <?php elseif ($collection_logo): ?>
-                                <img src="<?php echo esc_url($collection_logo['url']); ?>" 
-                                     alt="<?php echo esc_attr($collection_logo['alt']); ?>" 
-                                     class="guide-featured-image">
+                                <img src="<?php echo esc_url($collection_logo['url']); ?>"
+                                    alt="<?php echo esc_attr($collection_logo['alt']); ?>" class="guide-featured-image">
                             <?php elseif (has_post_thumbnail()): ?>
                                 <?php the_post_thumbnail('large', array('class' => 'guide-featured-image')); ?>
                             <?php else: ?>
@@ -49,7 +48,7 @@ get_header(); ?>
                                 <div class="guide-collection">
                                     <span class="label">Collection:</span>
                                     <a href="<?php echo get_permalink($collection->ID); ?>" class="collection-link">
-                                        <?php 
+                                        <?php
                                         $nom_collection = get_field('nom_collection', $collection->ID);
                                         echo $nom_collection ? esc_html($nom_collection) : esc_html($collection->post_title);
                                         ?>
@@ -65,8 +64,8 @@ get_header(); ?>
                                     </span>
                                 </div>
                             <?php endif; ?>
-                            
-                            <?php if (is_user_logged_in()) : ?>
+
+                            <?php if (is_user_logged_in()): ?>
                                 <div class="guide-actions">
                                     <!-- Future: Add bookmark/favorite functionality -->
                                 </div>
@@ -77,11 +76,11 @@ get_header(); ?>
 
                 <div class="guide-content">
                     <div class="guide-main">
-                        <?php 
+                        <?php
                         // Use guide description if available, otherwise use collection summary
                         $collection_summary = $collection ? get_field('resume_collection', $collection->ID) : null;
                         $display_description = $description ?: $collection_summary;
-                        
+
                         if ($display_description): ?>
                             <section class="guide-description">
                                 <h2><?php echo $description ? 'Description du guide' : 'Résumé de la collection'; ?></h2>
@@ -105,11 +104,12 @@ get_header(); ?>
                             <section class="guide-reading-order">
                                 <h2>Ordre de lecture recommandé</h2>
                                 <div class="reading-order-list">
-                                    <?php foreach ($ordre_lecture as $index => $item): 
+                                    <?php foreach ($ordre_lecture as $index => $item):
                                         $livre_id = $item['livre'];
                                         $livre = get_post($livre_id);
-                                        if (!$livre) continue;
-                                        
+                                        if (!$livre)
+                                            continue;
+
                                         $photo_devant = get_field('photo_devant', $livre->ID);
                                         $titre = get_field('titre_livre', $livre->ID);
                                         $n_sortie = get_field('n_sortie', $livre->ID);
@@ -119,36 +119,39 @@ get_header(); ?>
                                             <div class="order-number">
                                                 <?php echo $index + 1; ?>
                                             </div>
-                                            
+
                                             <div class="book-cover">
                                                 <?php if ($photo_devant): ?>
                                                     <img src="<?php echo esc_url($photo_devant['url']); ?>"
-                                                         alt="<?php echo esc_attr($photo_devant['alt']); ?>">
+                                                        alt="<?php echo esc_attr($photo_devant['alt']); ?>">
                                                 <?php else: ?>
                                                     <div class="no-cover-placeholder">
                                                         <span class="dashicons dashicons-book"></span>
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
-                                            
+
                                             <div class="book-info">
                                                 <h3 class="book-title">
                                                     <a href="<?php echo get_permalink($livre->ID); ?>">
                                                         <?php echo $titre ? esc_html($titre) : esc_html($livre->post_title); ?>
                                                     </a>
                                                 </h3>
-                                                
+
                                                 <div class="book-meta">
                                                     <?php if ($n_sortie): ?>
-                                                        <span class="book-number">N° <?php echo esc_html($n_sortie); ?></span>
+                                                        <span class="book-number">N° Sortie <?php echo esc_html($n_sortie); ?></span>
                                                     <?php endif; ?>
-                                                    
+                                                    <?php if ($n_frise): ?>
+                                                        <span class="book-number">N° Frise <?php echo esc_html($n_frise); ?></span>
+                                                    <?php endif; ?>
+
                                                     <?php if ($date_sortie_livre): ?>
                                                         <span class="book-date"><?php echo esc_html($date_sortie_livre); ?></span>
                                                     <?php endif; ?>
                                                 </div>
-                                                
-                                                
+
+
                                                 <?php
                                                 $resume_livre = get_field('resume_livre', $livre->ID);
                                                 if ($resume_livre): ?>
@@ -157,7 +160,7 @@ get_header(); ?>
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
-                                            
+
                                             <?php if (is_user_logged_in()): ?>
                                                 <div class="book-user-actions">
                                                     <!-- Future: Add reading status, wishlist, etc. -->
@@ -179,9 +182,9 @@ get_header(); ?>
                             <ul class="meta-list">
                                 <?php if ($collection): ?>
                                     <li>
-                                        <strong>Collection:</strong> 
+                                        <strong>Collection:</strong>
                                         <a href="<?php echo get_permalink($collection->ID); ?>">
-                                            <?php 
+                                            <?php
                                             $nom_collection = get_field('nom_collection', $collection->ID);
                                             echo $nom_collection ? esc_html($nom_collection) : esc_html($collection->post_title);
                                             ?>
@@ -194,17 +197,17 @@ get_header(); ?>
                                         <strong>Nombre de livres:</strong> <?php echo count($ordre_lecture); ?>
                                     </li>
                                 <?php endif; ?>
-                                
+
                                 <li>
                                     <strong>Publié le:</strong> <?php echo get_the_date(); ?>
                                 </li>
-                                
+
                                 <li>
                                     <strong>Dernière mise à jour:</strong> <?php echo get_the_modified_date(); ?>
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <?php if ($collection): ?>
                             <div class="related-guides">
                                 <h3>Autres guides de cette collection</h3>
@@ -221,7 +224,7 @@ get_header(); ?>
                                         )
                                     )
                                 ));
-                                
+
                                 if ($related_guides): ?>
                                     <ul class="related-guides-list">
                                         <?php foreach ($related_guides as $related_guide): ?>

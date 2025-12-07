@@ -62,7 +62,7 @@
 
 .book-item.missing-book .book-cover img {
     width: 100%;
-    height: 200px;
+    /* height: 200px; */
     object-fit: cover;
     border-radius: 6px;
     border: 1px solid #e0e0e0;

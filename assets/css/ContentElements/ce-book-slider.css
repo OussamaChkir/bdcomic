@@ -118,13 +118,13 @@
 }
 
 /****************/
- .livre-covers{
+.livre-covers {
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.livre-covers:hover{
+.livre-covers:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
@@ -137,7 +137,7 @@
 .livre-covers {
     display: flex;
     gap: 1rem;
-    margin:0 auto 1.5rem;
+    margin: 0 auto 1.5rem;
     justify-content: center;
     width: fit-content;
 }
@@ -176,8 +176,8 @@
     font-size: 1rem;
     text-align: center;
     line-height: 28px;
-    max-width:350px;
-    margin:0 auto 0.5rem;
+    max-width: 350px;
+    margin: 0 auto 0.5rem;
     font-weight: 600;
 }
 
@@ -189,6 +189,7 @@
 .livre-title a:hover {
     color: #007cba;
 }
+
 /**************/
 
 .book-card:hover {
@@ -430,7 +431,10 @@
 .livre-actions {
     position: absolute;
     top: 0;
-    right: 30px;
+    right: 0;
+    left: 0;
+    display: table;
+    margin: auto;
 }
 
 i.bi.bi-heart-fill {

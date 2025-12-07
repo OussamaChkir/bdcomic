@@ -107,6 +107,21 @@ get_header(); ?>
                                             <span class="menu-text"><?php _e('Mes Souhaits', 'bdcomic_theme'); ?></span>
                                         </a>
                                     </li>
+                                    <li class="sidebar-menu-item">
+                                        <a href="<?php echo get_permalink(get_page_by_path('mes-albums-manquants')); ?>"
+                                            class="sidebar-menu-link">
+                                            <span class="menu-icon dashicons dashicons-search"></span>
+                                            <span
+                                                class="menu-text"><?php _e('Mes Albums Manquants', 'bdcomic_theme'); ?></span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item">
+                                        <a href="<?php echo get_permalink(get_page_by_path('account')); ?>"
+                                            class="sidebar-menu-link">
+                                            <span class="menu-icon dashicons dashicons-admin-users"></span>
+                                            <span class="menu-text"><?php _e('Mon Compte', 'bdcomic_theme'); ?></span>
+                                        </a>
+                                    </li>
 
                                 </ul>
                             </nav>
@@ -147,14 +162,6 @@ get_header(); ?>
 
             <!-- Main Content -->
             <div class="col-lg-9 col-md-8">
-                <?php
-                if (shortcode_exists('ultimatemember_account')) {
-                    echo do_shortcode('[ultimatemember_account]');
-                } else {
-                    // Fallback: show a message or redirect
-                    echo '<p>Ultimate Member account page not available.</p>';
-                }
-                ?>
                 <div class="page-content">
                     <div class="page-header">
                         <h1 class="page-title"><?php the_title(); ?></h1>

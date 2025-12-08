@@ -59,6 +59,9 @@ $read_books = $read_books_data;
 $read_book_ids = array_column($read_books, 'post');
 $read_book_ids = array_column($read_book_ids, 'ID');
 
+// Get IDs of all owned books for efficient checking
+$owned_book_ids = array_column(array_column($real_owned_books, 'post'), 'ID');
+
 // Get user's loaned books
 $loaned_books_data = get_user_books($current_user_id, 'loaned', 'livre');
 $loaned_books = array_column($loaned_books_data, 'post');
@@ -271,11 +274,16 @@ ksort($collections_data);
                             $is_read = in_array($book->ID, $read_book_ids);
                             $loaned_book_ids = array_column($loaned_books, 'ID');
                             $is_loaned = in_array($book->ID, $loaned_book_ids);
+                            // Optimized owned check using pre-calculated array
+                            $is_owned = in_array($book->ID, $owned_book_ids);
+
                             $book_classes = array('book-item');
                             if ($is_read)
                                 $book_classes[] = 'book-read';
                             if ($is_loaned)
                                 $book_classes[] = 'book-loaned';
+                            if ($is_owned)
+                                $book_classes[] = 'book-owned';
 
                             $photo_devant = get_field('photo_devant', $book->ID);
                             $titre = get_field('titre_livre', $book->ID) ?: $book->post_title;
@@ -295,7 +303,8 @@ ksort($collections_data);
                             ?>
 
                             <div class="<?php echo implode(' ', $book_classes); ?>" data-book-id="<?php echo $book->ID; ?>"
-                                data-read="<?php echo $is_read ? '1' : '0'; ?>" data-loaned="<?php echo $is_loaned ? '1' : '0'; ?>">
+                                data-read="<?php echo $is_read ? '1' : '0'; ?>" data-loaned="<?php echo $is_loaned ? '1' : '0'; ?>"
+                                data-owned="<?php echo $is_owned ? '1' : '0'; ?>">
 
                                 <div class="book-cover">
                                     <?php if ($photo_devant): ?>
@@ -310,9 +319,7 @@ ksort($collections_data);
                                     <?php if ($show_status_icons): ?>
                                         <div class="book-status-icons">
                                             <?php
-                                            // Check if book is actually in the owned list
-                                            $owned_book_ids = array_column(array_column($real_owned_books, 'post'), 'ID');
-                                            $is_owned = in_array($book->ID, $owned_book_ids);
+                                            // Check using the pre-calculated variable from the loop above
                                             if ($is_owned):
                                                 ?>
                                                 <span class="status-icon owned" title="<?php _e('Possédé', 'bdcomic_theme'); ?>">
@@ -414,10 +421,11 @@ ksort($collections_data);
                     // 1. Check View Filter (Owned/Read/Loaned)
                     var isRead = $book.data('read') == 1;
                     var isLoaned = $book.data('loaned') == 1;
+                    var isOwned = $book.data('owned') == 1;
                     var matchesView = false;
 
                     if (viewFilter === 'owned') {
-                        matchesView = true;
+                        matchesView = isOwned;
                     } else if (viewFilter === 'read') {
                         matchesView = isRead;
                     } else if (viewFilter === 'loaned') {

@@ -33,11 +33,14 @@ $current_user_id = get_current_user_id();
 // Ensure the database table exists
 create_user_books_tables();
 
-// Get user's owned books (from wishlist and read lists combined)
-$wishlist_books = get_user_books($current_user_id, 'wishlist', 'livre');
+// Get user's owned books (using the correct 'owned' list type)
+$real_owned_books = get_user_books($current_user_id, 'owned', 'livre');
+// Still fetch wishlist for other purposes if needed, but for "My Collections" we want actual specific owned books
+// $wishlist_books = get_user_books($current_user_id, 'wishlist', 'livre'); // No longer needed for this grid source
+
 $read_books_data = get_user_books($current_user_id, 'read', 'livre');
 
-$owned_books = array_merge($wishlist_books, $read_books_data);
+$owned_books = array_merge($real_owned_books, $read_books_data);
 
 // Remove duplicates by post ID
 $unique_books = array();
@@ -61,7 +64,7 @@ $loaned_books_data = get_user_books($current_user_id, 'loaned', 'livre');
 $loaned_books = array_column($loaned_books_data, 'post');
 
 // Calculate statistics
-$total_owned = count($wishlist_books);  // Only count wishlist books as 'owned'
+$total_owned = count($real_owned_books);
 $total_read = count($read_books);
 $total_loaned = count($loaned_books);
 $total_unread = $total_owned - $total_read;
@@ -306,9 +309,16 @@ ksort($collections_data);
 
                                     <?php if ($show_status_icons): ?>
                                         <div class="book-status-icons">
-                                            <span class="status-icon owned" title="<?php _e('Possédé', 'bdcomic_theme'); ?>">
-                                                <span class="dashicons dashicons-yes"></span>
-                                            </span>
+                                            <?php
+                                            // Check if book is actually in the owned list
+                                            $owned_book_ids = array_column(array_column($real_owned_books, 'post'), 'ID');
+                                            $is_owned = in_array($book->ID, $owned_book_ids);
+                                            if ($is_owned):
+                                                ?>
+                                                <span class="status-icon owned" title="<?php _e('Possédé', 'bdcomic_theme'); ?>">
+                                                    <span class="dashicons dashicons-yes"></span>
+                                                </span>
+                                            <?php endif; ?>
 
                                             <?php if ($is_read): ?>
                                                 <span class="status-icon read" title="<?php _e('Lu', 'bdcomic_theme'); ?>">

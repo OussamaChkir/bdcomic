@@ -151,47 +151,7 @@ ksort($collections_data);
                     </button>
                 </div>
 
-                <div class="filter-selects">
-                    <select id="filter-collection" class="filter-select" data-filter-type="collection">
-                        <option value=""><?php _e('Toutes les collections', 'bdcomic_theme'); ?></option>
-                        <?php
-                        foreach ($collections_data as $collection_key => $collection_data) {
-                            echo '<option value="' . $collection_data['collection_id'] . '">' . esc_html($collection_data['name']) . '</option>';
-                        }
-                        ?>
-                    </select>
-
-                    <select id="filter-artiste" class="filter-select" data-filter-type="artiste">
-                        <option value=""><?php _e('Tous les artistes', 'bdcomic_theme'); ?></option>
-                        <?php
-                        // Get all unique artists from owned books
-                        $artists = array();
-                        foreach ($owned_books as $book_data) {
-                            $book = $book_data['post'];
-                            $equipe_creative = get_field('equipe_creative', $book->ID);
-                            if ($equipe_creative) {
-                                foreach ($equipe_creative as $member) {
-                                    if (isset($member['artiste']) && $member['artiste']) {
-                                        $artist_id = $member['artiste']->ID;
-                                        if (!in_array($artist_id, array_column($artists, 'id'))) {
-                                            $artists[] = array(
-                                                'id' => $artist_id,
-                                                'name' => $member['artiste']->post_title
-                                            );
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        foreach ($artists as $artist) {
-                            echo '<option value="' . $artist['id'] . '">' . esc_html($artist['name']) . '</option>';
-                        }
-                        ?>
-                    </select>
-
-                    <input type="date" id="filter-date" class="filter-date" data-filter-type="date"
-                        placeholder="<?php _e('Date de parution', 'bdcomic_theme'); ?>">
-                </div>
+                <!-- Filters removed as requested -->
             </div>
 
             <div class="view-filters">
@@ -406,12 +366,6 @@ ksort($collections_data);
     jQuery(document).ready(function ($) {
         // Search functionality
         $('#collections-search').on('input', function () {
-            var searchTerm = $(this).val().toLowerCase();
-            filterCollections();
-        });
-
-        // Filter functionality
-        $('.filter-select, .filter-date').on('change', function () {
             filterCollections();
         });
 
@@ -429,87 +383,75 @@ ksort($collections_data);
         });
 
         function filterCollections() {
-            var searchTerm = $('#collections-search').val().toLowerCase();
-            var collectionFilter = $('#filter-collection').val();
-            var artisteFilter = $('#filter-artiste').val();
-            var dateFilter = $('#filter-date').val();
+            var searchTerm = $('#collections-search').val().toLowerCase().trim();
             var viewFilter = $('.filter-btn.active').data('filter');
 
-            console.log('Filter called with viewFilter:', viewFilter);
+            // Hide empty message initially
+            $('.collections-empty').hide();
 
-            // First, show all collections and books
-            $('.collection-group').show();
-            $('.book-item').show();
+            // Track total visible books to show empty state if needed
+            var totalVisibleBooks = 0;
 
             $('.collection-group').each(function () {
                 var $collection = $(this);
-                var showCollection = true;
+                var collectionName = $collection.find('.collection-name').text().toLowerCase();
+                var $books = $collection.find('.book-item');
+                var visibleBooksInCollection = 0;
 
-                // Search filter
-                if (searchTerm) {
-                    var collectionName = $collection.find('.collection-name').text().toLowerCase();
-                    var bookTitles = $collection.find('.book-title').text().toLowerCase();
-                    var bookVolumes = $collection.find('.book-volume').text().toLowerCase();
-
-                    if (collectionName.indexOf(searchTerm) === -1 &&
-                        bookTitles.indexOf(searchTerm) === -1 &&
-                        bookVolumes.indexOf(searchTerm) === -1) {
-                        showCollection = false;
-                    }
-                }
-
-                // Collection filter
-                if (collectionFilter && $collection.data('collection-id') != collectionFilter) {
-                    showCollection = false;
-                }
-
-                // View filter - show/hide individual books based on filter
-                $collection.find('.book-item').each(function () {
+                $books.each(function () {
                     var $book = $(this);
+
+                    // 1. Check View Filter (Owned/Read/Loaned)
                     var isRead = $book.data('read') == 1;
                     var isLoaned = $book.data('loaned') == 1;
-                    var showBook = true;
+                    var matchesView = false;
 
                     if (viewFilter === 'owned') {
-                        // Show all owned books
-                        showBook = true;
+                        matchesView = true;
                     } else if (viewFilter === 'read') {
-                        // Show only read books
-                        showBook = isRead;
+                        matchesView = isRead;
                     } else if (viewFilter === 'loaned') {
-                        // Show only loaned books
-                        showBook = isLoaned;
+                        matchesView = isLoaned;
                     }
 
-                    if (showBook) {
+                    // 2. Check Search Filter
+                    var matchesSearch = true;
+                    if (searchTerm) {
+                        var bookTitle = $book.find('.book-title').text().toLowerCase();
+                        var bookVolume = $book.find('.book-volume').text().toLowerCase();
+
+                        // Book matches if title/volume matches OR if the collection name matches
+                        // If collection matches, we effectively show all books that also match the View Filter
+                        var bookMatches = bookTitle.indexOf(searchTerm) > -1 || bookVolume.indexOf(searchTerm) > -1;
+                        var collectionMatches = collectionName.indexOf(searchTerm) > -1;
+
+                        if (!bookMatches && !collectionMatches) {
+                            matchesSearch = false;
+                        }
+                    }
+
+                    // Show/Hide book
+                    if (matchesView && matchesSearch) {
                         $book.show();
+                        visibleBooksInCollection++;
                     } else {
                         $book.hide();
                     }
                 });
 
-                // Hide collection if no books are visible
-                var visibleBooks = $collection.find('.book-item:visible').length;
-                if (visibleBooks === 0) {
-                    showCollection = false;
-                }
-
-                if (showCollection) {
+                // Show/Hide collection based on visible books
+                if (visibleBooksInCollection > 0) {
                     $collection.show();
+                    totalVisibleBooks += visibleBooksInCollection;
                 } else {
                     $collection.hide();
                 }
             });
 
-            // Hide empty collections
-            $('.collections-list').each(function () {
-                var visibleCollections = $(this).find('.collection-group:visible').length;
-                if (visibleCollections === 0) {
-                    $(this).find('.collections-empty').show();
-                } else {
-                    $(this).find('.collections-empty').hide();
-                }
-            });
+            // Show empty state if no books are visible
+            if (totalVisibleBooks === 0) {
+                $('.collections-empty').show();
+            }
         }
     });
 </script>

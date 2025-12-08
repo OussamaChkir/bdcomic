@@ -60,7 +60,15 @@ $read_book_ids = array_column($read_books, 'post');
 $read_book_ids = array_column($read_book_ids, 'ID');
 
 // Get IDs of all owned books for efficient checking
-$owned_book_ids = array_column(array_column($real_owned_books, 'post'), 'ID');
+$raw_owned_posts = array_column($real_owned_books, 'post');
+$owned_book_ids = array();
+foreach ($raw_owned_posts as $p) {
+    if (isset($p->ID)) {
+        $owned_book_ids[] = $p->ID;
+    }
+}
+// Fallback if empty to avoid issues, though it should be fine
+if (empty($owned_book_ids)) $owned_book_ids = array();
 
 // Get user's loaned books
 $loaned_books_data = get_user_books($current_user_id, 'loaned', 'livre');
@@ -419,9 +427,15 @@ ksort($collections_data);
                     var $book = $(this);
 
                     // 1. Check View Filter (Owned/Read/Loaned)
-                    var isRead = $book.data('read') == 1;
-                    var isLoaned = $book.data('loaned') == 1;
-                    var isOwned = $book.data('owned') == 1;
+                    // Force integer conversion for comparison or check truthiness
+                    var dataRead = $book.attr('data-read');
+                    var dataLoaned = $book.attr('data-loaned');
+                    var dataOwned = $book.attr('data-owned');
+                    
+                    var isRead = dataRead === '1';
+                    var isLoaned = dataLoaned === '1';
+                    var isOwned = dataOwned === '1';
+                    
                     var matchesView = false;
 
                     if (viewFilter === 'owned') {

@@ -140,8 +140,6 @@ function bdcomic_render_statistics_page()
                         <?php echo number_format_i18n($total_wishlist); ?></li>
                     <li><strong><?php esc_html_e('Livres prêtés:', 'bdcomic_theme'); ?></strong>
                         <?php echo number_format_i18n($total_loaned); ?></li>
-                    <li><strong><?php esc_html_e('Collections suivies:', 'bdcomic_theme'); ?></strong>
-                        <?php echo number_format_i18n($total_collection_wishlist); ?></li>
                 </ul>
             </div>
         </div>

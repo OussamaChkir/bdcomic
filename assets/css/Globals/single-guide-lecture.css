@@ -107,7 +107,8 @@
 }
 
 .guide-main {
-    min-width: 0; /* Prevents grid overflow */
+    min-width: 0;
+    /* Prevents grid overflow */
 }
 
 .guide-description,
@@ -161,9 +162,9 @@
 .order-number {
     width: 40px;
     height: 40px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 50%;
+    background: #eee;
+    color: black;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -320,7 +321,7 @@
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .guide-sidebar {
         position: static;
     }
@@ -332,21 +333,21 @@
         gap: 1.5rem;
         text-align: center;
     }
-    
+
     .guide-hero .guide-image {
         max-width: 250px;
         margin: 0 auto;
     }
-    
+
     .guide-title {
         font-size: 2rem;
     }
-    
+
     .reading-order-item {
         grid-template-columns: 50px 100px 1fr;
         gap: 1rem;
     }
-    
+
     .book-user-actions {
         grid-column: 1 / -1;
         text-align: center;
@@ -360,15 +361,15 @@
         text-align: center;
         gap: 1rem;
     }
-    
+
     .order-number {
         margin: 0 auto;
     }
-    
+
     .reading-order-item .book-cover {
         margin: 0 auto;
     }
-    
+
     .guide-title {
         font-size: 1.75rem;
     }

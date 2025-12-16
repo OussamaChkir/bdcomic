@@ -524,76 +524,76 @@
     .my-collections-grid {
         padding: 1rem;
     }
-    
+
     .my-collections-grid .collections-search-section {
         padding: 1rem;
     }
-    
+
     .my-collections-grid .search-filters {
         gap: 0.75rem;
     }
-    
+
     .my-collections-grid .filter-selects {
         grid-template-columns: 1fr;
         gap: 0.75rem;
     }
-    
+
     .my-collections-grid .collections-statistics {
         grid-template-columns: 1fr;
         gap: 0.75rem;
     }
-    
+
     .my-collections-grid .stat-card {
         padding: 1rem;
     }
-    
+
     .my-collections-grid .stat-number {
         font-size: 2rem;
     }
-    
+
     .my-collections-grid .collection-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
         padding: 1rem;
     }
-    
+
     .my-collections-grid .collection-info {
         width: 100%;
     }
-    
+
     .my-collections-grid .collection-logo {
         width: 50px;
         height: 50px;
     }
-    
+
     .my-collections-grid .collection-name {
         font-size: 1.125rem;
     }
-    
+
     .my-collections-grid .collection-stats {
         gap: 0.75rem;
     }
-    
+
     .my-collections-grid .collection-books {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 0.75rem;
         padding: 1rem;
     }
-    
+
     /* Override books-per-row on mobile */
     .my-collections-grid[data-books-per-row] .collection-books {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
-    
+
     .my-collections-grid .book-info {
         padding: 0.5rem;
     }
-    
+
     .my-collections-grid .book-title {
         font-size: 0.8rem;
     }
-    
+
     .my-collections-grid .book-volume {
         font-size: 0.7rem;
     }
@@ -603,11 +603,11 @@
     .my-collections-grid .collection-books {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
-    
+
     .my-collections-grid .filter-buttons {
         justify-content: center;
     }
-    
+
     .my-collections-grid .filter-btn {
         flex: 1;
         min-width: 0;

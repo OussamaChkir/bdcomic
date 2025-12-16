@@ -189,24 +189,24 @@
     .page-sidebar {
         margin-bottom: 1rem;
     }
-    
+
     .sidebar-content {
         position: static;
     }
-    
+
     .sidebar-stats-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 0.75rem;
     }
-    
+
     .sidebar-stat-item {
-        padding: 0.5rem 0.25rem;
+        padding: 0.5rem 0.5rem;
     }
-    
+
     .stat-number {
         font-size: 1.25rem;
     }
-    
+
     .stat-label {
         font-size: 0.75rem;
     }
@@ -216,20 +216,20 @@
     .page-content {
         padding: 1.5rem;
     }
-    
+
     .page-title {
         font-size: 1.75rem;
     }
-    
+
     .sidebar-stats-grid {
         grid-template-columns: 1fr 1fr;
         gap: 0.5rem;
     }
-    
+
     .sidebar-menu-link {
         padding: 0.625rem 0.875rem;
     }
-    
+
     .menu-text {
         font-size: 0.9rem;
     }
@@ -239,30 +239,29 @@
     .page-sidebar {
         padding: 1rem;
     }
-    
+
     .page-content {
         padding: 1rem;
     }
-    
+
     .sidebar-stats-grid {
         grid-template-columns: 1fr;
         gap: 0.5rem;
     }
-    
+
     .sidebar-stat-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
         text-align: left;
     }
-    
+
     .stat-number {
         font-size: 1.1rem;
         margin-bottom: 0;
     }
-    
+
     .stat-label {
         font-size: 0.8rem;
     }
 }
-

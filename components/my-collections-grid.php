@@ -68,7 +68,8 @@ foreach ($raw_owned_posts as $p) {
     }
 }
 // Fallback if empty to avoid issues, though it should be fine
-if (empty($owned_book_ids)) $owned_book_ids = array();
+if (empty($owned_book_ids))
+    $owned_book_ids = array();
 
 // Get user's loaned books
 $loaned_books_data = get_user_books($current_user_id, 'loaned', 'livre');
@@ -431,11 +432,11 @@ ksort($collections_data);
                     var dataRead = $book.attr('data-read');
                     var dataLoaned = $book.attr('data-loaned');
                     var dataOwned = $book.attr('data-owned');
-                    
+
                     var isRead = dataRead === '1';
                     var isLoaned = dataLoaned === '1';
                     var isOwned = dataOwned === '1';
-                    
+
                     var matchesView = false;
 
                     if (viewFilter === 'owned') {

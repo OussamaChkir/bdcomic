@@ -7,12 +7,15 @@ require_once('inc/custom-post-types.php');
 require_once('inc/anchor-links.php');
 require_once('inc/user-books-management.php');
 require_once('inc/admin-book-problems.php');
+require_once('inc/admin-statistics.php');
 
-class wbg_theme {
+class wbg_theme
+{
     // set the option name you use in your settings page
     public static $option_name = 'theme_options';
 
-    public function __construct() {
+    public function __construct()
+    {
         // theme setup
         add_action('after_setup_theme', array($this, 'setup_theme'));
 
@@ -26,15 +29,16 @@ class wbg_theme {
         add_action('wp_head', array($this, 'my_ajaxurl'));
     }
 
-    public function setup_theme() {
+    public function setup_theme()
+    {
         add_theme_support('custom-logo');
 
-        register_nav_menus( array(
-            'meta-menu'    => __( 'Meta Menu', 'bdcomic_theme' ),
-            'main-menu'   => __( 'Main Menu', 'bdcomic_theme' ),
-            'footer-menu' => __( 'Footer Menu', 'bdcomic_theme' ),
-            'meta-menu-mobile'    => __( 'Meta Menu Mobile', 'bdcomic_theme' ),
-        ) );
+        register_nav_menus(array(
+            'meta-menu' => __('Meta Menu', 'bdcomic_theme'),
+            'main-menu' => __('Main Menu', 'bdcomic_theme'),
+            'footer-menu' => __('Footer Menu', 'bdcomic_theme'),
+            'meta-menu-mobile' => __('Meta Menu Mobile', 'bdcomic_theme'),
+        ));
 
         // for multi language support
         // language files under /languages
@@ -52,15 +56,22 @@ class wbg_theme {
 
         // html5 support
         add_theme_support('html5', array(
-            'script', 'style', 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-        ));        
+            'script',
+            'style',
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption'
+        ));
 
         // Enabling custom editor styles
         add_theme_support('editor-styles');
         add_editor_style('assets/css/editor.css');
     }
 
-    public function theme_styles_scripts() {
+    public function theme_styles_scripts()
+    {
         if (!is_admin()) {
             // Enqueue styles
             wp_enqueue_style('style', get_template_directory_uri() . '/style.css', false, '1.0', 'screen');
@@ -136,41 +147,47 @@ class wbg_theme {
         }
     }
 
-    public function output_favicon_light() {
+    public function output_favicon_light()
+    {
         $path = get_template_directory_uri() . '/assets/img/favicons/light/';
         ?>
-            <link data-theme="light" rel="apple-touch-icon" sizes="180x180" href="<?php echo $path . 'apple-touch-icon.png'; ?>">
-            <link data-theme="light" rel="icon" type="image/png" sizes="192x192" href="<?php echo $path . 'web-app-manifest-192x192.png'; ?>">
-            <link data-theme="light" rel="icon" type="image/png" sizes="512x512" href="<?php echo $path . 'web-app-manifest-512x512.png'; ?>">
-            <link data-theme="light" rel="shortcut icon" href="<?php echo $path . 'favicon.ico'; ?>">
-            <link data-theme="light" rel="icon" sizes="16x16 32x32 64x64" href="<?php echo $path . 'favicon.ico'; ?>">
-            <link data-theme="light" rel="icon" type="image/png" sizes="96x96" href="<?php echo $path . 'favicon-96x96.png'; ?>">
-            <link data-theme="light" rel="icon" type="image/png" sizes="32x32" href="<?php echo $path . 'favicon-32x32.png'; ?>">
-            <link data-theme="light" rel="icon" type="image/png" sizes="16x16" href="<?php echo $path . 'favicon-16x16.png'; ?>">
-            <link data-theme="light" rel="manifest" href="<?php echo $path . 'site.webmanifest'; ?>" crossorigin="use-credentials">
-            <link data-theme="light" rel="mask-icon" href="<?php echo $path . 'favicon.svg'; ?>" color="#5bbad5">
-            <meta data-theme="light" name="msapplication-TileColor" content="#f7f7f7">
-            <meta data-theme="light" name="theme-color" content="#f7f7f7">
-            <meta data-theme="light" name="msapplication-config" content="<?php echo $path . 'browserconfig.xml'; ?>" />
+        <link data-theme="light" rel="apple-touch-icon" sizes="180x180" href="<?php echo $path . 'apple-touch-icon.png'; ?>">
+        <link data-theme="light" rel="icon" type="image/png" sizes="192x192"
+            href="<?php echo $path . 'web-app-manifest-192x192.png'; ?>">
+        <link data-theme="light" rel="icon" type="image/png" sizes="512x512"
+            href="<?php echo $path . 'web-app-manifest-512x512.png'; ?>">
+        <link data-theme="light" rel="shortcut icon" href="<?php echo $path . 'favicon.ico'; ?>">
+        <link data-theme="light" rel="icon" sizes="16x16 32x32 64x64" href="<?php echo $path . 'favicon.ico'; ?>">
+        <link data-theme="light" rel="icon" type="image/png" sizes="96x96" href="<?php echo $path . 'favicon-96x96.png'; ?>">
+        <link data-theme="light" rel="icon" type="image/png" sizes="32x32" href="<?php echo $path . 'favicon-32x32.png'; ?>">
+        <link data-theme="light" rel="icon" type="image/png" sizes="16x16" href="<?php echo $path . 'favicon-16x16.png'; ?>">
+        <link data-theme="light" rel="manifest" href="<?php echo $path . 'site.webmanifest'; ?>" crossorigin="use-credentials">
+        <link data-theme="light" rel="mask-icon" href="<?php echo $path . 'favicon.svg'; ?>" color="#5bbad5">
+        <meta data-theme="light" name="msapplication-TileColor" content="#f7f7f7">
+        <meta data-theme="light" name="theme-color" content="#f7f7f7">
+        <meta data-theme="light" name="msapplication-config" content="<?php echo $path . 'browserconfig.xml'; ?>" />
         <?php
     }
 
 
-    public function my_ajaxurl() {
+    public function my_ajaxurl()
+    {
         echo '<script>var ajaxurl = "' . admin_url('admin-ajax.php') . '";</script>';
     }
 }
 new wbg_theme();
 
 /* Allow SVG files config */
-function cc_mime_types($mimes) {
+function cc_mime_types($mimes)
+{
     $mimes['svg'] = 'image/svg+xml';
     return $mimes;
 }
 add_filter('upload_mimes', 'cc_mime_types');
 define('ALLOW_UNFILTERED_UPLOADS', true);
 
-function fix_svg_thumb_display() {
+function fix_svg_thumb_display()
+{
     echo '     
 		<style>         
 			td.media-icon img[src$=".svg"],
@@ -183,19 +200,22 @@ function fix_svg_thumb_display() {
 add_action('admin_head', 'fix_svg_thumb_display');
 
 //Admin CSS Override
-function sp_admin_style() {
+function sp_admin_style()
+{
     wp_register_style('sp_admin_css', get_bloginfo('stylesheet_directory') . '/admin-style.css', false, '1.0.0');
     wp_enqueue_style('sp_admin_css');
 }
 add_action('admin_enqueue_scripts', 'sp_admin_style');
 
 /* Disable auto save */
-add_action( 'admin_init', 'disable_autosave' );
-function disable_autosave() {
-    wp_deregister_script( 'autosave' );
+add_action('admin_init', 'disable_autosave');
+function disable_autosave()
+{
+    wp_deregister_script('autosave');
 }
 
-function load_dashicons_for_users() {
+function load_dashicons_for_users()
+{
     // Always load Dashicons on the frontend
     wp_enqueue_style('dashicons');
 }
@@ -203,10 +223,12 @@ add_action('wp_enqueue_scripts', 'load_dashicons_for_users');
 
 
 // Custom Walker Class for adding Bootstrap classes to wp_nav_menu
-class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
+class WP_Bootstrap_Navwalker extends Walker_Nav_Menu
+{
 
     // Add classes to ul sub-menus
-    function start_lvl(&$output, $depth = 0, $args = null) {
+    function start_lvl(&$output, $depth = 0, $args = null)
+    {
         $indent = str_repeat("\t", $depth);
         $classes = array('dropdown-menu');
         $class_names = join(' ', apply_filters('nav_menu_submenu_css_class', $classes, $args, $depth));
@@ -216,7 +238,8 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
     }
 
     // Add main/sub classes to li's and links
-    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
+    {
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
 
         $classes = empty($item->classes) ? array() : (array) $item->classes;
@@ -235,7 +258,7 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
-        $output .= $indent . '<li' . $class_names .'>'; // <li class="nav-item active">
+        $output .= $indent . '<li' . $class_names . '>'; // <li class="nav-item active">
 
         $atts = array();
         $atts['class'] = 'nav-link'; // Only nav-link on <a>
@@ -251,7 +274,7 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
             $atts['aria-current'] = 'page';
         }
 
-        $atts['href']  = !empty($item->url) ? $item->url : '';
+        $atts['href'] = !empty($item->url) ? $item->url : '';
         if (!empty($item->target)) {
             $atts['target'] = $item->target;
         }
@@ -275,7 +298,8 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 }
 
 // Flush rewrite rules on theme activation to enable custom post type archives
-function bdcomic_flush_rewrite_rules() {
+function bdcomic_flush_rewrite_rules()
+{
     // Only flush if we haven't done it before
     if (!get_option('bdcomic_rewrite_flushed')) {
         flush_rewrite_rules();
@@ -285,7 +309,8 @@ function bdcomic_flush_rewrite_rules() {
 add_action('after_switch_theme', 'bdcomic_flush_rewrite_rules');
 
 // Also flush rewrite rules when custom post types are registered
-function bdcomic_flush_rewrite_rules_on_init() {
+function bdcomic_flush_rewrite_rules_on_init()
+{
     if (get_option('bdcomic_rewrite_flushed')) {
         delete_option('bdcomic_rewrite_flushed');
         flush_rewrite_rules();
@@ -294,7 +319,8 @@ function bdcomic_flush_rewrite_rules_on_init() {
 add_action('init', 'bdcomic_flush_rewrite_rules_on_init', 20);
 
 // Archive Search AJAX Functions
-function archive_search_ajax() {
+function archive_search_ajax()
+{
     // Verify nonce
     if (!wp_verify_nonce($_POST['nonce'], 'archive_search_nonce')) {
         wp_die('Security check failed');
@@ -324,7 +350,7 @@ function archive_search_ajax() {
     // Add filters based on post type
     if (!empty($search_data['filters'])) {
         $filters = $search_data['filters'];
-        
+
         switch ($post_type) {
             case 'artiste':
                 if (!empty($filters['nationality'])) {
@@ -342,7 +368,7 @@ function archive_search_ajax() {
                     );
                 }
                 break;
-                
+
             case 'collection':
                 if (!empty($filters['status'])) {
                     $args['meta_query'][] = array(
@@ -378,7 +404,7 @@ function archive_search_ajax() {
                     }
                 }
                 break;
-                
+
             case 'editeur':
                 if (!empty($filters['country'])) {
                     $args['meta_query'][] = array(
@@ -388,7 +414,7 @@ function archive_search_ajax() {
                     );
                 }
                 break;
-                
+
             case 'livre':
                 if (!empty($filters['publisher'])) {
                     $publisher_term = sanitize_text_field($filters['publisher']);
@@ -446,7 +472,7 @@ function archive_search_ajax() {
                     );
                 }
                 break;
-                
+
             case 'guide_lecture':
                 if (!empty($filters['collection'])) {
                     $collection_id = intval($filters['collection']);
@@ -478,14 +504,14 @@ function archive_search_ajax() {
 
     // Execute query
     $query = new WP_Query($args);
-    
+
     if ($query->have_posts()) {
         ob_start();
-        
+
         // Start the loop
         while ($query->have_posts()) {
             $query->the_post();
-            
+
             // Include the appropriate template part based on post type
             switch ($post_type) {
                 case 'artiste':
@@ -504,10 +530,10 @@ function archive_search_ajax() {
                     get_template_part('template-parts/content', get_post_type());
             }
         }
-        
+
         $html = ob_get_clean();
         wp_reset_postdata();
-        
+
         // Generate pagination
         $pagination = '';
         if ($query->max_num_pages > 1) {
@@ -520,12 +546,12 @@ function archive_search_ajax() {
                 'next_text' => __('Suivant &raquo;'),
                 'type' => 'array'
             ));
-            
+
             if ($pagination) {
                 $pagination = '<div class="archive-pagination">' . implode('', $pagination) . '</div>';
             }
         }
-        
+
         wp_send_json_success(array(
             'html' => $html,
             'pagination' => $pagination,
@@ -547,7 +573,8 @@ add_action('wp_ajax_archive_search', 'archive_search_ajax');
 add_action('wp_ajax_nopriv_archive_search', 'archive_search_ajax');
 
 // Archive Autocomplete AJAX Function
-function archive_autocomplete_ajax() {
+function archive_autocomplete_ajax()
+{
     // Verify nonce
     if (!wp_verify_nonce($_POST['nonce'], 'archive_search_nonce')) {
         wp_die('Security check failed');
@@ -568,11 +595,11 @@ function archive_autocomplete_ajax() {
         );
 
         $query = new WP_Query($args);
-        
+
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
-                
+
                 $title = get_the_title();
                 $suggestions[] = array(
                     'label' => $title,
@@ -588,32 +615,34 @@ function archive_autocomplete_ajax() {
 add_action('wp_ajax_archive_autocomplete', 'archive_autocomplete_ajax');
 add_action('wp_ajax_nopriv_archive_autocomplete', 'archive_autocomplete_ajax');
 
-function bdcomic_search_query($query) {
+function bdcomic_search_query($query)
+{
     if ($query->is_search() && !is_admin()) {
         $query->set('post_type', array('post', 'page', 'Collection', 'Artiste', 'Editeur', 'Livre')); // Add your custom types
     }
 }
 add_action('pre_get_posts', 'bdcomic_search_query');
 
-function bdcomic_custom_posts_per_page( $query ) {
-    if ( is_admin() || ! $query->is_main_query() ) {
+function bdcomic_custom_posts_per_page($query)
+{
+    if (is_admin() || !$query->is_main_query()) {
         return;
     }
 
     $limits = [
         'collection' => 9,
-        'artiste'    => 12,
-        'livre'      => 12,
-        'editeur'    =>9,
+        'artiste' => 12,
+        'livre' => 12,
+        'editeur' => 9,
     ];
 
-    foreach ( $limits as $post_type => $number ) {
-        if ( $query->is_post_type_archive( $post_type ) ) {
-            $query->set( 'posts_per_page', $number );
-            $query->set( 'orderby', 'title' );
-            $query->set( 'order', 'ASC' );
+    foreach ($limits as $post_type => $number) {
+        if ($query->is_post_type_archive($post_type)) {
+            $query->set('posts_per_page', $number);
+            $query->set('orderby', 'title');
+            $query->set('order', 'ASC');
             break;
         }
     }
 }
-add_action( 'pre_get_posts', 'bdcomic_custom_posts_per_page' );
+add_action('pre_get_posts', 'bdcomic_custom_posts_per_page');

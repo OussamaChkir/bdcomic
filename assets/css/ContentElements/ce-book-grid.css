@@ -452,6 +452,7 @@ i.bi.bi-heart {
     background-repeat: no-repeat;
     background-size: contain;
 }
+
 /* Messages */
 .no-books-message,
 .login-required-message {
@@ -504,8 +505,13 @@ i.bi.bi-heart {
 }
 
 @keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 /* Responsive Design */
@@ -515,28 +521,28 @@ i.bi.bi-heart {
         padding: 0.75rem 1rem;
         font-size: 0.9rem;
     }
-    
+
     .book-grid-tabs .tab-text {
         display: none;
     }
-    
+
     .books-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1.5rem;
     }
-    
+
     /* Override grid columns on mobile */
     .books-grid.grid-cols-3,
     .books-grid.grid-cols-4,
     .books-grid.grid-cols-5 {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
-    
+
     .livre-actions {
         flex-direction: column;
         gap: 0.75rem;
     }
-    
+
     .book-quick-actions {
         width: 100%;
         justify-content: center;
@@ -548,7 +554,7 @@ i.bi.bi-heart {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
+
     /* Force single column on very small screens */
     .books-grid.grid-cols-2,
     .books-grid.grid-cols-3,
@@ -556,17 +562,17 @@ i.bi.bi-heart {
     .books-grid.grid-cols-5 {
         grid-template-columns: 1fr;
     }
-    
+
     .book-grid-tabs .nav-tabs {
-        flex-direction: column;
+        /*flex-direction: column; */
         gap: 0.25rem;
     }
-    
+
     .book-grid-tabs .nav-link {
         width: 100%;
         border-radius: 6px;
     }
-    
+
     .book-grid-tabs .nav-link.active::after {
         display: none;
     }

@@ -141,6 +141,7 @@ uasort($grouped_books, function ($a, $b) {
                             $photo_devant = get_field('photo_devant', $book->ID);
                             $titre = get_field('titre_livre', $book->ID) ?: $book->post_title;
                             $n_sortie = get_field('n_sortie', $book->ID);
+                            $n_frise = get_field('n_frise', $book->ID);
 
                             // Set global post for template part if needed, or just render manually
                             // Rendering manually for better control over "missing" specific UI
@@ -183,6 +184,11 @@ uasort($grouped_books, function ($a, $b) {
                                     <?php if ($n_sortie): ?>
                                         <div class="book-volume">
                                             <?php _e('Tome', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_sortie); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ($n_frise): ?>
+                                        <div class="book-volume">
+                                            <?php _e('Frise', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_frise); ?>
                                         </div>
                                     <?php endif; ?>
                                 </div>

@@ -25,6 +25,27 @@ h3.collection-title a {
     background: #eee;
     border-radius: 6px;
     font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.no-image-placeholder {
+    width: 100%;
+    /* Same aspect ratio as books roughly or fixed height */
+    height: 100%;
+    min-height: 250px;
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+.no-image-placeholder .dashicons {
+    font-size: 3rem;
+    width: auto;
+    height: auto;
 }
 
 #missing-albums-search-input {

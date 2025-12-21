@@ -9,12 +9,22 @@
     margin-bottom: 3rem;
 }
 
+article.single-guide-lecture {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
 .guide-hero {
     display: grid;
     grid-template-columns: 300px 1fr;
     gap: 2rem;
     align-items: start;
     margin-bottom: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .guide-hero .guide-image {
@@ -83,8 +93,8 @@
 
 .guide-stats {
     margin: 1.5rem 0;
-    padding: 1rem;
-    background: #F9F9F9;
+    padding: 0.5rem;
+    background: #eee;
     border-radius: 8px;
     border-left: 4px solid #182748;
 }
@@ -260,7 +270,7 @@
 /* Sidebar */
 .guide-sidebar {
     position: sticky;
-    top: 2rem;
+    top: 13rem;
 }
 
 .guide-meta,

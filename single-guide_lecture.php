@@ -215,9 +215,6 @@ get_header(); ?>
                                                             <span class="dashicons dashicons-share"></span>
                                                         </button>
                                                     </div>
-                                                    <a href="<?php echo get_permalink($livre->ID); ?>" class="btn-view-book">
-                                                        Voir le livre
-                                                    </a>
                                                 </div>
                                             <?php endif; ?>
                                         </div>

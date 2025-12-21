@@ -137,16 +137,16 @@ get_header(); ?>
                                 <h4 class="sidebar-stats-title"><?php _e('Mes Statistiques', 'bdcomic_theme'); ?></h4>
                                 <div class="sidebar-stats-grid">
                                     <div class="sidebar-stat-item">
-                                        <span class="stat-number"><?php echo $user_stats['wishlist_books']; ?></span>
-                                        <span class="stat-label"><?php echo $list_labels['wishlist']; ?></span>
+                                        <span class="stat-number"><?php echo $user_stats['owned_books']; ?></span>
+                                        <span class="stat-label"><?php echo $list_labels['owned']; ?></span>
                                     </div>
                                     <div class="sidebar-stat-item">
                                         <span class="stat-number"><?php echo $user_stats['read_books']; ?></span>
                                         <span class="stat-label"><?php echo $list_labels['read']; ?></span>
                                     </div>
                                     <div class="sidebar-stat-item">
-                                        <span class="stat-number"><?php echo $user_stats['owned_books']; ?></span>
-                                        <span class="stat-label"><?php echo $list_labels['owned']; ?></span>
+                                        <span class="stat-number"><?php echo $user_stats['wishlist_books']; ?></span>
+                                        <span class="stat-label"><?php echo $list_labels['wishlist']; ?></span>
                                     </div>
                                     <div class="sidebar-stat-item">
                                         <span class="stat-number"><?php echo $user_stats['loaned_books']; ?></span>

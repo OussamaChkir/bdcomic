@@ -231,7 +231,7 @@ article.single-collection {
 }
 
 .book-cover {
-    height: 250px;
+    /*height: 250px;*/
     overflow: hidden;
 }
 
@@ -338,6 +338,10 @@ article.single-collection {
         gap: 1rem;
     }
 
+    .collection-main {
+        padding: 1rem;
+    }
+
     .collection-title {
         font-size: 2rem;
     }
@@ -348,12 +352,20 @@ article.single-collection {
     }
 
     .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 1rem;
     }
 
     .book-cover {
-        height: 200px;
+        height: unset;
+    }
+
+    .book-meta {
+        flex-direction: column;
+    }
+
+    .book-meta .meta-item {
+        width: fit-content;
     }
 
     .sous-collections-grid {

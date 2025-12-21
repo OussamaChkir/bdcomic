@@ -181,16 +181,18 @@ uasort($grouped_books, function ($a, $b) {
                                             <?php echo esc_html($titre); ?>
                                         </a>
                                     </h4>
-                                    <?php if ($n_sortie): ?>
-                                        <div class="book-volume">
-                                            <?php _e('Tome', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_sortie); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <?php if ($n_frise): ?>
-                                        <div class="book-volume">
-                                            <?php _e('Frise', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_frise); ?>
-                                        </div>
-                                    <?php endif; ?>
+                                    <div class="book-meta">
+                                        <?php if ($n_sortie): ?>
+                                            <span class="meta-item">
+                                                <?php _e('N° Sortie', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_sortie); ?>
+                                            </span>
+                                        <?php endif; ?>
+                                        <?php if ($n_frise): ?>
+                                            <span class="meta-item">
+                                                <?php _e('N° Frise', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_frise); ?>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>

@@ -18,14 +18,18 @@ h3.collection-title a {
     padding-bottom: 0.5rem;
 }
 
-.book-volume {
-    display: table;
-    margin: 0 auto;
-    padding: 0.5rem;
+.book-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.book-meta .meta-item {
     background: #eee;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
+    padding: 0 6px;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 .no-image-placeholder {

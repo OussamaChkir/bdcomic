@@ -97,6 +97,7 @@ article.single-guide-lecture {
     background: #eee;
     border-radius: 8px;
     border-left: 4px solid #182748;
+    width: fit-content;
 }
 
 .stat-item {
@@ -348,6 +349,10 @@ article.single-guide-lecture {
         text-align: center;
     }
 
+    .guide-collection {
+        flex-direction: column;
+    }
+
     .guide-hero .guide-image {
         max-width: 250px;
         margin: 0 auto;
@@ -366,6 +371,7 @@ article.single-guide-lecture {
         grid-column: 1 / -1;
         text-align: center;
         margin-top: 1rem;
+        justify-content: center;
     }
 }
 

@@ -113,6 +113,7 @@ get_header(); ?>
                                         $photo_devant = get_field('photo_devant', $livre->ID);
                                         $titre = get_field('titre_livre', $livre->ID);
                                         $n_sortie = get_field('n_sortie', $livre->ID);
+                                        $n_frise = get_field('n_frise', $livre->ID);
                                         $date_sortie_livre = get_field('date_sortie_livre', $livre->ID);
                                         ?>
                                         <div class="reading-order-item" data-order="<?php echo $index + 1; ?>">
@@ -163,7 +164,57 @@ get_header(); ?>
 
                                             <?php if (is_user_logged_in()): ?>
                                                 <div class="book-user-actions">
-                                                    <!-- Future: Add reading status, wishlist, etc. -->
+                                                    <div class="book-quick-actions">
+                                                        <?php
+                                                        $current_user_id = get_current_user_id();
+                                                        $post_id = $livre->ID;
+
+                                                        // Quick wishlist button
+                                                        $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
+                                                        ?>
+                                                        <button class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>"
+                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
+                                                            data-post-type="livre" data-bs-toggle="tooltip"
+                                                            title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
+                                                            <i
+                                                                class="bi <?php echo $in_wishlist ? 'bi-heart-fill' : 'bi-heart'; ?>"></i>
+                                                        </button>
+
+                                                        <?php
+                                                        // Quick read button
+                                                        $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
+                                                        ?>
+                                                        <button class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>"
+                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="read"
+                                                            data-post-type="livre" data-bs-toggle="tooltip"
+                                                            title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
+                                                            <i
+                                                                class="bi <?php echo $is_read ? 'bi-check-lg' : 'bi-check-circle-fill'; ?>"></i>
+                                                        </button>
+
+                                                        <?php
+                                                        // Quick owned button
+                                                        $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
+                                                        ?>
+                                                        <button class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
+                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
+                                                            data-post-type="livre" data-bs-toggle="tooltip"
+                                                            title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
+                                                            <i
+                                                                class="dashicons  <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></i>
+                                                        </button>
+
+                                                        <?php
+                                                        // Quick loaned button
+                                                        $is_loaned = is_book_in_user_list($current_user_id, $post_id, 'loaned');
+                                                        ?>
+                                                        <button class="book-quick-action <?php echo $is_loaned ? 'active' : ''; ?>"
+                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="loaned"
+                                                            data-post-type="livre" data-bs-toggle="tooltip"
+                                                            title="<?php echo $is_loaned ? __('Marquer comme non prêté', 'bdcomic_theme') : __('Marquer comme prêté', 'bdcomic_theme'); ?>">
+                                                            <span class="dashicons dashicons-share"></span>
+                                                        </button>
+                                                    </div>
                                                     <a href="<?php echo get_permalink($livre->ID); ?>" class="btn-view-book">
                                                         Voir le livre
                                                     </a>

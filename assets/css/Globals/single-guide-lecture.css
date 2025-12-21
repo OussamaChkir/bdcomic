@@ -31,13 +31,13 @@
 .guide-hero .no-image-placeholder {
     width: 100%;
     height: 300px;
-    background: var(--bg-secondary);
+    background: #F9F9F9;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
-    border: 2px dashed var(--border-color);
+    color: #707173;
+    border: 2px dashed #E5E5E5;
 }
 
 .guide-hero .no-image-placeholder .dashicons {
@@ -53,7 +53,7 @@
     font-weight: 700;
     line-height: 1.2;
     margin: 0 0 1.5rem 0;
-    color: var(--text-primary);
+    color: #182748;
 }
 
 .guide-collection {
@@ -65,33 +65,33 @@
 
 .guide-collection .label {
     font-weight: 600;
-    color: var(--text-secondary);
+    color: #707173;
     min-width: 80px;
 }
 
 .collection-link {
-    color: var(--primary-color);
+    color: #182748;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .collection-link:hover {
-    color: var(--primary-dark);
+    color: #101a30;
     text-decoration: underline;
 }
 
 .guide-stats {
     margin: 1.5rem 0;
     padding: 1rem;
-    background: var(--bg-secondary);
+    background: #F9F9F9;
     border-radius: 8px;
-    border-left: 4px solid var(--primary-color);
+    border-left: 4px solid #182748;
 }
 
 .stat-item {
     font-size: 1.1rem;
-    color: var(--text-primary);
+    color: #182748;
 }
 
 .guide-actions {
@@ -123,8 +123,8 @@
     font-size: 1.75rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: var(--text-primary);
-    border-bottom: 2px solid var(--primary-color);
+    color: #182748;
+    border-bottom: 2px solid #182748;
     padding-bottom: 0.5rem;
 }
 
@@ -132,7 +132,7 @@
 .additional-content {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: var(--text-primary);
+    color: #182748;
 }
 
 /* Reading Order List */
@@ -148,9 +148,9 @@
     gap: 1.5rem;
     align-items: center;
     padding: 1.5rem;
-    background: var(--bg-secondary);
+    background: #F9F9F9;
     border-radius: 12px;
-    border: 1px solid var(--border-color);
+    border: 1px solid #E5E5E5;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -189,12 +189,12 @@
 .reading-order-item .no-cover-placeholder {
     width: 100%;
     height: 100%;
-    background: var(--bg-tertiary);
+    background: #EEEEEE;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
+    color: #707173;
+    border: 1px solid #E5E5E5;
 }
 
 .reading-order-item .book-info {
@@ -209,13 +209,13 @@
 }
 
 .reading-order-item .book-title a {
-    color: var(--text-primary);
+    color: #182748;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .reading-order-item .book-title a:hover {
-    color: var(--primary-color);
+    color: #182748;
 }
 
 .book-meta {
@@ -223,23 +223,27 @@
     gap: 1rem;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: #707173;
 }
 
 .book-summary {
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: #707173;
     line-height: 1.4;
 }
 
 .book-user-actions {
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .btn-view-book {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: var(--primary-color);
+    background: #182748;
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -249,7 +253,7 @@
 }
 
 .btn-view-book:hover {
-    background: var(--primary-dark);
+    background: #101a30;
     color: white;
 }
 
@@ -261,11 +265,11 @@
 
 .guide-meta,
 .related-guides {
-    background: var(--bg-secondary);
+    background: #F9F9F9;
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 2rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid #E5E5E5;
 }
 
 .guide-meta h3,
@@ -273,7 +277,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: var(--text-primary);
+    color: #182748;
 }
 
 .meta-list {
@@ -289,7 +293,7 @@
 }
 
 .meta-list li strong {
-    color: var(--text-primary);
+    color: #182748;
     font-weight: 600;
 }
 
@@ -304,14 +308,14 @@
 }
 
 .related-guides-list a {
-    color: var(--primary-color);
+    color: #182748;
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.3s ease;
 }
 
 .related-guides-list a:hover {
-    color: var(--primary-dark);
+    color: #101a30;
     text-decoration: underline;
 }
 
@@ -373,4 +377,55 @@
     .guide-title {
         font-size: 1.75rem;
     }
+}
+
+/* Book Quick Actions */
+.book-quick-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.book-quick-action {
+    background: transparent;
+    border: 1px solid #dee2e6;
+    color: #6c757d;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.book-quick-action:hover {
+    background: #f8f9fa;
+    border-color: #182748;
+    color: #182748;
+}
+
+.book-quick-action.active {
+    background: #182748;
+    border-color: #182748;
+    color: #fff;
+}
+
+i.bi.bi-heart-fill {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%23dc2626" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+i.bi.bi-heart {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%23dc2626" viewBox="0 0 16 16"><path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
 }

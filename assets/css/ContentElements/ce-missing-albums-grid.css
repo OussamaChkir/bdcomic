@@ -11,12 +11,20 @@
     max-width: 400px;
 }
 
+h3.collection-title a {
+    text-decoration: none;
+    color: #314890;
+    border-bottom: 2px solid #182748;
+    padding-bottom: 0.5rem;
+}
+
 .book-volume {
     display: table;
     margin: 0 auto;
     padding: 0.5rem;
     background: #eee;
     border-radius: 6px;
+    font-size: 0.8rem;
 }
 
 #missing-albums-search-input {

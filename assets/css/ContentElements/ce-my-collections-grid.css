@@ -51,7 +51,7 @@
 
 .my-collections-grid .search-input-group {
     position: relative;
-    max-width: 400px;
+    /*max-width: 400px;*/
 }
 
 .my-collections-grid .search-input {

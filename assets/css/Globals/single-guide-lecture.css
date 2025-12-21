@@ -353,6 +353,10 @@ article.single-guide-lecture {
         flex-direction: column;
     }
 
+    .guide-stats {
+        margin: 1rem auto;
+    }
+
     .guide-hero .guide-image {
         max-width: 250px;
         margin: 0 auto;

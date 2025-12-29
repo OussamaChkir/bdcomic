@@ -59,14 +59,33 @@ get_header(); ?>
 
                         <?php
                         // Get books published by this editor
+                        $editor_id = get_the_ID();
                         $books_by_editeur = get_posts(array(
                             'post_type' => 'livre',
                             'posts_per_page' => -1,
                             'meta_query' => array(
+                                'relation' => 'OR',
+                                // Check Curly Quote Key
+                                array(
+                                    'key' => 'maison_d’edition',
+                                    'value' => $editor_id,
+                                    'compare' => '='
+                                ),
+                                array(
+                                    'key' => 'maison_d’edition',
+                                    'value' => '"' . $editor_id . '"',
+                                    'compare' => 'LIKE'
+                                ),
+                                // Check Straight Quote Key (fallback)
                                 array(
                                     'key' => 'maison_d\'edition',
-                                    'value' => get_the_ID(),
+                                    'value' => $editor_id,
                                     'compare' => '='
+                                ),
+                                array(
+                                    'key' => 'maison_d\'edition',
+                                    'value' => '"' . $editor_id . '"',
+                                    'compare' => 'LIKE'
                                 )
                             )
                         ));

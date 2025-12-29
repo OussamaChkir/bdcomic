@@ -1,6 +1,6 @@
 <?php
 /**
- * Missing Albums Grid Component
+ * Missing Read Books Grid Component
  * Displays books from user's collections that haven't been read yet
  * 
  * @package bdcomic_theme
@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Get ACF fields
-$title = get_field('title') ?: __('Albums Manquants', 'bdcomic_theme');
+$title = get_field('title') ?: __('Albums à lire', 'bdcomic_theme');
 $description = get_field('description');
 $books_per_row = get_field('books_per_row') ?: '4';
 $show_status_icons = get_field('show_status_icons') !== false ? get_field('show_status_icons') : true;
@@ -20,7 +20,7 @@ $show_status_icons = get_field('show_status_icons') !== false ? get_field('show_
 // Check if user is logged in
 if (!is_user_logged_in()) {
     echo '<div class="login-required-message">';
-    echo '<p>' . __('Vous devez être connecté pour voir vos albums manquants.', 'bdcomic_theme') . '</p>';
+    echo '<p>' . __('Vous devez être connecté pour voir vos albums à lire.', 'bdcomic_theme') . '</p>';
     echo '<a href="' . wp_login_url(get_permalink()) . '" class="btn btn-primary">' . __('Se connecter', 'bdcomic_theme') . '</a>';
     echo '</div>';
     return;
@@ -46,7 +46,8 @@ if (!empty($owned_books_data)) {
     }
 }
 
-// Get collections from read books AND owned books (to see what is missing from collections we interact with)
+// Get collections from read books OR owned books
+// We want to see unread books from collections we interact with
 $collection_ids = array();
 if (!empty($read_books_data)) {
     foreach ($read_books_data as $data) {
@@ -90,14 +91,13 @@ if (!empty($collection_ids)) {
     $all_collection_books = get_posts($args);
 
     foreach ($all_collection_books as $book) {
-        // If book is NOT owned, add to missing
-        if (!in_array($book->ID, $owned_book_ids)) {
+        // If book is NOT read, add to missing
+        if (!in_array($book->ID, $read_book_ids)) {
             $missing_books[] = $book;
         }
     }
 }
 
-// Group by collection for display
 // Group by collection or sub-collection for display
 $grouped_books = array();
 foreach ($missing_books as $book) {
@@ -132,7 +132,7 @@ uasort($grouped_books, function ($a, $b) {
 });
 ?>
 
-<div class="missing-albums-grid" data-user-id="<?php echo $current_user_id; ?>">
+<div class="missing-albums-grid missing-read-books-grid" data-user-id="<?php echo $current_user_id; ?>">
     <div class="missing-albums-header">
         <h2 class="missing-albums-title"><?php echo esc_html($title); ?></h2>
         <?php if ($description): ?>
@@ -144,7 +144,7 @@ uasort($grouped_books, function ($a, $b) {
 
     <?php if (empty($grouped_books)): ?>
         <div class="no-books-message">
-            <p><?php _e('Vous êtes à jour ! Aucun album manquant dans vos collections lues.', 'bdcomic_theme'); ?></p>
+            <p><?php _e('Félicitations ! Vous avez lu tous les albums de vos collections.', 'bdcomic_theme'); ?></p>
         </div>
     <?php else: ?>
         <div class="missing-collections-list">
@@ -170,9 +170,6 @@ uasort($grouped_books, function ($a, $b) {
                                 $titre = get_field('titre_livre', $book->ID) ?: $book->post_title;
                                 $n_sortie = get_field('n_sortie', $book->ID);
                                 $n_frise = get_field('n_frise', $book->ID);
-
-                                // Set global post for template part if needed, or just render manually
-                                // Rendering manually for better control over "missing" specific UI
                                 ?>
                                 <div class="book-item missing-book" data-book-id="<?php echo $book->ID; ?>">
                                     <div class="book-cover">
@@ -194,11 +191,11 @@ uasort($grouped_books, function ($a, $b) {
                                         <?php endif; ?>
 
                                         <div class="book-actions">
-                                            <!-- Quick Mark as Owned -->
+                                            <!-- Quick Mark as Read -->
                                             <button class="book-quick-action" data-post-id="<?php echo $book->ID; ?>"
-                                                data-list-type="owned" data-action="add"
-                                                title="<?php _e('Marquer comme possédé', 'bdcomic_theme'); ?>">
-                                                <span class="dashicons dashicons-plus"></span>
+                                                data-list-type="read" data-action="add"
+                                                title="<?php _e('Marquer comme lu', 'bdcomic_theme'); ?>">
+                                                <span class="dashicons dashicons-yes"></span>
                                             </button>
                                         </div>
                                     </div>
@@ -234,11 +231,11 @@ uasort($grouped_books, function ($a, $b) {
 
 <script>
     jQuery(document).ready(function ($) {
-        // Listen for book marked as owned
+        // Listen for book marked as read
         $(document).on('userBookAdded', function (e, data) {
-            if (data.listType === 'owned') {
+            if (data.listType === 'read') {
                 // Find the book in the grid and remove it
-                var $book = $('.missing-albums-grid .book-item[data-book-id="' + data.postId + '"]');
+                var $book = $('.missing-read-books-grid .book-item[data-book-id="' + data.postId + '"]');
                 if ($book.length) {
                     $book.fadeOut(function () {
                         var $collection = $book.closest('.collection-group');
@@ -249,8 +246,8 @@ uasort($grouped_books, function ($a, $b) {
                             $collection.fadeOut(function () {
                                 $(this).remove();
                                 // If all collections empty, show message
-                                if ($('.missing-albums-grid .collection-group').length === 0) {
-                                    $('.missing-collections-list').html('<div class="no-books-message"><p><?php _e('Vous êtes à jour ! Aucun album manquant dans vos collections lues.', 'bdcomic_theme'); ?></p></div>');
+                                if ($('.missing-read-books-grid .collection-group').length === 0) {
+                                    $('.missing-read-books-grid .missing-collections-list').html('<div class="no-books-message"><p><?php _e('Félicitations ! Vous avez lu tous les albums de vos collections.', 'bdcomic_theme'); ?></p></div>');
                                 }
                             });
                         }

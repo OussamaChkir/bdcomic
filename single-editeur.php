@@ -71,51 +71,107 @@ get_header(); ?>
                             )
                         ));
 
-                        if ($books_by_editeur): ?>
+                        if ($books_by_editeur):
+                            // Group books by collection
+                            $books_grouped = array();
+                            foreach ($books_by_editeur as $book) {
+                                $collection = get_field('collection', $book->ID);
+                                if ($collection) {
+                                    $collection_id = $collection->ID;
+                                    if (!isset($books_grouped[$collection_id])) {
+                                        $books_grouped[$collection_id] = array(
+                                            'info' => $collection,
+                                            'books' => array()
+                                        );
+                                    }
+                                    $books_grouped[$collection_id]['books'][] = $book;
+                                } else {
+                                    if (!isset($books_grouped['others'])) {
+                                        $books_grouped['others'] = array(
+                                            'info' => null,
+                                            'books' => array()
+                                        );
+                                    }
+                                    $books_grouped['others']['books'][] = $book;
+                                }
+                            }
+
+                            // Sort collections by name
+                            $others = isset($books_grouped['others']) ? $books_grouped['others'] : null;
+                            unset($books_grouped['others']);
+
+                            uasort($books_grouped, function ($a, $b) {
+                                return strcmp($a['info']->post_title, $b['info']->post_title);
+                            });
+
+                            // Add others back at the end
+                            if ($others) {
+                                $books_grouped['others'] = $others;
+                            }
+                            ?>
                             <section class="editeur-books">
                                 <h2>Livres publiés</h2>
-                                <div class="books-grid">
-                                    <?php foreach ($books_by_editeur as $book):
-                                        $photo_devant = get_field('photo_devant', $book->ID);
-                                        $titre = get_field('titre_livre', $book->ID);
-                                        $date_sortie = get_field('date_sortie_livre', $book->ID);
-                                        $n_sortie = get_field('n_sortie', $book->ID);
-                                        $collection = get_field('collection', $book->ID);
-                                        ?>
-                                        <div class="book-item">
-                                            <div class="book-cover">
-                                                <?php if ($photo_devant): ?>
-                                                    <img src="<?php echo esc_url($photo_devant['url']); ?>"
-                                                        alt="<?php echo esc_attr($photo_devant['alt']); ?>">
-                                                <?php else: ?>
-                                                    <div class="no-cover-placeholder">
-                                                        <span class="dashicons dashicons-book"></span>
+
+                                <?php foreach ($books_grouped as $group_id => $group): ?>
+                                    <div class="collection-group-section" style="margin-bottom: 2rem;">
+                                        <?php if ($group['info']): ?>
+                                            <h3 class="collection-group-title"
+                                                style="margin-bottom: 1rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">
+                                                <a href="<?php echo get_permalink($group['info']->ID); ?>"
+                                                    style="text-decoration: none; color: inherit;">
+                                                    <?php echo esc_html($group['info']->post_title); ?>
+                                                </a>
+                                            </h3>
+                                        <?php elseif (count($books_grouped) > 1): // Only show "Others" header if there are other groups ?>
+                                            <h3 class="collection-group-title"
+                                                style="margin-bottom: 1rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">
+                                                <?php _e('Autres livres', 'bdcomic_theme'); ?></h3>
+                                        <?php endif; ?>
+
+                                        <div class="books-grid">
+                                            <?php foreach ($group['books'] as $book):
+                                                $photo_devant = get_field('photo_devant', $book->ID);
+                                                $titre = get_field('titre_livre', $book->ID);
+                                                $date_sortie = get_field('date_sortie_livre', $book->ID);
+                                                $n_sortie = get_field('n_sortie', $book->ID);
+                                                $collection = get_field('collection', $book->ID);
+                                                ?>
+                                                <div class="book-item">
+                                                    <div class="book-cover">
+                                                        <?php if ($photo_devant): ?>
+                                                            <img src="<?php echo esc_url($photo_devant['url']); ?>"
+                                                                alt="<?php echo esc_attr($photo_devant['alt']); ?>">
+                                                        <?php else: ?>
+                                                            <div class="no-cover-placeholder">
+                                                                <span class="dashicons dashicons-book"></span>
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </div>
-                                                <?php endif; ?>
-                                            </div>
-                                            <div class="book-info">
-                                                <h3 class="book-title">
-                                                    <a href="<?php echo get_permalink($book->ID); ?>">
-                                                        <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
-                                                    </a>
-                                                </h3>
-                                                <?php if ($collection): ?>
-                                                    <div class="book-collection">
-                                                        <a href="<?php echo get_permalink($collection->ID); ?>">
-                                                            <?php echo esc_html($collection->post_title); ?>
-                                                        </a>
+                                                    <div class="book-info">
+                                                        <h3 class="book-title">
+                                                            <a href="<?php echo get_permalink($book->ID); ?>">
+                                                                <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
+                                                            </a>
+                                                        </h3>
+                                                        <?php if ($collection): ?>
+                                                            <div class="book-collection">
+                                                                <a href="<?php echo get_permalink($collection->ID); ?>">
+                                                                    <?php echo esc_html($collection->post_title); ?>
+                                                                </a>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <?php if ($n_sortie): ?>
+                                                            <div class="book-number">N° <?php echo esc_html($n_sortie); ?></div>
+                                                        <?php endif; ?>
+                                                        <?php if ($date_sortie): ?>
+                                                            <div class="book-date"><?php echo esc_html($date_sortie); ?></div>
+                                                        <?php endif; ?>
                                                     </div>
-                                                <?php endif; ?>
-                                                <?php if ($n_sortie): ?>
-                                                    <div class="book-number">N° <?php echo esc_html($n_sortie); ?></div>
-                                                <?php endif; ?>
-                                                <?php if ($date_sortie): ?>
-                                                    <div class="book-date"><?php echo esc_html($date_sortie); ?></div>
-                                                <?php endif; ?>
-                                            </div>
+                                                </div>
+                                            <?php endforeach; ?>
                                         </div>
-                                    <?php endforeach; ?>
-                                </div>
+                                    </div>
+                                <?php endforeach; ?>
                             </section>
                         <?php endif; ?>
                     </div>

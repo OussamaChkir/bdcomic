@@ -47,6 +47,13 @@ article.single-collection {
     color: #ccc;
 }
 
+.book-quick-actions {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin: 3px 0;
+}
+
 .collection-info {
     flex-grow: 1;
 }

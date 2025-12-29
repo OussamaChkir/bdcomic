@@ -156,6 +156,11 @@ button.book-quick-action {
     color: #182748;
 }
 
+.dashicons,
+.dashicons-before:before {
+    vertical-align: sub !important;
+}
+
 i.bi.bi-heart-fill {
     width: 20px;
     height: 20px;

@@ -121,7 +121,7 @@ function bdcomic_render_statistics_page()
                         <?php echo number_format_i18n($total_livres); ?></li>
                     <li><strong><?php esc_html_e('Collections:', 'bdcomic_theme'); ?></strong>
                         <?php echo number_format_i18n($total_collections); ?></li>
-                    <li><strong><?php esc_html_e('Sous-collections:', 'bdcomic_theme'); ?></strong>
+                    <li><strong><?php esc_html_e('Sous-Collections:', 'bdcomic_theme'); ?></strong>
                         <?php echo number_format_i18n($total_sous_collections); ?></li>
                     <li><strong><?php esc_html_e('Guides de lecture:', 'bdcomic_theme'); ?></strong>
                         <?php echo number_format_i18n($total_guides); ?></li>

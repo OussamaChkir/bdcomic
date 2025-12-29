@@ -328,6 +328,8 @@ jQuery(document).ready(function ($) {
                     return strings.markAsOwned;
                 case 'collection_wishlist':
                     return strings.addToCollectionWishlist;
+                case 'loaned':
+                    return strings.markAsLoaned;
 
                 default:
                     return strings.addToWishlist;
@@ -342,6 +344,8 @@ jQuery(document).ready(function ($) {
                     return strings.markAsNotOwned;
                 case 'collection_wishlist':
                     return strings.removeFromCollectionWishlist;
+                case 'loaned':
+                    return strings.markAsNotLoaned;
 
                 default:
                     return strings.removeFromWishlist;
@@ -360,6 +364,8 @@ jQuery(document).ready(function ($) {
                     return 'dashicons-archive';
                 case 'collection_wishlist':
                     return 'dashicons-star-filled';
+                case 'loaned':
+                    return 'dashicons-share';
 
                 default:
                     return 'dashicons-plus';
@@ -374,6 +380,8 @@ jQuery(document).ready(function ($) {
                     return 'dashicons-archive';
                 case 'collection_wishlist':
                     return 'dashicons-star-filled';
+                case 'loaned':
+                    return 'dashicons-share';
 
                 default:
                     return 'dashicons-minus';
@@ -398,6 +406,8 @@ jQuery(document).ready(function ($) {
                     return 'Livre marqué comme possédé !';
                 case 'collection_wishlist':
                     return 'Collection ajoutée à vos souhaits !';
+                case 'loaned':
+                    return 'Livre marqué comme prêté !';
 
                 default:
                     return 'Ajouté avec succès !';
@@ -412,6 +422,8 @@ jQuery(document).ready(function ($) {
                     return 'Livre marqué comme non possédé.';
                 case 'collection_wishlist':
                     return 'Collection retirée de vos souhaits.';
+                case 'loaned':
+                    return 'Livre marqué comme non prêté.';
 
                 default:
                     return 'Retiré avec succès.';

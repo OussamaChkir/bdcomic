@@ -429,6 +429,8 @@ function enqueue_user_books_scripts()
             'markAsNotOwned' => __('Marquer comme non possédé', 'bdcomic_theme'),
             'addToCollectionWishlist' => __('Ajouter aux souhaits de collection', 'bdcomic_theme'),
             'removeFromCollectionWishlist' => __('Retirer des souhaits de collection', 'bdcomic_theme'),
+            'markAsLoaned' => __('Marquer comme prêté', 'bdcomic_theme'),
+            'markAsNotLoaned' => __('Marquer comme non prêté', 'bdcomic_theme'),
 
             'loading' => __('Chargement...', 'bdcomic_theme'),
             'error' => __('Une erreur est survenue', 'bdcomic_theme'),

@@ -116,6 +116,14 @@ get_header(); ?>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item">
+                                        <a href="<?php echo get_permalink(get_page_by_path('mes-albums-a-lire')); ?>"
+                                            class="sidebar-menu-link">
+                                            <span class="menu-icon dashicons dashicons-book"></span>
+                                            <span
+                                                class="menu-text"><?php _e('Mes Albums à Lire', 'bdcomic_theme'); ?></span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item">
                                         <a href="<?php echo get_permalink(get_page_by_path('account')); ?>"
                                             class="sidebar-menu-link">
                                             <span class="menu-icon dashicons dashicons-admin-users"></span>

@@ -92,6 +92,9 @@
                                 <li><a class="dropdown-item" href="<?php echo home_url('/mes-albums-manquants'); ?>">
                                         <i class="dashicons dashicons-search"></i> Mes Albums Manquants
                                     </a></li>
+                                <li><a class="dropdown-item" href="<?php echo home_url('/mes-albums-a-lire'); ?>">
+                                        <i class="dashicons dashicons-book"></i> Mes Albums à Lire
+                                    </a></li>
                                 <li><a class="dropdown-item" href="<?php echo home_url('/account'); ?>">
                                         <i class="dashicons dashicons-admin-users"></i> Mon Compte
                                     </a></li>

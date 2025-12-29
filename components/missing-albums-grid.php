@@ -89,18 +89,31 @@ if (!empty($collection_ids)) {
 }
 
 // Group by collection for display
+// Group by collection or sub-collection for display
 $grouped_books = array();
 foreach ($missing_books as $book) {
     $collection = get_field('collection', $book->ID);
-    if ($collection) {
-        $collection_id = $collection->ID;
-        if (!isset($grouped_books[$collection_id])) {
-            $grouped_books[$collection_id] = array(
-                'name' => $collection->post_title,
+    $sous_collection = get_field('sous_collection', $book->ID);
+
+    $group_id = 0;
+    $group_name = '';
+
+    if ($sous_collection) {
+        $group_id = $sous_collection->ID;
+        $group_name = $sous_collection->post_title;
+    } elseif ($collection) {
+        $group_id = $collection->ID;
+        $group_name = $collection->post_title;
+    }
+
+    if ($group_id) {
+        if (!isset($grouped_books[$group_id])) {
+            $grouped_books[$group_id] = array(
+                'name' => $group_name,
                 'books' => array()
             );
         }
-        $grouped_books[$collection_id]['books'][] = $book;
+        $grouped_books[$group_id]['books'][] = $book;
     }
 }
 

@@ -127,75 +127,82 @@ uasort($grouped_books, function ($a, $b) {
     <?php else: ?>
         <div class="missing-collections-list">
             <?php foreach ($grouped_books as $collection_id => $data): ?>
-                <div class="collection-group">
-                    <h3 class="collection-title">
-                        <a href="<?php echo get_permalink($collection_id); ?>">
-                            <?php echo esc_html($data['name']); ?>
-                        </a>
-                    </h3>
+                <div class="collection-group" data-collection-id="<?php echo $collection_id; ?>">
+                    <div class="collection-header collapsed">
+                        <h3 class="collection-title">
+                            <a href="<?php echo get_permalink($collection_id); ?>">
+                                <?php echo esc_html($data['name']); ?>
+                            </a>
+                        </h3>
+                        <span class="collection-toggle-icon">
+                            <span class="dashicons dashicons-arrow-down-alt2"></span>
+                        </span>
+                    </div>
 
-                    <div class="books-grid <?php echo 'grid-cols-' . $books_per_row; ?>">
-                        <?php foreach ($data['books'] as $book): ?>
-                            <?php
-                            $is_owned = in_array($book->ID, $owned_book_ids);
-                            $photo_devant = get_field('photo_devant', $book->ID);
-                            $titre = get_field('titre_livre', $book->ID) ?: $book->post_title;
-                            $n_sortie = get_field('n_sortie', $book->ID);
-                            $n_frise = get_field('n_frise', $book->ID);
+                    <div class="collection-books" style="display: none;">
+                        <div class="books-grid <?php echo 'grid-cols-' . $books_per_row; ?>">
+                            <?php foreach ($data['books'] as $book): ?>
+                                <?php
+                                $is_owned = in_array($book->ID, $owned_book_ids);
+                                $photo_devant = get_field('photo_devant', $book->ID);
+                                $titre = get_field('titre_livre', $book->ID) ?: $book->post_title;
+                                $n_sortie = get_field('n_sortie', $book->ID);
+                                $n_frise = get_field('n_frise', $book->ID);
 
-                            // Set global post for template part if needed, or just render manually
-                            // Rendering manually for better control over "missing" specific UI
-                            ?>
-                            <div class="book-item missing-book" data-book-id="<?php echo $book->ID; ?>">
-                                <div class="book-cover">
-                                    <?php if ($photo_devant): ?>
-                                        <img src="<?php echo esc_url($photo_devant['sizes']['medium']); ?>"
-                                            alt="<?php echo esc_attr($photo_devant['alt']); ?>" class="book-image">
-                                    <?php else: ?>
-                                        <div class="no-image-placeholder">
-                                            <span class="dashicons dashicons-book"></span>
-                                        </div>
-                                    <?php endif; ?>
+                                // Set global post for template part if needed, or just render manually
+                                // Rendering manually for better control over "missing" specific UI
+                                ?>
+                                <div class="book-item missing-book" data-book-id="<?php echo $book->ID; ?>">
+                                    <div class="book-cover">
+                                        <?php if ($photo_devant): ?>
+                                            <img src="<?php echo esc_url($photo_devant['sizes']['medium']); ?>"
+                                                alt="<?php echo esc_attr($photo_devant['alt']); ?>" class="book-image">
+                                        <?php else: ?>
+                                            <div class="no-image-placeholder">
+                                                <span class="dashicons dashicons-book"></span>
+                                            </div>
+                                        <?php endif; ?>
 
-                                    <?php if ($show_status_icons && $is_owned): ?>
-                                        <div class="book-status-icons">
-                                            <span class="status-icon owned" title="<?php _e('Possédé', 'bdcomic_theme'); ?>">
+                                        <?php if ($show_status_icons && $is_owned): ?>
+                                            <div class="book-status-icons">
+                                                <span class="status-icon owned" title="<?php _e('Possédé', 'bdcomic_theme'); ?>">
+                                                    <span class="dashicons dashicons-yes"></span>
+                                                </span>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <div class="book-actions">
+                                            <!-- Quick Mark as Read -->
+                                            <button class="book-quick-action" data-post-id="<?php echo $book->ID; ?>"
+                                                data-list-type="read" data-action="add"
+                                                title="<?php _e('Marquer comme lu', 'bdcomic_theme'); ?>">
                                                 <span class="dashicons dashicons-yes"></span>
-                                            </span>
+                                            </button>
                                         </div>
-                                    <?php endif; ?>
+                                    </div>
 
-                                    <div class="book-actions">
-                                        <!-- Quick Mark as Read -->
-                                        <button class="book-quick-action" data-post-id="<?php echo $book->ID; ?>"
-                                            data-list-type="read" data-action="add"
-                                            title="<?php _e('Marquer comme lu', 'bdcomic_theme'); ?>">
-                                            <span class="dashicons dashicons-yes"></span>
-                                        </button>
+                                    <div class="book-info">
+                                        <h4 class="book-title">
+                                            <a href="<?php echo get_permalink($book->ID); ?>">
+                                                <?php echo esc_html($titre); ?>
+                                            </a>
+                                        </h4>
+                                        <div class="book-meta">
+                                            <?php if ($n_sortie): ?>
+                                                <span class="meta-item">
+                                                    <?php _e('N° Sortie', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_sortie); ?>
+                                                </span>
+                                            <?php endif; ?>
+                                            <?php if ($n_frise): ?>
+                                                <span class="meta-item">
+                                                    <?php _e('N° Frise', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_frise); ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="book-info">
-                                    <h4 class="book-title">
-                                        <a href="<?php echo get_permalink($book->ID); ?>">
-                                            <?php echo esc_html($titre); ?>
-                                        </a>
-                                    </h4>
-                                    <div class="book-meta">
-                                        <?php if ($n_sortie): ?>
-                                            <span class="meta-item">
-                                                <?php _e('N° Sortie', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_sortie); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                        <?php if ($n_frise): ?>
-                                            <span class="meta-item">
-                                                <?php _e('N° Frise', 'bdcomic_theme'); ?>                 <?php echo esc_html($n_frise); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>

@@ -479,6 +479,32 @@ function enqueue_my_collections_grid_scripts()
 }
 
 /**
+ * Enqueue scripts and styles for missing albums grid
+ */
+function enqueue_missing_albums_grid_scripts()
+{
+    if (!is_user_logged_in()) {
+        return;
+    }
+
+    wp_enqueue_script(
+        'missing-albums-grid',
+        get_template_directory_uri() . '/assets/js/block-missing-albums-grid.js',
+        array('jquery'),
+        '1.0.0',
+        true
+    );
+
+    wp_enqueue_style(
+        'missing-albums-grid',
+        get_template_directory_uri() . '/assets/css/ContentElements/ce-missing-albums-grid.css',
+        array(),
+        '1.0.0'
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_missing_albums_grid_scripts');
+
+/**
  * Get list type labels
  */
 function get_list_type_labels()

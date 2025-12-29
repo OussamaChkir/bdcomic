@@ -224,7 +224,15 @@
     padding: 1.5rem;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
+
+.my-collections-grid .collection-header:hover {
+    background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+}
+
+
 
 .my-collections-grid .collection-info {
     display: flex;
@@ -314,6 +322,34 @@
 .my-collections-grid .status-badge.status-abandonné {
     background: #fee2e2;
     color: #991b1b;
+}
+
+.my-collections-grid .collection-status-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.my-collections-grid .collection-toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    color: #6b7280;
+    transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+.my-collections-grid .collection-header:hover .collection-toggle-icon {
+    background: rgba(255, 255, 255, 0.8);
+    color: #374151;
+}
+
+.my-collections-grid .collection-header.collapsed .collection-toggle-icon {
+    transform: rotate(-90deg);
 }
 
 /* Collection Books */

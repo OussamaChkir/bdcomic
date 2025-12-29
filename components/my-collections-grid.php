@@ -260,26 +260,31 @@ ksort($collections_data);
                             </div>
                         </div>
 
-                        <div class="collection-status">
+                        <div class="collection-status-container">
                             <?php if ($collection_status): ?>
-                                <span
-                                    class="status-badge status-<?php echo sanitize_html_class(strtolower($collection_status)); ?>">
-                                    <?php
-                                    $status_icons = array(
-                                        'En cours' => 'dashicons-controls-play',
-                                        'Terminée' => 'dashicons-yes-alt',
-                                        'Abandonné' => 'dashicons-dismiss'
-                                    );
-                                    $icon = isset($status_icons[$collection_status]) ? $status_icons[$collection_status] : 'dashicons-info';
-                                    ?>
-                                    <span class="dashicons <?php echo $icon; ?>"></span>
-                                    <?php echo esc_html($collection_status); ?>
+                                <span class="collection-status">
+                                    <span
+                                        class="status-badge status-<?php echo sanitize_html_class(strtolower($collection_status)); ?>">
+                                        <?php
+                                        $status_icons = array(
+                                            'En cours' => 'dashicons-controls-play',
+                                            'Terminée' => 'dashicons-yes-alt',
+                                            'Abandonné' => 'dashicons-dismiss'
+                                        );
+                                        $icon = isset($status_icons[$collection_status]) ? $status_icons[$collection_status] : 'dashicons-info';
+                                        ?>
+                                        <span class="dashicons <?php echo $icon; ?>"></span>
+                                        <?php echo esc_html($collection_status); ?>
+                                    </span>
                                 </span>
                             <?php endif; ?>
+                            <span class="collection-toggle-icon">
+                                <span class="dashicons dashicons-arrow-down-alt2"></span>
+                            </span>
                         </div>
                     </div>
 
-                    <div class="collection-books">
+                    <div class="collection-books" style="display: none;">
                         <?php foreach ($collection_data['books'] as $book): ?>
                             <?php
                             $is_read = in_array($book->ID, $read_book_ids);

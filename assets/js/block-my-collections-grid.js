@@ -87,17 +87,24 @@
             $(this).removeClass('hovered');
         });
 
-        // Collection toggle (if needed for future expansion)
-        $('.collection-header').on('click', function () {
-            const $collection = $(this).closest('.collection-group');
+
+        // Collection toggle
+        $('.collection-header').on('click', function (e) {
+            // Prevent triggering if clicking a link inside the header
+            if ($(e.target).closest('a').length) {
+                return;
+            }
+
+            const $header = $(this);
+            const $collection = $header.closest('.collection-group');
             const $books = $collection.find('.collection-books');
 
             if ($books.is(':visible')) {
                 $books.slideUp(300);
-                $(this).addClass('collapsed');
+                $header.addClass('collapsed');
             } else {
                 $books.slideDown(300);
-                $(this).removeClass('collapsed');
+                $header.removeClass('collapsed');
             }
         });
     }

@@ -225,7 +225,7 @@ ksort($collections_data);
                 ?>
 
                 <div class="collection-group" data-collection-id="<?php echo $collection_id; ?>">
-                    <div class="collection-header">
+                    <div class="collection-header collapsed">
                         <div class="collection-info">
                             <?php if ($show_collection_logos && $collection_logo): ?>
                                 <div class="collection-logo">

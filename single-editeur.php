@@ -113,19 +113,15 @@ get_header(); ?>
                                 <h2>Livres publiés</h2>
 
                                 <?php foreach ($books_grouped as $group_id => $group): ?>
-                                    <div class="collection-group-section" style="margin-bottom: 2rem;">
+                                    <div class="collection-group-section">
                                         <?php if ($group['info']): ?>
-                                            <h3 class="collection-group-title"
-                                                style="margin-bottom: 1rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">
-                                                <a href="<?php echo get_permalink($group['info']->ID); ?>"
-                                                    style="text-decoration: none; color: inherit;">
+                                            <h3 class="collection-group-title">
+                                                <a href="<?php echo get_permalink($group['info']->ID); ?>">
                                                     <?php echo esc_html($group['info']->post_title); ?>
                                                 </a>
                                             </h3>
                                         <?php elseif (count($books_grouped) > 1): // Only show "Others" header if there are other groups ?>
-                                            <h3 class="collection-group-title"
-                                                style="margin-bottom: 1rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">
-                                                <?php _e('Autres livres', 'bdcomic_theme'); ?></h3>
+                                            <h3 class="collection-group-title"><?php _e('Autres livres', 'bdcomic_theme'); ?></h3>
                                         <?php endif; ?>
 
                                         <div class="books-grid">

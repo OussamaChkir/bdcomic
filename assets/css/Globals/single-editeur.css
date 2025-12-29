@@ -262,22 +262,44 @@ article.single-editeur {
         text-align: center;
         gap: 1rem;
     }
-    
+
     .editeur-title {
         font-size: 2rem;
     }
-    
+
     .editeur-content {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .books-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
     }
-    
+
     .book-cover {
         height: 200px;
     }
+}
+
+/* Collection Group Styles */
+.collection-group-section {
+    margin-bottom: 2rem;
+}
+
+.collection-group-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+    color: #333;
+}
+
+.collection-group-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.collection-group-title a:hover {
+    color: #007cba;
 }

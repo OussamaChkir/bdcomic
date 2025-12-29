@@ -40,7 +40,11 @@ $real_owned_books = get_user_books($current_user_id, 'owned', 'livre');
 
 $read_books_data = get_user_books($current_user_id, 'read', 'livre');
 
-$owned_books = array_merge($real_owned_books, $read_books_data);
+// Get user's loaned books
+$loaned_books_data = get_user_books($current_user_id, 'loaned', 'livre');
+$loaned_books = array_column($loaned_books_data, 'post');
+
+$owned_books = array_merge($real_owned_books, $read_books_data, $loaned_books_data);
 
 // Remove duplicates by post ID
 $unique_books = array();
@@ -71,9 +75,7 @@ foreach ($raw_owned_posts as $p) {
 if (empty($owned_book_ids))
     $owned_book_ids = array();
 
-// Get user's loaned books
-$loaned_books_data = get_user_books($current_user_id, 'loaned', 'livre');
-$loaned_books = array_column($loaned_books_data, 'post');
+// Loaned books fetched above used to be here
 
 // Calculate statistics
 $total_owned = count($real_owned_books);

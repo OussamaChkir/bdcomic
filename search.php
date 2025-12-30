@@ -1,4 +1,4 @@
-<?php 
+<?php
 wp_enqueue_style('block-icon-text', get_template_directory_uri() . '/assets/css/Globals/search.css', array(), '1.0', 'all');
 get_header(); ?>
 
@@ -12,9 +12,15 @@ get_header(); ?>
     $grouped_results = [];
 
     // Collecter les posts
-    if (have_posts()) {
-        while (have_posts()) {
-            the_post();
+    // Collecter les posts
+    global $wp_query;
+    $args = $wp_query->query_vars;
+    $args['posts_per_page'] = -1;
+    $search_query = new WP_Query($args);
+
+    if ($search_query->have_posts()) {
+        while ($search_query->have_posts()) {
+            $search_query->the_post();
             $type = get_post_type();
 
             // Ajouter dans le bon groupe
@@ -24,6 +30,7 @@ get_header(); ?>
 
             $grouped_results[$type][] = get_the_ID();
         }
+        wp_reset_postdata();
     }
 
     // Si aucun résultat
@@ -34,7 +41,8 @@ get_header(); ?>
     }
 
     // Fonction pour récupérer l’image ACF par type
-    function get_acf_image_by_type($post_id) {
+    function get_acf_image_by_type($post_id)
+    {
         $type = get_post_type($post_id);
 
         switch ($type) {
@@ -55,16 +63,16 @@ get_header(); ?>
 
     <?php
     // Affichage par type
-    foreach ($grouped_results as $type => $posts_ids) :
+    foreach ($grouped_results as $type => $posts_ids):
         $type_obj = get_post_type_object($type);
         $type_label = $type_obj ? $type_obj->labels->name : ucfirst($type);
         $count = count($posts_ids);
-    ?>
+        ?>
 
         <h2><?php echo $type_label . " ($count)"; ?></h2>
 
         <ul class="search-results-list grouped-list">
-            <?php foreach ($posts_ids as $post_id) :
+            <?php foreach ($posts_ids as $post_id):
                 $img = get_acf_image_by_type($post_id);
 
                 if ($img && isset($img['sizes']['medium'])) {
@@ -72,7 +80,7 @@ get_header(); ?>
                 } else {
                     $img_url = get_template_directory_uri() . '/assets/img/placeholder/cover.png';
                 }
-            ?>
+                ?>
                 <li class="search-item">
                     <a href="<?php echo get_permalink($post_id); ?>" class="search-item-link">
                         <div class="search-item-img">

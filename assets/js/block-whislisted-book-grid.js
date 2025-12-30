@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     'use strict';
 
     // Whislisted Book Grid functionality
@@ -14,6 +14,7 @@ jQuery(document).ready(function($) {
 
         init() {
             this.bindEvents();
+            this.initCollectionToggle();
         }
 
         bindEvents() {
@@ -74,6 +75,7 @@ jQuery(document).ready(function($) {
         displayResults(data) {
             if (data.html) {
                 this.booksGrid.html(data.html);
+                this.initCollectionToggle(); // Re-initialize toggles
             } else {
                 this.booksGrid.html('<div class="no-books-message"><p>Aucun livre trouvé pour cette recherche.</p></div>');
             }
@@ -95,6 +97,30 @@ jQuery(document).ready(function($) {
 
         showError(message) {
             this.booksGrid.html(`<div class="alert alert-danger">${message}</div>`);
+        }
+
+        initCollectionToggle() {
+            // Unbind first to avoid duplicate events if called multiple times
+            this.booksGrid.off('click', '.collection-header');
+
+            this.booksGrid.on('click', '.collection-header', function (e) {
+                // Prevent triggering if clicking a link inside the header
+                if ($(e.target).closest('a').length) {
+                    return;
+                }
+
+                const $header = $(this);
+                const $collection = $header.closest('.collection-group');
+                const $books = $collection.find('.collection-books');
+
+                if ($books.is(':visible')) {
+                    $books.slideUp(300);
+                    $header.addClass('collapsed');
+                } else {
+                    $books.slideDown(300);
+                    $header.removeClass('collapsed');
+                }
+            });
         }
     }
 

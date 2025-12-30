@@ -76,6 +76,73 @@
 }
 
 /* Books Grid Layout - Matching .collection-books */
+
+/* Collection Group Styles */
+.collection-group {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.collection-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.collection-header:hover {
+    background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+}
+
+.collection-header h3.collection-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: none;
+    padding: 0;
+    color: #1f2937;
+}
+
+.collection-header .book-count {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: normal;
+    margin-left: 0.5rem;
+}
+
+.collection-toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    color: #6b7280;
+    transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+.collection-header:hover .collection-toggle-icon {
+    background: rgba(255, 255, 255, 0.8);
+    color: #374151;
+}
+
+.collection-header.collapsed .collection-toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.collection-books {
+    padding: 1.5rem;
+}
+
 .books-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

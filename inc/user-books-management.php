@@ -383,12 +383,83 @@ function search_user_wishlist_ajax()
 
     // Generate HTML
     ob_start();
+
+    // Generate HTML
+    ob_start();
     if (!empty($filtered_books)) {
+        // Group books
+        $grouped_books = array();
+        $autres_books = array();
+
         foreach ($filtered_books as $book_data) {
-            $post = $book_data['post'];
-            $GLOBALS['current_book_id'] = $post->ID;
-            get_template_part('template-parts/content-livre-grid');
+            $book = $book_data['post'];
+            $collection = get_field('collection', $book->ID);
+            $sous_collection = get_field('sous_collection', $book->ID);
+
+            $group_id = 0;
+            $group_name = '';
+
+            if ($sous_collection) {
+                $group_id = $sous_collection->ID;
+                $group_name = $sous_collection->post_title;
+            } elseif ($collection) {
+                $group_id = $collection->ID;
+                $group_name = $collection->post_title;
+            }
+
+            if ($group_id) {
+                if (!isset($grouped_books[$group_id])) {
+                    $grouped_books[$group_id] = array(
+                        'name' => $group_name,
+                        'books' => array()
+                    );
+                }
+                $grouped_books[$group_id]['books'][] = $book_data;
+            } else {
+                $autres_books[] = $book_data;
+            }
         }
+
+        // Sort collections by name
+        uasort($grouped_books, function ($a, $b) {
+            return strcmp($a['name'], $b['name']);
+        });
+
+        // Add "Autres" at the end if exists
+        if (!empty($autres_books)) {
+            $grouped_books['autres'] = array(
+                'name' => __('Autres', 'bdcomic_theme'),
+                'books' => $autres_books
+            );
+        }
+
+        // Display Groups
+        echo '<div class="whislisted-collections-list">';
+        foreach ($grouped_books as $group_id => $data):
+            ?>
+            <div class="collection-group" data-collection-id="<?php echo esc_attr($group_id); ?>">
+                <div class="collection-header collapsed">
+                    <h3 class="collection-title">
+                        <?php echo esc_html($data['name']); ?>
+                        <span class="book-count">(<?php echo count($data['books']); ?>)</span>
+                    </h3>
+                    <span class="collection-toggle-icon">
+                        <span class="dashicons dashicons-arrow-down-alt2"></span>
+                    </span>
+                </div>
+
+                <div class="collection-books" style="display: none;">
+                    <div class="books-grid grid-cols-4"> <!-- Default to 4 columns for search, or dynamic if we pass param -->
+                        <?php foreach ($data['books'] as $book_data):
+                            $post = $book_data['post'];
+                            $GLOBALS['current_book_id'] = $post->ID;
+                            get_template_part('template-parts/content-livre-grid');
+                        endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach;
+        echo '</div>';
     } else {
         echo '<div class="no-books-message"><p>Aucun livre trouvé pour cette recherche.</p></div>';
     }

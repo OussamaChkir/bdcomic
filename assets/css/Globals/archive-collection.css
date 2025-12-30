@@ -87,8 +87,8 @@
 }
 
 .status-en.cours {
-    background: #e3f2fd;
-    color: #1976d2;
+    background: #fffbeb;
+    color: #f59e0b;
 }
 
 .status-terminée {
@@ -96,7 +96,7 @@
     color: #388e3c;
 }
 
-.status-abandonne {
+.status-abandonné {
     background: #ffebee;
     color: #d32f2f;
 }
@@ -153,11 +153,11 @@
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
+
     .collection-content {
         padding: 1rem;
     }
-    
+
     .page-title {
         font-size: 1.5rem;
     }

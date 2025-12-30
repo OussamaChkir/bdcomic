@@ -619,6 +619,7 @@ function bdcomic_search_query($query)
 {
     if ($query->is_search() && !is_admin()) {
         $query->set('post_type', array('post', 'page', 'Collection', 'Artiste', 'Editeur', 'Livre')); // Add your custom types
+        $query->set('posts_per_page', -1);
     }
 }
 add_action('pre_get_posts', 'bdcomic_search_query');

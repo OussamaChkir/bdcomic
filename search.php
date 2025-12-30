@@ -13,14 +13,9 @@ get_header(); ?>
 
     // Collecter les posts
     // Collecter les posts
-    global $wp_query;
-    $args = $wp_query->query_vars;
-    $args['posts_per_page'] = -1;
-    $search_query = new WP_Query($args);
-
-    if ($search_query->have_posts()) {
-        while ($search_query->have_posts()) {
-            $search_query->the_post();
+    if (have_posts()) {
+        while (have_posts()) {
+            the_post();
             $type = get_post_type();
 
             // Ajouter dans le bon groupe
@@ -30,7 +25,6 @@ get_header(); ?>
 
             $grouped_results[$type][] = get_the_ID();
         }
-        wp_reset_postdata();
     }
 
     // Si aucun résultat

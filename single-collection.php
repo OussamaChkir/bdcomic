@@ -61,7 +61,7 @@ get_header(); ?>
 
                             <?php if ($etat): ?>
                                 <div class="collection-status">
-                                    <span class="status-badge status-<?php echo esc_attr(strtolower($etat)); ?>">
+                                    <span class="status-badge status-<?php echo esc_attr(str_replace(' ', '-', strtolower($etat))); ?>">
                                         <?php echo esc_html($etat); ?>
                                     </span>
                                 </div>

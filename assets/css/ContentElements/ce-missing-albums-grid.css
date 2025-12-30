@@ -92,7 +92,7 @@ h3.collection-title a:hover {
     font-size: 14px;
 }
 
-.no-image-placeholder {
+.missing-book .no-image-placeholder {
     width: 100%;
     /* Same aspect ratio as books roughly or fixed height */
     height: 100%;

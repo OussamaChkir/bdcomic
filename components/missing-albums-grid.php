@@ -108,8 +108,17 @@ foreach ($missing_books as $book) {
     $group_name = '';
 
     if ($sous_collection) {
-        $group_id = $sous_collection->ID;
-        $group_name = $sous_collection->post_title;
+        if (is_object($sous_collection)) {
+            $group_id = isset($sous_collection->ID) ? $sous_collection->ID : 0;
+            $group_name = isset($sous_collection->post_title) ? $sous_collection->post_title : '';
+        } elseif (is_array($sous_collection)) {
+            $group_id = isset($sous_collection['ID']) ? $sous_collection['ID'] : 0;
+            $group_name = isset($sous_collection['post_title']) ? $sous_collection['post_title'] : '';
+        } else {
+            // Fallback if it's just an ID
+            $group_id = (int) $sous_collection;
+            $group_name = get_the_title($group_id);
+        }
     } elseif ($collection) {
         $group_id = $collection->ID;
         $group_name = $collection->post_title;

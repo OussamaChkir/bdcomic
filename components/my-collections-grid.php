@@ -99,11 +99,14 @@ foreach ($owned_books as $book_data) {
 
         // Convert sous_collection to string if it's an object or array
         $sous_collection_name = '';
+        $sub_collection_id = 0;
         if ($sous_collection) {
             if (is_object($sous_collection)) {
                 $sous_collection_name = isset($sous_collection->post_title) ? $sous_collection->post_title : '';
+                $sub_collection_id = isset($sous_collection->ID) ? $sous_collection->ID : 0;
             } elseif (is_array($sous_collection)) {
                 $sous_collection_name = isset($sous_collection['post_title']) ? $sous_collection['post_title'] : '';
+                $sub_collection_id = isset($sous_collection['ID']) ? $sous_collection['ID'] : 0;
             } else {
                 $sous_collection_name = (string) $sous_collection;
             }
@@ -115,6 +118,7 @@ foreach ($owned_books as $book_data) {
             $collections_data[$group_key] = array(
                 'name' => $group_key,
                 'is_sous_collection' => !empty($sous_collection_name),
+                'sub_collection_id' => $sub_collection_id,
                 'collection_id' => $collection_id,
                 'books' => array(),
                 'total_books' => 0,
@@ -221,7 +225,12 @@ ksort($collections_data);
                 <?php
                 $collection_id = $collection_data['collection_id'];
                 $collection_status = get_field('etat_collection', $collection_id);
-                $collection_logo = get_field('logo_collection', $collection_id);
+
+                if ($collection_data['is_sous_collection'] && !empty($collection_data['sub_collection_id'])) {
+                    $collection_logo = get_field('logo_sous_collection', $collection_data['sub_collection_id']);
+                } else {
+                    $collection_logo = get_field('logo_collection', $collection_id);
+                }
                 ?>
 
                 <div class="collection-group" data-collection-id="<?php echo $collection_id; ?>">

@@ -41,12 +41,24 @@ if (!empty($owned_books_data)) {
 
 // Get collections from owned books
 $collection_ids = array();
+$owned_sub_collection_ids = array();
 if (!empty($owned_books_data)) {
     foreach ($owned_books_data as $data) {
         $book_id = $data['post']->ID;
         $collection = get_field('collection', $book_id);
         if ($collection) {
             $collection_ids[] = $collection->ID;
+        }
+
+        $sub = get_field('sous_collection', $book_id);
+        if ($sub) {
+            if (is_object($sub)) {
+                $owned_sub_collection_ids[] = $sub->ID;
+            } elseif (is_array($sub)) {
+                $owned_sub_collection_ids[] = $sub['ID'];
+            } else {
+                $owned_sub_collection_ids[] = (int) $sub;
+            }
         }
     }
 }
@@ -74,10 +86,29 @@ if (!empty($collection_ids)) {
     $all_collection_books = get_posts($args);
 
     foreach ($all_collection_books as $book) {
-        // If book is NOT owned, add to missing
-        if (!in_array($book->ID, $owned_book_ids)) {
-            $missing_books[] = $book;
+        // If book is owned, skip
+        if (in_array($book->ID, $owned_book_ids)) {
+            continue;
         }
+
+        // Check sub-collection ownership
+        $sub = get_field('sous_collection', $book->ID);
+        if ($sub) {
+            $sub_id = 0;
+            if (is_object($sub)) {
+                $sub_id = $sub->ID;
+            } elseif (is_array($sub)) {
+                $sub_id = $sub['ID'];
+            } else {
+                $sub_id = (int) $sub;
+            }
+
+            if ($sub_id && !in_array($sub_id, $owned_sub_collection_ids)) {
+                continue;
+            }
+        }
+
+        $missing_books[] = $book;
     }
 }
 

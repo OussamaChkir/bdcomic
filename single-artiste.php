@@ -22,7 +22,8 @@ get_header(); ?>
                                     class="artiste-photo">
                             <?php else: ?>
                                 <div class="no-image-placeholder">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/avatar.png" alt="No Image">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder/avatar.png"
+                                        alt="No Image">
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -86,7 +87,8 @@ get_header(); ?>
                             <?php if ($roles && is_array($roles)): ?>
                                 <div class="artiste-roles">
                                     <?php foreach ($roles as $role): ?>
-                                        <span class="role-badge <?php echo esc_html($role); ?>"><?php echo esc_html($role); ?></span>
+                                        <span
+                                            class="role-badge <?php echo esc_html($role); ?>"><?php echo esc_html($role); ?></span>
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
@@ -121,13 +123,14 @@ get_header(); ?>
                         $books_by_artist = array();
                         if (!empty($related_book_ids)) {
                             $books_by_artist = get_posts(array(
-                                'post_type'      => 'livre',
-                                'post__in'       => $related_book_ids,
+                                'post_type' => 'livre',
+                                'post__in' => $related_book_ids,
                                 'posts_per_page' => -1,
-                                'orderby'        => 'title',
-                                'order'          => 'ASC',
-                                'post_status'    => 'publish'
-                            ));                            
+                                'meta_key' => 'n_sortie',
+                                'orderby' => 'meta_value_num',
+                                'order' => 'ASC',
+                                'post_status' => 'publish'
+                            ));
                         }
 
                         if ($books_by_artist): ?>
@@ -172,7 +175,7 @@ get_header(); ?>
                                                 <?php if ($artist_role): ?>
                                                     <span class="role-badge <?php echo esc_html($artist_role); ?>">
                                                         <?php echo esc_html($artist_role); ?>
-                                                </span>
+                                                    </span>
                                                 <?php endif; ?>
                                             </div>
                                         </div>

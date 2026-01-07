@@ -1,7 +1,7 @@
 <?php
 /**
  * Missing Albums Grid Component
- * Displays books from user's collections that haven't been read yet
+ * Displays books from user's collections that are not owned
  * 
  * @package bdcomic_theme
  */
@@ -28,14 +28,7 @@ if (!is_user_logged_in()) {
 
 $current_user_id = get_current_user_id();
 
-// Get user's read books
-$read_books_data = get_user_books($current_user_id, 'read', 'livre');
-$read_book_ids = array();
-if (!empty($read_books_data)) {
-    foreach ($read_books_data as $data) {
-        $read_book_ids[] = $data['post']->ID;
-    }
-}
+
 
 // Get user's owned books (to check ownership status)
 $owned_books_data = get_user_books($current_user_id, 'owned', 'livre');
@@ -46,17 +39,8 @@ if (!empty($owned_books_data)) {
     }
 }
 
-// Get collections from read books AND owned books (to see what is missing from collections we interact with)
+// Get collections from owned books
 $collection_ids = array();
-if (!empty($read_books_data)) {
-    foreach ($read_books_data as $data) {
-        $book_id = $data['post']->ID;
-        $collection = get_field('collection', $book_id);
-        if ($collection) {
-            $collection_ids[] = $collection->ID;
-        }
-    }
-}
 if (!empty($owned_books_data)) {
     foreach ($owned_books_data as $data) {
         $book_id = $data['post']->ID;
@@ -153,7 +137,7 @@ uasort($grouped_books, function ($a, $b) {
 
     <?php if (empty($grouped_books)): ?>
         <div class="no-books-message">
-            <p><?php _e('Vous êtes à jour ! Aucun album manquant dans vos collections lues.', 'bdcomic_theme'); ?></p>
+            <p><?php _e('Vous êtes à jour ! Aucun album manquant dans vos collections.', 'bdcomic_theme'); ?></p>
         </div>
     <?php else: ?>
         <div class="missing-collections-list">
@@ -259,7 +243,7 @@ uasort($grouped_books, function ($a, $b) {
                                 $(this).remove();
                                 // If all collections empty, show message
                                 if ($('.missing-albums-grid .collection-group').length === 0) {
-                                    $('.missing-collections-list').html('<div class="no-books-message"><p><?php _e('Vous êtes à jour ! Aucun album manquant dans vos collections lues.', 'bdcomic_theme'); ?></p></div>');
+                                    $('.missing-collections-list').html('<div class="no-books-message"><p><?php _e('Vous êtes à jour ! Aucun album manquant dans vos collections.', 'bdcomic_theme'); ?></p></div>');
                                 }
                             });
                         }

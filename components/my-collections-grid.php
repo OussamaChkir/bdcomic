@@ -144,6 +144,15 @@ foreach ($owned_books as $book_data) {
 
 // Sort collections by name
 ksort($collections_data);
+
+// Sort books within each collection by title
+foreach ($collections_data as $key => $data) {
+    usort($collections_data[$key]['books'], function ($a, $b) {
+        $title_a = get_field('titre_livre', $a->ID) ?: $a->post_title;
+        $title_b = get_field('titre_livre', $b->ID) ?: $b->post_title;
+        return strcmp($title_a, $title_b);
+    });
+}
 ?>
 
 <div class="my-collections-grid" data-user-id="<?php echo $current_user_id; ?>"

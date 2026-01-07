@@ -46,51 +46,25 @@ if (!empty($owned_books_data)) {
     }
 }
 
-// Get collections from read books OR owned books
-// We want to see unread books from collections we interact with
-$collection_ids = array();
-if (!empty($read_books_data)) {
-    foreach ($read_books_data as $data) {
-        $book_id = $data['post']->ID;
-        $collection = get_field('collection', $book_id);
-        if ($collection) {
-            $collection_ids[] = $collection->ID;
-        }
-    }
-}
-if (!empty($owned_books_data)) {
-    foreach ($owned_books_data as $data) {
-        $book_id = $data['post']->ID;
-        $collection = get_field('collection', $book_id);
-        if ($collection) {
-            $collection_ids[] = $collection->ID;
-        }
-    }
-}
-$collection_ids = array_unique($collection_ids);
+
 
 $missing_books = array();
 
-if (!empty($collection_ids)) {
-    // Query all books in these collections
+// Calculate missing read books (Owned but not read)
+if (!empty($owned_book_ids)) {
+    // Only query books that we own
     $args = array(
         'post_type' => 'livre',
         'posts_per_page' => -1,
-        'meta_query' => array(
-            array(
-                'key' => 'collection',
-                'value' => $collection_ids,
-                'compare' => 'IN'
-            )
-        ),
+        'post__in' => $owned_book_ids,
         'orderby' => 'meta_value_num',
         'meta_key' => 'n_sortie', // Sort by volume number
         'order' => 'ASC'
     );
 
-    $all_collection_books = get_posts($args);
+    $all_owned_books = get_posts($args);
 
-    foreach ($all_collection_books as $book) {
+    foreach ($all_owned_books as $book) {
         // If book is NOT read, add to missing
         if (!in_array($book->ID, $read_book_ids)) {
             $missing_books[] = $book;

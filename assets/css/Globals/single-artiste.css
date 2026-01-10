@@ -375,6 +375,7 @@ article.single-artiste {
     display: flex;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    justify-content: center;
 }
 
 .book-quick-action {

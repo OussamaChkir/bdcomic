@@ -33,7 +33,7 @@ article.single-artiste {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.no-image-placeholder img{
+.no-image-placeholder img {
     width: 250px;
     height: 250px;
     background: #f5f5f5;
@@ -116,33 +116,39 @@ article.single-artiste {
     font-weight: 500;
 }
 
-.role-badge.Scénariste{
-    color:#9c4971;
-    background:#d5a6bd;
+.role-badge.Scénariste {
+    color: #9c4971;
+    background: #d5a6bd;
 }
-.role-badge.Dessinateur{
-    color:#61499c;
+
+.role-badge.Dessinateur {
+    color: #61499c;
     background: #b4a7d6;
 }
-.role-badge.Coloriste{
+
+.role-badge.Coloriste {
     color: #195bcc;
-    background:#a4c2f4;
+    background: #a4c2f4;
 }
-.role-badge.Encreur{
+
+.role-badge.Encreur {
     color: #1c5eca;
     background: #6d9eeb;
 }
-.role-badge.Lettreur{
+
+.role-badge.Lettreur {
     color: #d9730d;
     background: #f9cb9c;
 }
-.role-badge.Couverture{
+
+.role-badge.Couverture {
     color: #bb432a;
     background: #ecb7ac;
 }
-.role-badge.Traducteur{
+
+.role-badge.Traducteur {
     color: #be2727;
-    background:#ea9999;
+    background: #ea9999;
 }
 
 .artiste-content {
@@ -338,28 +344,68 @@ article.single-artiste {
         justify-content: center;
         align-items: center;
     }
-    
+
     .artiste-photo,
     .no-image-placeholder img {
         width: 200px;
         height: 200px;
     }
-    
+
     .artiste-title {
         font-size: 2rem;
     }
-    
+
     .artiste-content {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .works-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
     }
-    
+
     .work-cover {
         height: 200px;
     }
+}
+
+/* Quick Actions Styles */
+.book-quick-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.book-quick-action {
+    background: transparent;
+    border: 1px solid #dee2e6;
+    color: #6c757d;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.book-quick-action .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.book-quick-action:hover {
+    background: #f8f9fa;
+    border-color: #007cba;
+    color: #007cba;
+}
+
+.book-quick-action.active {
+    background: #007cba;
+    border-color: #007cba;
+    color: #fff;
 }

@@ -269,99 +269,111 @@ get_header(); ?>
 
                                         <!-- Sub collections -->
                                         <?php if (!empty($group['subs'])): ?>
-                                            <?php foreach ($group['subs'] as $sub_id => $sub): ?>
-                                                <div class="sub-collection-group">
-                                                    <h4 class="sub-collection-title"><?php echo esc_html($sub['name']); ?></h4>
-                                                    <div class="books-grid">
-                                                        <?php foreach ($sub['books'] as $book):
-                                                            $photo_devant = get_field('photo_devant', $book->ID);
-                                                            $titre = get_field('titre_livre', $book->ID);
-                                                            $date_sortie = get_field('date_sortie_livre', $book->ID);
-                                                            $n_sortie = get_field('n_sortie', $book->ID);
-                                                            $collection = get_field('collection', $book->ID);
-                                                            ?>
-                                                            <div class="book-item">
-                                                                <div class="book-cover">
-                                                                    <?php if ($photo_devant): ?>
-                                                                        <img src="<?php echo esc_url($photo_devant['url']); ?>"
-                                                                            alt="<?php echo esc_attr($photo_devant['alt']); ?>">
-                                                                    <?php else: ?>
-                                                                        <div class="no-cover-placeholder">
-                                                                            <span class="dashicons dashicons-book"></span>
-                                                                        </div>
-                                                                    <?php endif; ?>
-                                                                </div>
-                                                                <div class="book-info">
-                                                                    <h3 class="book-title">
-                                                                        <a href="<?php echo get_permalink($book->ID); ?>">
-                                                                            <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
-                                                                        </a>
-                                                                    </h3>
-                                                                    <?php if ($collection): ?>
-                                                                        <div class="book-collection">
-                                                                            <a href="<?php echo get_permalink($collection->ID); ?>">
-                                                                                <?php echo esc_html($collection->post_title); ?>
-                                                                            </a>
-                                                                        </div>
-                                                                    <?php endif; ?>
-                                                                    <?php if ($n_sortie): ?>
-                                                                        <div class="book-number">N° <?php echo esc_html($n_sortie); ?></div>
-                                                                    <?php endif; ?>
-                                                                    <?php if ($date_sortie): ?>
-                                                                        <div class="book-date"><?php echo esc_html($date_sortie); ?></div>
-                                                                    <?php endif; ?>
-                                                                </div>
-
-                                                                <?php if (is_user_logged_in()): ?>
-                                                                    <div class="book-actions">
-                                                                        <div class="book-quick-actions">
-                                                                            <?php
-                                                                            $post_id = $book->ID;
-                                                                            // Quick owned button
-                                                                            $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
-                                                                            ?>
-                                                                            <button
-                                                                                class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
-                                                                                data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
-                                                                                data-post-type="livre" data-bs-toggle="tooltip"
-                                                                                title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
-                                                                                <span
-                                                                                    class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
-                                                                            </button>
-
-                                                                            <?php
-                                                                            // Quick read button
-                                                                            $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
-                                                                            ?>
-                                                                            <button
-                                                                                class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>"
-                                                                                data-post-id="<?php echo $post_id; ?>" data-list-type="read"
-                                                                                data-post-type="livre" data-bs-toggle="tooltip"
-                                                                                title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
-                                                                                <span
-                                                                                    class="dashicons <?php echo $is_read ? 'dashicons-yes-alt' : 'dashicons-yes'; ?>"></span>
-                                                                            </button>
-
-                                                                            <?php
-                                                                            // Quick wishlist button
-                                                                            $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
-                                                                            ?>
-                                                                            <button
-                                                                                class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>"
-                                                                                data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
-                                                                                data-post-type="livre" data-bs-toggle="tooltip"
-                                                                                title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
-                                                                                <span
-                                                                                    class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php endif; ?>
+                                            <div class="sub-collections-wrapper">
+                                                <?php foreach ($group['subs'] as $sub_id => $sub): ?>
+                                                    <div class="collection-group">
+                                                        <div class="collection-header collapsed">
+                                                            <div class="collection-info">
+                                                                <h4 class="collection-name"><?php echo esc_html($sub['name']); ?></h4>
                                                             </div>
-                                                        <?php endforeach; ?>
+                                                            <div class="collection-status-container">
+                                                                <span class="collection-toggle-icon">
+                                                                    <span class="dashicons dashicons-arrow-down-alt2"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="collection-books" style="display: none;">
+                                                            <?php foreach ($sub['books'] as $book):
+                                                                $photo_devant = get_field('photo_devant', $book->ID);
+                                                                $titre = get_field('titre_livre', $book->ID);
+                                                                $date_sortie = get_field('date_sortie_livre', $book->ID);
+                                                                $n_sortie = get_field('n_sortie', $book->ID);
+                                                                $collection = get_field('collection', $book->ID);
+                                                                ?>
+                                                                <div class="book-item">
+                                                                    <div class="book-cover">
+                                                                        <?php if ($photo_devant): ?>
+                                                                            <img src="<?php echo esc_url($photo_devant['url']); ?>"
+                                                                                alt="<?php echo esc_attr($photo_devant['alt']); ?>">
+                                                                        <?php else: ?>
+                                                                            <div class="no-cover-placeholder">
+                                                                                <span class="dashicons dashicons-book"></span>
+                                                                            </div>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                    <div class="book-info">
+                                                                        <h3 class="book-title">
+                                                                            <a href="<?php echo get_permalink($book->ID); ?>">
+                                                                                <?php echo $titre ? esc_html($titre) : esc_html($book->post_title); ?>
+                                                                            </a>
+                                                                        </h3>
+                                                                        <?php if ($collection): ?>
+                                                                            <div class="book-collection">
+                                                                                <a href="<?php echo get_permalink($collection->ID); ?>">
+                                                                                    <?php echo esc_html($collection->post_title); ?>
+                                                                                </a>
+                                                                            </div>
+                                                                        <?php endif; ?>
+                                                                        <?php if ($n_sortie): ?>
+                                                                            <div class="book-number">N° <?php echo esc_html($n_sortie); ?></div>
+                                                                        <?php endif; ?>
+                                                                        <?php if ($date_sortie): ?>
+                                                                            <div class="book-date"><?php echo esc_html($date_sortie); ?></div>
+                                                                        <?php endif; ?>
+                                                                    </div>
+
+                                                                    <?php if (is_user_logged_in()): ?>
+                                                                        <div class="book-actions">
+                                                                            <div class="book-quick-actions">
+                                                                                <?php
+                                                                                $post_id = $book->ID;
+                                                                                // Quick owned button
+                                                                                $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
+                                                                                ?>
+                                                                                <button
+                                                                                    class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
+                                                                                    data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
+                                                                                    data-post-type="livre" data-bs-toggle="tooltip"
+                                                                                    title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
+                                                                                    <span
+                                                                                        class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
+                                                                                </button>
+
+                                                                                <?php
+                                                                                // Quick read button
+                                                                                $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
+                                                                                ?>
+                                                                                <button
+                                                                                    class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>"
+                                                                                    data-post-id="<?php echo $post_id; ?>" data-list-type="read"
+                                                                                    data-post-type="livre" data-bs-toggle="tooltip"
+                                                                                    title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
+                                                                                    <span
+                                                                                        class="dashicons <?php echo $is_read ? 'dashicons-yes-alt' : 'dashicons-yes'; ?>"></span>
+                                                                                </button>
+
+                                                                                <?php
+                                                                                // Quick wishlist button
+                                                                                $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
+                                                                                ?>
+                                                                                <button
+                                                                                    class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>"
+                                                                                    data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
+                                                                                    data-post-type="livre" data-bs-toggle="tooltip"
+                                                                                    title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
+                                                                                    <span
+                                                                                        class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            <?php endforeach; ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php endforeach; ?>
+                                                <?php endforeach; ?>
+                                            </div>
                                         <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -407,5 +419,28 @@ get_header(); ?>
 </main>
 
 
+
+<script>
+    jQuery(document).ready(function($) {
+        $('.collection-header').on('click', function(e) {
+            // Prevent triggering if clicking a link inside the header, though we don't have links right now in header
+            if ($(e.target).closest('a').length) {
+                return;
+            }
+
+            const $header = $(this);
+            const $collection = $header.closest('.collection-group');
+            const $books = $collection.find('.collection-books');
+
+            if ($books.is(':visible')) {
+                $books.slideUp(300);
+                $header.addClass('collapsed');
+            } else {
+                $books.slideDown(300);
+                $header.removeClass('collapsed');
+            }
+        });
+    });
+</script>
 
 <?php get_footer(); ?>

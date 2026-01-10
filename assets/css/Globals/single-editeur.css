@@ -377,20 +377,29 @@ article.single-editeur {
 .collection-books {
     padding: 1.5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Enforce 4 columns as requested */
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     border-top: 1px solid #e5e7eb;
-    /* Ensure separation if header border is removed or just to be safe */
 }
 
-/* Ensure the border-top is hidden when collapsed if we want to be super clean, 
-   but since the container is hidden, it doesn't matter much. */
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .collection-books {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
-/* Responsive adjustments for the new accordion */
 @media (max-width: 768px) {
     .collection-books {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .collection-books {
+        grid-template-columns: 1fr;
     }
 }

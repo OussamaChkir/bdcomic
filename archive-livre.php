@@ -38,24 +38,16 @@ get_header(); ?>
                         <select class="archive-filter-select" data-filter="publisher">
                             <option value="">Tous les éditeurs</option>
                             <?php
-                            // Get unique publishers from ACF field
-                            $publishers = array();
-                            $livres = get_posts(array(
-                                'post_type' => 'livre',
+                            // Get all publishers directly
+                            $publishers = get_posts(array(
+                                'post_type' => 'editeur',
                                 'posts_per_page' => -1,
-                                'meta_key' => 'maison_d\'edition'
+                                'orderby' => 'title',
+                                'order' => 'ASC'
                             ));
 
-                            foreach ($livres as $livre) {
-                                $publisher = get_field('maison_d\'edition', $livre->ID);
-                                if ($publisher && !in_array($publisher->post_title, $publishers)) {
-                                    $publishers[] = $publisher->post_title;
-                                }
-                            }
-
-                            sort($publishers);
                             foreach ($publishers as $publisher) {
-                                echo '<option value="' . esc_attr($publisher) . '">' . esc_html($publisher) . '</option>';
+                                echo '<option value="' . esc_attr($publisher->post_title) . '">' . esc_html($publisher->post_title) . '</option>';
                             }
                             ?>
                         </select>
@@ -66,24 +58,16 @@ get_header(); ?>
                         <select class="archive-filter-select" data-filter="collection">
                             <option value="">Toutes les collections</option>
                             <?php
-                            // Get unique collections from ACF field
-                            $collections = array();
-                            $livres = get_posts(array(
-                                'post_type' => 'livre',
+                            // Get all collections directly
+                            $collections_query = get_posts(array(
+                                'post_type' => 'collection',
                                 'posts_per_page' => -1,
-                                'meta_key' => 'collection'
+                                'orderby' => 'title',
+                                'order' => 'ASC'
                             ));
 
-                            foreach ($livres as $livre) {
-                                $collection = get_field('collection', $livre->ID);
-                                if ($collection && !in_array($collection->post_title, $collections)) {
-                                    $collections[] = $collection->post_title;
-                                }
-                            }
-
-                            sort($collections);
-                            foreach ($collections as $collection) {
-                                echo '<option value="' . esc_attr($collection) . '">' . esc_html($collection) . '</option>';
+                            foreach ($collections_query as $collection_post) {
+                                echo '<option value="' . esc_attr($collection_post->post_title) . '">' . esc_html($collection_post->post_title) . '</option>';
                             }
                             ?>
                         </select>

@@ -118,11 +118,12 @@ $speed = $block_settings['speed'] ?? 500;
 
                             <div class="swiper-slide book-slide">
                                 <article class="">
-                                    <a href="<?php the_permalink(); ?>">
-                                        <div class="livre-content">
+                                    <div class="livre-content">
 
-                                            <div class="livre-covers">
-                                                <div class="cover-front">
+                                        <div class="livre-covers">
+                                            <div class="cover-front">
+                                                <a href="<?php the_permalink(); ?>"
+                                                    aria-label="<?php echo esc_attr(get_the_title()); ?>">
                                                     <?php if ($photo_devant): ?>
                                                         <img src="<?php echo esc_url($photo_devant['url']); ?>"
                                                             alt="<?php echo esc_attr($photo_devant['alt']); ?>" class="livre-cover">
@@ -132,64 +133,64 @@ $speed = $block_settings['speed'] ?? 500;
                                                                 alt="No Image">
                                                         </div>
                                                     <?php endif; ?>
-                                                </div>
-                                            </div>
-
-                                            <div class="livre-details">
-                                                <h2 class="livre-title">
-                                                    <a href="<?php the_permalink(); ?>">
-                                                        <?php echo $titre ? esc_html($titre) : get_the_title(); ?>
-                                                    </a>
-                                                </h2>
-                                            </div>
-                                            <div class="livre-actions">
-                                                <?php if (is_user_logged_in()): ?>
-                                                    <div class="book-quick-actions">
-                                                        <?php
-                                                        $current_user_id = get_current_user_id();
-                                                        $post_id = get_the_ID();
-
-                                                        // Quick owned button
-                                                        $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
-                                                        ?>
-                                                        <button class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
-                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
-                                                            data-post-type="livre" data-bs-toggle="tooltip"
-                                                            title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
-                                                            <span
-                                                                class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
-                                                        </button>
-
-                                                        <?php
-                                                        // Quick read button
-                                                        $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
-                                                        ?>
-                                                        <button class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>"
-                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="read"
-                                                            data-post-type="livre" data-bs-toggle="tooltip"
-                                                            title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
-                                                            <span
-                                                                class="dashicons <?php echo $is_read ? 'dashicons-yes-alt' : 'dashicons-yes'; ?>"></span>
-                                                        </button>
-
-                                                        <?php
-                                                        // Quick wishlist button
-                                                        $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
-                                                        ?>
-
-                                                        <button class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>"
-                                                            data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
-                                                            data-post-type="livre" data-bs-toggle="tooltip"
-                                                            title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
-                                                            <span
-                                                                class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
-                                                        </button>
-
-                                                    </div>
-                                                <?php endif; ?>
+                                                </a>
                                             </div>
                                         </div>
-                                    </a>
+
+                                        <div class="livre-details">
+                                            <h2 class="livre-title">
+                                                <a href="<?php the_permalink(); ?>">
+                                                    <?php echo $titre ? esc_html($titre) : get_the_title(); ?>
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div class="livre-actions">
+                                            <?php if (is_user_logged_in()): ?>
+                                                <div class="book-quick-actions">
+                                                    <?php
+                                                    $current_user_id = get_current_user_id();
+                                                    $post_id = get_the_ID();
+
+                                                    // Quick owned button
+                                                    $is_owned = is_book_in_user_list($current_user_id, $post_id, 'owned');
+                                                    ?>
+                                                    <button class="book-quick-action <?php echo $is_owned ? 'active' : ''; ?>"
+                                                        data-post-id="<?php echo $post_id; ?>" data-list-type="owned"
+                                                        data-post-type="livre" data-bs-toggle="tooltip"
+                                                        title="<?php echo $is_owned ? __('Marquer comme non possédé', 'bdcomic_theme') : __('Marquer comme possédé', 'bdcomic_theme'); ?>">
+                                                        <span
+                                                            class="dashicons <?php echo $is_owned ? 'dashicons-star-filled' : 'dashicons-star-empty'; ?>"></span>
+                                                    </button>
+
+                                                    <?php
+                                                    // Quick read button
+                                                    $is_read = is_book_in_user_list($current_user_id, $post_id, 'read');
+                                                    ?>
+                                                    <button class="book-quick-action <?php echo $is_read ? 'active' : ''; ?>"
+                                                        data-post-id="<?php echo $post_id; ?>" data-list-type="read"
+                                                        data-post-type="livre" data-bs-toggle="tooltip"
+                                                        title="<?php echo $is_read ? __('Marquer comme non lu', 'bdcomic_theme') : __('Marquer comme lu', 'bdcomic_theme'); ?>">
+                                                        <span
+                                                            class="dashicons <?php echo $is_read ? 'dashicons-yes-alt' : 'dashicons-yes'; ?>"></span>
+                                                    </button>
+
+                                                    <?php
+                                                    // Quick wishlist button
+                                                    $in_wishlist = is_book_in_user_list($current_user_id, $post_id, 'wishlist');
+                                                    ?>
+
+                                                    <button class="book-quick-action <?php echo $in_wishlist ? 'active' : ''; ?>"
+                                                        data-post-id="<?php echo $post_id; ?>" data-list-type="wishlist"
+                                                        data-post-type="livre" data-bs-toggle="tooltip"
+                                                        title="<?php echo $in_wishlist ? __('Retirer des souhaits', 'bdcomic_theme') : __('Ajouter aux souhaits', 'bdcomic_theme'); ?>">
+                                                        <span
+                                                            class="dashicons <?php echo $in_wishlist ? 'dashicons-heart' : 'dashicons-heart'; ?>"></span>
+                                                    </button>
+
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </article>
                             </div>
 
